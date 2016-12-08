@@ -1,0 +1,42 @@
+{
+  "Cluster": {
+    "Name": "AWS::Redshift::Cluster",
+    "Description": "When a new version of the Amazon Redshift is released, indicates whether upgrades can be\n                  applied to the engine that is running on the cluster. The upgrades are applied\n                  during the maintenance window.The number of days that automated snapshots are retained. If you set the value\n                  to 0, automated snapshots are disabled.The Amazon EC2 Availability Zone in which you want to provision your Amazon Redshift cluster.\n                  For example, if you have several Amazon EC2 instances running in a specific\n                  Availability Zone, you might want the cluster to be provisioned in the same zone\n                  in order to decrease network latency.The name of the parameter group that you want to associate with this\n                  cluster.A list of security groups that you want to associate with this cluster.The name of a cluster subnet group that you want to associate with this\n                  cluster.The type of cluster. You can specify single-node or\n                     multi-node.The Amazon Redshift engine version that you want to deploy on the cluster.The name of the first database that is created when the cluster is\n                  created.The Elastic IP (EIP) address for the cluster.Indicates whether the data in the cluster is encrypted at rest.Specifies the name of the HSM client certificate that the Amazon Redshift cluster uses to\n                  retrieve the data encryption keys stored in an HSM.Specifies the name of the HSM configuration that contains the information that\n                  the Amazon Redshift cluster can use to retrieve and store keys in an HSM.The AWS Key Management Service (AWS KMS) key ID that you want to use to encrypt data in the\n                  cluster.The user name that is associated with the master user account for this\n                  cluster.The  password associated with the master user account for this cluster.The node type that is provisioned for this cluster.The number of compute nodes in the cluster. If you specify\n                     multi-node for the ClusterType parameter, you must\n                  specify a number greater than 1.When you restore from a snapshot from another AWS account, the 12-digit AWS\n                  account ID that contains that snapshot.The port number on which the cluster accepts incoming connections.The weekly time range (in UTC) during which automated cluster maintenance can\n                  occur.  The format of the time range is\n                  ddd:hh24:mi-ddd:hh24:mi.Indicates whether the cluster can be accessed from a public network.The name of the cluster the source snapshot was created from. For more information about restoring from a snapshot, see the RestoreFromClusterSnapshot action in the Amazon Redshift API Reference.The name of the snapshot from which to create a new cluster.A list of VPC security groups that are associated with this cluster.The connection endpoint for the Amazon Redshift cluster. For example:\n                     examplecluster.cg034hpkmmjt.us-east-1.redshift.amazonaws.com\n                  .The port number on which the Amazon Redshift cluster accepts connections. For example:\n                     5439.",
+    "Array": true,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  },
+  "ClusterParameterGroup": {
+    "Name": "AWS::Redshift::ClusterParameterGroup",
+    "Description": "A description of the parameter group.The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
+    "Array": false,
+    "Type": "AmazonRedshiftParameterType",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  },
+  "ClusterSecurityGroup": {
+    "Name": "AWS::Redshift::ClusterSecurityGroup",
+    "Description": "A description of the security group.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "Replacement"
+  },
+  "ClusterSecurityGroupIngress": {
+    "Name": "AWS::Redshift::ClusterSecurityGroupIngress",
+    "Description": "The name of the Amazon Redshift security group that will be associated with the ingress\n                  rule.The IP address range that has inbound access to the Amazon Redshift security group.The Amazon EC2 security group that will be added the Amazon Redshift security group.The 12-digit AWS account number of the owner of the Amazon EC2 security group that\n                  is specified by the EC2SecurityGroupName parameter.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Conditional. If you specify the EC2SecurityGroupName\n                  property, you must specify this property.",
+    "UpdateRequires": "Replacement"
+  },
+  "ClusterSubnetGroup": {
+    "Name": "AWS::Redshift::ClusterSubnetGroup",
+    "Description": "A description of the subnet group.A list of VPC subnet IDs. You can modify a maximum of 20 subnets.",
+    "Array": true,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
+  }
+}

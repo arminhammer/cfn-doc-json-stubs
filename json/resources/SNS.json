@@ -1,0 +1,26 @@
+{
+  "TopicPolicy": {
+    "Name": "AWS::SNS::TopicPolicy",
+    "Description": "A policy document that contains permissions to add to the specified SNS\n            topics.The Amazon Resource Names (ARN) of the topics to which you want to add the policy.\n            You can use the Ref function to\n            specify an AWS::SNS::Topic\n            resource.",
+    "Array": true,
+    "Type": "AmazonSNStopicsARNs",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
+  },
+  "Topic": {
+    "Name": "AWS::SNS::Topic",
+    "Description": "A developer-defined string that can be used to identify this SNS topic.The SNS subscriptions (endpoints) for this topic.A name for the topic. If you don't specify a name, AWS CloudFormation generates a unique\n                  physical ID and uses that ID for the topic name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.Returns the name for an Amazon SNS topic.",
+    "Array": true,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "Replacement"
+  },
+  "Subscription": {
+    "Name": "AWS::SNS::Subscription",
+    "Description": "The endpoint that receives notifications from the Amazon SNS topic. The endpoint\n                  value depends on the protocol that you specify. For more information, see the\n                     Subscribe Endpoint\n                  parameter in the Amazon Simple Notification Service API Reference.The subscription's protocol. For more information, see the Subscribe Protocol parameter in\n                  the Amazon Simple Notification Service API Reference.The Amazon Resource Name (ARN) of the topic to subscribe to.",
+    "Array": false,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "Replacement"
+  }
+}

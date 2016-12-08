@@ -1,0 +1,10 @@
+{
+  "Repository": {
+    "Name": "AWS::ECR::Repository",
+    "Description": "A name for the image repository. If you don't specify a name, AWS CloudFormation generates a\n            unique physical ID and uses that ID for the repository name. For more information, see\n              Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.A policy that controls who has access to the repository and which actions they can\n            perform on it. For more information, see Amazon ECR Repository Policies in the\n              Amazon EC2 Container Registry User Guide.",
+    "Array": false,
+    "Type": "Object",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  }
+}

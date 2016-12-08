@@ -1,0 +1,26 @@
+{
+  "ConfigRule": {
+    "Name": "AWS::Config::ConfigRule",
+    "Description": "A name for the AWS Config rule. If you don't specify a name, AWS CloudFormation generates a unique\n            physical ID and uses that ID for the rule name. For more information, see Name Type.A description about this AWS Config rule.Input parameter values that are passed to the AWS Config rule (Lambda function).The maximum frequency at which the AWS Config rule runs evaluations. For valid values, see\n            the ConfigRule data type in the\n              AWS Config API Reference.If the rule runs an evaluation when AWS Config delivers a configuration snapshot, the rule\n            cannot run more frequently than the snapshot delivery frequency. Set an execution\n            frequency value that is equal to or greater than the value of the snapshot delivery\n            frequency, which is a property the AWS::Config::DeliveryChannel resource.Defines which AWS resources will trigger an evaluation when their configurations\n            change. The scope can include one or more resource types, a combination of a tag key and\n            value, or a combination of one resource type and one resource ID. Specify a scope to\n            constrain the resources that are evaluated. If you don't specify a scope, the rule\n            evaluates all resources in the recording group.Specifies the rule owner, the rule identifier, and the events that cause the\n            function to evaluate your AWS resources.The Amazon Resource Name (ARN) of the AWS Config rule, such as\n                arn:aws:config:us-east-1:123456789012:config-rule/config-rule-a1bzhi.The ID of the AWS Config rule, such as config-rule-a1bzhi.The compliance status of  an AWS Config rule, such as COMPLIANT or\n                NON_COMPLIANT.",
+    "Array": false,
+    "Type": "AWSConfigConfigRuleSource",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
+  },
+  "ConfigurationRecorder": {
+    "Name": "AWS::Config::ConfigurationRecorder",
+    "Description": "A name for the configuration recorder. If you don't specify a name, AWS CloudFormation generates\n            a unique physical ID and uses that ID for the configuration recorder name. For more\n            information, see Name Type.NoteAfter you create a configuration recorder, you cannot rename it. If you don't want\n              a AWS CloudFormation-generated name, specify a value for this property.If you specify the name of an existing configuration recorder, AWS CloudFormation uses that\n            recorder.Indicates whether to record configurations for all supported resources or for a list\n            of resource types. The resource types that you list must be supported by AWS Config.The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that is used to make\n            read or write requests to the delivery channel that you specify and to get configuration\n            details for supported AWS resources. For more information, see Permissions for the AWS Config IAM\n              Role in the AWS Config Developer Guide.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
+  },
+  "DeliveryChannel": {
+    "Name": "AWS::Config::DeliveryChannel",
+    "Description": "Provides options for how AWS Config delivers configuration snapshots to the S3 bucket in\n            your delivery channel.A name for the delivery channel. If you don't specify a name, AWS CloudFormation generates a\n            unique physical ID and uses that ID for the delivery channel name. For more information,\n            see Name Type.The name of an S3 bucket where you want to store configuration history for the\n            delivery channel.A key prefix (folder) for the specified S3 bucket.The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (Amazon SNS) topic that AWS Config delivers\n            notifications to.",
+    "Array": false,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  }
+}

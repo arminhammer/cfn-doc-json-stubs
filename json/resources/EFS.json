@@ -1,0 +1,18 @@
+{
+  "FileSystem": {
+    "Name": "AWS::EFS::FileSystem",
+    "Description": "Tags to associate with the file system.The performance mode of the file system. For valid values, see the PerformanceMode parameter for the CreateFileSystem action in the Amazon Elastic File System User Guide.For more information about performance modes, see Amazon EFS Performance in the Amazon Elastic File System User Guide.",
+    "Array": false,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "Replacement"
+  },
+  "MountTarget": {
+    "Name": "AWS::EFS::MountTarget",
+    "Description": "The ID of the file system for which you want to create the mount target.Before updating this property, stop EC2 instances that are using this mount\n                  target, and then restart them after the update is complete. This allows the\n                  instances to unmount the file system before the mount target is replaced. If you\n                  don't stop and restart them, instances or applications that are using those mounts\n                  might be disrupted when the mount target is deleted (uncommitted writes might be\n                  lost).An IPv4 address that is within the address range of the subnet that is\n                  specified in the SubnetId property. If you don't specify an IP\n                  address, Amazon EFS automatically assigns an address that is within the range of the\n                  subnet.Before updating this property, stop EC2 instances that are using this mount\n                  target, and then restart them after the update is complete. This allows the\n                  instances to unmount the file system before the mount target is replaced. If you\n                  don't stop and restart them, instances or applications that are using those mounts\n                  might be disrupted when the mount target is deleted (uncommitted writes might be\n                  lost).A maximum of five VPC security group IDs that are in the same VPC as the subnet\n                  that is specified in the SubnetId property. For more information\n                  about security groups and mount targets, see Security in the\n                     Amazon Elastic File System User Guide.The ID of the subnet in which you want to add the mount target.NoteFor each file system, you can create only one mount target per Availability\n                     Zone (AZ). All EC2 instances in an AZ share a single mount target for a file\n                     system. If you create multiple mount targets for a single file system, do not\n                     specify a subnet that is an AZ that already has a mount target associated with\n                     the same file system.Before updating this property, stop EC2 instances that are using this mount\n                  target and then restart them after the update is complete. That way the instances\n                  can unmount the file system before the mount target is replaced. If you don't stop\n                  and restart them, instances or applications that are using those mounts might be\n                  disrupted when the mount target is deleted (uncommitted writes might be\n                  lost).",
+    "Array": true,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "Replacement"
+  }
+}

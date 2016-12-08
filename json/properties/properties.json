@@ -1,0 +1,11 @@
+{
+  "undefined": {
+    "undefined": {
+      "Name": "AWSCodePipelineCustomActionTypeConfigurationProperties",
+      "Description": "A description of this configuration property that will be displayed to\n                  users.Indicates whether the configuration property is a key.A name for this configuration property.Indicates whether the configuration property will be used with the\n                     PollForJobs call. A custom action can have one queryable property.\n                  The queryable property must be required (see the Required property)\n                  and must not be secret (see the Secret property). For more\n                  information, see the queryable contents for the ActionConfigurationProperty data type in the\n                     AWS CodePipeline API Reference.Indicates whether the configuration property is a required value.Indicates whether the configuration property is secret. Secret configuration\n                  properties are hidden from all AWS CodePipeline calls except for GetJobDetails,\n                     GetThirdPartyJobDetails, PollForJobs, and\n                     PollForThirdPartyJobs.The type of the configuration property, such as String,\n                     Number, or Boolean.",
+      "Array": false,
+      "Type": "String",
+      "Required": "No"
+    }
+  }
+}
