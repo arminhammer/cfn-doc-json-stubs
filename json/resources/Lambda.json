@@ -1,4 +1,37 @@
 {
+  "Alias": {
+    "Name": "AWS::Lambda::Alias",
+    "Properties": {
+      "Description": {
+        "Description": "Information about the alias, such as its purpose or the Lambda function that is associated with it.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "FunctionName": {
+        "Description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionVersion": {
+        "Description": "The version of the Lambda function that you want to associate with this alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Function": {
     "Name": "AWS::Lambda::Function",
     "Properties": {
@@ -86,39 +119,6 @@
       }
     }
   },
-  "Alias": {
-    "Name": "AWS::Lambda::Alias",
-    "Properties": {
-      "Description": {
-        "Description": "Information about the alias, such as its purpose or the Lambda function that is associated with it.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "FunctionName": {
-        "Description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionVersion": {
-        "Description": "The version of the Lambda function that you want to associate with this alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "EventSourceMapping": {
     "Name": "AWS::Lambda::EventSourceMapping",
     "Properties": {
@@ -159,37 +159,6 @@
       }
     }
   },
-  "Version": {
-    "Name": "AWS::Lambda::Version",
-    "Properties": {
-      "CodeSha256": {
-        "Description": "The SHA-256 hash of the deployment package that you want to publish. This value must match the SHA-256 hash of the $LATEST version of the function. Specify this property to validate that you are publishing the correct package. ",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Description": {
-        "Description": "A description of the version you are publishing. If you don't specify a value, Lambda copies the description from the $LATEST version of the function.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "FunctionName": {
-        "Description": "The Lambda function for which you want to publish a version. You can specify the function's name or its Amazon Resource Name (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Version": {
-        "Description": "The published version of a Lambda version, such as 1.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
   "Permission": {
     "Name": "AWS::Lambda::Permission",
     "Properties": {
@@ -227,6 +196,37 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Version": {
+    "Name": "AWS::Lambda::Version",
+    "Properties": {
+      "CodeSha256": {
+        "Description": "The SHA-256 hash of the deployment package that you want to publish. This value must match the SHA-256 hash of the $LATEST version of the function. Specify this property to validate that you are publishing the correct package. ",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Description": {
+        "Description": "A description of the version you are publishing. If you don't specify a value, Lambda copies the description from the $LATEST version of the function.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "FunctionName": {
+        "Description": "The Lambda function for which you want to publish a version. You can specify the function's name or its Amazon Resource Name (ARN).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Version": {
+        "Description": "The published version of a Lambda version, such as 1.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

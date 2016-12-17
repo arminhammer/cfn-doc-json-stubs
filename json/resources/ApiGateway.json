@@ -1,4 +1,49 @@
 {
+  "Account": {
+    "Name": "AWS::ApiGateway::Account",
+    "Properties": {
+      "CloudWatchRoleArn": {
+        "Description": "The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch Logs in your account.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ApiKey": {
+    "Name": "AWS::ApiGateway::ApiKey",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the purpose of the API key.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Enabled": {
+        "Description": "Indicates whether the API key can be used by clients.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "StageKeys": {
+        "Description": "A list of stages to associated with this API key.",
+        "Array": true,
+        "Type": "AmazonAPIGatewayApiKeyStageKey",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "Authorizer": {
     "Name": "AWS::ApiGateway::Authorizer",
     "Properties": {
@@ -67,84 +112,6 @@
       }
     }
   },
-  "BasePathMapping": {
-    "Name": "AWS::ApiGateway::BasePathMapping",
-    "Properties": {
-      "BasePath": {
-        "Description": "The base path name that callers of the API must provide in the URL after the domain name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "DomainName": {
-        "Description": "The name of a DomainName resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "RestApiId": {
-        "Description": "The name of the API.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Stage": {
-        "Description": "The name of the API's stage.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Account": {
-    "Name": "AWS::ApiGateway::Account",
-    "Properties": {
-      "CloudWatchRoleArn": {
-        "Description": "The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch Logs in your account.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "ApiKey": {
-    "Name": "AWS::ApiGateway::ApiKey",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the purpose of the API key.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Enabled": {
-        "Description": "Indicates whether the API key can be used by clients.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "StageKeys": {
-        "Description": "A list of stages to associated with this API key.",
-        "Array": true,
-        "Type": "AmazonAPIGatewayApiKeyStageKey",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Deployment": {
     "Name": "AWS::ApiGateway::Deployment",
     "Properties": {
@@ -183,6 +150,39 @@
     "Properties": {
       "Description": {
         "Description": "A description of the client certificate.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "BasePathMapping": {
+    "Name": "AWS::ApiGateway::BasePathMapping",
+    "Properties": {
+      "BasePath": {
+        "Description": "The base path name that callers of the API must provide in the URL after the domain name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "DomainName": {
+        "Description": "The name of a DomainName resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "The name of the API.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Stage": {
+        "Description": "The name of the API's stage.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -261,46 +261,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Model": {
-    "Name": "AWS::ApiGateway::Model",
-    "Properties": {
-      "ContentType": {
-        "Description": "The content type for the model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "A description that identifies this model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "RestApiId": {
-        "Description": "The ID of a REST API with which to associate this model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Schema": {
-        "Description": "The schema to use to transform data to one or more output formats.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
         "UpdateRequires": "No interruption"
       }
     }
@@ -387,6 +347,46 @@
         "Description": "The root resource ID for a RestApi resource, such as a0bc123d4e.",
         "Array": false,
         "Type": "String"
+      }
+    }
+  },
+  "Model": {
+    "Name": "AWS::ApiGateway::Model",
+    "Properties": {
+      "ContentType": {
+        "Description": "The content type for the model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "A description that identifies this model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RestApiId": {
+        "Description": "The ID of a REST API with which to associate this model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Schema": {
+        "Description": "The schema to use to transform data to one or more output formats.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },

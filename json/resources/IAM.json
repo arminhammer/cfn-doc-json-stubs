@@ -1,56 +1,4 @@
 {
-  "User": {
-    "Name": "AWS::IAM::User",
-    "Properties": {
-      "Groups": {
-        "Description": "A name of a group to which you want to add the user.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "LoginProfile": {
-        "Description": "Creates a login profile so that the user can access the AWS Management Console.",
-        "Array": false,
-        "Type": "IAMUserLoginProfile",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "ManagedPolicyArns": {
-        "Description": "One or more managed policy ARNs to attach to this user.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Path": {
-        "Description": "The path for the user name. For more information about paths, see IAM Identifiers in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Policies": {
-        "Description": "The policies to associate with this user. For information about policies, see Overview of IAM Policies in the IAM User Guide.NoteIf you specify multiple polices, specify unique values for the policy name.\n                     If you don't, updates to the IAM user will fail.",
-        "Array": true,
-        "Type": "IAMPolicies",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "UserName": {
-        "Description": "A name for the IAM user. For valid values, see the UserName parameter for the CreateUser action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the user name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the specified AWS::IAM::User resource. For example:\n                     arn:aws:iam::123456789012:user/mystack-myuser-1CCXAFG2H2U4D.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
   "Group": {
     "Name": "AWS::IAM::Group",
     "Properties": {
@@ -120,6 +68,58 @@
       }
     }
   },
+  "User": {
+    "Name": "AWS::IAM::User",
+    "Properties": {
+      "Groups": {
+        "Description": "A name of a group to which you want to add the user.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "LoginProfile": {
+        "Description": "Creates a login profile so that the user can access the AWS Management Console.",
+        "Array": false,
+        "Type": "IAMUserLoginProfile",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "ManagedPolicyArns": {
+        "Description": "One or more managed policy ARNs to attach to this user.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Path": {
+        "Description": "The path for the user name. For more information about paths, see IAM Identifiers in the IAM User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Policies": {
+        "Description": "The policies to associate with this user. For information about policies, see Overview of IAM Policies in the IAM User Guide.NoteIf you specify multiple polices, specify unique values for the policy name.\n                     If you don't, updates to the IAM user will fail.",
+        "Array": true,
+        "Type": "IAMPolicies",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "UserName": {
+        "Description": "A name for the IAM user. For valid values, see the UserName parameter for the CreateUser action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the user name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the specified AWS::IAM::User resource. For example:\n                     arn:aws:iam::123456789012:user/mystack-myuser-1CCXAFG2H2U4D.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
   "UserToGroupAddition": {
     "Name": "AWS::IAM::UserToGroupAddition",
     "Properties": {
@@ -179,6 +179,30 @@
       }
     }
   },
+  "InstanceProfile": {
+    "Name": "AWS::IAM::InstanceProfile",
+    "Properties": {
+      "Path": {
+        "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Roles": {
+        "Description": "The roles associated with this IAM instance profile.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
   "ManagedPolicy": {
     "Name": "AWS::IAM::ManagedPolicy",
     "Properties": {
@@ -223,30 +247,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "InstanceProfile": {
-    "Name": "AWS::IAM::InstanceProfile",
-    "Properties": {
-      "Path": {
-        "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Roles": {
-        "Description": "The roles associated with this IAM instance profile.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },

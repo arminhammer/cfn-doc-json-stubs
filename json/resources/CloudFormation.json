@@ -132,18 +132,6 @@
       }
     }
   },
-  "CustomResource": {
-    "Name": "AWS::CloudFormation::CustomResource",
-    "Properties": {
-      "ServiceToken": {
-        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "Interface": {
     "Name": "AWS::CloudFormation::Interface",
     "Properties": {
@@ -160,6 +148,18 @@
         "Type": "AWSCloudFormationInterfaceParameterLabel",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "CustomResource": {
+    "Name": "AWS::CloudFormation::CustomResource",
+    "Properties": {
+      "ServiceToken": {
+        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
       }
     }
   },

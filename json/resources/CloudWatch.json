@@ -96,7 +96,7 @@
       "Threshold": {
         "Description": "The value against which the specified statistic is compared.",
         "Array": false,
-        "Type": "Double",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
