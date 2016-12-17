@@ -1,4 +1,22 @@
 {
+  "BucketPolicy": {
+    "Name": "AWS::S3::BucketPolicy",
+    "Properties": {
+      "Bucket": {
+        "Description": "The Amazon S3 bucket that the policy applies to.You cannot update this property. If you want to add or remove a bucket from a\n            bucket policy, you must modify your AWS CloudFormation template by creating a new bucket policy\n            resource and removing the old one. Then use the modified template to update your AWS CloudFormation\n            stack.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "PolicyDocument": {
+        "Description": "A policy document containing permissions to add to the specified bucket. For\n            more information, see Access Policy Language Overview in the\n            Amazon Simple Storage Service Developer Guide.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "Bucket": {
     "Name": "AWS::S3::Bucket",
     "Properties": {
@@ -81,24 +99,6 @@
         "Description": "Amazon S3 website endpoint for the specified bucket.Example: http://mystack-mybucket-kdwwxmddtr2g.s3-website-us-east-1.amazonaws.com/",
         "Array": false,
         "Type": "String"
-      }
-    }
-  },
-  "BucketPolicy": {
-    "Name": "AWS::S3::BucketPolicy",
-    "Properties": {
-      "Bucket": {
-        "Description": "The Amazon S3 bucket that the policy applies to.You cannot update this property. If you want to add or remove a bucket from a\n            bucket policy, you must modify your AWS CloudFormation template by creating a new bucket policy\n            resource and removing the old one. Then use the modified template to update your AWS CloudFormation\n            stack.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "PolicyDocument": {
-        "Description": "A policy document containing permissions to add to the specified bucket. For\n            more information, see Access Policy Language Overview in the\n            Amazon Simple Storage Service Developer Guide.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   }

@@ -329,39 +329,6 @@
       }
     }
   },
-  "DBClusterParameterGroup": {
-    "Name": "AWS::RDS::DBClusterParameterGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A friendly description for this DB cluster parameter group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Family": {
-        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
-        "Array": false,
-        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to this parameter group.",
-        "Array": true,
-        "Type": "resourcetags",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "DBCluster": {
     "Name": "AWS::RDS::DBCluster",
     "Properties": {
@@ -486,6 +453,39 @@
       }
     }
   },
+  "DBClusterParameterGroup": {
+    "Name": "AWS::RDS::DBClusterParameterGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A friendly description for this DB cluster parameter group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Family": {
+        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Parameters": {
+        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
+        "Array": false,
+        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
+      },
+      "Tags": {
+        "Description": "The tags that you want to attach to this parameter group.",
+        "Array": true,
+        "Type": "resourcetags",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
   "DBSubnetGroup": {
     "Name": "AWS::RDS::DBSubnetGroup",
     "Properties": {
@@ -512,41 +512,40 @@
       }
     }
   },
-  "OptionGroup": {
-    "Name": "AWS::RDS::OptionGroup",
+  "DBSecurityGroupIngress": {
+    "Name": "AWS::RDS::DBSecurityGroupIngress",
     "Properties": {
-      "EngineName": {
-        "Description": "The name of the database engine that this option group is associated\n                  with.",
+      "CIDRIP": {
+        "Description": "The IP range to authorize.For an overview of CIDR ranges, go to the Wikipedia\n                  Tutorial.",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DBSecurityGroupName": {
+        "Description": "The name (ARN) of the AWS::RDS::DBSecurityGroup to which this ingress\n                  will be added.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "MajorEngineVersion": {
-        "Description": "The major version number of the database engine that this option group is\n                  associated with.",
+      "EC2SecurityGroupId": {
+        "Description": "The ID of the VPC or EC2 security group to authorize.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       },
-      "OptionGroupDescription": {
-        "Description": "A description of the option group.",
+      "EC2SecurityGroupName": {
+        "Description": "The name of the EC2 security group to authorize.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       },
-      "OptionConfigurations": {
-        "Description": "The configurations for this option group.",
+      "EC2SecurityGroupOwnerId": {
+        "Description": "The AWS Account Number of the owner of the EC2 security group specified in the EC2SecurityGroupName\n                  parameter. The AWS Access Key ID is not an acceptable value.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
         "Array": false,
-        "Type": "AmazonRDSOptionGroupOptionConfigurations",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this option group.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
+        "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }
@@ -592,40 +591,41 @@
       }
     }
   },
-  "DBSecurityGroupIngress": {
-    "Name": "AWS::RDS::DBSecurityGroupIngress",
+  "OptionGroup": {
+    "Name": "AWS::RDS::OptionGroup",
     "Properties": {
-      "CIDRIP": {
-        "Description": "The IP range to authorize.For an overview of CIDR ranges, go to the Wikipedia\n                  Tutorial.",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
-      "DBSecurityGroupName": {
-        "Description": "The name (ARN) of the AWS::RDS::DBSecurityGroup to which this ingress\n                  will be added.",
+      "EngineName": {
+        "Description": "The name of the database engine that this option group is associated\n                  with.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Replacement"
       },
-      "EC2SecurityGroupId": {
-        "Description": "The ID of the VPC or EC2 security group to authorize.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
+      "MajorEngineVersion": {
+        "Description": "The major version number of the database engine that this option group is\n                  associated with.",
         "Array": false,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       },
-      "EC2SecurityGroupName": {
-        "Description": "The name of the EC2 security group to authorize.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
+      "OptionGroupDescription": {
+        "Description": "A description of the option group.",
         "Array": false,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "The AWS Account Number of the owner of the EC2 security group specified in the EC2SecurityGroupName\n                  parameter. The AWS Access Key ID is not an acceptable value.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
+      "OptionConfigurations": {
+        "Description": "The configurations for this option group.",
         "Array": false,
-        "Type": "String",
+        "Type": "AmazonRDSOptionGroupOptionConfigurations",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this option group.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }

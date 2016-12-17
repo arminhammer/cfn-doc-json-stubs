@@ -32,6 +32,46 @@
       }
     }
   },
+  "EventSourceMapping": {
+    "Name": "AWS::Lambda::EventSourceMapping",
+    "Properties": {
+      "BatchSize": {
+        "Description": "The largest number of records that Lambda retrieves from your event source when\n                  invoking your function. Your function receives an event with all the retrieved\n                  records. For the default and valid values, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Enabled": {
+        "Description": "Indicates whether Lambda begins polling the event source.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "EventSourceArn": {
+        "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that is the source\n                  of events. Any record added to this stream can invoke the Lambda function. For more\n                  information, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionName": {
+        "Description": "The name or ARN of a Lambda function to invoke when Lambda detects an event on\n                  the stream.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "StartingPosition": {
+        "Description": "The position in the stream where Lambda starts reading. For valid values, see\n                     CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Function": {
     "Name": "AWS::Lambda::Function",
     "Properties": {
@@ -119,43 +159,34 @@
       }
     }
   },
-  "EventSourceMapping": {
-    "Name": "AWS::Lambda::EventSourceMapping",
+  "Version": {
+    "Name": "AWS::Lambda::Version",
     "Properties": {
-      "BatchSize": {
-        "Description": "The largest number of records that Lambda retrieves from your event source when\n                  invoking your function. Your function receives an event with all the retrieved\n                  records. For the default and valid values, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Enabled": {
-        "Description": "Indicates whether Lambda begins polling the event source.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "EventSourceArn": {
-        "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that is the source\n                  of events. Any record added to this stream can invoke the Lambda function. For more\n                  information, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+      "CodeSha256": {
+        "Description": "The SHA-256 hash of the deployment package that you want to publish. This value must match the SHA-256 hash of the $LATEST version of the function. Specify this property to validate that you are publishing the correct package. ",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Description": {
+        "Description": "A description of the version you are publishing. If you don't specify a value, Lambda copies the description from the $LATEST version of the function.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
       },
       "FunctionName": {
-        "Description": "The name or ARN of a Lambda function to invoke when Lambda detects an event on\n                  the stream.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "StartingPosition": {
-        "Description": "The position in the stream where Lambda starts reading. For valid values, see\n                     CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Description": "The Lambda function for which you want to publish a version. You can specify the function's name or its Amazon Resource Name (ARN).",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      },
+      "Version": {
+        "Description": "The published version of a Lambda version, such as 1.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },
@@ -196,37 +227,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Version": {
-    "Name": "AWS::Lambda::Version",
-    "Properties": {
-      "CodeSha256": {
-        "Description": "The SHA-256 hash of the deployment package that you want to publish. This value must match the SHA-256 hash of the $LATEST version of the function. Specify this property to validate that you are publishing the correct package. ",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Description": {
-        "Description": "A description of the version you are publishing. If you don't specify a value, Lambda copies the description from the $LATEST version of the function.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "FunctionName": {
-        "Description": "The Lambda function for which you want to publish a version. You can specify the function's name or its Amazon Resource Name (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Version": {
-        "Description": "The published version of a Lambda version, such as 1.",
-        "Array": false,
-        "Type": "String"
       }
     }
   }

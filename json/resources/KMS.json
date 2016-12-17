@@ -1,23 +1,4 @@
 {
-  "Alias": {
-    "Name": "AWS::KMS::Alias",
-    "Properties": {
-      "AliasName": {
-        "Description": "The name of the alias. The name must start with alias followed by a forward slash, such as alias/. You can't specify aliases that begin with alias/AWS. These aliases are reserved.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "TargetKeyId": {
-        "Description": "The ID of the key for which you are creating the alias. Specify the key's globally unique identifier or Amazon Resource Name (ARN). You can't specify another alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Key": {
     "Name": "AWS::KMS::Key",
     "Properties": {
@@ -53,6 +34,25 @@
         "Description": "The ARN of the AWS KMS key, such as arn:aws:kms:us-west-2:123456789012:key/12a34567-8c90-1defg-af84-0bf06c1747f3.",
         "Array": false,
         "Type": "String"
+      }
+    }
+  },
+  "Alias": {
+    "Name": "AWS::KMS::Alias",
+    "Properties": {
+      "AliasName": {
+        "Description": "The name of the alias. The name must start with alias followed by a forward slash, such as alias/. You can't specify aliases that begin with alias/AWS. These aliases are reserved.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "TargetKeyId": {
+        "Description": "The ID of the key for which you are creating the alias. Specify the key's globally unique identifier or Amazon Resource Name (ARN). You can't specify another alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   }

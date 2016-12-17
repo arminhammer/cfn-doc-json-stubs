@@ -32,6 +32,25 @@
       }
     }
   },
+  "LogStream": {
+    "Name": "AWS::Logs::LogStream",
+    "Properties": {
+      "LogGroupName": {
+        "Description": "The name of the log group where the log stream is created.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "LogStreamName": {
+        "Description": "The name of the log stream to create. The name must be unique within the log\n                  group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "LogGroup": {
     "Name": "AWS::Logs::LogGroup",
     "Properties": {
@@ -79,25 +98,6 @@
         "Type": "CloudWatchLogsMetricFilterMetricTransformationProperty",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "LogStream": {
-    "Name": "AWS::Logs::LogStream",
-    "Properties": {
-      "LogGroupName": {
-        "Description": "The name of the log group where the log stream is created.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "LogStreamName": {
-        "Description": "The name of the log stream to create. The name must be unique within the log\n                  group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
       }
     }
   },

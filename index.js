@@ -29,6 +29,7 @@ const sanitizeReplacementsResources = {
   'SNSSubscriptions': 'AmazonSNSSubscriptionPropertyType',
   'Integer': 'Number',
   'Double': 'Number',
+  'AJSONpolicydocument': 'Object',
   'AutoScalingEBSBlockDevice': 'AWSCloudFormationAutoScalingEBSBlockDevicePropertyType',
   'CacheBehavior': 'CloudFrontDistributionConfigCacheBehavior',
   'DefaultCacheBehaviortype': 'CloudFrontDefaultCacheBehavior',
