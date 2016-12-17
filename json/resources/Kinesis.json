@@ -22,11 +22,6 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "The Amazon resource name (ARN) of the Amazon Kinesis stream, such as\n                     arn:aws:kinesis:us-east-1:123456789012:stream/mystream.",
-        "Array": false,
-        "Type": "String"
       }
     }
   }

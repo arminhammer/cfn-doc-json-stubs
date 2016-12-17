@@ -240,6 +240,51 @@
       }
     }
   },
+  "UserProfile": {
+    "Name": "AWS::OpsWorks::UserProfile",
+    "Properties": {
+      "AllowSelfManagement": {
+        "Description": "Indicates whether users can use the AWS OpsWorks My Settings page to\n                  specify their own SSH public key. For more information, see Setting an IAM User's Public\n                     SSH Key in the AWS OpsWorks User Guide.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "IamUserArn": {
+        "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) user to associate with\n                  this configuration.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "SshPublicKey": {
+        "Description": "The public SSH key that is associated with the IAM user. The IAM user must\n                  have or be given the corresponding private key to access instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ElasticLoadBalancerAttachment": {
+    "Name": "AWS::OpsWorks::ElasticLoadBalancerAttachment",
+    "Properties": {
+      "ElasticLoadBalancerName": {
+        "Description": "Elastic Load Balancing load balancer name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "LayerId": {
+        "Description": "The AWS OpsWorks layer ID that the Elastic Load Balancing load balancer will be attached to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "Layer": {
     "Name": "AWS::OpsWorks::Layer",
     "Properties": {
@@ -360,51 +405,6 @@
         "Type": "AWSOpsWorksVolumeConfigurationType",
         "Required": "No",
         "UpdateRequires": "Some interruptions"
-      }
-    }
-  },
-  "ElasticLoadBalancerAttachment": {
-    "Name": "AWS::OpsWorks::ElasticLoadBalancerAttachment",
-    "Properties": {
-      "ElasticLoadBalancerName": {
-        "Description": "Elastic Load Balancing load balancer name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "LayerId": {
-        "Description": "The AWS OpsWorks layer ID that the Elastic Load Balancing load balancer will be attached to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "UserProfile": {
-    "Name": "AWS::OpsWorks::UserProfile",
-    "Properties": {
-      "AllowSelfManagement": {
-        "Description": "Indicates whether users can use the AWS OpsWorks My Settings page to\n                  specify their own SSH public key. For more information, see Setting an IAM User's Public\n                     SSH Key in the AWS OpsWorks User Guide.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "IamUserArn": {
-        "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) user to associate with\n                  this configuration.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SshPublicKey": {
-        "Description": "The public SSH key that is associated with the IAM user. The IAM user must\n                  have or be given the corresponding private key to access instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
       }
     }
   },

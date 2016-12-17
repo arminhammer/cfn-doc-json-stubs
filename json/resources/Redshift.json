@@ -176,16 +176,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "Endpoint.Address": {
-        "Description": "The connection endpoint for the Amazon Redshift cluster. For example:\n                     examplecluster.cg034hpkmmjt.us-east-1.redshift.amazonaws.com\n                  .",
-        "Array": false,
-        "Type": "String"
-      },
-      "Endpoint.Port": {
-        "Description": "The port number on which the Amazon Redshift cluster accepts connections. For example:\n                     5439.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -211,6 +201,37 @@
         "Array": false,
         "Type": "AmazonRedshiftParameterType",
         "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ClusterSecurityGroup": {
+    "Name": "AWS::Redshift::ClusterSecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "ClusterSubnetGroup": {
+    "Name": "AWS::Redshift::ClusterSubnetGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the subnet group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SubnetIds": {
+        "Description": "A list of VPC subnet IDs. You can modify a maximum of 20 subnets.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -245,37 +266,6 @@
         "Type": "String",
         "Required": "Conditional. If you specify the EC2SecurityGroupName\n                  property, you must specify this property.",
         "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "ClusterSecurityGroup": {
-    "Name": "AWS::Redshift::ClusterSecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "ClusterSubnetGroup": {
-    "Name": "AWS::Redshift::ClusterSubnetGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the subnet group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SubnetIds": {
-        "Description": "A list of VPC subnet IDs. You can modify a maximum of 20 subnets.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   }

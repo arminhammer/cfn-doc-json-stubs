@@ -28,16 +28,6 @@
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
-      "c-ip": {
-        "Description": "If the viewer did not use an HTTP proxy or a load balancer to send the\n                    request",
-        "Array": false,
-        "Type": "String"
-      },
-      "x-forwarded-for": {
-        "Description": "If the viewer did use an HTTP proxy or a load balancer to send the\n                    request",
-        "Array": false,
-        "Type": "String"
-      },
       "Name": {
         "Description": "A friendly name or description of the IPSet.",
         "Array": false,
@@ -111,25 +101,6 @@
       }
     }
   },
-  "XssMatchSet": {
-    "Name": "AWS::WAF::XssMatchSet",
-    "Properties": {
-      "Name": {
-        "Description": "A friendly name or description for the XssMatchSet.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "XssMatchTuples": {
-        "Description": "The parts of web requests that you want to inspect for cross-site scripting attacks.",
-        "Array": true,
-        "Type": "AWSWAFXssMatchSetXssMatchTuple",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "WebACL": {
     "Name": "AWS::WAF::WebACL",
     "Properties": {
@@ -158,6 +129,25 @@
         "Description": "The rules to associate with the web ACL and the settings for each rule.",
         "Array": true,
         "Type": "AWSWAFWebACLRules",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "XssMatchSet": {
+    "Name": "AWS::WAF::XssMatchSet",
+    "Properties": {
+      "Name": {
+        "Description": "A friendly name or description for the XssMatchSet.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "XssMatchTuples": {
+        "Description": "The parts of web requests that you want to inspect for cross-site scripting attacks.",
+        "Array": true,
+        "Type": "AWSWAFXssMatchSetXssMatchTuple",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }

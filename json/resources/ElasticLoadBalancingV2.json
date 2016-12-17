@@ -1,51 +1,4 @@
 {
-  "Listener": {
-    "Name": "AWS::ElasticLoadBalancingV2::Listener",
-    "Properties": {
-      "Certificates": {
-        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerCertificates",
-        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
-        "UpdateRequires": "No interruption"
-      },
-      "DefaultActions": {
-        "Description": "The default actions that the listener takes when handling incoming requests.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerDefaultActions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "LoadBalancerArn": {
-        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Port": {
-        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Protocol": {
-        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SslPolicy": {
-        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "ListenerRule": {
     "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
     "Properties": {
@@ -104,9 +57,11 @@
         "UpdateRequires": "Replacement"
       },
       "SecurityGroups": {
-        "Description": "The IDs of the security groups for the Application load balancer, for example\n              sg-123456a.",
-        "Array": false,
-        "Type": "String"
+        "Description": "Specifies a list of the IDs of the security groups to assign to the load\n            balancer.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       },
       "Subnets": {
         "Description": "Specifies a list of at least two IDs of the subnets to associate with the load\n            balancer. The subnets must be in different Availability Zones.",
@@ -121,26 +76,53 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Listener": {
+    "Name": "AWS::ElasticLoadBalancingV2::Listener",
+    "Properties": {
+      "Certificates": {
+        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerCertificates",
+        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
+        "UpdateRequires": "No interruption"
       },
-      "DNSName": {
-        "Description": "The DNS name for the Application load balancer, for example\n                my-load-balancer-424835706.us-west-2.elb.amazonaws.com.",
-        "Array": false,
-        "Type": "String"
+      "DefaultActions": {
+        "Description": "The default actions that the listener takes when handling incoming requests.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerDefaultActions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       },
-      "CanonicalHostedZoneID": {
-        "Description": "The ID of the Amazon Route 53 hosted zone associated with the load balancer, for example\n                Z2P70J7EXAMPLE.",
+      "LoadBalancerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       },
-      "LoadBalancerFullName": {
-        "Description": "The full name of the Application load balancer, for example\n                app/my-load-balancer/50dc6c495c0c9188.",
+      "Port": {
+        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
-        "Type": "String"
+        "Type": "Number",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       },
-      "LoadBalancerName": {
-        "Description": "The name of the Application load balancer, for example my-load-balancer.",
+      "Protocol": {
+        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SslPolicy": {
+        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -258,11 +240,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
-      },
-      "LoadBalancerArns": {
-        "Description": "A list of  Amazon Resource Names (ARNs) of the load balancers that route traffic\n              to this target group, such as [\n                \"arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/50dc6c495c0c9188\"\n                ].",
-        "Array": false,
-        "Type": "String"
       }
     }
   }

@@ -204,9 +204,16 @@ function scrapeHtmlPage(body, pageType) {
           output.Description += attr
         }
       })
-      // if(output.Type && output.Required) {
+      // Clean up title in case it has parenthesis
+      if(obj.titles[i].includes('(')) {
+        console.log('Title has parens:')
+        console.log(obj.titles[i])
+        obj.titles[i] = obj.titles[i].replace(/\(.+\)/g,'').trim()
+        console.log(obj.titles[i])
+      }
+      if(output.Type && output.Required) {
         block.Properties[obj.titles[i]] = output
-      // }
+       }
     }
     let split = block.Name.split('::')
     let group = split[1]
@@ -247,7 +254,7 @@ function generateJson() {
     })
   })
   .then(() => {
-    console.log(JSON.stringify(result, null, 2))
+    // console.log(JSON.stringify(result, null, 2))
     return fs.writeJSONAsync(jsonPropertiesFile, result.Properties)
   })
   .then(() => {

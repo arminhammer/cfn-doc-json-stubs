@@ -15,30 +15,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For\n                     example:A value similar to the following is\n                     returned:",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "Policy": {
-    "Name": "AWS::IoT::Policy",
-    "Properties": {
-      "PolicyDocument": {
-        "Description": "The JSON document that describes the policy.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "PolicyName": {
-        "Description": "The name (the physical ID) of the AWS IoT policy.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -73,6 +49,25 @@
       },
       "ThingName": {
         "Description": "The name (the physical ID) of the AWS IoT thing.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Policy": {
+    "Name": "AWS::IoT::Policy",
+    "Properties": {
+      "PolicyDocument": {
+        "Description": "The JSON document that describes the policy.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "PolicyName": {
+        "Description": "The name (the physical ID) of the AWS IoT policy.",
         "Array": false,
         "Type": "String",
         "Required": "No",

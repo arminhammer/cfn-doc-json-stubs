@@ -50,11 +50,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
-      },
-      "StreamArn": {
-        "Description": "The Amazon Resource Name (ARN) of the DynamoDB stream, such as\n                arn:aws:dynamodb:us-east-1:123456789012:table/testddbstack-myDynamoDBTable-012A1SL7SMP5Q/stream/2015-11-30T20:10:00.000.NoteYou must specify the StreamSpecification property to use this\n                attribute.",
-        "Array": false,
-        "Type": "String"
       }
     }
   }
