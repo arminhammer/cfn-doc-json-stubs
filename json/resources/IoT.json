@@ -1,50 +1,109 @@
 {
-  "Policy": {
-    "Name": "AWS::IoT::Policy",
-    "Description": "The JSON document that describes the policy.The name (the physical ID) of the AWS IoT policy.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
-  },
   "Certificate": {
     "Name": "AWS::IoT::Certificate",
-    "Description": "The certificate signing request (CSR).The status of the certificate.Returns the Amazon Resource Name (ARN) for the instance profile. For\n                     example:A value similar to the following is\n                     returned:",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "PolicyPrincipalAttachment": {
-    "Name": "AWS::IoT::PolicyPrincipalAttachment",
-    "Description": "The name of the policy.The principal, which can be a certificate ARN (as returned from the\n                     CreateCertificate operation) or an Amazon Cognito ID.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "CertificateSigningRequest": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Status": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "A value similar to the following is\n                     returned:",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   },
   "Thing": {
     "Name": "AWS::IoT::Thing",
-    "Description": "A JSON string that contains up to three key-value pairs, for example: {\n                     \"attributes\": { \"string1\":\"string2\" } }.The name (the physical ID) of the AWS IoT thing.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
-  },
-  "TopicRule": {
-    "Name": "AWS::IoT::TopicRule",
-    "Description": "The name (the physical ID) of the AWS IoT rule.The actions associated with the AWS IoT rule.",
-    "Array": false,
-    "Type": "TopicRulePayloadobject",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "AttributePayload": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ThingName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   },
   "ThingPrincipalAttachment": {
     "Name": "AWS::IoT::ThingPrincipalAttachment",
-    "Description": "The principal, which can be a certificate ARN (as returned from the\n                     CreateCertificate operation) or an Amazon Cognito ID.The name of the AWS IoT thing.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "Principal": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ThingName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Policy": {
+    "Name": "AWS::IoT::Policy",
+    "Properties": {
+      "PolicyDocument": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "PolicyName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "PolicyPrincipalAttachment": {
+    "Name": "AWS::IoT::PolicyPrincipalAttachment",
+    "Properties": {
+      "PolicyName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Principal": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "TopicRule": {
+    "Name": "AWS::IoT::TopicRule",
+    "Properties": {
+      "RuleName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "TopicRulePayload": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   }
 }

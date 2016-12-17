@@ -1,10 +1,65 @@
 {
   "Domain": {
     "Name": "AWS::Elasticsearch::Domain",
-    "Description": "An AWS Identity and Access Management (IAM) policy document that specifies who can access the Amazon ES\n            domain and their permissions. For more information, see Configuring Access Policies in the\n            Amazon Elasticsearch Service Developer Guide.Additional options to specify for the Amazon ES domain. For more information, see\n              Configuring Advanced Options in the\n            Amazon Elasticsearch Service Developer Guide.A name for the Amazon ES domain. For valid values, see the DomainName data type in the Amazon Elasticsearch Service Developer Guide.If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the domain name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The configurations of Amazon Elastic Block Store (Amazon EBS) volumes that are attached to data nodes in\n            the Amazon ES domain. For more information, see Configuring EBS-based Storage in the\n            Amazon Elasticsearch Service Developer Guide.The cluster configuration for the  Amazon ES domain. You can specify options such as\n            the instance type and the number of instances. For more information, see Configuring Amazon ES Domains in the\n            Amazon Elasticsearch Service Developer Guide.The version of Elasticsearch to use, such as 2.3. For information about the versions that Amazon ES supports, see the Elasticsearch-Version parameter for the CreateElasticsearchDomain action in the Amazon Elasticsearch Service Developer Guide.The automated snapshot configuration for the Amazon ES domain indices.An arbitrary set of tags (key–value pairs) to associate with the Amazon ES\n            domain.The Amazon Resource Name (ARN) of the domain, such as\n              arn:aws:es:us-west-2:123456789012:domain/mystack-elasti-1ab2cdefghij.The domain-specific endpoint that is used to submit index, search, and data upload\n            requests to an Amazon ES domain, such as\n              search-mystack-elasti-1ab2cdefghij-ab1c2deckoyb3hofw7wpqa3cm.us-west-2.es.amazonaws.com.",
-    "Array": false,
-    "Type": "AWSCloudFormationResourceTags",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "AccessPolicies": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AdvancedOptions": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "DomainName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "EBSOptions": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ElasticsearchClusterConfig": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ElasticsearchVersion": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SnapshotOptions": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Tags": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DomainArn": {
+        "Description": "The Amazon Resource Name (ARN) of the domain, such as\n              arn:aws:es:us-west-2:123456789012:domain/mystack-elasti-1ab2cdefghij.",
+        "Array": false,
+        "Type": "String"
+      },
+      "DomainEndpoint": {
+        "Description": "The domain-specific endpoint that is used to submit index, search, and data upload\n            requests to an Amazon ES domain, such as\n              search-mystack-elasti-1ab2cdefghij-ab1c2deckoyb3hofw7wpqa3cm.us-west-2.es.amazonaws.com.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   }
 }

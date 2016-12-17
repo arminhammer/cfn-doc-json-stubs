@@ -1,10 +1,35 @@
 {
   "Repository": {
     "Name": "AWS::CodeCommit::Repository",
-    "Description": "A description about the AWS CodeCommit repository. For constraints, see the CreateRepository action in\n                  the AWS CodeCommit API Reference.A name for the AWS CodeCommit repository.Defines the actions to take in response to events that occur in the repository.\n                  For example, you can send email notifications when someone pushes to the\n                  repository.The URL to use for cloning the repository over HTTPS, such as\n                        https://codecommit.us-east-1.amazonaws.com/v1/repos/MyDemoRepo.The URL to use for cloning the repository over SSH, such as\n                        ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos//v1/repos/MyDemoRepo.",
-    "Array": true,
-    "Type": "AWSCodeCommitRepositoryTrigger",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "RepositoryDescription": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RepositoryName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Triggers": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CloneUrlHttp": {
+        "Description": "The URL to use for cloning the repository over HTTPS, such as\n                        https://codecommit.us-east-1.amazonaws.com/v1/repos/MyDemoRepo.",
+        "Array": false,
+        "Type": "String"
+      },
+      "CloneUrlSsh": {
+        "Description": "The URL to use for cloning the repository over SSH, such as\n                        ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos//v1/repos/MyDemoRepo.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   }
 }

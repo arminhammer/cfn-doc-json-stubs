@@ -1,10 +1,54 @@
 {
   "Rule": {
     "Name": "AWS::Events::Rule",
-    "Description": "A description of the rule's purpose.Describes which events CloudWatch Events routes to the specified target. These routed events are matched events. For more information, see Events and Event Patterns in the Amazon CloudWatch User Guide.A name for the rule. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the rule name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants CloudWatch Events permission to make calls to target services, such as AWS Lambda (Lambda) or Amazon Kinesis streams.The schedule or rate (frequency) that determines when CloudWatch Events runs the rule. For more information, see Schedule Expression Syntax for Rules in the Amazon CloudWatch User Guide.Indicates whether the rule is enabled. For valid values, see the State parameter for the PutRule action in the Amazon CloudWatch Events API Reference.The resources, such as Lambda functions or Amazon Kinesis streams, that CloudWatch Events routes events to and invokes when the rule is triggered.  For information about valid targets, see the PutTargets action in the Amazon CloudWatch Events API Reference.The event rule Amazon Resource Name (ARN), such as arn:aws:events:us-east-1:123456789012:rule/example.",
-    "Array": true,
-    "Type": "AmazonCloudWatchEventsRuleTarget",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "EventPattern": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RoleArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ScheduleExpression": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "State": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Targets": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The event rule Amazon Resource Name (ARN), such as arn:aws:events:us-east-1:123456789012:rule/example.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   }
 }

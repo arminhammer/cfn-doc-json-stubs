@@ -1,58 +1,149 @@
 {
   "ByteMatchSet": {
     "Name": "AWS::WAF::ByteMatchSet",
-    "Description": "Settings for the ByteMatchSet, such as the bytes (typically a\n            string that corresponds with ASCII characters) that you want AWS WAF to search for in web\n            requests.A friendly name or description of the ByteMatchSet.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "ByteMatchTuples": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   },
   "IPSet": {
     "Name": "AWS::WAF::IPSet",
-    "Description": "The IP address type and IP address range (in CIDR notation) from which web\n            requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront\n            (CloudFront) distribution, this descriptor is the value of one of the following fields in the\n            CloudFront access logs:If the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    requestA friendly name or description of the IPSet.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "IPSetDescriptors": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "c-ip": {
+        "Description": "If the viewer did not use an HTTP proxy or a load balancer to send the\n                    request",
+        "Array": false,
+        "Type": "String"
+      },
+      "x-forwarded-for": {
+        "Description": "If the viewer did use an HTTP proxy or a load balancer to send the\n                    request",
+        "Array": false,
+        "Type": "String"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   },
   "Rule": {
     "Name": "AWS::WAF::Rule",
-    "Description": "A friendly name or description for the metrics of the rule. For valid values,\n                  see the MetricName parameter for the CreateRule\n                  action in the AWS WAF API Reference.A friendly name or description of the rule.The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions in order to be allowed or blocked.",
-    "Array": true,
-    "Type": "AWSWAFRulePredicates",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
-  "WebACL": {
-    "Name": "AWS::WAF::WebACL",
-    "Description": "The action that you want AWS WAF to take when a request doesn't match the\n                  criteria in any of the rules that are associated with the web ACL.A friendly name or description for the Amazon CloudWatch metric of this web ACL. For valid values, see the MetricName parameter of the CreateWebACL action in the AWS WAF API Reference.A friendly name or description of the web ACL.The rules to associate with the web ACL and the settings for each rule.",
-    "Array": true,
-    "Type": "AWSWAFWebACLRules",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
-  "XssMatchSet": {
-    "Name": "AWS::WAF::XssMatchSet",
-    "Description": "A friendly name or description for the XssMatchSet.The parts of web requests that you want to inspect for cross-site scripting attacks.",
-    "Array": true,
-    "Type": "AWSWAFXssMatchSetXssMatchTuple",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
-  "SqlInjectionMatchSet": {
-    "Name": "AWS::WAF::SqlInjectionMatchSet",
-    "Description": "A friendly name or description of the SqlInjectionMatchSet.The parts of web requests that you want AWS WAF to inspect for malicious SQL code\n            and, if you want AWS WAF to inspect a header, the name of the header.",
-    "Array": true,
-    "Type": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuples",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "MetricName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Predicates": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "SizeConstraintSet": {
     "Name": "AWS::WAF::SizeConstraintSet",
-    "Description": "A friendly name or description for the SizeConstraintSet.The size constraint and the part of the web request to check.",
-    "Array": true,
-    "Type": "AWSWAFSizeConstraintSetSizeConstraint",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SizeConstraints": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "SqlInjectionMatchSet": {
+    "Name": "AWS::WAF::SqlInjectionMatchSet",
+    "Properties": {
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SqlInjectionMatchTuples": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "WebACL": {
+    "Name": "AWS::WAF::WebACL",
+    "Properties": {
+      "DefaultAction": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "MetricName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Rules": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "XssMatchSet": {
+    "Name": "AWS::WAF::XssMatchSet",
+    "Properties": {
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "XssMatchTuples": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   }
 }

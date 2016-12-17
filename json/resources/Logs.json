@@ -1,42 +1,122 @@
 {
+  "Destination": {
+    "Name": "AWS::Logs::Destination",
+    "Properties": {
+      "DestinationName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "DestinationPolicy": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RoleArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "TargetArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "LogGroup": {
     "Name": "AWS::Logs::LogGroup",
-    "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The number of days log events are kept in CloudWatch Logs. When a log event expires,\n                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in\n                  the Amazon CloudWatch Logs API Reference.The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
-    "Array": false,
-    "Type": "Integer",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "LogGroupName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RetentionInDays": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   },
   "LogStream": {
     "Name": "AWS::Logs::LogStream",
-    "Description": "The name of the log group where the log stream is created.The name of the log stream to create. The name must be unique within the log\n                  group.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
-  },
-  "Destination": {
-    "Name": "AWS::Logs::Destination",
-    "Description": "The name of the CloudWatch Logs destination.An AWS Identity and Access Management (IAM) policy that specifies who can write to your\n                  destination.The Amazon Resource Name (ARN) of an IAM role that permits CloudWatch Logs to send data\n                  to the specified AWS resource (TargetArn).The ARN of the AWS resource that receives log events. Currently, you can\n                  specify only an Amazon Kinesis stream.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "LogGroupName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "LogStreamName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   },
   "MetricFilter": {
     "Name": "AWS::Logs::MetricFilter",
-    "Description": "Describes the pattern that CloudWatch Logs follows to interpret each entry in a log. For\n                  example, a log entry might contain fields such as timestamps, IP addresses, error\n                  codes, bytes transferred, and so on. You use the pattern to specify those fields\n                  and to specify what to look for in the log file. For example, if you're interested\n                  in error codes that begin with 1234, your filter pattern might be\n                     [timestamps, ip_addresses, error_codes = 1234*, size, ...].The name of an existing log group that you want to associate with this metric\n                  filter.Describes how to transform data from a log into a CloudWatch metric.ImportantCurrently, you can specify only one metric transformation for each metric\n                        filter. If you want to specify multiple metric transformations, you must\n                        specify multiple metric filters.",
-    "Array": true,
-    "Type": "CloudWatchLogsMetricFilterMetricTransformationProperty",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "FilterPattern": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "LogGroupName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "MetricTransformations": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "SubscriptionFilter": {
     "Name": "AWS::Logs::SubscriptionFilter",
-    "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Lambda function that you\n                  want to use as the subscription feed destination.The filtering expressions that restrict what gets delivered to the destination\n                  AWS resource. For more information about the filter pattern syntax, see Filter and Pattern\n                     Syntax in the Amazon CloudWatch User Guide.The log group to associate with the subscription filter. All log events that\n                  are uploaded to this log group are filtered and delivered to the specified AWS\n                  resource if the filter pattern matches the log events.An IAM role that grants CloudWatch Logs permission to put data into the specified Amazon Kinesis stream. For Lambda and CloudWatch Logs destinations, don't specify this property because CloudWatch Logs gets the necessary permissions from the destination resource.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "DestinationArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "FilterPattern": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "LogGroupName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RoleArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   }
 }

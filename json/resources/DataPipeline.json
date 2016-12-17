@@ -1,10 +1,49 @@
 {
   "Pipeline": {
     "Name": "AWS::DataPipeline::Pipeline",
-    "Description": "Indicates whether to validate and start the pipeline or stop an active pipeline. By\n            default, the value is set to true.A description for the pipeline.A name for the pipeline. Because AWS CloudFormation assigns each new pipeline a unique\n                        identifier, you can use the same name for multiple pipelines that are\n                        associated with your AWS account.Defines the variables that are in the pipeline definition. For more\n                        information, see Creating\n                            a Pipeline Using Parameterized Templates in the\n                            AWS Data Pipeline Developer Guide.Defines the values for the parameters that are defined in the\n              ParameterObjects property. For more information, see Creating a Pipeline Using Parameterized\n              Templates in the AWS Data Pipeline Developer Guide.A list of pipeline objects that make up the pipeline. For more information about\n            pipeline objects and a description of each object, see Pipeline Object Reference in the\n              AWS Data Pipeline Developer Guide.A list of arbitrary tags (key-value pairs) to associate with the pipeline, which you\n                        can use to control permissions. For more information, see Controlling Access to\n                            Pipelines and Resources in the\n                            AWS Data Pipeline Developer Guide.",
-    "Array": true,
-    "Type": "AWSDataPipelinePipelinePipelineTags",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "Activate": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement."
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ParameterObjects": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ParameterValues": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "PipelineObjects": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions. Not all objects, fields, and values can be updated.\n                        Restrictions on what can be updated are documented in Editing Your\n                            Pipelines in the AWS Data Pipeline Developer Guide."
+      },
+      "PipelineTags": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   }
 }

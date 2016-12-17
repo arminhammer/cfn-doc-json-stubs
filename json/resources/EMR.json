@@ -1,26 +1,172 @@
 {
   "Cluster": {
     "Name": "AWS::EMR::Cluster",
-    "Description": "Additional features that you want to select.The software applications to deploy on the cluster, and the arguments that Amazon EMR\n            passes to those applications.A list of bootstrap actions that Amazon EMR runs before starting applications on the\n            cluster.The software configuration of the Amazon EMR cluster.Configures the EC2 instances that will run jobs in the Amazon EMR cluster.Also called instance profile and EC2 role. \n            Accepts an instance profile associated with the role that you want to use. All EC2 \n            instances in the cluster assume this role.\n          An S3 bucket location to which Amazon EMR writes logs files from a job flow. If you don't\n            specify a value, Amazon EMR doesn't write any log files.A name for the Amazon EMR cluster.The Amazon EMR software release label. A release is a set of software applications and\n            components that you can install and configure on an Amazon EMR cluster. For more information,\n            see About Amazon EMR Releases in the Amazon EMR Release\n              Guide.Currently, AWS CloudFormation supports only Amazon EMR 4.0 and later software releases.The IAM role that Amazon EMR assumes to access AWS resources on your behalf. For more\n            information, see Configure IAM Roles for Amazon EMR in the Amazon EMR Management\n              Guide.An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR\n            cluster.Indicates whether the instances in the cluster are visible to all IAM users in the\n            AWS account. If you specify true, all IAM users can view and (if they\n            have permissions) manage the instances. If you specify false, only the\n            IAM user that created the cluster can view and manage it. By default, AWS CloudFormation sets this\n            property to false.The public DNS name of the master node (instance), such as\n                ec2-12-123-123-123.us-west-2.compute.amazonaws.com.",
-    "Array": true,
-    "Type": "Boolean",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
-  "InstanceGroupConfig": {
-    "Name": "AWS::EMR::InstanceGroupConfig",
-    "Description": "The bid price in USD for each EC2 instance in the instance group when launching\n            instances (nodes) as Spot Instances.A list of configurations to apply to this instance group. For more information see,\n              Configuring Applications in the Amazon EMR Release\n              Guide.Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to attach to your instances.The number of instances to launch in the instance group.The role of the servers in the Amazon EMR cluster, such as TASK. For more\n            information, see Instance Groups in the Amazon EMR Management\n            Guide.NoteCurrently, the only valid value is TASK. You configure the master and\n              core instance groups as part of the AWS::EMR::Cluster resource.The EC2 instance type for all instances in the instance group. For more information,\n            see Instance Configurations in the Amazon EMR Management\n              Guide.The ID of an Amazon EMR cluster that you want to associate this instance group\n            with.The type of marketplace from which your instances are provisioned into this group,\n            either ON_DEMAND or SPOT. For more information, see Amazon EC2 Purchasing Options.A name for the instance group.",
-    "Array": true,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "AdditionalInfo": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Applications": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "BootstrapActions": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Configurations": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Instances": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "JobFlowRole": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "LogUri": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ReleaseLabel": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ServiceRole": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption."
+      },
+      "VisibleToAllUsers": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "MasterPublicDNS": {
+        "Description": "The public DNS name of the master node (instance), such as\n                ec2-12-123-123-123.us-west-2.compute.amazonaws.com.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   },
   "Step": {
     "Name": "AWS::EMR::Step",
-    "Description": "The action to take if the job flow step fails. Currently, AWS CloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more information, see Managing Cluster Termination in the Amazon EMR Management Guide.The JAR file that includes the main function that Amazon EMR executes.The ID of a cluster in which you want to run this job flow step.A name for the job flow step.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "ActionOnFailure": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "HadoopJarStep": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "JobFlowId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "InstanceGroupConfig": {
+    "Name": "AWS::EMR::InstanceGroupConfig",
+    "Properties": {
+      "BidPrice": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Configurations": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "EbsConfiguration": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceCount": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "InstanceRole": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "JobFlowId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Market": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   }
 }

@@ -1,58 +1,534 @@
 {
   "App": {
     "Name": "AWS::OpsWorks::App",
-    "Description": "The information required to retrieve an app from a repository.One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.A description of the app.A list of databases to associate with the AWS OpsWorks app.The app virtual host settings, with multiple domains separated by commas. For\n                  example, 'www.example.com, example.com'.Whether to enable SSL for this app.The environment variables to associate with the AWS OpsWorks app.The name of the AWS OpsWorks app.The app short name, which is used internally by AWS OpsWorks and by Chef\n                  recipes.The SSL configurationThe ID of the AWS OpsWorks stack to associate this app with.The app type. Each supported type is associated with a particular layer. For\n                  more information, see CreateApp in the AWS OpsWorks Stacks API Reference.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "ElasticLoadBalancerAttachment": {
-    "Name": "AWS::OpsWorks::ElasticLoadBalancerAttachment",
-    "Description": "Elastic Load Balancing load balancer name.The AWS OpsWorks layer ID that the Elastic Load Balancing load balancer will be attached to.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "Instance": {
-    "Name": "AWS::OpsWorks::Instance",
-    "Description": "The version of the  AWS OpsWorks agent that AWS OpsWorks installs on each instance. AWS OpsWorks\n                  sends commands to the agent to performs tasks on your instances, such as starting\n                  Chef runs. For valid values, see the AgentVersion parameter for the\n                     CreateInstance action\n                  in the AWS OpsWorks Stacks API Reference.The ID of the custom Amazon Machine Image (AMI) to be used to create the\n                  instance. For more information about custom AMIs, see Using Custom AMIs in the\n                  AWS OpsWorks User Guide.\n                  NoteIf you specify this property, you must set the Os property\n                        to Custom.\n               The instance architecture.For scaling instances, the type of scaling. If you specify load-based scaling,\n                  do not specify a time-based scaling configuration. For valid values, see CreateInstance in the\n                     AWS OpsWorks Stacks API Reference.The instance Availability Zone.A list of block devices that are mapped to the AWS OpsWorks instance. For more\n                  information, see the BlockDeviceMappings parameter for the CreateInstance action in the\n                     AWS OpsWorks Stacks API Reference.Whether the instance is optimized for Amazon Elastic Block Store (Amazon EBS) I/O. If you specify an\n                  Amazon EBS-optimized instance type, AWS OpsWorks enables EBS optimization by default. For more\n                  information, see Amazon EBS–Optimized\n                     Instances in the Amazon EC2 User Guide for Linux Instances.A list of Elastic IP addresses to associate with the instance.The name of the instance host.Whether to install operating system and package updates when the instance\n                  boots.The instance type, which must be supported by AWS OpsWorks. For more information, see\n                     CreateInstance in the\n                     AWS OpsWorks Stacks API Reference.If you specify an Amazon EBS-optimized instance type, AWS OpsWorks enables EBS optimization\n                  by default. For more information about Amazon EBS-optimized instance types, see Amazon EBS–Optimized Instances in the\n                     Amazon EC2 User Guide for Linux Instances.The IDs of the AWS OpsWorks layers to associate with this instance.The instance operating system. For more information, see CreateInstance in the\n                     AWS OpsWorks Stacks API Reference.The root device type of the instance.The SSH key name of the instance.The ID of the AWS OpsWorks stack that this instance will be associated with.The ID of the instance's subnet. If the stack is running in a VPC, you can use\n                  this parameter to override the stack's default subnet ID value and direct AWS OpsWorks to\n                  launch the instance in a different subnet. The tenancy of the instance. For more information, see the Tenancy\n                  parameter for the CreateInstance action in the\n                  AWS OpsWorks Stacks API Reference.The time-based scaling configuration for the instance.The instance's virtualization type, paravirtual or\n                  hvm.A list of AWS OpsWorks volume IDs to associate with the instance. For more\n                  information, see AWS::OpsWorks::Volume.",
-    "Array": true,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "AppSource": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Attributes": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DataSources": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Domains": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "EnableSsl": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Environment": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Shortname": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SslConfiguration": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "StackId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Type": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "Layer": {
     "Name": "AWS::OpsWorks::Layer",
-    "Description": "One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.Whether to automatically assign an Elastic IP address to Amazon EC2 instances in\n                  this layer.For AWS OpsWorks stacks that are running in a VPC, whether to automatically assign a\n                  public IP address to Amazon EC2 instances in this layer.The Amazon Resource Name (ARN) of an IAM instance profile that is to be used\n                  for the Amazon EC2 instances in this layer.A custom stack configuration and deployment attributes that AWS OpsWorks installs on\n                  the layer's instances. For more information, see the CustomJson\n                  parameter for the CreateLayer action in the\n                  AWS OpsWorks Stacks API Reference.Custom event recipes for this layer.Custom security group IDs for this layer.Whether to automatically heal Amazon EC2 instances that have become disconnected or\n                  timed out.Whether to install operating system and package updates when the instance\n                  boots.The lifecycle events for the AWS OpsWorks layer.The load-based scaling configuration for the AWS OpsWorks layer.The AWS OpsWorks layer name.The packages for this layer.The layer short name, which is used internally by AWS OpsWorks and by Chef recipes.\n                  The short name is also used as the name for the directory where your app files are\n                  installed. The name can have a maximum of 200 characters, which are limited to the\n                  alphanumeric characters, '-', '_', and '.'.ImportantIf you update a property that requires the layer to be replaced, you must specify a new short name. You cannot have multiple layers with the same short name.The ID of the AWS OpsWorks stack that this layer will be associated with.The layer type. A stack cannot have more than one layer of the same type,\n                  except for the custom type. You can have any number of\n                     custom types. For more information, see CreateLayer in the\n                     AWS OpsWorks Stacks API Reference.ImportantIf you update a property that requires the layer to be replaced, you must\n                     specify a new type unless you have a custom type. You can have any\n                     number of custom types.Describes the Amazon EBS volumes for this layer.",
-    "Array": true,
-    "Type": "AWSOpsWorksVolumeConfigurationType",
-    "Required": "No",
-    "UpdateRequires": "Some interruptions"
+    "Properties": {
+      "Attributes": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AutoAssignElasticIps": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AutoAssignPublicIps": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomInstanceProfileArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomJson": {
+        "Description": "",
+        "Array": false,
+        "Type": "Object"
+      },
+      "CustomRecipes": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomSecurityGroupIds": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "EnableAutoHealing": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "InstallUpdatesOnBoot": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "LifecycleEventConfiguration": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "LoadBasedAutoScaling": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Packages": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Shortname": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "StackId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Type": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "VolumeConfigurations": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions"
+      }
+    }
   },
-  "Volume": {
-    "Name": "AWS::OpsWorks::Volume",
-    "Description": "The ID of the Amazon EBS volume to register with the AWS OpsWorks stack.The mount point for the Amazon EBS volume, such as /mnt/disk1.A name for the Amazon EBS volume.The ID of the AWS OpsWorks stack that AWS OpsWorks registers the volume to.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
-  },
-  "UserProfile": {
-    "Name": "AWS::OpsWorks::UserProfile",
-    "Description": "Indicates whether users can use the AWS OpsWorks My Settings page to\n                  specify their own SSH public key. For more information, see Setting an IAM User's Public\n                     SSH Key in the AWS OpsWorks User Guide.The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) user to associate with\n                  this configuration.The public SSH key that is associated with the IAM user. The IAM user must\n                  have or be given the corresponding private key to access instances.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+  "ElasticLoadBalancerAttachment": {
+    "Name": "AWS::OpsWorks::ElasticLoadBalancerAttachment",
+    "Properties": {
+      "ElasticLoadBalancerName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "LayerId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "Stack": {
     "Name": "AWS::OpsWorks::Stack",
-    "Description": "The AWS OpsWorks agent version that you want to use. The agent communicates with the\n                  service and handles tasks such as initiating Chef runs in response to lifecycle\n                  events. For valid values, see the AgentVersion parameter for the CreateStack action in the\n                     AWS OpsWorks Stacks API Reference.One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.Describes the Chef configuration. For more information, see the CreateStack ChefConfiguration parameter in the\n                     AWS OpsWorks Stacks API Reference.NoteTo enable Berkshelf, you must select a Chef version in the\n                        ConfigurationManager property that supports Berkshelf.If you're cloning an AWS OpsWorks stack, a list of AWS OpsWorks application stack IDs from the\n                  source stack to include in the cloned stack.If you're cloning an AWS OpsWorks stack, indicates whether to clone the source stack's\n                  permissions.Describes the configuration manager. When you create a stack, you use the\n                  configuration manager to specify the Chef version. For supported Chef versions,\n                  see the CreateStack ConfigurationManager parameter in the\n                     AWS OpsWorks Stacks API Reference.Contains the information required to retrieve a cookbook from a\n                  repository.A user-defined custom JSON object. The custom JSON is used to override the\n                  corresponding default stack configuration JSON values. For more information, see\n                     CreateStack in the\n                     AWS OpsWorks Stacks API Reference.ImportantAWS CloudFormation submits all JSON attributes as strings, including any Boolean or\n                     number attributes. If you have recipes that expect booleans or numbers, you\n                     must modify the recipes to accept strings and to interpret those strings as\n                     booleans or numbers.The stack's default Availability Zone, which must be in the specified\n                  region.The Amazon Resource Name (ARN) of an IAM instance profile that is the default\n                  profile for all of the stack's Amazon EC2 instances.The stack's default operating system. For more information, see CreateStack in the\n                     AWS OpsWorks Stacks API Reference.The default root device type. This value is used by default for all instances\n                  in the stack, but you can override it when you create an instance. For more\n                  information, see CreateStack in the AWS OpsWorks Stacks API Reference.A default SSH key for the stack instances. You can override this value when you\n                  create or update an instance.The stack's default subnet ID. All instances are launched into this subnet\n                  unless you specify another subnet ID when you create the instance.The Amazon Resource Name (ARN) of the Amazon EC2 Container Service (Amazon ECS) cluster to register\n                  with the AWS OpsWorks stack.NoteIf you specify a cluster that's registered with another AWS OpsWorks stack, AWS CloudFormation\n                     deregisters the existing association before registering the cluster.A list of Elastic IP addresses to register with the AWS OpsWorks stack.NoteIf you specify an IP address that's registered with another AWS OpsWorks stack,\n                     AWS CloudFormation deregisters the existing association before registering the IP\n                     address.The stack's host name theme, with spaces replaced by underscores. The theme is\n                  used to generate host names for the stack's instances. For more information, see\n                     CreateStack in the\n                     AWS OpsWorks Stacks API Reference.The name of the AWS OpsWorks stack.The Amazon Relational Database Service (Amazon RDS) DB instance to register with the AWS OpsWorks stack.NoteIf you specify a DB instance that's registered with another AWS OpsWorks stack,\n                     AWS CloudFormation deregisters the existing association before registering the DB\n                     instance.The AWS Identity and Access Management (IAM) role that AWS OpsWorks uses to work with AWS resources on your\n                  behalf. You must specify an Amazon Resource Name (ARN) for an existing IAM\n                  role.If you're cloning an AWS OpsWorks stack, the stack ID of the source AWS OpsWorks stack to\n                  clone.Whether the stack uses custom cookbooks.Whether to associate the AWS OpsWorks built-in security groups with the stack's\n                  layers.The ID of the VPC that the stack is to be launched into, which must be in the\n                  specified region. All instances are launched into this VPC. If you specify this\n                  property, you must specify the DefaultSubnetId property.",
-    "Array": true,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "AgentVersion": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Attributes": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ChefConfiguration": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CloneAppIds": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ClonePermissions": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ConfigurationManager": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomCookbooksSource": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomJson": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultAvailabilityZone": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultInstanceProfileArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultOs": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultRootDeviceType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultSshKeyName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultSubnetId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "EcsClusterArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ElasticIps": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HostnameTheme": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RdsDbInstances": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ServiceRoleArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SourceStackId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "UseCustomCookbooks": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "UseOpsworksSecurityGroups": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "VpcId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Instance": {
+    "Name": "AWS::OpsWorks::Instance",
+    "Properties": {
+      "AgentVersion": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AmiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Architecture": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions"
+      },
+      "AutoScalingType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "AvailabilityZone": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "BlockDeviceMappings": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "EbsOptimized": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "ElasticIps": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Hostname": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "InstallUpdatesOnBoot": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions"
+      },
+      "InstanceType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions"
+      },
+      "LayerIds": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions"
+      },
+      "Os": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RootDeviceType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SshKeyName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Some interruptions"
+      },
+      "StackId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SubnetId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Tenancy": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "TimeBasedAutoScaling": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "VirtualizationType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Volumes": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "UserProfile": {
+    "Name": "AWS::OpsWorks::UserProfile",
+    "Properties": {
+      "AllowSelfManagement": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "IamUserArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "SshPublicKey": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Volume": {
+    "Name": "AWS::OpsWorks::Volume",
+    "Properties": {
+      "Ec2VolumeId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "MountPoint": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "StackId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
   }
 }

@@ -91,14 +91,20 @@ function scrapeHtmlPage(body, pageType) {
     attributes: x('dd', [['p']])
   }))()
   .then((obj) => {
-    let output = {
+    //let mainName = obj.name
+    //let properties = {}
+    let block = {
       Name: obj.name.replace(/\s/g, ''),
-      Description: '',
-      Array: false,
-      Type: 'String'
+      Properties: {}
     }
     for (let i = 0; i < obj.titles.length; i++) {
       obj.attributes[i].forEach((attr) => {
+        let output = {
+          //Name: obj.titles[i], //obj.name.replace(/\s/g, ''),
+          Description: '',
+          Array: false,
+          Type: 'String'
+        }
         if (attr.startsWith('Type: ')) {
           output.Type = attr.replace(/Type: /g, '').replace(/\s/g, '')
           sanitizeTypes(output)
@@ -109,21 +115,22 @@ function scrapeHtmlPage(body, pageType) {
         } else {
           output.Description += attr
         }
+        block.Properties[obj.titles[i]] = output
       })
     }
-    let split = output.Name.split('::')
+    let split = block.Name.split('::')
     let group = split[1]
     let name = split[2]
     if(pageType === 'Properties') {
-      group = output.Name
+      group = block.Name
     }
     if(!result[pageType][group]) {
       result[pageType][group] = {}
     }
     if(pageType === 'Properties') {
-      result[pageType][group] = output
+      result[pageType][group] = block
     } else {
-      result[pageType][group][name] = output
+      result[pageType][group][name] = block
     }
   })
   .catch((err) => {

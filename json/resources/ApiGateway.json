@@ -1,98 +1,439 @@
 {
-  "ApiKey": {
-    "Name": "AWS::ApiGateway::ApiKey",
-    "Description": "A description of the purpose of the API key.Indicates whether the API key can be used by clients.A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.A list of stages to associated with this API key.",
-    "Array": true,
-    "Type": "AmazonAPIGatewayApiKeyStageKey",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
   "Account": {
     "Name": "AWS::ApiGateway::Account",
-    "Description": "The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch Logs in your account.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "CloudWatchRoleArn": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ApiKey": {
+    "Name": "AWS::ApiGateway::ApiKey",
+    "Properties": {
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Enabled": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "StageKeys": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "Authorizer": {
     "Name": "AWS::ApiGateway::Authorizer",
-    "Description": "The credentials required for the authorizer. To specify an AWS Identity and Access Management (IAM) role that API Gateway assumes, specify the role's Amazon Resource Name (ARN). To use resource-based permissions on the AWS Lambda (Lambda) function, specify null.The time-to-live (TTL) period, in seconds, that specifies how long API Gateway caches authorizer results. If you specify a value greater than 0, API Gateway caches the authorizer responses. By default, API Gateway sets this property to 300. The maximum value is 3600, or 1 hour.The authorizer's Uniform Resource Identifier (URI). If you specify TOKEN for the authorizer's Type property, specify a Lambda function URI, which has the form arn:aws:apigateway:region:lambda:path/path. The path usually has the form /2015-03-31/functions/LambdaFunctionARN/invocations.The source of the identity in an incoming request. If you specify TOKEN for the authorizer's Type property, specify a mapping expression. The custom header mapping expression has the form method.request.header.name, where name is the name of a custom authorization header that clients submit as part of their requests.A validation expression for the incoming identity. If you specify TOKEN for the authorizer's Type property, specify a regular expression. API Gateway uses the expression to attempt to match the incoming client token, and proceeds if the token matches. If the token doesn't match, API Gateway responds with a 401 (unauthorized request) error code.The name of the authorizer.A list of the Amazon Cognito user pool Amazon Resource Names (ARNs) to associate with this authorizer. For more information, see Use Amazon Cognito Your User Pool in the API Gateway Developer Guide.The ID of the RestApi resource in which API Gateway creates the authorizer.The type of authorizer:For a custom authorizer that uses a Lambda function, use\n                TOKEN.For an authorizer that uses Amazon Cognito user pools, use COGNITO_USER_POOLS.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "ClientCertificate": {
-    "Name": "AWS::ApiGateway::ClientCertificate",
-    "Description": "A description of the client certificate.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "AuthorizerCredentials": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AuthorizerResultTtlInSeconds": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AuthorizerUri": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "IdentitySource": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "IdentityValidationExpression": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ProviderARNs": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Type": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "BasePathMapping": {
     "Name": "AWS::ApiGateway::BasePathMapping",
-    "Description": "The base path name that callers of the API must provide in the URL after the domain name.The name of a DomainName resource.The name of the API.The name of the API's stage.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "BasePath": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DomainName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Stage": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
-  "Deployment": {
-    "Name": "AWS::ApiGateway::Deployment",
-    "Description": "A description of the purpose of the API Gateway deployment.The ID of the RestApi resource to deploy.Configures the stage that API Gateway creates with this deployment.A name for the stage that API Gateway creates with this deployment. Use only alphanumeric characters.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
-  "Method": {
-    "Name": "AWS::ApiGateway::Method",
-    "Description": "Indicates whether the method requires clients to submit a valid API key.The method's authorization type.The identifier of the authorizer to use on this method. If you specify this property, specify CUSTOM for the AuthorizationType property.The HTTP method that clients will use to call this method.The back-end system that the method calls when it receives a request.The responses that can be sent to the client who calls the method.The resources used for the response's content type. Specify response models as key-value pairs (string-to-string map), with a content type as the key and a Model resource name as the value.Request parameters that API Gateway accepts. Specify request parameters as key-value pairs (string-to-Boolean map), with a source as the key and a Boolean as the value. The Boolean specifies whether a parameter is required. A source must match the following format method.request.location.name, where the location is querystring, path, or header, and\n              name is a valid, unique parameter name.The ID of an API Gateway resource. For root resource methods, specify the RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.The ID of the RestApi resource in which API Gateway creates the method.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "Model": {
-    "Name": "AWS::ApiGateway::Model",
-    "Description": "The content type for the model.A description that identifies this model.A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The ID of a REST API with which to associate this model.The schema to use to transform data to one or more output formats.",
-    "Array": false,
-    "Type": "Object",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+  "ClientCertificate": {
+    "Name": "AWS::ApiGateway::ClientCertificate",
+    "Properties": {
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "Resource": {
     "Name": "AWS::ApiGateway::Resource",
-    "Description": "If you want to create a child resource, the ID of the parent resource. For resources without a parent, specify the RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.A path name for the resource.The ID of the RestApi resource in which you want to create this resource.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "ParentId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "PathPart": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Deployment": {
+    "Name": "AWS::ApiGateway::Deployment",
+    "Properties": {
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "StageDescription": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "StageName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Method": {
+    "Name": "AWS::ApiGateway::Method",
+    "Properties": {
+      "ApiKeyRequired": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AuthorizationType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "AuthorizerId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HttpMethod": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Integration": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "MethodResponses": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RequestModels": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RequestParameters": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ResourceId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Model": {
+    "Name": "AWS::ApiGateway::Model",
+    "Properties": {
+      "ContentType": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Schema": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "RestApi": {
     "Name": "AWS::ApiGateway::RestApi",
-    "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.\n            For YAML templates, you can also specify the specification in the YAML format.The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.The ID of the API Gateway RestApi resource that you want to clone.A description of the purpose of this API Gateway RestApi resource.If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.A name for the API Gateway RestApi resource.Custom header parameters for the request.The root resource ID for a RestApi resource, such as a0bc123d4e.",
-    "Array": true,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "Body": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "BodyS3Location": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CloneFrom": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "FailOnWarnings": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Parameters": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RootResourceId": {
+        "Description": "The root resource ID for a RestApi resource, such as a0bc123d4e.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   },
   "Stage": {
     "Name": "AWS::ApiGateway::Stage",
-    "Description": "Indicates whether cache clustering is enabled for the stage.The stage's cache cluster size.The identifier of the client certificate that API Gateway uses to call your integration endpoints in the stage.The ID of the deployment that the stage points to.A description of the stage's purpose.Settings for all methods in the stage.The ID of the RestApi resource that you're deploying with this stage.The name of the stage, which API Gateway uses as the first path segment in the invoke Uniform Resource Identifier (URI).A map (string to string map) that defines the stage variables, where the variable name is the key and the variable value is the value. Variable names are limited to alphanumeric characters. Values must match the following regular expression: [A-Za-z0-9-._~:/?#&amp;=,]+.",
-    "Array": false,
-    "Type": "Map",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "CacheClusterEnabled": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "CacheClusterSize": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "ClientCertificateId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "DeploymentId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "MethodSettings": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "StageName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Variables": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "UsagePlan": {
     "Name": "AWS::ApiGateway::UsagePlan",
-    "Description": "The APIs and API stages to associate with this usage plan.The purpose of this usage plan.Configures the number of requests that users can make within a given interval.Configures the overall request rate (average requests per second) and burst capacity.A name for this usage plan.",
-    "Array": true,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "ApiStages": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Quota": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Throttle": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "UsagePlanName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   }
 }

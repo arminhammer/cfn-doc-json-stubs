@@ -1,34 +1,164 @@
 {
   "RecordSet": {
     "Name": "AWS::Route53::RecordSet",
-    "Description": "Alias resource record sets only: Information about the\n                  domain to which you are redirecting traffic.If you specify this property, do not specify the TTL property. The\n                  alias uses a TTL value from the alias target record.For more information about alias resource record sets, see Creating Alias Resource Record Sets in the Amazon Route 53 Developer\n                     Guide and POST ChangeResourceRecordSets in the Amazon Route 53 API reference.Any comments that you want to include about the hosted zone.ImportantIf the record set is part of a record set group, this property isn't valid.\n                     Don't specify this property.Designates the record set as a PRIMARY or SECONDARY\n                  failover record set. When you have more than one resource performing the same\n                  function, you can configure Amazon Route 53 to check the health of your resources and use\n                  only health resources to respond to DNS queries. You cannot create nonfailover\n                  resource record sets that have the same Name and Type\n                  property values as failover resource record sets. For more information, see the\n                     Failover content in the Amazon Route 53 API Reference.If you specify this property, you must specify the SetIdentifier\n                  property.Describes how Amazon Route 53 responds to DNS queries based on the geographic origin of\n                  the query.The health check ID that you want to apply to this record set. Amazon Route 53 returns\n                  this resource record set in response to a DNS query only while record set is\n                  healthy.The ID of the hosted zone.The name of the domain for the hosted zone where you want to add the record\n                  set.When you create a stack using an AWS::Route53::RecordSet that\n                  specifies HostedZoneName, AWS CloudFormation attempts to find a hosted\n                  zone whose name matches the HostedZoneName. If AWS CloudFormation cannot\n                  find a hosted zone with a matching domain name, or if there is more than one\n                  hosted zone with the specified domain name, AWS CloudFormation will not create the\n                  stack.If you have multiple hosted zones with the same domain name, you must\n                  explicitly specify the hosted zone using\n                  HostedZoneId.The name of the domain. You must specify a fully qualified domain name that\n                  ends with a period as the last label indication. If you omit the final period,\n                  AWS CloudFormation adds it.Latency resource record sets only: The Amazon EC2 region where the resource that is\n                  specified in this resource record set resides. The resource typically is an AWS\n                  resource, for example, Amazon EC2 instance or an Elastic Load Balancing load balancer, and is referred\n                  to by an IP address or a DNS domain name, depending on the record type.When Amazon Route 53 receives a DNS query for a domain name and type for which you have\n                  created latency resource record sets, Amazon Route 53 selects the latency resource record\n                  set that has the lowest latency between the end user and the associated Amazon EC2\n                  region. Amazon Route 53 then returns the value that is associated with the selected resource\n                  record set.The following restrictions must be followed:You can only specify one resource record per latency resource record\n                        set.You can only create one latency resource record set for each Amazon EC2\n                        region.You are not required to create latency resource record sets for all Amazon EC2\n                        regions. Amazon Route 53 will choose the region with the best latency from among the\n                        regions for which you create latency resource record sets.You cannot create both weighted and latency resource record sets that\n                        have the same values for the Name and Type elements.To see a list of regions by service, see Regions and Endpoints in the\n                  AWS General Reference.List of resource records to add. Each record should be in the format\n                  appropriate for the record type specified by the Type\n                  property. For information about different record types and their record formats,\n                  see Appendix: Domain Name Format in the Amazon Route 53 Developer\n                     Guide. Required: Conditional. If you don't specify the AliasTarget\n                  property, you must specify this property. If you are creating an alias resource\n                  record set, do not specify this property.A unique identifier that differentiates among multiple resource record sets\n                  that have the same combination of DNS name and type.For more information, see the SetIdentifier content in the Amazon Route 53 Developer\n                     Guide.The resource record cache time to live (TTL), in seconds. If you specify this\n                  property, do not specify the AliasTarget property. For alias target\n                  records, the alias uses a TTL value from the target.If you specify this property, you must specify the\n                     ResourceRecords property.The type of records to add. For valid values, see the Type content in the Amazon Route 53 API Reference. In AWS CloudFormation,\n                  you can't create records of type NS or SOA.Weighted resource record sets only: Among resource record\n                  sets that have the same combination of DNS name and type, a value that determines\n                  what portion of traffic for the current resource record set is routed to the\n                  associated location.For more information about weighted resource record sets, see Setting Up Weighted Resource Record Sets in the Amazon Route 53\n                     Developer Guide.",
-    "Array": true,
-    "Type": "Number.Weightexpectsintegervalues.",
-    "Required": "Conditional. Required if you are creating a weighted resource record\n                  set.",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "AliasTarget": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Comment": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Failover": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "GeoLocation": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HealthCheckId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HostedZoneId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "HostedZoneName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "Region": {
+        "Description": "To see a list of regions by service, see Regions and Endpoints in the\n                  AWS General Reference.",
+        "Array": false,
+        "Type": "String"
+      },
+      "ResourceRecords": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "SetIdentifier": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "TTL": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Type": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Weight": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "RecordSetGroup": {
     "Name": "AWS::Route53::RecordSetGroup",
-    "Description": "Any comments you want to include about the hosted zone.The ID of the hosted zone.The name of the domain for the hosted zone where you want to add the record set.When you create a stack using an AWS::Route53::RecordSet that specifies\n                     HostedZoneName, AWS CloudFormation attempts to find a hosted zone whose name matches the\n                     HostedZoneName. If AWS CloudFormation cannot find a hosted zone with a matching domain\n                  name, or if there is more than one hosted zone with the specified domain name, AWS CloudFormation will not create\n                  the stack.If you have multiple hosted zones with the same domain name, you must explicitly specify the\n                  hosted zone using HostedZoneId.List of resource record sets to add.Type:: List of AWS::Route53::RecordSet objects, as shown in the\n                  following example:\n                  ",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "HostedZone": {
-    "Name": "AWS::Route53::HostedZone",
-    "Description": "A complex type that contains an optional comment about your hosted zone.An arbitrary set of tags (key–value pairs) for this hosted zone.The name of the domain. For resource record types that include a domain name,\n                  specify a fully qualified domain name.One or more VPCs that you want to associate with this hosted zone. When you\n                  specify this property, AWS CloudFormation creates a private hosted zone.If this property was specified previously and you're modifying values, updates\n                  require no interruption. If this\n                  property wasn't specified and you add values, updates require replacement. Also, if this property was\n                  specified and you remove all values, updates require replacement.",
-    "Array": true,
-    "Type": "AmazonRoute53HostedZoneVPCs",
-    "Required": "No",
-    "UpdateRequires": "Replacement"
+    "Properties": {
+      "Comment": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HostedZoneId": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "HostedZoneName": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "RecordSets": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "HealthCheck": {
     "Name": "AWS::Route53::HealthCheck",
-    "Description": "An Amazon Route 53 health check.An arbitrary set of tags (key–value pairs) for this health check.",
-    "Array": true,
-    "Type": "AmazonRoute53HealthCheckTags",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
+    "Properties": {
+      "HealthCheckConfig": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HealthCheckTags": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "HostedZone": {
+    "Name": "AWS::Route53::HostedZone",
+    "Properties": {
+      "HostedZoneConfig": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "HostedZoneTags": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "Replacement"
+      },
+      "VPCs": {
+        "Description": "If this property was specified previously and you're modifying values, updates\n                  require no interruption. If this\n                  property wasn't specified and you add values, updates require replacement. Also, if this property was\n                  specified and you remove all values, updates require replacement.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
   }
 }
