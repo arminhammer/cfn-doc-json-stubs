@@ -1,4 +1,23 @@
 {
+  "UserToGroupAddition": {
+    "Name": "AWS::IAM::UserToGroupAddition",
+    "Properties": {
+      "GroupName": {
+        "Description": "The name of group to add users to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Users": {
+        "Description": "",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "AccessKey": {
     "Name": "AWS::IAM::AccessKey",
     "Properties": {
@@ -22,30 +41,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
-      },
-      "SecretAccessKey": {
-        "Description": "Returns the secret access key for the specified AWS::IAM::AccessKey resource. For\n                     example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "UserToGroupAddition": {
-    "Name": "AWS::IAM::UserToGroupAddition",
-    "Properties": {
-      "GroupName": {
-        "Description": "The name of group to add users to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Users": {
-        "Description": "",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -79,11 +74,6 @@
         "Type": "IAMPolicies",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the AWS::IAM::Group resource. For\n                     example: arn:aws:iam::123456789012:group/mystack-mygroup-1DZETITOWEKVO.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -131,11 +121,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the specified AWS::IAM::User resource. For example:\n                     arn:aws:iam::123456789012:user/mystack-myuser-1CCXAFG2H2U4D.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -155,11 +140,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -287,11 +267,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as “arn:aws:iam::1234567890:role/MyRole-AJJHDSKSDF”.",
-        "Array": false,
-        "Type": "String"
       }
     }
   }

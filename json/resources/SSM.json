@@ -1,4 +1,23 @@
 {
+  "Document": {
+    "Name": "AWS::SSM::Document",
+    "Properties": {
+      "Content": {
+        "Description": "A JSON object that describes an instance configuration. For more information,\n                  see SSM Documents in the\n                     Amazon EC2 Simple Systems Manager API Reference.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "DocumentType": {
+        "Description": "The type of document to create that relates to the purpose of your document, such as\n            running commands, bootstrapping software, or automating tasks. For valid values, see the\n              CreateDocument action in the\n              Amazon EC2 Simple Systems Manager API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Association": {
     "Name": "AWS::SSM::Association",
     "Properties": {
@@ -42,25 +61,6 @@
         "Array": true,
         "Type": "AmazonEC2SimpleSystemsManagerAssociationTargets",
         "Required": "Conditional. You must specify the InstanceId or\n              Targets property.",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Document": {
-    "Name": "AWS::SSM::Document",
-    "Properties": {
-      "Content": {
-        "Description": "A JSON object that describes an instance configuration. For more information,\n                  see SSM Documents in the\n                     Amazon EC2 Simple Systems Manager API Reference.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "DocumentType": {
-        "Description": "The type of document to create that relates to the purpose of your document, such as\n            running commands, bootstrapping software, or automating tasks. For valid values, see the\n              CreateDocument action in the\n              Amazon EC2 Simple Systems Manager API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
         "UpdateRequires": "Replacement"
       }
     }

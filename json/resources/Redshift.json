@@ -1,4 +1,75 @@
 {
+  "ClusterParameterGroup": {
+    "Name": "AWS::Redshift::ClusterParameterGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the parameter group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ParameterGroupFamily": {
+        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. ",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Parameters": {
+        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
+        "Array": false,
+        "Type": "AmazonRedshiftParameterType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ClusterSecurityGroupIngress": {
+    "Name": "AWS::Redshift::ClusterSecurityGroupIngress",
+    "Properties": {
+      "ClusterSecurityGroupName": {
+        "Description": "The name of the Amazon Redshift security group that will be associated with the ingress\n                  rule.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "CIDRIP": {
+        "Description": "The IP address range that has inbound access to the Amazon Redshift security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupName": {
+        "Description": "The Amazon EC2 security group that will be added the Amazon Redshift security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "The 12-digit AWS account number of the owner of the Amazon EC2 security group that\n                  is specified by the EC2SecurityGroupName parameter.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. If you specify the EC2SecurityGroupName\n                  property, you must specify this property.",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "ClusterSecurityGroup": {
+    "Name": "AWS::Redshift::ClusterSecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Cluster": {
     "Name": "AWS::Redshift::Cluster",
     "Properties": {
@@ -176,75 +247,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "Endpoint.Address": {
-        "Description": "The connection endpoint for the Amazon Redshift cluster. For example:\n                     examplecluster.cg034hpkmmjt.us-east-1.redshift.amazonaws.com\n                  .",
-        "Array": false,
-        "Type": "String"
-      },
-      "Endpoint.Port": {
-        "Description": "The port number on which the Amazon Redshift cluster accepts connections. For example:\n                     5439.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "ClusterSecurityGroupIngress": {
-    "Name": "AWS::Redshift::ClusterSecurityGroupIngress",
-    "Properties": {
-      "ClusterSecurityGroupName": {
-        "Description": "The name of the Amazon Redshift security group that will be associated with the ingress\n                  rule.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "CIDRIP": {
-        "Description": "The IP address range that has inbound access to the Amazon Redshift security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupName": {
-        "Description": "The Amazon EC2 security group that will be added the Amazon Redshift security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "The 12-digit AWS account number of the owner of the Amazon EC2 security group that\n                  is specified by the EC2SecurityGroupName parameter.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. If you specify the EC2SecurityGroupName\n                  property, you must specify this property.",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "ClusterParameterGroup": {
-    "Name": "AWS::Redshift::ClusterParameterGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the parameter group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ParameterGroupFamily": {
-        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. ",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
-        "Array": false,
-        "Type": "AmazonRedshiftParameterType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -264,18 +266,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "ClusterSecurityGroup": {
-    "Name": "AWS::Redshift::ClusterSecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
       }
     }
   }

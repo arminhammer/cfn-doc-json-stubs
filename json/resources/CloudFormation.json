@@ -36,17 +36,8 @@
         "Type": "Number",
         "Required": "No",
         "UpdateRequires": "Updates are not supported."
-      },
-      "Outputs.NestedStackOutputName": {
-        "Description": "Returns: The output value from the specified nested\n                     stack where NestedStackOutputName is the name of the\n                     output value.",
-        "Array": false,
-        "Type": "String"
       }
     }
-  },
-  "WaitConditionHandle": {
-    "Name": "AWS::CloudFormation::WaitConditionHandle",
-    "Properties": {}
   },
   "WaitCondition": {
     "Name": "AWS::CloudFormation::WaitCondition",
@@ -71,13 +62,12 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Updates are not supported."
-      },
-      "Data": {
-        "Description": "Returns: A JSON object that contains the\n                                UniqueId and Data\n                            values from the wait condition signal(s) for the specified wait\n                            condition. For more information about wait condition signals, see Wait Condition Signal JSON\n                    Format.Example return value for a wait condition with 2 signals:",
-        "Array": false,
-        "Type": "String"
       }
     }
+  },
+  "WaitConditionHandle": {
+    "Name": "AWS::CloudFormation::WaitConditionHandle",
+    "Properties": {}
   },
   "Authentication": {
     "Name": "AWS::CloudFormation::Authentication",
@@ -132,18 +122,6 @@
       }
     }
   },
-  "CustomResource": {
-    "Name": "AWS::CloudFormation::CustomResource",
-    "Properties": {
-      "ServiceToken": {
-        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "Interface": {
     "Name": "AWS::CloudFormation::Interface",
     "Properties": {
@@ -160,6 +138,18 @@
         "Type": "AWSCloudFormationInterfaceParameterLabel",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "CustomResource": {
+    "Name": "AWS::CloudFormation::CustomResource",
+    "Properties": {
+      "ServiceToken": {
+        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
       }
     }
   },

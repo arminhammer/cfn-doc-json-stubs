@@ -203,7 +203,9 @@ function scrapeHtmlPage(body, pageType) {
           output.Description += attr
         }
       })
-      block.Properties[obj.titles[i]] = output
+      if(output.Type && output.Required) {
+        block.Properties[obj.titles[i]] = output
+      }
     }
     let split = block.Name.split('::')
     let group = split[1]

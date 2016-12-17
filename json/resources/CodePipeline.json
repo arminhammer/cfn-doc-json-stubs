@@ -1,51 +1,4 @@
 {
-  "Pipeline": {
-    "Name": "AWS::CodePipeline::Pipeline",
-    "Properties": {
-      "ArtifactStore": {
-        "Description": "The Amazon Simple Storage Service (Amazon S3) location where AWS CodePipeline stores pipeline artifacts. The S3\n            bucket must have versioning enabled. For more information, see Create an Amazon S3 Bucket for Your\n              Application in the AWS CodePipeline User Guide.",
-        "Array": false,
-        "Type": "AWSCodePipelinePipelineArtifactStore",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "DisableInboundStageTransitions": {
-        "Description": "Prevents artifacts in a pipeline from transitioning to the stage that you\n            specified. This enables you to manually control transitions.",
-        "Array": true,
-        "Type": "AWSCodePipelinePipelineDisableInboundStageTransitions",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "The name of your AWS CodePipeline pipeline.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "RestartExecutionOnUpdate": {
-        "Description": "Indicates whether to rerun the AWS CodePipeline pipeline after you update it.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "RoleArn": {
-        "Description": "A service role Amazon Resource Name (ARN) that grants AWS CodePipeline permission to\n                  make calls to AWS services on your behalf. For more information, see AWS CodePipeline Access Permissions\n                     Reference in the AWS CodePipeline User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Stages": {
-        "Description": "Defines the AWS CodePipeline pipeline stages.",
-        "Array": false,
-        "Type": "AWSCodePipelinePipelineStages",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "CustomActionType": {
     "Name": "AWS::CodePipeline::CustomActionType",
     "Properties": {
@@ -97,6 +50,53 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Pipeline": {
+    "Name": "AWS::CodePipeline::Pipeline",
+    "Properties": {
+      "ArtifactStore": {
+        "Description": "The Amazon Simple Storage Service (Amazon S3) location where AWS CodePipeline stores pipeline artifacts. The S3\n            bucket must have versioning enabled. For more information, see Create an Amazon S3 Bucket for Your\n              Application in the AWS CodePipeline User Guide.",
+        "Array": false,
+        "Type": "AWSCodePipelinePipelineArtifactStore",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "DisableInboundStageTransitions": {
+        "Description": "Prevents artifacts in a pipeline from transitioning to the stage that you\n            specified. This enables you to manually control transitions.",
+        "Array": true,
+        "Type": "AWSCodePipelinePipelineDisableInboundStageTransitions",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "The name of your AWS CodePipeline pipeline.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "RestartExecutionOnUpdate": {
+        "Description": "Indicates whether to rerun the AWS CodePipeline pipeline after you update it.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "RoleArn": {
+        "Description": "A service role Amazon Resource Name (ARN) that grants AWS CodePipeline permission to\n                  make calls to AWS services on your behalf. For more information, see AWS CodePipeline Access Permissions\n                     Reference in the AWS CodePipeline User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Stages": {
+        "Description": "Defines the AWS CodePipeline pipeline stages.",
+        "Array": false,
+        "Type": "AWSCodePipelinePipelineStages",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   }

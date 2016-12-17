@@ -55,11 +55,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Some interruptions"
-      },
-      "Name": {
-        "Description": "The name of the Amazon ECS service, such as sample-webapp.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },

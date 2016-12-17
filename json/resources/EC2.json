@@ -67,6 +67,32 @@
       }
     }
   },
+  "VolumeAttachment": {
+    "Name": "AWS::EC2::VolumeAttachment",
+    "Properties": {
+      "Device": {
+        "Description": "How the device is exposed to the instance (e.g., /dev/sdh, or xvdh).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "InstanceId": {
+        "Description": "The ID of the instance to which the volume attaches. This value can be a reference to an\n                  AWS::EC2::Instance resource, or it can be\n                  the physical ID of an existing EC2 instance.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "VolumeId": {
+        "Description": "The ID of the Amazon EBS volume. The volume and instance must be within the same\n                  Availability Zone. This value can be a reference to an AWS::EC2::Volume resource, or it can be the\n                  volume ID of an existing Amazon EBS volume.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
   "EIP": {
     "Name": "AWS::EC2::EIP",
     "Properties": {
@@ -83,11 +109,6 @@
         "Type": "String",
         "Required": "Conditional. Required when allocating an address to a VPC",
         "UpdateRequires": "Replacement"
-      },
-      "AllocationId": {
-        "Description": "The ID that AWS assigns to represent the allocation of the address for use\n                     with Amazon VPC. This is returned only for VPC elastic IP addresses. Example\n                     return value: eipalloc-5723d13e",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -131,77 +152,6 @@
       }
     }
   },
-  "VolumeAttachment": {
-    "Name": "AWS::EC2::VolumeAttachment",
-    "Properties": {
-      "Device": {
-        "Description": "How the device is exposed to the instance (e.g., /dev/sdh, or xvdh).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "InstanceId": {
-        "Description": "The ID of the instance to which the volume attaches. This value can be a reference to an\n                  AWS::EC2::Instance resource, or it can be\n                  the physical ID of an existing EC2 instance.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "VolumeId": {
-        "Description": "The ID of the Amazon EBS volume. The volume and instance must be within the same\n                  Availability Zone. This value can be a reference to an AWS::EC2::Volume resource, or it can be the\n                  volume ID of an existing Amazon EBS volume.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SecurityGroup": {
-    "Name": "AWS::EC2::SecurityGroup",
-    "Properties": {
-      "GroupDescription": {
-        "Description": "Description of the security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SecurityGroupEgress": {
-        "Description": "A list of Amazon EC2 security group egress rules.",
-        "Array": true,
-        "Type": "EC2SecurityGroupRulePropertyType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "SecurityGroupIngress": {
-        "Description": "A list of Amazon EC2 security group ingress rules.",
-        "Array": true,
-        "Type": "EC2SecurityGroupRulePropertyType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to the resource.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      },
-      "VpcId": {
-        "Description": "The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { \"Ref\" : \"myVPC\" }.For more information about using the Ref function, see Ref.NoteFor more information about VPC security groups, go to Security Groups in the Amazon VPC User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes, for VPC security groups without a default\n                  VPC",
-        "UpdateRequires": "Replacement"
-      },
-      "GroupId": {
-        "Description": "The group ID of the specified security group, such as\n                        sg-94b3a1f6.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
   "Instance": {
     "Name": "AWS::EC2::Instance",
     "Properties": {
@@ -213,9 +163,11 @@
         "UpdateRequires": "No interruption"
       },
       "AvailabilityZone": {
-        "Description": "The Availability Zone where the specified instance is launched. For example: us-east-1b.You can retrieve a list of all Availability Zones for a region by using the Fn::GetAZs intrinsic function.",
+        "Description": "Specifies the name of the Availability Zone in which the instance is\n                  located.For more information about AWS regions and Availability Zones, see Regions and Availability Zones in the Amazon EC2 User\n                     Guide.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "No. If not specified, an Availability Zone will be automatically\n                  chosen for you based on the load balancing criteria for the region.",
+        "UpdateRequires": "Replacement"
       },
       "BlockDeviceMappings": {
         "Description": "Defines a set of Amazon Elastic Block Store block device mappings, ephemeral instance store\n                  block device mappings, or both. For more information, see Amazon Elastic Block Store or Amazon EC2 Instance Store in the\n                  Amazon EC2 User Guide for Linux Instances.",
@@ -405,26 +357,46 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement for instance store-backed instances"
-      },
-      "PrivateDnsName": {
-        "Description": "The private DNS name of the specified instance. For example: ip-10-24-34-0.ec2.internal.",
+      }
+    }
+  },
+  "SecurityGroup": {
+    "Name": "AWS::EC2::SecurityGroup",
+    "Properties": {
+      "GroupDescription": {
+        "Description": "Description of the security group.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       },
-      "PublicDnsName": {
-        "Description": "The public DNS name of the specified instance. For example: ec2-107-20-50-45.compute-1.amazonaws.com.",
-        "Array": false,
-        "Type": "String"
+      "SecurityGroupEgress": {
+        "Description": "A list of Amazon EC2 security group egress rules.",
+        "Array": true,
+        "Type": "EC2SecurityGroupRulePropertyType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       },
-      "PrivateIp": {
-        "Description": "The private IP address of the specified instance. For example: 10.24.34.0.",
-        "Array": false,
-        "Type": "String"
+      "SecurityGroupIngress": {
+        "Description": "A list of Amazon EC2 security group ingress rules.",
+        "Array": true,
+        "Type": "EC2SecurityGroupRulePropertyType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       },
-      "PublicIp": {
-        "Description": "The public IP address of the specified instance. For example: 192.0.2.0.",
+      "Tags": {
+        "Description": "The tags that you want to attach to the resource.",
         "Array": false,
-        "Type": "String"
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      },
+      "VpcId": {
+        "Description": "The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { \"Ref\" : \"myVPC\" }.For more information about using the Ref function, see Ref.NoteFor more information about VPC security groups, go to Security Groups in the Amazon VPC User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes, for VPC security groups without a default\n                  VPC",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -583,6 +555,44 @@
       }
     }
   },
+  "Host": {
+    "Name": "AWS::EC2::Host",
+    "Properties": {
+      "AutoPlacement": {
+        "Description": "Indicates if the host accepts EC2 instances with only matching configurations or if\n            instances must also specify the host ID. Instances that don't specify a host ID can't\n            launch onto a host with AutoPlacement set to off. By default,\n            AWS CloudFormation sets this property to on. For more information, see Understanding Instance\n              Placement and Host Affinity in the\n            Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "AvailabilityZone": {
+        "Description": "The Availability Zone (AZ) in which to launch the dedicated host.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceType": {
+        "Description": "The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "InternetGateway": {
+    "Name": "AWS::EC2::InternetGateway",
+    "Properties": {
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this resource.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      }
+    }
+  },
   "FlowLog": {
     "Name": "AWS::EC2::FlowLog",
     "Properties": {
@@ -620,18 +630,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "InternetGateway": {
-    "Name": "AWS::EC2::InternetGateway",
-    "Properties": {
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this resource.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
       }
     }
   },
@@ -774,18 +772,6 @@
       }
     }
   },
-  "PlacementGroup": {
-    "Name": "AWS::EC2::PlacementGroup",
-    "Properties": {
-      "Strategy": {
-        "Description": "The placement strategy, which relates to the instance types that can be added\n            to the placement group. For example, for the cluster strategy, you can\n            cluster C4 instance types but not T2 instance types. For valid values, see CreatePlacementGroup in the\n              Amazon EC2 API Reference. By default, AWS CloudFormation sets the value of this\n            property to cluster.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "NetworkInterface": {
     "Name": "AWS::EC2::NetworkInterface",
     "Properties": {
@@ -858,16 +844,18 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
-      },
-      "PrimaryPrivateIpAddress": {
-        "Description": "Returns the primary private IP address of the network interface. For\n                     example, 10.0.0.192.",
+      }
+    }
+  },
+  "PlacementGroup": {
+    "Name": "AWS::EC2::PlacementGroup",
+    "Properties": {
+      "Strategy": {
+        "Description": "The placement strategy, which relates to the instance types that can be added\n            to the placement group. For example, for the cluster strategy, you can\n            cluster C4 instance types but not T2 instance types. For valid values, see CreatePlacementGroup in the\n              Amazon EC2 API Reference. By default, AWS CloudFormation sets the value of this\n            property to cluster.",
         "Array": false,
-        "Type": "String"
-      },
-      "SecondaryPrivateIpAddresses": {
-        "Description": "Returns the secondary private IP addresses of the network interface. For\n                     example, [\"10.0.0.161\", \"10.0.0.162\", \"10.0.0.163\"].",
-        "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -951,18 +939,6 @@
       }
     }
   },
-  "SpotFleet": {
-    "Name": "AWS::EC2::SpotFleet",
-    "Properties": {
-      "SpotFleetRequestConfigData": {
-        "Description": "The configuration for a Spot fleet request.",
-        "Array": false,
-        "Type": "AmazonEC2SpotFleetSpotFleetRequestConfigData",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "SecurityGroupEgress": {
     "Name": "AWS::EC2::SecurityGroupEgress",
     "Properties": {
@@ -1024,6 +1000,18 @@
       }
     }
   },
+  "SpotFleet": {
+    "Name": "AWS::EC2::SpotFleet",
+    "Properties": {
+      "SpotFleetRequestConfigData": {
+        "Description": "The configuration for a Spot fleet request.",
+        "Array": false,
+        "Type": "AmazonEC2SpotFleetSpotFleetRequestConfigData",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "SubnetNetworkAclAssociation": {
     "Name": "AWS::EC2::SubnetNetworkAclAssociation",
     "Properties": {
@@ -1040,11 +1028,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
-      },
-      "AssociationId": {
-        "Description": "Returns the value of this object's SubnetId property.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -1067,13 +1050,33 @@
       }
     }
   },
+  "SubnetCidrBlock": {
+    "Name": "AWS::EC2::SubnetCidrBlock",
+    "Properties": {
+      "Ipv6CidrBlock": {
+        "Description": "The IPv6 CIDR block for the subnet. The CIDR block must have a prefix length of\n                  /64.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "SubnetId": {
+        "Description": "The ID of the subnet to associate the IPv6 CIDR block with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Subnet": {
     "Name": "AWS::EC2::Subnet",
     "Properties": {
       "AvailabilityZone": {
-        "Description": "Returns the availability zone (for example, \"us-east-1a\") of\n                     this subnet.Example:",
+        "Description": "The availability zone in which you want the subnet. Default: AWS selects a zone\n                  for you (recommended).\n                  Update requires: Replacement\n                  NoteIf you update this property, you must also update the\n                           CidrBlock property.\n               ",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "No"
       },
       "CidrBlock": {
         "Description": "The CIDR block that you want the subnet to cover (for example,\n                     \"10.0.0.0/24\").\n                  Update requires: Replacement\n                  NoteIf you update this property, you must also update the\n                           AvailabilityZone property.\n               ",
@@ -1100,56 +1103,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
-      },
-      "Ipv6CidrBlocks": {
-        "Description": "A list of IPv6 CIDR blocks that are associated with the subnet, such as\n                        [ 2001:db8:1234:1a00::/64 ].",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "SubnetCidrBlock": {
-    "Name": "AWS::EC2::SubnetCidrBlock",
-    "Properties": {
-      "Ipv6CidrBlock": {
-        "Description": "The IPv6 CIDR block for the subnet. The CIDR block must have a prefix length of\n                  /64.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SubnetId": {
-        "Description": "The ID of the subnet to associate the IPv6 CIDR block with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "VPCGatewayAttachment": {
-    "Name": "AWS::EC2::VPCGatewayAttachment",
-    "Properties": {
-      "InternetGatewayId": {
-        "Description": "The ID of the Internet gateway.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional You must specify either InternetGatewayId or\n               VpnGatewayId, but not both.",
-        "UpdateRequires": "No interruption"
-      },
-      "VpcId": {
-        "Description": "The ID of the VPC to associate with this gateway.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "VpnGatewayId": {
-        "Description": "The ID of the virtual private network (VPN) gateway to attach to the VPC.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional You must specify either\n                     InternetGatewayId or VpnGatewayId, but not both.",
-        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -1165,78 +1118,6 @@
       },
       "VpcId": {
         "Description": "The ID of the VPC to associate with this DHCP options set.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "VPC": {
-    "Name": "AWS::EC2::VPC",
-    "Properties": {
-      "CidrBlock": {
-        "Description": "The set of IP addresses for the VPC. For example,\n                     10.0.0.0/16.",
-        "Array": false,
-        "Type": "String"
-      },
-      "EnableDnsSupport": {
-        "Description": "Specifies whether DNS resolution is supported for the VPC. If this attribute is\n                     true, the Amazon DNS server resolves DNS hostnames for your\n                  instances to their corresponding IP addresses; otherwise, it does not. By default\n                  the value is set to true.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "EnableDnsHostnames": {
-        "Description": "Specifies whether the instances launched in the VPC get DNS hostnames. If this\n                  attribute is true, instances in the VPC get DNS hostnames; otherwise,\n                  they do not. You can only set EnableDnsHostnames to true\n                  if you also set the EnableDnsSupport attribute to true.\n                  By default, the value is set to false.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "InstanceTenancy": {
-        "Description": "The allowed tenancy of instances launched into the VPC. \"default\": Instances can be launched with any\n                        tenancy.\"dedicated\": Any instance launched into the VPC automatically has dedicated tenancy, unless you launch it with the default\n                        tenancy.Valid values: \"default\" or\n                     \"dedicated\"",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this VPC. To name a VPC resource, specify a value for the Name key.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      },
-      "DefaultNetworkAcl": {
-        "Description": "The default network ACL ID that is associated with the VPC. For example,\n                        acl-814dafe3.",
-        "Array": false,
-        "Type": "String"
-      },
-      "DefaultSecurityGroup": {
-        "Description": "The default security group ID that is associated with the VPC. For example,\n                        sg-b178e0d3.",
-        "Array": false,
-        "Type": "String"
-      },
-      "Ipv6CidrBlocks": {
-        "Description": "A list of IPv6 CIDR blocks that are associated with the VPC, such as [\n                        2001:db8:1234:1a00::/56 ].",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "VPCCidrBlock": {
-    "Name": "AWS::EC2::VPCCidrBlock",
-    "Properties": {
-      "AmazonProvidedIpv6CidrBlock": {
-        "Description": "Whether to request an Amazon-provided IPv6 CIDR block with a /56 prefix length\n                  for the VPC. You can't specify the range of IPv6 addresses or the size of the CIDR\n                  block.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "VpcId": {
-        "Description": "The ID of the VPC to associate the Amazon-provided IPv6 CIDR block with.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -1274,6 +1155,91 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "VPCCidrBlock": {
+    "Name": "AWS::EC2::VPCCidrBlock",
+    "Properties": {
+      "AmazonProvidedIpv6CidrBlock": {
+        "Description": "Whether to request an Amazon-provided IPv6 CIDR block with a /56 prefix length\n                  for the VPC. You can't specify the range of IPv6 addresses or the size of the CIDR\n                  block.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "VpcId": {
+        "Description": "The ID of the VPC to associate the Amazon-provided IPv6 CIDR block with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "VPC": {
+    "Name": "AWS::EC2::VPC",
+    "Properties": {
+      "CidrBlock": {
+        "Description": "The CIDR block you want the VPC to cover. For example: \"10.0.0.0/16\".",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "EnableDnsSupport": {
+        "Description": "Specifies whether DNS resolution is supported for the VPC. If this attribute is\n                     true, the Amazon DNS server resolves DNS hostnames for your\n                  instances to their corresponding IP addresses; otherwise, it does not. By default\n                  the value is set to true.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "EnableDnsHostnames": {
+        "Description": "Specifies whether the instances launched in the VPC get DNS hostnames. If this\n                  attribute is true, instances in the VPC get DNS hostnames; otherwise,\n                  they do not. You can only set EnableDnsHostnames to true\n                  if you also set the EnableDnsSupport attribute to true.\n                  By default, the value is set to false.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "InstanceTenancy": {
+        "Description": "The allowed tenancy of instances launched into the VPC. \"default\": Instances can be launched with any\n                        tenancy.\"dedicated\": Any instance launched into the VPC automatically has dedicated tenancy, unless you launch it with the default\n                        tenancy.Valid values: \"default\" or\n                     \"dedicated\"",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this VPC. To name a VPC resource, specify a value for the Name key.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      }
+    }
+  },
+  "VPCGatewayAttachment": {
+    "Name": "AWS::EC2::VPCGatewayAttachment",
+    "Properties": {
+      "InternetGatewayId": {
+        "Description": "The ID of the Internet gateway.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional You must specify either InternetGatewayId or\n               VpnGatewayId, but not both.",
+        "UpdateRequires": "No interruption"
+      },
+      "VpcId": {
+        "Description": "The ID of the VPC to associate with this gateway.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "VpnGatewayId": {
+        "Description": "The ID of the virtual private network (VPN) gateway to attach to the VPC.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional You must specify either\n                     InternetGatewayId or VpnGatewayId, but not both.",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -1334,6 +1300,25 @@
       }
     }
   },
+  "VPNGateway": {
+    "Name": "AWS::EC2::VPNGateway",
+    "Properties": {
+      "Type": {
+        "Description": "The type of VPN connection this virtual private gateway supports. The only valid value is\n               \"ipsec.1\".",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this resource.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      }
+    }
+  },
   "VPCPeeringConnection": {
     "Name": "AWS::EC2::VPCPeeringConnection",
     "Properties": {
@@ -1376,51 +1361,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "VPNGateway": {
-    "Name": "AWS::EC2::VPNGateway",
-    "Properties": {
-      "Type": {
-        "Description": "The type of VPN connection this virtual private gateway supports. The only valid value is\n               \"ipsec.1\".",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this resource.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      }
-    }
-  },
-  "Host": {
-    "Name": "AWS::EC2::Host",
-    "Properties": {
-      "AutoPlacement": {
-        "Description": "Indicates if the host accepts EC2 instances with only matching configurations or if\n            instances must also specify the host ID. Instances that don't specify a host ID can't\n            launch onto a host with AutoPlacement set to off. By default,\n            AWS CloudFormation sets this property to on. For more information, see Understanding Instance\n              Placement and Host Affinity in the\n            Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "AvailabilityZone": {
-        "Description": "The Availability Zone (AZ) in which to launch the dedicated host.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceType": {
-        "Description": "The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
       }
     }
   }

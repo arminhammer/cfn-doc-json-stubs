@@ -1,4 +1,16 @@
 {
+  "Application": {
+    "Name": "AWS::CodeDeploy::Application",
+    "Properties": {
+      "ApplicationName": {
+        "Description": "A name for the application. If you don't specify a name, AWS CloudFormation generates a unique\n            physical ID and uses that ID for the application name. For more information, see Name Type.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
   "DeploymentConfig": {
     "Name": "AWS::CodeDeploy::DeploymentConfig",
     "Properties": {
@@ -15,18 +27,6 @@
         "Type": "AWSCodeDeployDeploymentConfigMinimumHealthyHosts",
         "Required": "No",
         "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Application": {
-    "Name": "AWS::CodeDeploy::Application",
-    "Properties": {
-      "ApplicationName": {
-        "Description": "A name for the application. If you don't specify a name, AWS CloudFormation generates a unique\n            physical ID and uses that ID for the application name. For more information, see Name Type.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
       }
     }
   },

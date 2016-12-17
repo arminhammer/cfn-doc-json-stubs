@@ -1,125 +1,69 @@
 {
-  "LaunchConfiguration": {
-    "Name": "AWS::AutoScaling::LaunchConfiguration",
+  "ScalingPolicy": {
+    "Name": "AWS::AutoScaling::ScalingPolicy",
     "Properties": {
-      "AssociatePublicIpAddress": {
-        "Description": "For Amazon EC2 instances in a VPC, indicates whether instances in the Auto Scaling group\n                  receive public IP addresses. If you specify true, each instance in\n                  the Auto Scaling receives a unique public IP address.NoteIf this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the\nDependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,\nsee DependsOn Attribute.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "BlockDeviceMappings": {
-        "Description": "Specifies how block devices are exposed to the instance. You can specify\n                  virtual devices and EBS volumes.",
-        "Array": true,
-        "Type": "AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ClassicLinkVPCId": {
-        "Description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. You\n                  can specify this property only for EC2-Classic instances. For more information,\n                  see ClassicLink in the\n                     Amazon Elastic Compute Cloud User\n                  Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ClassicLinkVPCSecurityGroups": {
-        "Description": "The IDs of one or more security groups for the VPC that you specified in the\n                     ClassicLinkVPCId property.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. If you specified the ClassicLinkVPCId\n                  property, you must specify this property.",
-        "UpdateRequires": "Replacement"
-      },
-      "EbsOptimized": {
-        "Description": "Specifies whether the launch configuration is optimized for EBS I/O. This\n                  optimization provides dedicated throughput to Amazon EBS and an optimized\n                  configuration stack to provide optimal EBS I/O performance.Additional fees are incurred when using EBS-optimized instances. For more information about fees and supported instance types, see EBS-Optimized Instances in the Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No If this property is not specified, \"false\" is used.",
-        "UpdateRequires": "Replacement"
-      },
-      "IamInstanceProfile": {
-        "Description": "Provides the name or the Amazon Resource Name (ARN) of the instance profile\n                  associated with the IAM role for the instance. The instance profile contains the\n                  IAM role.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ImageId": {
-        "Description": "Provides the unique ID of the Amazon Machine Image (AMI) that was assigned\n                  during registration.",
+      "AdjustmentType": {
+        "Description": "Specifies whether the ScalingAdjustment is an\n                  absolute number or a percentage of the current capacity. Valid values are\n                     ChangeInCapacity, ExactCapacity,\n                  and PercentChangeInCapacity.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "InstanceId": {
-        "Description": "The ID of the Amazon EC2 instance you want to use to create the launch\n                  configuration. Use this property if you want the launch configuration to use\n                  settings from an existing Amazon EC2 instance.When you use an instance to create a launch configuration, all properties are\n                  derived from the instance with the exception of BlockDeviceMapping\n                  and AssociatePublicIpAddress. You can override any properties from\n                  the instance by specifying them in the launch configuration.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceMonitoring": {
-        "Description": "Indicates whether detailed instance monitoring is enabled for the Auto Scaling group.\n                  By default, this property is set to true (enabled).When detailed monitoring is enabled, Amazon CloudWatch (CloudWatch) generates metrics every\n                  minute and your account is charged a fee. When you disable detailed monitoring,\n                  CloudWatch generates metrics every 5 minutes. For more information, see Monitor Your Auto Scaling\n                     Instances in the Auto Scaling Developer\n                  Guide.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceType": {
-        "Description": "Specifies the instance type of the EC2 instance.",
+      "AutoScalingGroupName": {
+        "Description": "The name or Amazon Resource Name (ARN) of the Auto Scaling Group that you\n                  want to attach the policy to.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "KernelId": {
-        "Description": "Provides the ID of the kernel associated with the EC2 AMI.",
+      "Cooldown": {
+        "Description": "The amount of time, in seconds, after a scaling activity completes before\n                  any further trigger-related scaling activities can start.Do not specify this property if you are using the StepScaling\n                  policy type.",
         "Array": false,
         "Type": "String",
         "Required": "No",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "KeyName": {
-        "Description": "Provides the name of the EC2 key pair.",
+      "EstimatedInstanceWarmup": {
+        "Description": "The estimated time, in seconds, until a newly launched instance can send\n                  metrics to CloudWatch. By default, Auto Scaling uses the cooldown period, as specified in the\n                     Cooldown property.Do not specify this property if you are using the SimpleScaling\n                  policy type.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "MetricAggregationType": {
+        "Description": "The aggregation type for the CloudWatch metrics. You can specify\n                  Minimum, Maximum, or Average. By default,\n                  AWS CloudFormation specifies Average.Do not specify this property if you are using the SimpleScaling\n                  policy type.",
         "Array": false,
         "Type": "String",
         "Required": "No",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "PlacementTenancy": {
-        "Description": "The tenancy of the instance. An instance with a tenancy of\n                     dedicated runs on single-tenant hardware and can only be launched\n                  in a VPC. You must set the value of this parameter to dedicated if\n                  want to launch dedicated instances in a shared tenancy VPC (a VPC with the\n                  instance placement tenancy attribute set to default). For more information, see\n                     CreateLaunchConfiguration in the\n                  Auto Scaling API Reference.If you specify this property, you must specify at least one subnet in the\n                  VPCZoneIdentifier property of the AWS::AutoScaling::AutoScalingGroup resource.",
+      "MinAdjustmentMagnitude": {
+        "Description": "For the PercentChangeInCapacity adjustment type, the minimum\n                  number of instances to scale. The scaling policy changes the desired capacity of\n                  the Auto Scaling group by a minimum of this many instances. This property replaces the\n                     MinAdjustmentStep property.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "PolicyType": {
+        "Description": "An Auto Scaling policy type. You can specify SimpleScaling or\n                     StepScaling. By default, AWS CloudFormation specifies\n                     SimpleScaling. For more information, see Scaling Policy\n                     Types in the Auto Scaling User Guide.",
         "Array": false,
         "Type": "String",
         "Required": "No",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "RamDiskId": {
-        "Description": "The ID of the RAM disk to select. Some kernels require additional drivers at\n                  launch. Check the kernel requirements for information about whether you need to\n                  specify a RAM disk. To find kernel requirements, refer to the AWS Resource Center\n                  and search for the kernel ID.",
+      "ScalingAdjustment": {
+        "Description": "The number of instances by which to scale. The AdjustmentType property determines if AWS CloudFormation interprets this number as an absolute number (when the ExactCapacity value is specified), increase or decrease capacity by a specified number (when the ChangeInCapacity value is specified), or increase or decrease capacity as a percentage of the existing Auto Scaling group size (when the PercentChangeInCapacity value is\n                  specified). A positive value adds to the current capacity and a negative value subtracts from the current capacity. For exact capacity, you must specify a positive value.",
         "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
+        "Type": "Number",
+        "Required": "Conditional. This property is required if the policy type\n                     is SimpleScaling. This property is not supported with any other\n                  policy type. ",
+        "UpdateRequires": "No interruption"
       },
-      "SecurityGroups": {
-        "Description": "A list that contains the EC2 security groups to assign to the Amazon EC2\n                  instances in the Auto Scaling group. The list can contain the name of existing EC2\n                  security groups or references to AWS::EC2::SecurityGroup resources\n                  created in the template. If your instances are launched within VPC, specify Amazon VPC\n                  security group IDs.",
+      "StepAdjustments": {
+        "Description": "A set of adjustments that enable you to scale based on the size of the alarm\n                  breach.",
         "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SpotPrice": {
-        "Description": "The spot price for this autoscaling group. If a spot price is set, then the\n                  autoscaling group will launch when the current spot price is less than the amount\n                  specified in the template.When you have specified a spot price for an auto scaling group, the group will\n                  only launch when the spot price has been met, regardless of the setting in the\n                  autoscaling group's DesiredCapacity.For more information about configuring a spot price for an autoscaling group,\n                  see Using Auto Scaling to Launch Spot Instances in the\n                     AutoScaling Developer Guide.NoteWhen you change your bid price by creating a new launch configuration,\n                     running instances will continue to run as long as the bid price for those\n                     running instances is higher than the current Spot price.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "UserData": {
-        "Description": "The user data available to the launched EC2 instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
+        "Type": "AutoScalingScalingPolicyStepAdjustments",
+        "Required": "Conditional. This property is required if the policy type\n                     is StepScaling. This property is not supported with any other\n                  policy type. ",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -247,71 +191,127 @@
       }
     }
   },
-  "ScalingPolicy": {
-    "Name": "AWS::AutoScaling::ScalingPolicy",
+  "LaunchConfiguration": {
+    "Name": "AWS::AutoScaling::LaunchConfiguration",
     "Properties": {
-      "AdjustmentType": {
-        "Description": "Specifies whether the ScalingAdjustment is an\n                  absolute number or a percentage of the current capacity. Valid values are\n                     ChangeInCapacity, ExactCapacity,\n                  and PercentChangeInCapacity.",
+      "AssociatePublicIpAddress": {
+        "Description": "For Amazon EC2 instances in a VPC, indicates whether instances in the Auto Scaling group\n                  receive public IP addresses. If you specify true, each instance in\n                  the Auto Scaling receives a unique public IP address.NoteIf this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the\nDependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,\nsee DependsOn Attribute.",
         "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "AutoScalingGroupName": {
-        "Description": "The name or Amazon Resource Name (ARN) of the Auto Scaling Group that you\n                  want to attach the policy to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Cooldown": {
-        "Description": "The amount of time, in seconds, after a scaling activity completes before\n                  any further trigger-related scaling activities can start.Do not specify this property if you are using the StepScaling\n                  policy type.",
-        "Array": false,
-        "Type": "String",
+        "Type": "Boolean",
         "Required": "No",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Replacement"
       },
-      "EstimatedInstanceWarmup": {
-        "Description": "The estimated time, in seconds, until a newly launched instance can send\n                  metrics to CloudWatch. By default, Auto Scaling uses the cooldown period, as specified in the\n                     Cooldown property.Do not specify this property if you are using the SimpleScaling\n                  policy type.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "MetricAggregationType": {
-        "Description": "The aggregation type for the CloudWatch metrics. You can specify\n                  Minimum, Maximum, or Average. By default,\n                  AWS CloudFormation specifies Average.Do not specify this property if you are using the SimpleScaling\n                  policy type.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "MinAdjustmentMagnitude": {
-        "Description": "For the PercentChangeInCapacity adjustment type, the minimum\n                  number of instances to scale. The scaling policy changes the desired capacity of\n                  the Auto Scaling group by a minimum of this many instances. This property replaces the\n                     MinAdjustmentStep property.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "PolicyType": {
-        "Description": "An Auto Scaling policy type. You can specify SimpleScaling or\n                     StepScaling. By default, AWS CloudFormation specifies\n                     SimpleScaling. For more information, see Scaling Policy\n                     Types in the Auto Scaling User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "ScalingAdjustment": {
-        "Description": "The number of instances by which to scale. The AdjustmentType property determines if AWS CloudFormation interprets this number as an absolute number (when the ExactCapacity value is specified), increase or decrease capacity by a specified number (when the ChangeInCapacity value is specified), or increase or decrease capacity as a percentage of the existing Auto Scaling group size (when the PercentChangeInCapacity value is\n                  specified). A positive value adds to the current capacity and a negative value subtracts from the current capacity. For exact capacity, you must specify a positive value.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Conditional. This property is required if the policy type\n                     is SimpleScaling. This property is not supported with any other\n                  policy type. ",
-        "UpdateRequires": "No interruption"
-      },
-      "StepAdjustments": {
-        "Description": "A set of adjustments that enable you to scale based on the size of the alarm\n                  breach.",
+      "BlockDeviceMappings": {
+        "Description": "Specifies how block devices are exposed to the instance. You can specify\n                  virtual devices and EBS volumes.",
         "Array": true,
-        "Type": "AutoScalingScalingPolicyStepAdjustments",
-        "Required": "Conditional. This property is required if the policy type\n                     is StepScaling. This property is not supported with any other\n                  policy type. ",
-        "UpdateRequires": "No interruption"
+        "Type": "AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ClassicLinkVPCId": {
+        "Description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. You\n                  can specify this property only for EC2-Classic instances. For more information,\n                  see ClassicLink in the\n                     Amazon Elastic Compute Cloud User\n                  Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ClassicLinkVPCSecurityGroups": {
+        "Description": "The IDs of one or more security groups for the VPC that you specified in the\n                     ClassicLinkVPCId property.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. If you specified the ClassicLinkVPCId\n                  property, you must specify this property.",
+        "UpdateRequires": "Replacement"
+      },
+      "EbsOptimized": {
+        "Description": "Specifies whether the launch configuration is optimized for EBS I/O. This\n                  optimization provides dedicated throughput to Amazon EBS and an optimized\n                  configuration stack to provide optimal EBS I/O performance.Additional fees are incurred when using EBS-optimized instances. For more information about fees and supported instance types, see EBS-Optimized Instances in the Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No If this property is not specified, \"false\" is used.",
+        "UpdateRequires": "Replacement"
+      },
+      "IamInstanceProfile": {
+        "Description": "Provides the name or the Amazon Resource Name (ARN) of the instance profile\n                  associated with the IAM role for the instance. The instance profile contains the\n                  IAM role.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ImageId": {
+        "Description": "Provides the unique ID of the Amazon Machine Image (AMI) that was assigned\n                  during registration.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceId": {
+        "Description": "The ID of the Amazon EC2 instance you want to use to create the launch\n                  configuration. Use this property if you want the launch configuration to use\n                  settings from an existing Amazon EC2 instance.When you use an instance to create a launch configuration, all properties are\n                  derived from the instance with the exception of BlockDeviceMapping\n                  and AssociatePublicIpAddress. You can override any properties from\n                  the instance by specifying them in the launch configuration.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceMonitoring": {
+        "Description": "Indicates whether detailed instance monitoring is enabled for the Auto Scaling group.\n                  By default, this property is set to true (enabled).When detailed monitoring is enabled, Amazon CloudWatch (CloudWatch) generates metrics every\n                  minute and your account is charged a fee. When you disable detailed monitoring,\n                  CloudWatch generates metrics every 5 minutes. For more information, see Monitor Your Auto Scaling\n                     Instances in the Auto Scaling Developer\n                  Guide.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceType": {
+        "Description": "Specifies the instance type of the EC2 instance.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "KernelId": {
+        "Description": "Provides the ID of the kernel associated with the EC2 AMI.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "KeyName": {
+        "Description": "Provides the name of the EC2 key pair.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "PlacementTenancy": {
+        "Description": "The tenancy of the instance. An instance with a tenancy of\n                     dedicated runs on single-tenant hardware and can only be launched\n                  in a VPC. You must set the value of this parameter to dedicated if\n                  want to launch dedicated instances in a shared tenancy VPC (a VPC with the\n                  instance placement tenancy attribute set to default). For more information, see\n                     CreateLaunchConfiguration in the\n                  Auto Scaling API Reference.If you specify this property, you must specify at least one subnet in the\n                  VPCZoneIdentifier property of the AWS::AutoScaling::AutoScalingGroup resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RamDiskId": {
+        "Description": "The ID of the RAM disk to select. Some kernels require additional drivers at\n                  launch. Check the kernel requirements for information about whether you need to\n                  specify a RAM disk. To find kernel requirements, refer to the AWS Resource Center\n                  and search for the kernel ID.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SecurityGroups": {
+        "Description": "A list that contains the EC2 security groups to assign to the Amazon EC2\n                  instances in the Auto Scaling group. The list can contain the name of existing EC2\n                  security groups or references to AWS::EC2::SecurityGroup resources\n                  created in the template. If your instances are launched within VPC, specify Amazon VPC\n                  security group IDs.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SpotPrice": {
+        "Description": "The spot price for this autoscaling group. If a spot price is set, then the\n                  autoscaling group will launch when the current spot price is less than the amount\n                  specified in the template.When you have specified a spot price for an auto scaling group, the group will\n                  only launch when the spot price has been met, regardless of the setting in the\n                  autoscaling group's DesiredCapacity.For more information about configuring a spot price for an autoscaling group,\n                  see Using Auto Scaling to Launch Spot Instances in the\n                     AutoScaling Developer Guide.NoteWhen you change your bid price by creating a new launch configuration,\n                     running instances will continue to run as long as the bid price for those\n                     running instances is higher than the current Spot price.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "UserData": {
+        "Description": "The user data available to the launched EC2 instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },

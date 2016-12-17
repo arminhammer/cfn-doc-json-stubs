@@ -85,11 +85,6 @@
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "MasterPublicDNS": {
-        "Description": "The public DNS name of the master node (instance), such as\n                ec2-12-123-123-123.us-west-2.compute.amazonaws.com.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },

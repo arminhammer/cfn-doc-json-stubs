@@ -32,25 +32,6 @@
       }
     }
   },
-  "LogStream": {
-    "Name": "AWS::Logs::LogStream",
-    "Properties": {
-      "LogGroupName": {
-        "Description": "The name of the log group where the log stream is created.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "LogStreamName": {
-        "Description": "The name of the log stream to create. The name must be unique within the log\n                  group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "LogGroup": {
     "Name": "AWS::Logs::LogGroup",
     "Properties": {
@@ -67,11 +48,25 @@
         "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
+      }
+    }
+  },
+  "LogStream": {
+    "Name": "AWS::Logs::LogStream",
+    "Properties": {
+      "LogGroupName": {
+        "Description": "The name of the log group where the log stream is created.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "LogStreamName": {
+        "Description": "The name of the log stream to create. The name must be unique within the log\n                  group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },

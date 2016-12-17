@@ -22,16 +22,6 @@
         "Type": "AWSCodeCommitRepositoryTrigger",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      },
-      "CloneUrlHttp": {
-        "Description": "The URL to use for cloning the repository over HTTPS, such as\n                        https://codecommit.us-east-1.amazonaws.com/v1/repos/MyDemoRepo.",
-        "Array": false,
-        "Type": "String"
-      },
-      "CloneUrlSsh": {
-        "Description": "The URL to use for cloning the repository over SSH, such as\n                        ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos//v1/repos/MyDemoRepo.",
-        "Array": false,
-        "Type": "String"
       }
     }
   }

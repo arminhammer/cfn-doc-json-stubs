@@ -58,17 +58,6 @@
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "Region": {
-        "Description": "Latency resource record sets only: The Amazon EC2 region where the resource that is\n                  specified in this resource record set resides. The resource typically is an AWS\n                  resource, for example, Amazon EC2 instance or an Elastic Load Balancing load balancer, and is referred\n                  to by an IP address or a DNS domain name, depending on the record type.When Amazon Route 53 receives a DNS query for a domain name and type for which you have\n                  created latency resource record sets, Amazon Route 53 selects the latency resource record\n                  set that has the lowest latency between the end user and the associated Amazon EC2\n                  region. Amazon Route 53 then returns the value that is associated with the selected resource\n                  record set.The following restrictions must be followed:You can only specify one resource record per latency resource record\n                        set.You can only create one latency resource record set for each Amazon EC2\n                        region.You are not required to create latency resource record sets for all Amazon EC2\n                        regions. Amazon Route 53 will choose the region with the best latency from among the\n                        regions for which you create latency resource record sets.You cannot create both weighted and latency resource record sets that\n                        have the same values for the Name and Type elements.To see a list of regions by service, see Regions and Endpoints in the\n                  AWS General Reference.",
-        "Array": false,
-        "Type": "String"
-      },
-      "ResourceRecords": {
-        "Description": "List of resource records to add. Each record should be in the format\n                  appropriate for the record type specified by the Type\n                  property. For information about different record types and their record formats,\n                  see Appendix: Domain Name Format in the Amazon Route 53 Developer\n                     Guide. Required: Conditional. If you don't specify the AliasTarget\n                  property, you must specify this property. If you are creating an alias resource\n                  record set, do not specify this property.",
-        "Array": true,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
       "SetIdentifier": {
         "Description": "A unique identifier that differentiates among multiple resource record sets\n                  that have the same combination of DNS name and type.For more information, see the SetIdentifier content in the Amazon Route 53 Developer\n                     Guide.",
         "Array": false,

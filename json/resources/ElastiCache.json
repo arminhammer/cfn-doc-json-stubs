@@ -1,68 +1,4 @@
 {
-  "ParameterGroup": {
-    "Name": "AWS::ElastiCache::ParameterGroup",
-    "Properties": {
-      "CacheParameterGroupFamily": {
-        "Description": "The name of the cache parameter group family that the cache parameter group can be used\n               with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Description": {
-        "Description": "The description for the Cache Parameter Group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Properties": {
-        "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference\n                     Guide.Example:",
-        "Array": false,
-        "Type": "Map",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SecurityGroupIngress": {
-    "Name": "AWS::ElastiCache::SecurityGroupIngress",
-    "Properties": {
-      "CacheSecurityGroupName": {
-        "Description": "The name of the Cache Security Group to authorize.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupName": {
-        "Description": "Name of the EC2 Security Group to include in the authorization.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SecurityGroup": {
-    "Name": "AWS::ElastiCache::SecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description for the cache security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "CacheCluster": {
     "Name": "AWS::ElastiCache::CacheCluster",
     "Properties": {
@@ -211,26 +147,70 @@
         "Type": "String",
         "Required": "Conditional: If your cache cluster is in a VPC, you must specify\n                  this property.",
         "UpdateRequires": "No interruption"
-      },
-      "ConfigurationEndpoint.Address": {
-        "Description": "The DNS address of the configuration endpoint for the Memcached cache\n                     cluster.",
+      }
+    }
+  },
+  "ParameterGroup": {
+    "Name": "AWS::ElastiCache::ParameterGroup",
+    "Properties": {
+      "CacheParameterGroupFamily": {
+        "Description": "The name of the cache parameter group family that the cache parameter group can be used\n               with.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
       },
-      "ConfigurationEndpoint.Port": {
-        "Description": "The port number of the configuration endpoint for the Memcached cache\n                     cluster.",
+      "Description": {
+        "Description": "The description for the Cache Parameter Group.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
       },
-      "RedisEndpoint.Address": {
-        "Description": "The DNS address of the configuration endpoint for the Redis cache cluster.",
+      "Properties": {
+        "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference\n                     Guide.Example:",
         "Array": false,
-        "Type": "String"
+        "Type": "Map",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SecurityGroupIngress": {
+    "Name": "AWS::ElastiCache::SecurityGroupIngress",
+    "Properties": {
+      "CacheSecurityGroupName": {
+        "Description": "The name of the Cache Security Group to authorize.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
       },
-      "RedisEndpoint.Port": {
-        "Description": "The port number of the configuration endpoint for the Redis cache cluster.",
+      "EC2SecurityGroupName": {
+        "Description": "Name of the EC2 Security Group to include in the authorization.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SecurityGroup": {
+    "Name": "AWS::ElastiCache::SecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description for the cache security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
       }
     }
   },
@@ -444,36 +424,6 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
-      },
-      "PrimaryEndPoint.Address": {
-        "Description": "The DNS address of the primary read-write cache node.",
-        "Array": false,
-        "Type": "String"
-      },
-      "PrimaryEndPoint.Port": {
-        "Description": "The number of the port that the primary read-write cache engine is listening\n                     on.",
-        "Array": false,
-        "Type": "String"
-      },
-      "ReadEndPoint.Addresses": {
-        "Description": "A string with a list of endpoints for the read-only replicas. The order of\n                     the addresses map to the order of the ports from the\n                        ReadEndPoint.Ports attribute.",
-        "Array": false,
-        "Type": "String"
-      },
-      "ReadEndPoint.Ports": {
-        "Description": "A string with a list of ports for the read-only replicas. The order of the\n                     ports map to the order of the addresses from the\n                        ReadEndPoint.Addresses attribute.",
-        "Array": false,
-        "Type": "String"
-      },
-      "ReadEndPoint.Addresses.List": {
-        "Description": "A list of endpoints for the read-only replicas. The order of the addresses\n                     map to the order of the ports from the ReadEndPoint.Ports.List\n                     attribute.",
-        "Array": false,
-        "Type": "String"
-      },
-      "ReadEndPoint.Ports.List": {
-        "Description": "A list of ports for the read-only replicas. The order of the ports map to\n                     the order of the addresses from the ReadEndPoint.Addresses.List\n                     attribute.",
-        "Array": false,
-        "Type": "String"
       }
     }
   }

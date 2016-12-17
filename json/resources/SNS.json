@@ -1,23 +1,4 @@
 {
-  "TopicPolicy": {
-    "Name": "AWS::SNS::TopicPolicy",
-    "Properties": {
-      "PolicyDocument": {
-        "Description": "A policy document that contains permissions to add to the specified SNS\n            topics.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Topics": {
-        "Description": "The Amazon Resource Names (ARN) of the topics to which you want to add the policy.\n            You can use the Ref function to\n            specify an AWS::SNS::Topic\n            resource.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Topic": {
     "Name": "AWS::SNS::Topic",
     "Properties": {
@@ -36,9 +17,30 @@
         "UpdateRequires": "No interruption"
       },
       "TopicName": {
-        "Description": "Returns the name for an Amazon SNS topic.",
+        "Description": "A name for the topic. If you don't specify a name, AWS CloudFormation generates a unique\n                  physical ID and uses that ID for the topic name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "TopicPolicy": {
+    "Name": "AWS::SNS::TopicPolicy",
+    "Properties": {
+      "PolicyDocument": {
+        "Description": "A policy document that contains permissions to add to the specified SNS\n            topics.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Topics": {
+        "Description": "The Amazon Resource Names (ARN) of the topics to which you want to add the policy.\n            You can use the Ref function to\n            specify an AWS::SNS::Topic\n            resource.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   },
