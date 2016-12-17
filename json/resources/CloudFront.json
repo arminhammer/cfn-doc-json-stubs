@@ -5,7 +5,7 @@
       "DistributionConfig": {
         "Description": "The distribution's configuration information.",
         "Array": false,
-        "Type": "DistributionConfigtype",
+        "Type": "CloudFrontDistributionConfig",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },

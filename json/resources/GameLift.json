@@ -25,32 +25,6 @@
       }
     }
   },
-  "Build": {
-    "Name": "AWS::GameLift::Build",
-    "Properties": {
-      "Name": {
-        "Description": "An identifier to associate with this build. Build names don't need to be\n            unique.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "StorageLocation": {
-        "Description": "The Amazon Simple Storage Service (Amazon S3) location where your build package files are located.",
-        "Array": false,
-        "Type": "AmazonGameLiftBuildStorageLocation",
-        "Required": "No, but we recommend that you specify a location. If you don't specify\n            this property, you must manually upload your build package files to GameLift.",
-        "UpdateRequires": "Replacement"
-      },
-      "Version": {
-        "Description": "A version to associate with this build. Version is useful if you want to track\n            updates to your build package files. Versions don't need to be unique.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Fleet": {
     "Name": "AWS::GameLift::Fleet",
     "Properties": {
@@ -71,7 +45,7 @@
       "DesiredEC2Instances": {
         "Description": "The number of EC2 instances that you want in this fleet.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
@@ -99,14 +73,14 @@
       "MaxSize": {
         "Description": "The maximum number of EC2 instances that you want to allow in this fleet. By default, AWS CloudFormation, sets this property to 1.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "MinSize": {
         "Description": "The minimum number of EC2 instances that you want to allow in this fleet. By default, AWS CloudFormation, sets this property to 0.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -130,6 +104,32 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Build": {
+    "Name": "AWS::GameLift::Build",
+    "Properties": {
+      "Name": {
+        "Description": "An identifier to associate with this build. Build names don't need to be\n            unique.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "StorageLocation": {
+        "Description": "The Amazon Simple Storage Service (Amazon S3) location where your build package files are located.",
+        "Array": false,
+        "Type": "AmazonGameLiftBuildStorageLocation",
+        "Required": "No, but we recommend that you specify a location. If you don't specify\n            this property, you must manually upload your build package files to GameLift.",
+        "UpdateRequires": "Replacement"
+      },
+      "Version": {
+        "Description": "A version to associate with this build. Version is useful if you want to track\n            updates to your build package files. Versions don't need to be unique.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   }

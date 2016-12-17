@@ -75,14 +75,14 @@
       "NumCacheNodes": {
         "Description": "The number of cache nodes that the cache cluster should have.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption. However, if the PreferredAvailabilityZone\n                  and PreferredAvailabilityZones properties were not previously\n                  specified and you don't specify any new values, an update requires replacement."
       },
       "Port": {
         "Description": "The port number on which each of the cache nodes will accept\n                  connections.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
@@ -123,7 +123,7 @@
       "SnapshotRetentionLimit": {
         "Description": "For Redis cache clusters, the number of days for which ElastiCache retains automatic\n                  snapshots before deleting them. For example, if you set the value to\n                     5, a snapshot that was taken today will be retained for 5 days\n                  before being deleted.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -196,18 +196,6 @@
       }
     }
   },
-  "SecurityGroup": {
-    "Name": "AWS::ElastiCache::SecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description for the cache security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "SecurityGroupIngress": {
     "Name": "AWS::ElastiCache::SecurityGroupIngress",
     "Properties": {
@@ -227,6 +215,18 @@
       },
       "EC2SecurityGroupOwnerId": {
         "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SecurityGroup": {
+    "Name": "AWS::ElastiCache::SecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description for the cache security group.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -254,7 +254,7 @@
       "SubnetIds": {
         "Description": "The Amazon EC2 subnet IDs for the cache subnet group.",
         "Array": false,
-        "Type": "Stringlist",
+        "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
@@ -336,21 +336,21 @@
       "NumCacheClusters": {
         "Description": "The number of cache clusters for this replication group. If automatic failover\n                  is enabled, you must specify a value greater than 1. For valid\n                  values, see CreateReplicationGroup in the Amazon ElastiCache API\n                     Reference Guide.If you specify more than one node group (shard), this property is ignored. Use\n                  the ReplicasPerNodeGroup property instead.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "NumNodeGroups": {
         "Description": "The number of node groups (shards) for this Redis (clustered mode enabled) replication group.\n                  For Redis (clustered mode disabled), omit this property.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Port": {
         "Description": "The port number on which each member of the replication group accepts\n                  connections.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
@@ -378,7 +378,7 @@
       "ReplicasPerNodeGroup": {
         "Description": "The number of replica nodes in each node group (shard). For valid values, see\n                     CreateReplicationGroup in the Amazon ElastiCache API\n                     Reference Guide.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
@@ -420,7 +420,7 @@
       "SnapshotRetentionLimit": {
         "Description": "The number of days that ElastiCache retains automatic snapshots before deleting\n                  them.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },

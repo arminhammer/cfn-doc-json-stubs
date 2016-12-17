@@ -61,7 +61,7 @@
       "TimeoutInMinutes": {
         "Description": "The number of minutes after which AWS CodeBuild stops the build if it's not complete. For\n            valid values, see the timeoutInMinutes field in the\n              AWS CodeBuild User Guide.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },

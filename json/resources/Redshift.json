@@ -12,7 +12,7 @@
       "AutomatedSnapshotRetentionPeriod": {
         "Description": "The number of days that automated snapshots are retained. If you set the value\n                  to 0, automated snapshots are disabled.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -124,7 +124,7 @@
       "NumberOfNodes": {
         "Description": "The number of compute nodes in the cluster. If you specify\n                     multi-node for the ClusterType parameter, you must\n                  specify a number greater than 1.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Conditional",
         "UpdateRequires": "Some interruptions"
       },
@@ -138,7 +138,7 @@
       "Port": {
         "Description": "The port number on which the cluster accepts incoming connections.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
@@ -189,32 +189,6 @@
       }
     }
   },
-  "ClusterParameterGroup": {
-    "Name": "AWS::Redshift::ClusterParameterGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the parameter group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ParameterGroupFamily": {
-        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. ",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
-        "Array": false,
-        "Type": "AmazonRedshiftParameterType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "ClusterSecurityGroupIngress": {
     "Name": "AWS::Redshift::ClusterSecurityGroupIngress",
     "Properties": {
@@ -248,6 +222,44 @@
       }
     }
   },
+  "ClusterSecurityGroup": {
+    "Name": "AWS::Redshift::ClusterSecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "ClusterParameterGroup": {
+    "Name": "AWS::Redshift::ClusterParameterGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the parameter group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ParameterGroupFamily": {
+        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. ",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Parameters": {
+        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
+        "Array": false,
+        "Type": "AmazonRedshiftParameterType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "ClusterSubnetGroup": {
     "Name": "AWS::Redshift::ClusterSubnetGroup",
     "Properties": {
@@ -264,18 +276,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "ClusterSecurityGroup": {
-    "Name": "AWS::Redshift::ClusterSecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
       }
     }
   }

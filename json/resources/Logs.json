@@ -1,47 +1,4 @@
 {
-  "LogGroup": {
-    "Name": "AWS::Logs::LogGroup",
-    "Properties": {
-      "LogGroupName": {
-        "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "RetentionInDays": {
-        "Description": "The number of days log events are kept in CloudWatch Logs. When a log event expires,\n                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in\n                  the Amazon CloudWatch Logs API Reference.",
-        "Array": false,
-        "Type": "Integer",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "LogStream": {
-    "Name": "AWS::Logs::LogStream",
-    "Properties": {
-      "LogGroupName": {
-        "Description": "The name of the log group where the log stream is created.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "LogStreamName": {
-        "Description": "The name of the log stream to create. The name must be unique within the log\n                  group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Destination": {
     "Name": "AWS::Logs::Destination",
     "Properties": {
@@ -75,6 +32,30 @@
       }
     }
   },
+  "LogGroup": {
+    "Name": "AWS::Logs::LogGroup",
+    "Properties": {
+      "LogGroupName": {
+        "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RetentionInDays": {
+        "Description": "The number of days log events are kept in CloudWatch Logs. When a log event expires,\n                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in\n                  the Amazon CloudWatch Logs API Reference.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
   "MetricFilter": {
     "Name": "AWS::Logs::MetricFilter",
     "Properties": {
@@ -98,6 +79,25 @@
         "Type": "CloudWatchLogsMetricFilterMetricTransformationProperty",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "LogStream": {
+    "Name": "AWS::Logs::LogStream",
+    "Properties": {
+      "LogGroupName": {
+        "Description": "The name of the log group where the log stream is created.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "LogStreamName": {
+        "Description": "The name of the log stream to create. The name must be unique within the log\n                  group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },

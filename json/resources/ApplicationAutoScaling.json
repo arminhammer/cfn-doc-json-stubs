@@ -5,14 +5,14 @@
       "MaxCapacity": {
         "Description": "The maximum value that Application Auto Scaling can use to scale a target during a scaling activity.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "MinCapacity": {
         "Description": "The minimum value that Application Auto Scaling can use to scale a target during a scaling activity.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },

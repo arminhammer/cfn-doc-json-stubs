@@ -21,10 +21,91 @@ const jsonResourcesDir = jsonDir + 'resources/'
 const htmlResourcesDir = htmlDir + 'resources/'
 const htmlPropertiesDir = htmlDir + 'properties/'
 
-const sanitizeReplacements = {
+const sanitizeReplacementsResources = {
+  'AmazonSNStopicsARNs': 'String',
   'strings': 'String',
   'Mappingofkey-valuepairs': 'Map',
-  'JSONobject': 'Object'
+  'JSONobject': 'Object',
+  'SNSSubscriptions': 'AmazonSNSSubscriptionPropertyType',
+  'Integer': 'Number',
+  'AutoScalingEBSBlockDevice': 'AWSCloudFormationAutoScalingEBSBlockDevicePropertyType',
+  'CacheBehavior': 'CloudFrontDistributionConfigCacheBehavior',
+  'DefaultCacheBehaviortype': 'CloudFrontDefaultCacheBehavior',
+  'Loggingtype': 'CloudFrontLogging',
+  'Origins': 'CloudFrontDistributionConfigOrigin',
+  'ForwardedValuestype': 'CloudFrontForwardedValues',
+  'CustomOrigintype': 'CloudFrontDistributionConfigOriginCustomOrigin',
+  'S3Origintype': 'CloudFrontDistributionConfigOriginS3Origin',
+  'anemptymap:{}': 'Map',
+  'PrivateIpAddressSpecification': 'EC2NetworkInterfacePrivateIPSpecification',
+  'Key-valuepairs,withthenameofthelabelasthekeyandthelabelvalueasthevalue': 'Map',
+  'Key-valuepairs,withtheoptionnameasthekeyandtheoptionvalueasthevalue': 'Map',
+  'String-to-stringmap': 'Map',
+  'Stringtostringmap': 'Map',
+  'Timestamp': 'Date',
+  'StringValidvaluesare"basic"or"S3"': 'String',
+  'String(1–1600chars)': 'String',
+  'key-valuepairs': 'Map',
+  'referencestoAWS::IAM::RolesCurrently,amaximumofonerolecanbeassignedtoaninstanceprofile': 'String',
+  'EC2SecurityGroupRule': 'EC2SecurityGroupRulePropertyType',
+  'WebsiteConfigurationType': 'AmazonS3WebsiteConfigurationProperty',
+  'AliasTarget': 'Route53AliasTargetProperty',
+  'NumberWeightexpectsintegervalues': 'Number',
+  'DistributionConfigtype': 'CloudFrontDistributionConfig',
+  'users': 'String',
+  'AppCookieStickinessPolicyobjects': 'ElasticLoadBalancingAppCookieStickinessPolicyType',
+  'LBCookieStickinessPolicyobjects': 'ElasticLoadBalancingLBCookieStickinessPolicyType',
+  'ElasticLoadBalancingListenerPropertyTypeobjects': 'ElasticLoadBalancingListenerPropertyType',
+  'ElasticLoadBalancingpolicyobjects': 'ElasticLoadBalancingPolicyType',
+  'numbers': 'Number',
+  'SNSSubscriptions': 'AmazonSNSSubscriptionPropertyType',
+  'AmazonSNStopicsARNs': 'String',
+  'RDSSecurityGroupRules': 'AmazonRDSSecurityGroupRule',
+  'OptionSettings': 'ElasticBeanstalkOptionSettingsPropertyType',
+  'SourceBundle': 'ElasticBeanstalkSourceBundlePropertyType',
+  'Stringlist': 'String',
+  'routetableIDs': 'String',
+  'RefID': 'String',
+  'TopicRulePayloadobject': 'AWSIoTTopicRulePayload',
+  'EC2MountPoints': 'EC2MountPointPropertyType',
+  'NumberBgpAsnisalwaysanintegervalue': 'Number',
+  'MetricDimension': 'CloudWatchMetricDimensionPropertyType',
+  'EC2securitygroups': 'String',
+  'BlockDeviceMappings': 'AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType',
+  'securitygroupsassignedtoyourloadbalancerwithinyourvirtualprivatecloud(VPC)': 'String'
+}
+
+const sanitizeReplacementsProperties = {
+  'Integer': 'Number',
+  'Mappingofkey-valuepairs': 'Map',
+  'strings': 'String',
+  'AutoScalingEBSBlockDevice': 'AWSCloudFormationAutoScalingEBSBlockDevicePropertyType',
+  'CacheBehavior': 'CloudFrontDistributionConfigCacheBehavior',
+  'DefaultCacheBehaviortype': 'CloudFrontDefaultCacheBehavior',
+  'Loggingtype': 'CloudFrontLogging',
+  'Origins': 'CloudFrontDistributionConfigOrigin',
+  'ForwardedValuestype': 'CloudFrontForwardedValues',
+  'CustomOrigintype': 'CloudFrontDistributionConfigOriginCustomOrigin',
+  'S3Origintype': 'CloudFrontDistributionConfigOriginS3Origin',
+  'anemptymap:{}': 'Map',
+  'PrivateIpAddressSpecification': 'EC2NetworkInterfacePrivateIPSpecification',
+  'Key-valuepairs,withthenameofthelabelasthekeyandthelabelvalueasthevalue': 'Map',
+  'Key-valuepairs,withtheoptionnameasthekeyandtheoptionvalueasthevalue': 'Map',
+  'String-to-stringmap': 'Map',
+  'Stringtostringmap': 'Map',
+  'OriginCustomHeadertype': 'CloudFrontDistributionConfigOriginOriginCustomHeader',
+  'CloudWatchAlarmactionobject': 'AWSIoTCloudwatchAlarmAction',
+  'CloudWatchMetricactionobject': 'AWSIoTCloudwatchMetricAction',
+  'DynamoDBactionobject': 'AWSIoTDynamoDBAction',
+  'Elasticsearchactionobject': 'AWSIoTElasticsearchAction',
+  'Firehoseactionobject': 'AWSIoTFirehoseAction',
+  'Kinesisactionobject': 'AWSIoTKinesisAction',
+  'Lambdaactionobject': 'AWSIoTLambdaAction',
+  'Republishactionobject': 'AWSIoTRepublishAction',
+  'S3actionobject': 'AWSIoTS3Action',
+  'Snsactionobject': 'AWSIoTSnsAction',
+  'Sqsactionobject': 'AWSIoTSqsAction',
+  'ArrayofActionobjects': 'AWSIoTActions'
 }
 
 const sanitizeAsArrays = {
@@ -70,7 +151,7 @@ function downloadPages() {
   })
 }
 
-function sanitizeTypes (output) {
+function sanitizeTypes (output, pageType) {
   if (output.Type.startsWith('Listof') || output.Type.startsWith('listof') || output.Type.startsWith('Alistof')) {
     output.Type = output.Type.replace(/^Listof/, '').replace(/^listof/, '').replace(/^Alistof/, '').replace(/\./g, '')
     output.Array = true
@@ -79,8 +160,14 @@ function sanitizeTypes (output) {
   if (sanitizeAsArrays[originalType]) {
     output.Array = true
   }
-  if (sanitizeReplacements[originalType]) {
-    output.Type = sanitizeReplacements[originalType]
+  if (pageType == 'Resources') {
+    if (sanitizeReplacementsResources[originalType]) {
+      output.Type = sanitizeReplacementsResources[originalType]
+    }
+  } else if (pageType == 'Properties') {
+    if (sanitizeReplacementsProperties[originalType]) {
+      output.Type = sanitizeReplacementsProperties[originalType]
+    }
   }
 }
 
@@ -104,9 +191,8 @@ function scrapeHtmlPage(body, pageType) {
       obj.attributes[i].forEach((attr) => {
         if (attr.startsWith('Type: ')) {
           output.Type = attr.replace(/Type: /g, '').replace(/\s/g, '')
-          sanitizeTypes(output)
+          sanitizeTypes(output, pageType)
         } else if (attr.startsWith('Required: ')) {
-          console.log('Required')
           output.Required = attr.replace(/Required: /g, '')
         } else if (attr.startsWith('Update requires: ')) {
           output.UpdateRequires = attr.replace(/Update requires: /g, '')

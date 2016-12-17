@@ -1,44 +1,11 @@
 {
-  "RecordSetGroup": {
-    "Name": "AWS::Route53::RecordSetGroup",
-    "Properties": {
-      "Comment": {
-        "Description": "Any comments you want to include about the hosted zone.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "HostedZoneId": {
-        "Description": "The ID of the hosted zone.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional: You must specify either the\n                     HostedZoneName or HostedZoneId, but you cannot\n                  specify both.",
-        "UpdateRequires": "Replacement"
-      },
-      "HostedZoneName": {
-        "Description": "The name of the domain for the hosted zone where you want to add the record set.When you create a stack using an AWS::Route53::RecordSet that specifies\n                     HostedZoneName, AWS CloudFormation attempts to find a hosted zone whose name matches the\n                     HostedZoneName. If AWS CloudFormation cannot find a hosted zone with a matching domain\n                  name, or if there is more than one hosted zone with the specified domain name, AWS CloudFormation will not create\n                  the stack.If you have multiple hosted zones with the same domain name, you must explicitly specify the\n                  hosted zone using HostedZoneId.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify either the\n                     HostedZoneName or HostedZoneId, but you cannot\n                  specify both.",
-        "UpdateRequires": "Replacement"
-      },
-      "RecordSets": {
-        "Description": "List of resource record sets to add.Type:: List of AWS::Route53::RecordSet objects, as shown in the\n                  following example:\n                  ",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "RecordSet": {
     "Name": "AWS::Route53::RecordSet",
     "Properties": {
       "AliasTarget": {
         "Description": "Alias resource record sets only: Information about the\n                  domain to which you are redirecting traffic.If you specify this property, do not specify the TTL property. The\n                  alias uses a TTL value from the alias target record.For more information about alias resource record sets, see Creating Alias Resource Record Sets in the Amazon Route 53 Developer\n                     Guide and POST ChangeResourceRecordSets in the Amazon Route 53 API reference.",
         "Array": false,
-        "Type": "AliasTarget",
+        "Type": "Route53AliasTargetProperty",
         "Required": "Conditional. Required if you are creating an alias resource record\n                  set. ",
         "UpdateRequires": "No interruption"
       },
@@ -128,6 +95,39 @@
         "Array": false,
         "Type": "Number.Weightexpectsintegervalues.",
         "Required": "Conditional. Required if you are creating a weighted resource record\n                  set.",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "RecordSetGroup": {
+    "Name": "AWS::Route53::RecordSetGroup",
+    "Properties": {
+      "Comment": {
+        "Description": "Any comments you want to include about the hosted zone.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "HostedZoneId": {
+        "Description": "The ID of the hosted zone.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional: You must specify either the\n                     HostedZoneName or HostedZoneId, but you cannot\n                  specify both.",
+        "UpdateRequires": "Replacement"
+      },
+      "HostedZoneName": {
+        "Description": "The name of the domain for the hosted zone where you want to add the record set.When you create a stack using an AWS::Route53::RecordSet that specifies\n                     HostedZoneName, AWS CloudFormation attempts to find a hosted zone whose name matches the\n                     HostedZoneName. If AWS CloudFormation cannot find a hosted zone with a matching domain\n                  name, or if there is more than one hosted zone with the specified domain name, AWS CloudFormation will not create\n                  the stack.If you have multiple hosted zones with the same domain name, you must explicitly specify the\n                  hosted zone using HostedZoneId.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify either the\n                     HostedZoneName or HostedZoneId, but you cannot\n                  specify both.",
+        "UpdateRequires": "Replacement"
+      },
+      "RecordSets": {
+        "Description": "List of resource record sets to add.Type:: List of AWS::Route53::RecordSet objects, as shown in the\n                  following example:\n                  ",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }

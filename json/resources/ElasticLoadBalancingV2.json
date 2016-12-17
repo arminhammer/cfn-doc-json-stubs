@@ -1,4 +1,84 @@
 {
+  "Listener": {
+    "Name": "AWS::ElasticLoadBalancingV2::Listener",
+    "Properties": {
+      "Certificates": {
+        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerCertificates",
+        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultActions": {
+        "Description": "The default actions that the listener takes when handling incoming requests.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerDefaultActions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "LoadBalancerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Port": {
+        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Protocol": {
+        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SslPolicy": {
+        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ListenerRule": {
+    "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    "Properties": {
+      "Actions": {
+        "Description": "The action that the listener takes when a request meets the specified condition.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerRuleActions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Conditions": {
+        "Description": "The conditions under which a rule takes effect.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerRuleConditions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "ListenerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Priority": {
+        "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA target group can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "LoadBalancer": {
     "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
     "Properties": {
@@ -64,60 +144,13 @@
       }
     }
   },
-  "Listener": {
-    "Name": "AWS::ElasticLoadBalancingV2::Listener",
-    "Properties": {
-      "Certificates": {
-        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerCertificates",
-        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
-        "UpdateRequires": "No interruption"
-      },
-      "DefaultActions": {
-        "Description": "The default actions that the listener takes when handling incoming requests.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerDefaultActions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "LoadBalancerArn": {
-        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Port": {
-        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "Integer",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Protocol": {
-        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SslPolicy": {
-        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "TargetGroup": {
     "Name": "AWS::ElasticLoadBalancingV2::TargetGroup",
     "Properties": {
       "HealthCheckIntervalSeconds": {
         "Description": "The approximate number of seconds between health checks for an individual target.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -145,14 +178,14 @@
       "HealthCheckTimeoutSeconds": {
         "Description": "The number of seconds to wait for a response before considering that a health check has failed.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HealthyThresholdCount": {
         "Description": "The number of consecutive successful health checks that are required before an unhealthy target is considered healthy.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -173,7 +206,7 @@
       "Port": {
         "Description": "The port on which the targets receive traffic.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
@@ -215,7 +248,7 @@
       "UnhealthyThresholdCount": {
         "Description": "The number of consecutive failed health checks that are required before a target is considered unhealthy.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -230,39 +263,6 @@
         "Description": "A list of  Amazon Resource Names (ARNs) of the load balancers that route traffic\n              to this target group, such as [\n                \"arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/50dc6c495c0c9188\"\n                ].",
         "Array": false,
         "Type": "String"
-      }
-    }
-  },
-  "ListenerRule": {
-    "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
-    "Properties": {
-      "Actions": {
-        "Description": "The action that the listener takes when a request meets the specified condition.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerRuleActions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Conditions": {
-        "Description": "The conditions under which a rule takes effect.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerRuleConditions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "ListenerArn": {
-        "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Priority": {
-        "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA target group can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "Integer",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   }

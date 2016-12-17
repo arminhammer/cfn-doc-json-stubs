@@ -120,7 +120,7 @@
       "InstanceCount": {
         "Description": "The number of instances to launch in the instance group.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },

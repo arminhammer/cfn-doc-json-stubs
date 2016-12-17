@@ -1,23 +1,4 @@
 {
-  "Application": {
-    "Name": "AWS::ElasticBeanstalk::Application",
-    "Properties": {
-      "ApplicationName": {
-        "Description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates\n                  a unique physical ID and uses that ID for the application name. For more\n                  information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "An optional description of this application.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Environment": {
     "Name": "AWS::ElasticBeanstalk::Environment",
     "Properties": {
@@ -52,7 +33,7 @@
       "OptionSettings": {
         "Description": "Key-value pairs defining configuration options for this environment. These\n                  options override the values that are defined in the solution stack or the\n                  configuration template. If you remove any options during a stack update, the\n                  removed options revert to default values.",
         "Array": true,
-        "Type": "OptionSettings",
+        "Type": "ElasticBeanstalkOptionSettingsPropertyType",
         "Required": "No",
         "UpdateRequires": "Some interruptions"
       },
@@ -118,9 +99,28 @@
       "SourceBundle": {
         "Description": "The location of the source bundle for this version.",
         "Array": false,
-        "Type": "SourceBundle",
+        "Type": "ElasticBeanstalkSourceBundlePropertyType",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Application": {
+    "Name": "AWS::ElasticBeanstalk::Application",
+    "Properties": {
+      "ApplicationName": {
+        "Description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates\n                  a unique physical ID and uses that ID for the application name. For more\n                  information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "An optional description of this application.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -151,7 +151,7 @@
       "OptionSettings": {
         "Description": "A list of \n                     OptionSettings for this Elastic Beanstalk configuration. For a complete\n                  list of Elastic Beanstalk configuration options, see  Option\n                     Values, in the AWS Elastic Beanstalk Developer\n                     Guide.",
         "Array": true,
-        "Type": "OptionSettings",
+        "Type": "ElasticBeanstalkOptionSettingsPropertyType",
         "Required": "No",
         "UpdateRequires": "Some interruptions"
       },

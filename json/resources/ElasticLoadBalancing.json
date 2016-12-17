@@ -12,7 +12,7 @@
       "AppCookieStickinessPolicy": {
         "Description": "Generates one or more stickiness policies with sticky session lifetimes that\n                  follow that of an application-generated cookie. These policies can be associated\n                  only with HTTP/HTTPS listeners.",
         "Array": true,
-        "Type": "AppCookieStickinessPolicyobjects",
+        "Type": "ElasticLoadBalancingAppCookieStickinessPolicyType",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -61,7 +61,7 @@
       "LBCookieStickinessPolicy": {
         "Description": "Generates a stickiness policy with sticky session lifetimes controlled by the\n                  lifetime of the browser (user-agent), or by a specified expiration period. This\n                  policy can be associated only with HTTP/HTTPS listeners.",
         "Array": true,
-        "Type": "LBCookieStickinessPolicyobjects",
+        "Type": "ElasticLoadBalancingLBCookieStickinessPolicyType",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -75,14 +75,14 @@
       "Listeners": {
         "Description": "One or more listeners for this load balancer. Each listener must be registered\n                  for a specific port, and you cannot have more than one listener for a given\n                  port.ImportantIf you update the property values for a listener specified by the\n                        Listeners property, AWS CloudFormation will delete the existing listener and\n                     create a new one with the updated properties. During the time that AWS CloudFormation is\n                     performing this action, clients will not be able to connect to the load\n                     balancer.",
         "Array": true,
-        "Type": "ElasticLoadBalancingListenerPropertyTypeobjects",
+        "Type": "ElasticLoadBalancingListenerPropertyType",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "Policies": {
         "Description": "A list of elastic load balancing policies to apply to this elastic load balancer. Specify only back-end server policies. For more information, see DescribeLoadBalancerPolicyTypes in the Elastic Load Balancing API Reference version 2012-06-01.",
         "Array": true,
-        "Type": "ElasticLoadBalancingpolicyobjects",
+        "Type": "ElasticLoadBalancingPolicyType",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -96,7 +96,7 @@
       "SecurityGroups": {
         "Description": "",
         "Array": true,
-        "Type": "securitygroupsassignedtoyourloadbalancerwithinyourvirtualprivatecloud(VPC)",
+        "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },

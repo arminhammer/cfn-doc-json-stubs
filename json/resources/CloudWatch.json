@@ -40,14 +40,14 @@
       "Dimensions": {
         "Description": "The dimensions for the alarm's associated metric.",
         "Array": true,
-        "Type": "MetricDimension",
+        "Type": "CloudWatchMetricDimensionPropertyType",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "EvaluationPeriods": {
         "Description": "The number of periods over which data is compared to the specified\n                  threshold.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
@@ -82,7 +82,7 @@
       "Period": {
         "Description": "The time over which the specified statistic is applied. You must specify a time\n                  in seconds that is also a multiple of 60.",
         "Array": false,
-        "Type": "Integer",
+        "Type": "Number",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
