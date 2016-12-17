@@ -157,46 +157,6 @@
       }
     }
   },
-  "Model": {
-    "Name": "AWS::ApiGateway::Model",
-    "Properties": {
-      "ContentType": {
-        "Description": "The content type for the model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "A description that identifies this model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "RestApiId": {
-        "Description": "The ID of a REST API with which to associate this model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Schema": {
-        "Description": "The schema to use to transform data to one or more output formats.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Deployment": {
     "Name": "AWS::ApiGateway::Deployment",
     "Properties": {
@@ -227,86 +187,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "RestApi": {
-    "Name": "AWS::ApiGateway::RestApi",
-    "Properties": {
-      "Body": {
-        "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.\n            For YAML templates, you can also specify the specification in the YAML format.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "BodyS3Location": {
-        "Description": "The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.",
-        "Array": false,
-        "Type": "AmazonAPIGatewayRestApiS3Location",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "CloneFrom": {
-        "Description": "The ID of the API Gateway RestApi resource that you want to clone.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Description": {
-        "Description": "A description of the purpose of this API Gateway RestApi resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "FailOnWarnings": {
-        "Description": "If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the API Gateway RestApi resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. Required if you don't specify a OpenAPI definition.",
-        "UpdateRequires": "No interruption"
-      },
-      "Parameters": {
-        "Description": "Custom header parameters for the request.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Resource": {
-    "Name": "AWS::ApiGateway::Resource",
-    "Properties": {
-      "ParentId": {
-        "Description": "If you want to create a child resource, the ID of the parent resource. For resources without a parent, specify the RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "PathPart": {
-        "Description": "A path name for the resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "RestApiId": {
-        "Description": "The ID of the RestApi resource in which you want to create this resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -382,6 +262,131 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "RestApi": {
+    "Name": "AWS::ApiGateway::RestApi",
+    "Properties": {
+      "Body": {
+        "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.\n            For YAML templates, you can also specify the specification in the YAML format.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "BodyS3Location": {
+        "Description": "The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.",
+        "Array": false,
+        "Type": "AmazonAPIGatewayRestApiS3Location",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "CloneFrom": {
+        "Description": "The ID of the API Gateway RestApi resource that you want to clone.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "A description of the purpose of this API Gateway RestApi resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "FailOnWarnings": {
+        "Description": "If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the API Gateway RestApi resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. Required if you don't specify a OpenAPI definition.",
+        "UpdateRequires": "No interruption"
+      },
+      "Parameters": {
+        "Description": "Custom header parameters for the request.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "RootResourceId": {
+        "Description": "The root resource ID for a RestApi resource, such as a0bc123d4e.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
+  "Model": {
+    "Name": "AWS::ApiGateway::Model",
+    "Properties": {
+      "ContentType": {
+        "Description": "The content type for the model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "A description that identifies this model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RestApiId": {
+        "Description": "The ID of a REST API with which to associate this model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Schema": {
+        "Description": "The schema to use to transform data to one or more output formats.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Resource": {
+    "Name": "AWS::ApiGateway::Resource",
+    "Properties": {
+      "ParentId": {
+        "Description": "If you want to create a child resource, the ID of the parent resource. For resources without a parent, specify the RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "PathPart": {
+        "Description": "A path name for the resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "RestApiId": {
+        "Description": "The ID of the RestApi resource in which you want to create this resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       }
     }
   },

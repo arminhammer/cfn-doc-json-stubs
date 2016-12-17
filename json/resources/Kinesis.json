@@ -3,7 +3,7 @@
     "Name": "AWS::Kinesis::Stream",
     "Properties": {
       "Name": {
-        "Description": "The name of the Amazon Kinesis stream. If you don't specify a name, AWS CloudFormation generates a unique physical \n                  ID and uses that ID for the stream name. For more information, see \n                  Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.\n               ",
+        "Description": "The name of the Amazon Kinesis stream. If you don't specify a name, AWS CloudFormation generates a unique physical \n                  ID and uses that ID for the stream name. For more information, see \n                  Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -22,6 +22,11 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The Amazon resource name (ARN) of the Amazon Kinesis stream, such as\n                     arn:aws:kinesis:us-east-1:123456789012:stream/mystream.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

@@ -31,7 +31,7 @@
         "UpdateRequires": "Replacement"
       },
       "BackupRetentionPeriod": {
-        "Description": "The number of days during which automatic DB snapshots are retained.\n                  ImportantIf this DB instance is deleted or replaced during an update, AWS CloudFormation deletes\n                     all automated snapshots. However, it retains manual DB snapshots.",
+        "Description": "The number of days during which automatic DB snapshots are retained.ImportantIf this DB instance is deleted or replaced during an update, AWS CloudFormation deletes\n                     all automated snapshots. However, it retains manual DB snapshots.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -87,7 +87,7 @@
         "UpdateRequires": "No interruption or some\n                     interruptions. If any of the data members of the referenced parameter\n                  group are changed during an update, the DB instance might need to be restarted,\n                  causing some interruption. If the parameter group contains static parameters,\n                  whether they were changed or not, an update triggers a reboot."
       },
       "DBSecurityGroups": {
-        "Description": "A list of the DB security groups to assign to the DB instance. The list can\n                  include both the name of existing DB security groups or references to AWS::RDS::DBSecurityGroup\n                  resources created in the template.If you set DBSecurityGroups, you must not set VPCSecurityGroups, and\n                  vice-versa.ImportantIf you specify this property, AWS CloudFormation sends only the following properties (if specified) to Amazon RDS: AllocatedStorageAutoMinorVersionUpgradeAvailabilityZoneBackupRetentionPeriodCharacterSetNameDbInstanceClassDbNameDbParameterGroupNameDbSecurityGroupsDbSubnetGroupNameEngineEngineVersionIopsLicenseModelMasterUsernameMasterUserPasswordMultiAZOptionGroupNamePreferredBackupWindowPreferredMaintenanceWindowAll other properties are ignored. Specify a VPC security group if you want\n                     to submit other properties, such as StorageType,\n                        StorageEncrypted, or KmsKeyId. If you're already\n                     using the DBSecurityGroups property, you can't use these other\n                     properties by updating your DB instance to use a VPC security group. You must\n                     recreate the DB instance.",
+        "Description": "A list of the DB security groups to assign to the DB instance. The list can\n                  include both the name of existing DB security groups or references to AWS::RDS::DBSecurityGroup\n                  resources created in the template.If you set DBSecurityGroups, you must not set VPCSecurityGroups, and\n                  vice-versa.ImportantIf you specify this property, AWS CloudFormation sends only the following properties (if specified) to Amazon RDS:AllocatedStorageAutoMinorVersionUpgradeAvailabilityZoneBackupRetentionPeriodCharacterSetNameDbInstanceClassDbNameDbParameterGroupNameDbSecurityGroupsDbSubnetGroupNameEngineEngineVersionIopsLicenseModelMasterUsernameMasterUserPasswordMultiAZOptionGroupNamePreferredBackupWindowPreferredMaintenanceWindowAll other properties are ignored. Specify a VPC security group if you want\n                     to submit other properties, such as StorageType,\n                        StorageEncrypted, or KmsKeyId. If you're already\n                     using the DBSecurityGroups property, you can't use these other\n                     properties by updating your DB instance to use a VPC security group. You must\n                     recreate the DB instance.",
         "Array": true,
         "Type": "String",
         "Required": "No",
@@ -220,7 +220,7 @@
         "UpdateRequires": "No interruption or some\n                     interruptions. For more information, see ModifyDBInstance in the\n                     Amazon Relational Database Service API Reference."
       },
       "PubliclyAccessible": {
-        "Description": "Indicates whether the DB instance is an Internet-facing instance. If you\n                  specify true, AWS CloudFormation creates an instance with a publicly resolvable\n                  DNS name, which resolves to a public IP address. If you specify\n                  false, AWS CloudFormation creates an internal instance with a DNS name that\n                  resolves to a private IP address. The default behavior value depends on your VPC setup and the database subnet\n                  group. For more information, see the PubliclyAccessible parameter in\n                     CreateDBInstance in the Amazon Relational Database Service API Reference.If this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the\nDependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,\nsee DependsOn Attribute.NoteIf you specify DBSecurityGroups, AWS CloudFormation ignores this property.\n                     To specify a security group and this property, you must use a VPC security\n                     group. For more information about Amazon RDS and VPC, see Using Amazon RDS with Amazon VPC in the\n                        Amazon Relational Database Service User Guide.",
+        "Description": "Indicates whether the DB instance is an Internet-facing instance. If you\n                  specify true, AWS CloudFormation creates an instance with a publicly resolvable\n                  DNS name, which resolves to a public IP address. If you specify\n                  false, AWS CloudFormation creates an internal instance with a DNS name that\n                  resolves to a private IP address.The default behavior value depends on your VPC setup and the database subnet\n                  group. For more information, see the PubliclyAccessible parameter in\n                     CreateDBInstance in the Amazon Relational Database Service API Reference.If this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the\nDependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,\nsee DependsOn Attribute.NoteIf you specify DBSecurityGroups, AWS CloudFormation ignores this property.\n                     To specify a security group and this property, you must use a VPC security\n                     group. For more information about Amazon RDS and VPC, see Using Amazon RDS with Amazon VPC in the\n                        Amazon Relational Database Service User Guide.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
@@ -255,7 +255,7 @@
         "UpdateRequires": "No interruption"
       },
       "VPCSecurityGroups": {
-        "Description": "A list of the VPC security group IDs to assign to the DB instance. The list can\n                  include both the physical IDs of existing VPC security groups and references to\n                     AWS::EC2::SecurityGroup resources created in the\n                  template.If you set VPCSecurityGroups, you must not set DBSecurityGroups, and vice\n                  versa.ImportantYou\n              can migrate a\n              DB\n              instance in your stack from an RDS DB security group to a VPC security group, but\n              keep\n              the\n              following in mind:You cannot revert to using an RDS security group after you\n                           establish a VPC security group membership.When you migrate your DB instance to VPC security groups, if your\n                           stack update rolls back because the DB instance update fails, or because\n                           an update fails in another AWS CloudFormation resource, the rollback will fail because\n                           it cannot revert to an RDS security group.To use the properties that are available when you use a VPC security\n                           group, you must recreate the DB instance. If you don't, AWS CloudFormation submits\n                           only the property values that are listed in the DBSecurityGroups\n                           property. To avoid this situation, migrate your DB instance to using VPC security\n                     groups only when that is the only change in your stack template.",
+        "Description": "A list of the VPC security group IDs to assign to the DB instance. The list can\n                  include both the physical IDs of existing VPC security groups and references to\n                     AWS::EC2::SecurityGroup resources created in the\n                  template.If you set VPCSecurityGroups, you must not set DBSecurityGroups, and vice\n                  versa.ImportantYou\n              can migrate a\n              DB\n              instance in your stack from an RDS DB security group to a VPC security group, but\n              keep\n              the\n              following in mind:You cannot revert to using an RDS security group after you\n                           establish a VPC security group membership.When you migrate your DB instance to VPC security groups, if your\n                           stack update rolls back because the DB instance update fails, or because\n                           an update fails in another AWS CloudFormation resource, the rollback will fail because\n                           it cannot revert to an RDS security group.To use the properties that are available when you use a VPC security\n                           group, you must recreate the DB instance. If you don't, AWS CloudFormation submits\n                           only the property values that are listed in the DBSecurityGroups\n                           property.To avoid this situation, migrate your DB instance to using VPC security\n                     groups only when that is the only change in your stack template.",
         "Array": true,
         "Type": "String",
         "Required": "No",
@@ -324,6 +324,65 @@
         "Description": "The tags that you want to attach to the Amazon RDS DB security group.",
         "Array": true,
         "Type": "resourcetags",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "DBClusterParameterGroup": {
+    "Name": "AWS::RDS::DBClusterParameterGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A friendly description for this DB cluster parameter group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Family": {
+        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Parameters": {
+        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
+        "Array": false,
+        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
+      },
+      "Tags": {
+        "Description": "The tags that you want to attach to this parameter group.",
+        "Array": true,
+        "Type": "resourcetags",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "DBSubnetGroup": {
+    "Name": "AWS::RDS::DBSubnetGroup",
+    "Properties": {
+      "DBSubnetGroupDescription": {
+        "Description": "The description for the DB Subnet Group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SubnetIds": {
+        "Description": "The EC2 Subnet IDs for the DB Subnet Group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Tags": {
+        "Description": "The tags that you want to attach to the RDS database subnet group.",
+        "Array": true,
+        "Type": "resourcetagsinkey-valueformat",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }
@@ -453,65 +512,6 @@
       }
     }
   },
-  "DBClusterParameterGroup": {
-    "Name": "AWS::RDS::DBClusterParameterGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A friendly description for this DB cluster parameter group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Family": {
-        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
-        "Array": false,
-        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to this parameter group.",
-        "Array": true,
-        "Type": "resourcetags",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "DBSubnetGroup": {
-    "Name": "AWS::RDS::DBSubnetGroup",
-    "Properties": {
-      "DBSubnetGroupDescription": {
-        "Description": "The description for the DB Subnet Group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SubnetIds": {
-        "Description": "The EC2 Subnet IDs for the DB Subnet Group.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to the RDS database subnet group.",
-        "Array": true,
-        "Type": "resourcetagsinkey-valueformat",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "EventSubscription": {
     "Name": "AWS::RDS::EventSubscription",
     "Properties": {
@@ -595,6 +595,12 @@
   "DBSecurityGroupIngress": {
     "Name": "AWS::RDS::DBSecurityGroupIngress",
     "Properties": {
+      "CIDRIP": {
+        "Description": "The IP range to authorize.For an overview of CIDR ranges, go to the Wikipedia\n                  Tutorial.",
+        "Array": false,
+        "Type": "String",
+        "UpdateRequires": "No interruption"
+      },
       "DBSecurityGroupName": {
         "Description": "The name (ARN) of the AWS::RDS::DBSecurityGroup to which this ingress\n                  will be added.",
         "Array": false,

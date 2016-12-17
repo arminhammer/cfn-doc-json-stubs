@@ -71,6 +71,16 @@
         "Type": "AmazonS3WebsiteConfigurationProperty",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "DomainName": {
+        "Description": "Returns the DNS name of the specified bucket.Example: mystack-mybucket-kdwwxmddtr2g.s3.amazonaws.com",
+        "Array": false,
+        "Type": "String"
+      },
+      "WebsiteURL": {
+        "Description": "Amazon S3 website endpoint for the specified bucket.Example: http://mystack-mybucket-kdwwxmddtr2g.s3-website-us-east-1.amazonaws.com/",
+        "Array": false,
+        "Type": "String"
       }
     }
   },

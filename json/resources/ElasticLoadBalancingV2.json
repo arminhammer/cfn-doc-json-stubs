@@ -1,37 +1,4 @@
 {
-  "ListenerRule": {
-    "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
-    "Properties": {
-      "Actions": {
-        "Description": "The action that the listener takes when a request meets the specified condition.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerRuleActions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Conditions": {
-        "Description": "The conditions under which a rule takes effect.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerRuleConditions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "ListenerArn": {
-        "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Priority": {
-        "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA target group can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Listener": {
     "Name": "AWS::ElasticLoadBalancingV2::Listener",
     "Properties": {
@@ -79,6 +46,39 @@
       }
     }
   },
+  "ListenerRule": {
+    "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    "Properties": {
+      "Actions": {
+        "Description": "The action that the listener takes when a request meets the specified condition.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerRuleActions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Conditions": {
+        "Description": "The conditions under which a rule takes effect.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerRuleConditions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "ListenerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Priority": {
+        "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA target group can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "LoadBalancer": {
     "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
     "Properties": {
@@ -97,18 +97,16 @@
         "UpdateRequires": "Replacement"
       },
       "Scheme": {
-        "Description": "Specifies whether the load balancer is internal or Internet-facing. An internal load\n            balancer routes requests to targets using private IP addresses. An Internet-facing load\n            balancer routes requests from clients over the Internet to targets in your public\n            subnets. For valid and default values, see the Scheme parameter for the\n                CreateLoadBalancer action in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
+        "Description": "Specifies whether the load balancer is internal or Internet-facing. An internal load\n            balancer routes requests to targets using private IP addresses. An Internet-facing load\n            balancer routes requests from clients over the Internet to targets in your public\n            subnets.For valid and default values, see the Scheme parameter for the\n                CreateLoadBalancer action in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SecurityGroups": {
-        "Description": "Specifies a list of the IDs of the security groups to assign to the load\n            balancer.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
+        "Description": "The IDs of the security groups for the Application load balancer, for example\n              sg-123456a.",
+        "Array": false,
+        "Type": "String"
       },
       "Subnets": {
         "Description": "Specifies a list of at least two IDs of the subnets to associate with the load\n            balancer. The subnets must be in different Availability Zones.",
@@ -123,6 +121,26 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "DNSName": {
+        "Description": "The DNS name for the Application load balancer, for example\n                my-load-balancer-424835706.us-west-2.elb.amazonaws.com.",
+        "Array": false,
+        "Type": "String"
+      },
+      "CanonicalHostedZoneID": {
+        "Description": "The ID of the Amazon Route 53 hosted zone associated with the load balancer, for example\n                Z2P70J7EXAMPLE.",
+        "Array": false,
+        "Type": "String"
+      },
+      "LoadBalancerFullName": {
+        "Description": "The full name of the Application load balancer, for example\n                app/my-load-balancer/50dc6c495c0c9188.",
+        "Array": false,
+        "Type": "String"
+      },
+      "LoadBalancerName": {
+        "Description": "The name of the Application load balancer, for example my-load-balancer.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },
@@ -240,6 +258,11 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      },
+      "LoadBalancerArns": {
+        "Description": "A list of  Amazon Resource Names (ARNs) of the load balancers that route traffic\n              to this target group, such as [\n                \"arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/50dc6c495c0c9188\"\n                ].",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

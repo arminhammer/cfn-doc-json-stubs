@@ -192,6 +192,7 @@ function scrapeHtmlPage(body, pageType) {
         Type: 'String'
       }
       obj.attributes[i].forEach((attr) => {
+        attr = attr.trim()
         if (attr.startsWith('Type: ')) {
           output.Type = attr.replace(/Type: /g, '').replace(/\s/g, '')
           sanitizeTypes(output, pageType)
@@ -203,9 +204,9 @@ function scrapeHtmlPage(body, pageType) {
           output.Description += attr
         }
       })
-      if(output.Type && output.Required) {
+      // if(output.Type && output.Required) {
         block.Properties[obj.titles[i]] = output
-      }
+      // }
     }
     let split = block.Name.split('::')
     let group = split[1]

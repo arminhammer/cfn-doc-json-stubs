@@ -43,11 +43,9 @@
         "UpdateRequires": "No interruption"
       },
       "QueueName": {
-        "Description": "A name for the queue. If you don't specify a name, AWS CloudFormation generates a unique physical\n            ID and uses that ID for the queue name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Description": "Returns the queue name. For example:mystack-myqueue-1VF9BKQH5BJVI",
         "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
+        "Type": "String"
       },
       "ReceiveMessageWaitTimeSeconds": {
         "Description": "Specifies the duration, in seconds, that the ReceiveMessage action call\n            waits until a message is in the queue in order to include it in the response, as opposed\n            to returning an empty response if a message is not yet available. You can specify an\n            integer from 1 to 20. The short polling is used as the default\n            or when you specify 0 for this property. For more information, see Amazon SQS Long Poll.",
@@ -69,6 +67,11 @@
         "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) of the queue. For example:\n                     arn:aws:sqs:us-east-1:123456789012:mystack-myqueue-15PG5C2FC1CW8",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

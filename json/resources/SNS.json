@@ -17,11 +17,9 @@
         "UpdateRequires": "No interruption"
       },
       "TopicName": {
-        "Description": "A name for the topic. If you don't specify a name, AWS CloudFormation generates a unique\n                  physical ID and uses that ID for the topic name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Description": "Returns the name for an Amazon SNS topic.",
         "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
+        "Type": "String"
       }
     }
   },

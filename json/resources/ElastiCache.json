@@ -142,11 +142,31 @@
         "UpdateRequires": "No interruption."
       },
       "VpcSecurityGroupIds": {
-        "Description": "A list of VPC security group IDs. If your cache cluster isn't in a VPC, specify\n                  the CacheSecurityGroupNames property instead.\n                  NoteYou must use the AWS::EC2::SecurityGroup resource instead of\n                        the AWS::ElastiCache::SecurityGroup resource in order to\n                        specify an ElastiCache security group that is in a VPC. In addition, if you use\n                        the default VPC for your\n                        AWS account, you must use the Fn::GetAtt function and the\n                           GroupId attribute to retrieve security group IDs (instead of\n                        the Ref function). To see a sample template, see the Template\n                        Snippet section.\n               ",
+        "Description": "A list of VPC security group IDs. If your cache cluster isn't in a VPC, specify\n                  the CacheSecurityGroupNames property instead.NoteYou must use the AWS::EC2::SecurityGroup resource instead of\n                        the AWS::ElastiCache::SecurityGroup resource in order to\n                        specify an ElastiCache security group that is in a VPC. In addition, if you use\n                        the default VPC for your\n                        AWS account, you must use the Fn::GetAtt function and the\n                           GroupId attribute to retrieve security group IDs (instead of\n                        the Ref function). To see a sample template, see the Template\n                        Snippet section.",
         "Array": true,
         "Type": "String",
         "Required": "Conditional: If your cache cluster is in a VPC, you must specify\n                  this property.",
         "UpdateRequires": "No interruption"
+      },
+      "ConfigurationEndpoint.Address": {
+        "Description": "The DNS address of the configuration endpoint for the Memcached cache\n                     cluster.",
+        "Array": false,
+        "Type": "String"
+      },
+      "ConfigurationEndpoint.Port": {
+        "Description": "The port number of the configuration endpoint for the Memcached cache\n                     cluster.",
+        "Array": false,
+        "Type": "String"
+      },
+      "RedisEndpoint.Address": {
+        "Description": "The DNS address of the configuration endpoint for the Redis cache cluster.",
+        "Array": false,
+        "Type": "String"
+      },
+      "RedisEndpoint.Port": {
+        "Description": "The port number of the configuration endpoint for the Redis cache cluster.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },
@@ -176,6 +196,18 @@
       }
     }
   },
+  "SecurityGroup": {
+    "Name": "AWS::ElastiCache::SecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description for the cache security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
   "SecurityGroupIngress": {
     "Name": "AWS::ElastiCache::SecurityGroupIngress",
     "Properties": {
@@ -195,18 +227,6 @@
       },
       "EC2SecurityGroupOwnerId": {
         "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SecurityGroup": {
-    "Name": "AWS::ElastiCache::SecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description for the cache security group.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -283,7 +303,7 @@
         "Array": false,
         "Type": "String",
         "Required": "No",
-        "UpdateRequires": "Replacement "
+        "UpdateRequires": "Replacement"
       },
       "Engine": {
         "Description": "The name of the cache engine to use for the cache clusters in this replication\n                  group. Currently, you can specify only redis.",
@@ -424,6 +444,36 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
+      },
+      "PrimaryEndPoint.Address": {
+        "Description": "The DNS address of the primary read-write cache node.",
+        "Array": false,
+        "Type": "String"
+      },
+      "PrimaryEndPoint.Port": {
+        "Description": "The number of the port that the primary read-write cache engine is listening\n                     on.",
+        "Array": false,
+        "Type": "String"
+      },
+      "ReadEndPoint.Addresses": {
+        "Description": "A string with a list of endpoints for the read-only replicas. The order of\n                     the addresses map to the order of the ports from the\n                        ReadEndPoint.Ports attribute.",
+        "Array": false,
+        "Type": "String"
+      },
+      "ReadEndPoint.Ports": {
+        "Description": "A string with a list of ports for the read-only replicas. The order of the\n                     ports map to the order of the addresses from the\n                        ReadEndPoint.Addresses attribute.",
+        "Array": false,
+        "Type": "String"
+      },
+      "ReadEndPoint.Addresses.List": {
+        "Description": "A list of endpoints for the read-only replicas. The order of the addresses\n                     map to the order of the ports from the ReadEndPoint.Ports.List\n                     attribute.",
+        "Array": false,
+        "Type": "String"
+      },
+      "ReadEndPoint.Ports.List": {
+        "Description": "A list of ports for the read-only replicas. The order of the ports map to\n                     the order of the addresses from the ReadEndPoint.Addresses.List\n                     attribute.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

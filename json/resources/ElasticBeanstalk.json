@@ -71,6 +71,11 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Some interruptions"
+      },
+      "EndpointURL": {
+        "Description": "The URL to the load balancer for this environment.Example:awseb-myst-myen-132MQC4KRLAMD-1371280482.us-east-1.elb.amazonaws.com",
+        "Array": false,
+        "Type": "String"
       }
     }
   },

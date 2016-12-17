@@ -50,6 +50,11 @@
         "Type": "AmazonCloudWatchEventsRuleTarget",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The event rule Amazon Resource Name (ARN), such as arn:aws:events:us-east-1:123456789012:rule/example.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

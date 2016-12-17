@@ -57,6 +57,16 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "DomainArn": {
+        "Description": "The Amazon Resource Name (ARN) of the domain, such as\n              arn:aws:es:us-west-2:123456789012:domain/mystack-elasti-1ab2cdefghij.",
+        "Array": false,
+        "Type": "String"
+      },
+      "DomainEndpoint": {
+        "Description": "The domain-specific endpoint that is used to submit index, search, and data upload\n            requests to an Amazon ES domain, such as\n              search-mystack-elasti-1ab2cdefghij-ab1c2deckoyb3hofw7wpqa3cm.us-west-2.es.amazonaws.com.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

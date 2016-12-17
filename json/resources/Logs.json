@@ -48,6 +48,11 @@
         "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },

@@ -64,6 +64,11 @@
         "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "The ARN of the AWS CodeBuild project, such as\n                arn:aws:codebuild:us-west-2:123456789012:project/myProjectName.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

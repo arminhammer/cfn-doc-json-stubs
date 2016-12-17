@@ -1,93 +1,4 @@
 {
-  "Cluster": {
-    "Name": "AWS::EMR::Cluster",
-    "Properties": {
-      "AdditionalInfo": {
-        "Description": "Additional features that you want to select.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Applications": {
-        "Description": "The software applications to deploy on the cluster, and the arguments that Amazon EMR\n            passes to those applications.",
-        "Array": true,
-        "Type": "AmazonEMRClusterApplication",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "BootstrapActions": {
-        "Description": "A list of bootstrap actions that Amazon EMR runs before starting applications on the\n            cluster.",
-        "Array": true,
-        "Type": "AmazonEMRClusterBootstrapActionConfig",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Configurations": {
-        "Description": "The software configuration of the Amazon EMR cluster.",
-        "Array": true,
-        "Type": "AmazonEMRClusterConfiguration",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Instances": {
-        "Description": "Configures the EC2 instances that will run jobs in the Amazon EMR cluster.",
-        "Array": false,
-        "Type": "AmazonEMRClusterJobFlowInstancesConfig",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "JobFlowRole": {
-        "Description": "Also called instance profile and EC2 role. \n            Accepts an instance profile associated with the role that you want to use. All EC2 \n            instances in the cluster assume this role.\n          ",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "LogUri": {
-        "Description": "An S3 bucket location to which Amazon EMR writes logs files from a job flow. If you don't\n            specify a value, Amazon EMR doesn't write any log files.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Name": {
-        "Description": "A name for the Amazon EMR cluster.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ReleaseLabel": {
-        "Description": "The Amazon EMR software release label. A release is a set of software applications and\n            components that you can install and configure on an Amazon EMR cluster. For more information,\n            see About Amazon EMR Releases in the Amazon EMR Release\n              Guide.Currently, AWS CloudFormation supports only Amazon EMR 4.0 and later software releases.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. If you specify the Applications property, you must specify this property.",
-        "UpdateRequires": "Replacement"
-      },
-      "ServiceRole": {
-        "Description": "The IAM role that Amazon EMR assumes to access AWS resources on your behalf. For more\n            information, see Configure IAM Roles for Amazon EMR in the Amazon EMR Management\n              Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR\n            cluster.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      },
-      "VisibleToAllUsers": {
-        "Description": "Indicates whether the instances in the cluster are visible to all IAM users in the\n            AWS account. If you specify true, all IAM users can view and (if they\n            have permissions) manage the instances. If you specify false, only the\n            IAM user that created the cluster can view and manage it. By default, AWS CloudFormation sets this\n            property to false.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "InstanceGroupConfig": {
     "Name": "AWS::EMR::InstanceGroupConfig",
     "Properties": {
@@ -153,6 +64,100 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Cluster": {
+    "Name": "AWS::EMR::Cluster",
+    "Properties": {
+      "AdditionalInfo": {
+        "Description": "Additional features that you want to select.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Applications": {
+        "Description": "The software applications to deploy on the cluster, and the arguments that Amazon EMR\n            passes to those applications.",
+        "Array": true,
+        "Type": "AmazonEMRClusterApplication",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "BootstrapActions": {
+        "Description": "A list of bootstrap actions that Amazon EMR runs before starting applications on the\n            cluster.",
+        "Array": true,
+        "Type": "AmazonEMRClusterBootstrapActionConfig",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Configurations": {
+        "Description": "The software configuration of the Amazon EMR cluster.",
+        "Array": true,
+        "Type": "AmazonEMRClusterConfiguration",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Instances": {
+        "Description": "Configures the EC2 instances that will run jobs in the Amazon EMR cluster.",
+        "Array": false,
+        "Type": "AmazonEMRClusterJobFlowInstancesConfig",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "JobFlowRole": {
+        "Description": "Also called instance profile and EC2 role. \n            Accepts an instance profile associated with the role that you want to use. All EC2 \n            instances in the cluster assume this role.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "LogUri": {
+        "Description": "An S3 bucket location to which Amazon EMR writes logs files from a job flow. If you don't\n            specify a value, Amazon EMR doesn't write any log files.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "A name for the Amazon EMR cluster.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ReleaseLabel": {
+        "Description": "The Amazon EMR software release label. A release is a set of software applications and\n            components that you can install and configure on an Amazon EMR cluster. For more information,\n            see About Amazon EMR Releases in the Amazon EMR Release\n              Guide.Currently, AWS CloudFormation supports only Amazon EMR 4.0 and later software releases.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. If you specify the Applications property, you must specify this property.",
+        "UpdateRequires": "Replacement"
+      },
+      "ServiceRole": {
+        "Description": "The IAM role that Amazon EMR assumes to access AWS resources on your behalf. For more\n            information, see Configure IAM Roles for Amazon EMR in the Amazon EMR Management\n              Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR\n            cluster.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      },
+      "VisibleToAllUsers": {
+        "Description": "Indicates whether the instances in the cluster are visible to all IAM users in the\n            AWS account. If you specify true, all IAM users can view and (if they\n            have permissions) manage the instances. If you specify false, only the\n            IAM user that created the cluster can view and manage it. By default, AWS CloudFormation sets this\n            property to false.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "MasterPublicDNS": {
+        "Description": "The public DNS name of the master node (instance), such as\n                ec2-12-123-123-123.us-west-2.compute.amazonaws.com.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },

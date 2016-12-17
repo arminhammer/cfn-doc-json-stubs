@@ -1,23 +1,4 @@
 {
-  "UserToGroupAddition": {
-    "Name": "AWS::IAM::UserToGroupAddition",
-    "Properties": {
-      "GroupName": {
-        "Description": "The name of group to add users to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Users": {
-        "Description": "",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "AccessKey": {
     "Name": "AWS::IAM::AccessKey",
     "Properties": {
@@ -41,38 +22,29 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      },
+      "SecretAccessKey": {
+        "Description": "Returns the secret access key for the specified AWS::IAM::AccessKey resource. For\n                     example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },
-  "Group": {
-    "Name": "AWS::IAM::Group",
+  "UserToGroupAddition": {
+    "Name": "AWS::IAM::UserToGroupAddition",
     "Properties": {
       "GroupName": {
-        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Description": "The name of group to add users to.",
         "Array": false,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ManagedPolicyArns": {
-        "Description": "One or more managed policy ARNs to attach to this group.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
-      "Path": {
-        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Policies": {
-        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
+      "Users": {
+        "Description": "",
         "Array": true,
-        "Type": "IAMPolicies",
-        "Required": "No",
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -116,11 +88,94 @@
         "UpdateRequires": "No interruption"
       },
       "UserName": {
-        "Description": "A name for the IAM user. For valid values, see the UserName parameter for the CreateUser action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the user name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Description": "A name for the IAM user. For valid values, see the UserName parameter for the CreateUser action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the user name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the specified AWS::IAM::User resource. For example:\n                     arn:aws:iam::123456789012:user/mystack-myuser-1CCXAFG2H2U4D.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
+  "Group": {
+    "Name": "AWS::IAM::Group",
+    "Properties": {
+      "GroupName": {
+        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ManagedPolicyArns": {
+        "Description": "One or more managed policy ARNs to attach to this group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Path": {
+        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Policies": {
+        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
+        "Array": true,
+        "Type": "IAMPolicies",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the AWS::IAM::Group resource. For\n                     example: arn:aws:iam::123456789012:group/mystack-mygroup-1DZETITOWEKVO.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
+  "Policy": {
+    "Name": "AWS::IAM::Policy",
+    "Properties": {
+      "Groups": {
+        "Description": "The names of groups to which you want to add the policy.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "UpdateRequires": "No interruption"
+      },
+      "PolicyDocument": {
+        "Description": "A policy document that contains permissions to add to the specified users or\n                  groups.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "PolicyName": {
+        "Description": "The name of the policy. If you specify multiple policies for an entity, specify\n                  unique names. For example, if you specify a list of policies for an IAM role,\n                  each policy must have a unique name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Roles": {
+        "Description": "The names of AWS::IAM::Roles to\n                  attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "UpdateRequires": "No interruption"
+      },
+      "Users": {
+        "Description": "The names of users for whom you want to add the policy.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -140,6 +195,11 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },
@@ -190,46 +250,6 @@
       }
     }
   },
-  "Policy": {
-    "Name": "AWS::IAM::Policy",
-    "Properties": {
-      "Groups": {
-        "Description": "The names of groups to which you want to add the policy.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
-        "UpdateRequires": "No interruption"
-      },
-      "PolicyDocument": {
-        "Description": "A policy document that contains permissions to add to the specified users or\n                  groups.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "PolicyName": {
-        "Description": "The name of the policy. If you specify multiple policies for an entity, specify\n                  unique names. For example, if you specify a list of policies for an IAM role,\n                  each policy must have a unique name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Roles": {
-        "Description": "The names of AWS::IAM::Roles to\n                  attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
-        "UpdateRequires": "No interruption"
-      },
-      "Users": {
-        "Description": "The names of users for whom you want to add the policy.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Role": {
     "Name": "AWS::IAM::Role",
     "Properties": {
@@ -255,18 +275,23 @@
         "UpdateRequires": "Replacement"
       },
       "Policies": {
-        "Description": "The policies to associate with this role. For sample templates, see Template Examples.ImportantThe name of each policy for a role, user, or group must be unique. If you don't, updates to the IAM role will fail. NoteIf an external policy (such as AWS::IAM::Policy or AWS::IAM::ManagedPolicy) has a Ref to a role and if a resource (such as AWS::ECS::Service) also has a Ref to the same role, add a DependsOn attribute to the resource to make the resource depend on the external policy. This dependency ensures that the role's policy is available throughout the resource's lifecycle. For example, when you delete a\n                     stack with an AWS::ECS::Service resource, the DependsOn attribute ensures that AWS CloudFormation deletes the AWS::ECS::Service resource  before deleting its role's policy.",
+        "Description": "The policies to associate with this role. For sample templates, see Template Examples.ImportantThe name of each policy for a role, user, or group must be unique. If you don't, updates to the IAM role will fail.NoteIf an external policy (such as AWS::IAM::Policy or AWS::IAM::ManagedPolicy) has a Ref to a role and if a resource (such as AWS::ECS::Service) also has a Ref to the same role, add a DependsOn attribute to the resource to make the resource depend on the external policy. This dependency ensures that the role's policy is available throughout the resource's lifecycle. For example, when you delete a\n                     stack with an AWS::ECS::Service resource, the DependsOn attribute ensures that AWS CloudFormation deletes the AWS::ECS::Service resource  before deleting its role's policy.",
         "Array": true,
         "Type": "IAMPolicies",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "RoleName": {
-        "Description": "A name for the IAM role. For valid values, see the RoleName parameter for the CreateRole action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Description": "A name for the IAM role. For valid values, see the RoleName parameter for the CreateRole action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as “arn:aws:iam::1234567890:role/MyRole-AJJHDSKSDF”.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }

@@ -1,112 +1,4 @@
 {
-  "App": {
-    "Name": "AWS::OpsWorks::App",
-    "Properties": {
-      "AppSource": {
-        "Description": "The information required to retrieve an app from a repository.",
-        "Array": false,
-        "Type": "AWSOpsWorksSourceType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Attributes": {
-        "Description": "One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.",
-        "Array": true,
-        "Type": "Map",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Description": {
-        "Description": "A description of the app.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "DataSources": {
-        "Description": "A list of databases to associate with the AWS OpsWorks app.",
-        "Array": true,
-        "Type": "DataSource",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Domains": {
-        "Description": "The app virtual host settings, with multiple domains separated by commas. For\n                  example, 'www.example.com, example.com'.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "EnableSsl": {
-        "Description": "Whether to enable SSL for this app.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Environment": {
-        "Description": "The environment variables to associate with the AWS OpsWorks app.",
-        "Array": true,
-        "Type": "AWSOpsWorksAppEnvironment",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "The name of the AWS OpsWorks app.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Shortname": {
-        "Description": "The app short name, which is used internally by AWS OpsWorks and by Chef\n                  recipes.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SslConfiguration": {
-        "Description": "The SSL configuration",
-        "Array": false,
-        "Type": "AWSOpsWorksSslConfigurationType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "StackId": {
-        "Description": "The ID of the AWS OpsWorks stack to associate this app with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Type": {
-        "Description": "The app type. Each supported type is associated with a particular layer. For\n                  more information, see CreateApp in the AWS OpsWorks Stacks API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "ElasticLoadBalancerAttachment": {
-    "Name": "AWS::OpsWorks::ElasticLoadBalancerAttachment",
-    "Properties": {
-      "ElasticLoadBalancerName": {
-        "Description": "Elastic Load Balancing load balancer name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "LayerId": {
-        "Description": "The AWS OpsWorks layer ID that the Elastic Load Balancing load balancer will be attached to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Instance": {
     "Name": "AWS::OpsWorks::Instance",
     "Properties": {
@@ -118,7 +10,7 @@
         "UpdateRequires": "No interruption"
       },
       "AmiId": {
-        "Description": "The ID of the custom Amazon Machine Image (AMI) to be used to create the\n                  instance. For more information about custom AMIs, see Using Custom AMIs in the\n                  AWS OpsWorks User Guide.\n                  NoteIf you specify this property, you must set the Os property\n                        to Custom.\n               ",
+        "Description": "The ID of the custom Amazon Machine Image (AMI) to be used to create the\n                  instance. For more information about custom AMIs, see Using Custom AMIs in the\n                  AWS OpsWorks User Guide.NoteIf you specify this property, you must set the Os property\n                        to Custom.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -223,7 +115,7 @@
         "UpdateRequires": "Replacement"
       },
       "SubnetId": {
-        "Description": "The ID of the instance's subnet. If the stack is running in a VPC, you can use\n                  this parameter to override the stack's default subnet ID value and direct AWS OpsWorks to\n                  launch the instance in a different subnet. ",
+        "Description": "The ID of the instance's subnet. If the stack is running in a VPC, you can use\n                  this parameter to override the stack's default subnet ID value and direct AWS OpsWorks to\n                  launch the instance in a different subnet.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -255,6 +147,95 @@
         "Array": true,
         "Type": "String",
         "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "App": {
+    "Name": "AWS::OpsWorks::App",
+    "Properties": {
+      "AppSource": {
+        "Description": "The information required to retrieve an app from a repository.",
+        "Array": false,
+        "Type": "AWSOpsWorksSourceType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Attributes": {
+        "Description": "One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.",
+        "Array": true,
+        "Type": "Map",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "A description of the app.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "DataSources": {
+        "Description": "A list of databases to associate with the AWS OpsWorks app.",
+        "Array": true,
+        "Type": "DataSource",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Domains": {
+        "Description": "The app virtual host settings, with multiple domains separated by commas. For\n                  example, 'www.example.com, example.com'.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "EnableSsl": {
+        "Description": "Whether to enable SSL for this app.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Environment": {
+        "Description": "The environment variables to associate with the AWS OpsWorks app.",
+        "Array": true,
+        "Type": "AWSOpsWorksAppEnvironment",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "The name of the AWS OpsWorks app.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Shortname": {
+        "Description": "The app short name, which is used internally by AWS OpsWorks and by Chef\n                  recipes.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SslConfiguration": {
+        "Description": "The SSL configuration",
+        "Array": false,
+        "Type": "AWSOpsWorksSslConfigurationType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "StackId": {
+        "Description": "The ID of the AWS OpsWorks stack to associate this app with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Type": {
+        "Description": "The app type. Each supported type is associated with a particular layer. For\n                  more information, see CreateApp in the AWS OpsWorks Stacks API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -353,7 +334,7 @@
         "UpdateRequires": "No interruption"
       },
       "Shortname": {
-        "Description": "The layer short name, which is used internally by AWS OpsWorks and by Chef recipes.\n                  The short name is also used as the name for the directory where your app files are\n                  installed. The name can have a maximum of 200 characters, which are limited to the\n                  alphanumeric characters, '-', '_', and '.'.ImportantIf you update a property that requires the layer to be replaced, you must specify a new short name. You cannot have multiple layers with the same short name.",
+        "Description": "The layer short name, which is used internally by AWS OpsWorks and by Chef recipes.\n                  The short name is also used as the name for the directory where your app files are\n                  installed.The name can have a maximum of 200 characters, which are limited to the\n                  alphanumeric characters, '-', '_', and '.'.ImportantIf you update a property that requires the layer to be replaced, you must specify a new short name. You cannot have multiple layers with the same short name.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -379,6 +360,25 @@
         "Type": "AWSOpsWorksVolumeConfigurationType",
         "Required": "No",
         "UpdateRequires": "Some interruptions"
+      }
+    }
+  },
+  "ElasticLoadBalancerAttachment": {
+    "Name": "AWS::OpsWorks::ElasticLoadBalancerAttachment",
+    "Properties": {
+      "ElasticLoadBalancerName": {
+        "Description": "Elastic Load Balancing load balancer name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "LayerId": {
+        "Description": "The AWS OpsWorks layer ID that the Elastic Load Balancing load balancer will be attached to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   },

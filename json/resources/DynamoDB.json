@@ -10,7 +10,7 @@
         "UpdateRequires": "Replacement"
       },
       "GlobalSecondaryIndexes": {
-        "Description": "Global secondary indexes to be created on the table. You can create up to 5 global\n            secondary indexes.\n            ImportantIf you update a table to include a new global secondary index, AWS CloudFormation initiates\n                the index creation and then proceeds with the stack update. AWS CloudFormation doesn't wait for\n                the index to complete creation because the backfilling phase can take a long time,\n                depending on the size of the table. You cannot use the index or update the table\n                until the index's status is ACTIVE. You can track its status by using\n                the DynamoDB DescribeTable command.If you add or delete an index during an update, we recommend that you don't\n                update any other resources. If your stack fails to update and is rolled back while\n                adding a new index, you must manually delete the index.\n          If you update only the provisioned throughput values of global secondary\n                  indexes, you can update the table without\n                    interruption.You can delete or add one global secondary index without interruption. If you do both in the\n                  same update (for example, by changing the index's logical ID), the update\n                  fails.",
+        "Description": "Global secondary indexes to be created on the table. You can create up to 5 global\n            secondary indexes.ImportantIf you update a table to include a new global secondary index, AWS CloudFormation initiates\n                the index creation and then proceeds with the stack update. AWS CloudFormation doesn't wait for\n                the index to complete creation because the backfilling phase can take a long time,\n                depending on the size of the table. You cannot use the index or update the table\n                until the index's status is ACTIVE. You can track its status by using\n                the DynamoDB DescribeTable command.If you add or delete an index during an update, we recommend that you don't\n                update any other resources. If your stack fails to update and is rolled back while\n                adding a new index, you must manually delete the index.If you update only the provisioned throughput values of global secondary\n                  indexes, you can update the table without\n                    interruption.You can delete or add one global secondary index without interruption. If you do both in the\n                  same update (for example, by changing the index's logical ID), the update\n                  fails.",
         "Array": true,
         "Type": "DynamoDBGlobalSecondaryIndexes",
         "Required": "No",
@@ -50,6 +50,11 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
+      },
+      "StreamArn": {
+        "Description": "The Amazon Resource Name (ARN) of the DynamoDB stream, such as\n                arn:aws:dynamodb:us-east-1:123456789012:table/testddbstack-myDynamoDBTable-012A1SL7SMP5Q/stream/2015-11-30T20:10:00.000.NoteYou must specify the StreamSpecification property to use this\n                attribute.",
+        "Array": false,
+        "Type": "String"
       }
     }
   }
