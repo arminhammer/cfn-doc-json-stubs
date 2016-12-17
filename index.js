@@ -152,6 +152,7 @@ function downloadPages() {
 }
 
 function sanitizeTypes (output, pageType) {
+  output.Type = output.Type.replace(/\./,'')
   if (output.Type.startsWith('Listof') || output.Type.startsWith('listof') || output.Type.startsWith('Alistof')) {
     output.Type = output.Type.replace(/^Listof/, '').replace(/^listof/, '').replace(/^Alistof/, '').replace(/\./g, '')
     output.Array = true

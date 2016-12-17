@@ -1,4 +1,72 @@
 {
+  "InstanceGroupConfig": {
+    "Name": "AWS::EMR::InstanceGroupConfig",
+    "Properties": {
+      "BidPrice": {
+        "Description": "The bid price in USD for each EC2 instance in the instance group when launching\n            instances (nodes) as Spot Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Configurations": {
+        "Description": "A list of configurations to apply to this instance group. For more information see,\n              Configuring Applications in the Amazon EMR Release\n              Guide.",
+        "Array": true,
+        "Type": "AmazonEMRClusterConfiguration",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EbsConfiguration": {
+        "Description": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to attach to your instances.",
+        "Array": false,
+        "Type": "AmazonEMREbsConfiguration",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceCount": {
+        "Description": "The number of instances to launch in the instance group.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "InstanceRole": {
+        "Description": "The role of the servers in the Amazon EMR cluster, such as TASK. For more\n            information, see Instance Groups in the Amazon EMR Management\n            Guide.NoteCurrently, the only valid value is TASK. You configure the master and\n              core instance groups as part of the AWS::EMR::Cluster resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceType": {
+        "Description": "The EC2 instance type for all instances in the instance group. For more information,\n            see Instance Configurations in the Amazon EMR Management\n              Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "JobFlowId": {
+        "Description": "The ID of an Amazon EMR cluster that you want to associate this instance group\n            with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Market": {
+        "Description": "The type of marketplace from which your instances are provisioned into this group,\n            either ON_DEMAND or SPOT. For more information, see Amazon EC2 Purchasing Options.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "A name for the instance group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Cluster": {
     "Name": "AWS::EMR::Cluster",
     "Properties": {
@@ -90,74 +158,6 @@
         "Description": "The public DNS name of the master node (instance), such as\n                ec2-12-123-123-123.us-west-2.compute.amazonaws.com.",
         "Array": false,
         "Type": "String"
-      }
-    }
-  },
-  "InstanceGroupConfig": {
-    "Name": "AWS::EMR::InstanceGroupConfig",
-    "Properties": {
-      "BidPrice": {
-        "Description": "The bid price in USD for each EC2 instance in the instance group when launching\n            instances (nodes) as Spot Instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Configurations": {
-        "Description": "A list of configurations to apply to this instance group. For more information see,\n              Configuring Applications in the Amazon EMR Release\n              Guide.",
-        "Array": true,
-        "Type": "AmazonEMRClusterConfiguration",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EbsConfiguration": {
-        "Description": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to attach to your instances.",
-        "Array": false,
-        "Type": "AmazonEMREbsConfiguration",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceCount": {
-        "Description": "The number of instances to launch in the instance group.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "InstanceRole": {
-        "Description": "The role of the servers in the Amazon EMR cluster, such as TASK. For more\n            information, see Instance Groups in the Amazon EMR Management\n            Guide.NoteCurrently, the only valid value is TASK. You configure the master and\n              core instance groups as part of the AWS::EMR::Cluster resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceType": {
-        "Description": "The EC2 instance type for all instances in the instance group. For more information,\n            see Instance Configurations in the Amazon EMR Management\n              Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "JobFlowId": {
-        "Description": "The ID of an Amazon EMR cluster that you want to associate this instance group\n            with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Market": {
-        "Description": "The type of marketplace from which your instances are provisioned into this group,\n            either ON_DEMAND or SPOT. For more information, see Amazon EC2 Purchasing Options.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Name": {
-        "Description": "A name for the instance group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
       }
     }
   },

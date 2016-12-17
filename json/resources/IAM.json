@@ -1,92 +1,4 @@
 {
-  "AccessKey": {
-    "Name": "AWS::IAM::AccessKey",
-    "Properties": {
-      "Serial": {
-        "Description": "This value is specific to AWS CloudFormation and can only be incremented. Incrementing this\n                  value notifies AWS CloudFormation that you want to rotate your access key. When you update your stack, AWS CloudFormation will\n                  replace the existing access key with a new key.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Status": {
-        "Description": "The status of the access key. By default, AWS CloudFormation sets this property value to\n                     Active.Valid values:\n                  Active or Inactive",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "UserName": {
-        "Description": "The name of the user that the new key will belong to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SecretAccessKey": {
-        "Description": "Returns the secret access key for the specified AWS::IAM::AccessKey resource. For\n                     example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
-  "UserToGroupAddition": {
-    "Name": "AWS::IAM::UserToGroupAddition",
-    "Properties": {
-      "GroupName": {
-        "Description": "The name of group to add users to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Users": {
-        "Description": "",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Group": {
-    "Name": "AWS::IAM::Group",
-    "Properties": {
-      "GroupName": {
-        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ManagedPolicyArns": {
-        "Description": "One or more managed policy ARNs to attach to this group.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Path": {
-        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Policies": {
-        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
-        "Array": true,
-        "Type": "IAMPolicies",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the AWS::IAM::Group resource. For\n                     example: arn:aws:iam::123456789012:group/mystack-mygroup-1DZETITOWEKVO.",
-        "Array": false,
-        "Type": "String"
-      }
-    }
-  },
   "User": {
     "Name": "AWS::IAM::User",
     "Properties": {
@@ -139,27 +51,131 @@
       }
     }
   },
-  "InstanceProfile": {
-    "Name": "AWS::IAM::InstanceProfile",
+  "Group": {
+    "Name": "AWS::IAM::Group",
     "Properties": {
+      "GroupName": {
+        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates. WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ManagedPolicyArns": {
+        "Description": "One or more managed policy ARNs to attach to this group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
       "Path": {
-        "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.",
+        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Policies": {
+        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
+        "Array": true,
+        "Type": "IAMPolicies",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the AWS::IAM::Group resource. For\n                     example: arn:aws:iam::123456789012:group/mystack-mygroup-1DZETITOWEKVO.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
+  "AccessKey": {
+    "Name": "AWS::IAM::AccessKey",
+    "Properties": {
+      "Serial": {
+        "Description": "This value is specific to AWS CloudFormation and can only be incremented. Incrementing this\n                  value notifies AWS CloudFormation that you want to rotate your access key. When you update your stack, AWS CloudFormation will\n                  replace the existing access key with a new key.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Status": {
+        "Description": "The status of the access key. By default, AWS CloudFormation sets this property value to\n                     Active.Valid values:\n                  Active or Inactive",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "UserName": {
+        "Description": "The name of the user that the new key will belong to.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "Roles": {
-        "Description": "The roles associated with this IAM instance profile.",
-        "Array": true,
+      "SecretAccessKey": {
+        "Description": "Returns the secret access key for the specified AWS::IAM::AccessKey resource. For\n                     example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
+  "UserToGroupAddition": {
+    "Name": "AWS::IAM::UserToGroupAddition",
+    "Properties": {
+      "GroupName": {
+        "Description": "The name of group to add users to.",
+        "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
-      "Arn": {
-        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
+      "Users": {
+        "Description": "",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Policy": {
+    "Name": "AWS::IAM::Policy",
+    "Properties": {
+      "Groups": {
+        "Description": "The names of groups to which you want to add the policy.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "UpdateRequires": "No interruption"
+      },
+      "PolicyDocument": {
+        "Description": "A policy document that contains permissions to add to the specified users or\n                  groups.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.",
         "Array": false,
-        "Type": "String"
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "PolicyName": {
+        "Description": "The name of the policy. If you specify multiple policies for an entity, specify\n                  unique names. For example, if you specify a list of policies for an IAM role,\n                  each policy must have a unique name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Roles": {
+        "Description": "The names of AWS::IAM::Roles to\n                  attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "UpdateRequires": "No interruption"
+      },
+      "Users": {
+        "Description": "The names of users for whom you want to add the policy.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -210,43 +226,27 @@
       }
     }
   },
-  "Policy": {
-    "Name": "AWS::IAM::Policy",
+  "InstanceProfile": {
+    "Name": "AWS::IAM::InstanceProfile",
     "Properties": {
-      "Groups": {
-        "Description": "The names of groups to which you want to add the policy.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
-        "UpdateRequires": "No interruption"
-      },
-      "PolicyDocument": {
-        "Description": "A policy document that contains permissions to add to the specified users or\n                  groups.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "PolicyName": {
-        "Description": "The name of the policy. If you specify multiple policies for an entity, specify\n                  unique names. For example, if you specify a list of policies for an IAM role,\n                  each policy must have a unique name.",
+      "Path": {
+        "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Replacement"
       },
       "Roles": {
-        "Description": "The names of AWS::IAM::Roles to\n                  attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.",
+        "Description": "The roles associated with this IAM instance profile.",
         "Array": true,
         "Type": "String",
-        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
-      "Users": {
-        "Description": "The names of users for whom you want to add the policy.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
-        "UpdateRequires": "No interruption"
+      "Arn": {
+        "Description": "Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
+        "Array": false,
+        "Type": "String"
       }
     }
   },

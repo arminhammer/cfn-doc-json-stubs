@@ -1,117 +1,4 @@
 {
-  "EventSourceMapping": {
-    "Name": "AWS::Lambda::EventSourceMapping",
-    "Properties": {
-      "BatchSize": {
-        "Description": "The largest number of records that Lambda retrieves from your event source when\n                  invoking your function. Your function receives an event with all the retrieved\n                  records. For the default and valid values, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Enabled": {
-        "Description": "Indicates whether Lambda begins polling the event source.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "EventSourceArn": {
-        "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that is the source\n                  of events. Any record added to this stream can invoke the Lambda function. For more\n                  information, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionName": {
-        "Description": "The name or ARN of a Lambda function to invoke when Lambda detects an event on\n                  the stream.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "StartingPosition": {
-        "Description": "The position in the stream where Lambda starts reading. For valid values, see\n                     CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Alias": {
-    "Name": "AWS::Lambda::Alias",
-    "Properties": {
-      "Description": {
-        "Description": "Information about the alias, such as its purpose or the Lambda function that is associated with it.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "FunctionName": {
-        "Description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionVersion": {
-        "Description": "The version of the Lambda function that you want to associate with this alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Permission": {
-    "Name": "AWS::Lambda::Permission",
-    "Properties": {
-      "Action": {
-        "Description": "The Lambda actions that you want to allow in this statement. For example, you can specify lambda:CreateFunction to specify a certain action, or use a wildcard (lambda:*) to grant permission to all Lambda actions. For a list of actions, see Actions and Condition Context Keys for AWS Lambda in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionName": {
-        "Description": "The name (physical ID), Amazon Resource Name (ARN), or alias ARN of the Lambda\n                  function that you want to associate with this statement. Lambda adds this statement\n                  to the function's access policy.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Principal": {
-        "Description": "The entity for which you are granting permission to invoke the Lambda function.\n                  This entity can be any valid AWS service principal, such as\n                     s3.amazonaws.com or sns.amazonaws.com, or, if you are\n                  granting cross-account permission, an AWS account ID. For example, you might want\n                  to allow a custom application in another AWS account to push events to Lambda by\n                  invoking your function.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SourceAccount": {
-        "Description": "The AWS account ID (without hyphens) of the source owner. For example, if you\n                  specify an S3 bucket in the SourceArn property, this value is the\n                  bucket owner's account ID. You can use this property to ensure that all source\n                  principals are owned by a specific account.ImportantThis property is not supported by all event sources. For more information, see the SourceAccount parameter for the AddPermission action in the AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SourceArn": {
-        "Description": "The ARN of a resource that is invoking your function. When granting Amazon Simple Storage Service\n                  (Amazon S3) permission to invoke your function, specify this property with the bucket\n                  ARN as its value. This ensures that events generated only from the specified\n                  bucket, not just any bucket from any AWS account that creates a mapping to your\n                  function, can invoke the function.ImportantThis property is not supported by all event sources. For more information, see the SourceArn parameter for the AddPermission action in the AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Function": {
     "Name": "AWS::Lambda::Function",
     "Properties": {
@@ -199,6 +86,79 @@
       }
     }
   },
+  "Alias": {
+    "Name": "AWS::Lambda::Alias",
+    "Properties": {
+      "Description": {
+        "Description": "Information about the alias, such as its purpose or the Lambda function that is associated with it.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "FunctionName": {
+        "Description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionVersion": {
+        "Description": "The version of the Lambda function that you want to associate with this alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "EventSourceMapping": {
+    "Name": "AWS::Lambda::EventSourceMapping",
+    "Properties": {
+      "BatchSize": {
+        "Description": "The largest number of records that Lambda retrieves from your event source when\n                  invoking your function. Your function receives an event with all the retrieved\n                  records. For the default and valid values, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Enabled": {
+        "Description": "Indicates whether Lambda begins polling the event source.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "EventSourceArn": {
+        "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that is the source\n                  of events. Any record added to this stream can invoke the Lambda function. For more\n                  information, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionName": {
+        "Description": "The name or ARN of a Lambda function to invoke when Lambda detects an event on\n                  the stream.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "StartingPosition": {
+        "Description": "The position in the stream where Lambda starts reading. For valid values, see\n                     CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Version": {
     "Name": "AWS::Lambda::Version",
     "Properties": {
@@ -227,6 +187,46 @@
         "Description": "The published version of a Lambda version, such as 1.",
         "Array": false,
         "Type": "String"
+      }
+    }
+  },
+  "Permission": {
+    "Name": "AWS::Lambda::Permission",
+    "Properties": {
+      "Action": {
+        "Description": "The Lambda actions that you want to allow in this statement. For example, you can specify lambda:CreateFunction to specify a certain action, or use a wildcard (lambda:*) to grant permission to all Lambda actions. For a list of actions, see Actions and Condition Context Keys for AWS Lambda in the IAM User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionName": {
+        "Description": "The name (physical ID), Amazon Resource Name (ARN), or alias ARN of the Lambda\n                  function that you want to associate with this statement. Lambda adds this statement\n                  to the function's access policy.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Principal": {
+        "Description": "The entity for which you are granting permission to invoke the Lambda function.\n                  This entity can be any valid AWS service principal, such as\n                     s3.amazonaws.com or sns.amazonaws.com, or, if you are\n                  granting cross-account permission, an AWS account ID. For example, you might want\n                  to allow a custom application in another AWS account to push events to Lambda by\n                  invoking your function.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "SourceAccount": {
+        "Description": "The AWS account ID (without hyphens) of the source owner. For example, if you\n                  specify an S3 bucket in the SourceArn property, this value is the\n                  bucket owner's account ID. You can use this property to ensure that all source\n                  principals are owned by a specific account.ImportantThis property is not supported by all event sources. For more information, see the SourceAccount parameter for the AddPermission action in the AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SourceArn": {
+        "Description": "The ARN of a resource that is invoking your function. When granting Amazon Simple Storage Service\n                  (Amazon S3) permission to invoke your function, specify this property with the bucket\n                  ARN as its value. This ensures that events generated only from the specified\n                  bucket, not just any bucket from any AWS account that creates a mapping to your\n                  function, can invoke the function.ImportantThis property is not supported by all event sources. For more information, see the SourceArn parameter for the AddPermission action in the AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   }

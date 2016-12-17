@@ -1,4 +1,30 @@
 {
+  "ApplicationVersion": {
+    "Name": "AWS::ElasticBeanstalk::ApplicationVersion",
+    "Properties": {
+      "ApplicationName": {
+        "Description": "Name of the Elastic Beanstalk application that is associated with this application\n                  version.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "A description of this application version.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Some interruptions"
+      },
+      "SourceBundle": {
+        "Description": "The location of the source bundle for this version.",
+        "Array": false,
+        "Type": "ElasticBeanstalkSourceBundlePropertyType",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "Environment": {
     "Name": "AWS::ElasticBeanstalk::Environment",
     "Properties": {
@@ -76,32 +102,6 @@
         "Description": "The URL to the load balancer for this environment.Example:awseb-myst-myen-132MQC4KRLAMD-1371280482.us-east-1.elb.amazonaws.com",
         "Array": false,
         "Type": "String"
-      }
-    }
-  },
-  "ApplicationVersion": {
-    "Name": "AWS::ElasticBeanstalk::ApplicationVersion",
-    "Properties": {
-      "ApplicationName": {
-        "Description": "Name of the Elastic Beanstalk application that is associated with this application\n                  version.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "A description of this application version.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Some interruptions"
-      },
-      "SourceBundle": {
-        "Description": "The location of the source bundle for this version.",
-        "Array": false,
-        "Type": "ElasticBeanstalkSourceBundlePropertyType",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
       }
     }
   },

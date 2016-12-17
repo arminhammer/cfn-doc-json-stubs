@@ -93,7 +93,7 @@
       "Weight": {
         "Description": "Weighted resource record sets only: Among resource record\n                  sets that have the same combination of DNS name and type, a value that determines\n                  what portion of traffic for the current resource record set is routed to the\n                  associated location.For more information about weighted resource record sets, see Setting Up Weighted Resource Record Sets in the Amazon Route 53\n                     Developer Guide.",
         "Array": false,
-        "Type": "Number.Weightexpectsintegervalues.",
+        "Type": "NumberWeightexpectsintegervalues.",
         "Required": "Conditional. Required if you are creating a weighted resource record\n                  set.",
         "UpdateRequires": "No interruption"
       }

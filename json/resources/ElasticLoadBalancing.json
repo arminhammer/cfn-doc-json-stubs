@@ -47,7 +47,7 @@
       "HealthCheck": {
         "Description": "Application health check for the instances.",
         "Array": false,
-        "Type": "ElasticLoadBalancingHealthCheckType.",
+        "Type": "ElasticLoadBalancingHealthCheckType",
         "Required": "No",
         "UpdateRequires": "Replacement if you did not have a health check specified and you are\n                  adding one or if you are removing a health check. Otherwise, update requires no interruption."
       },

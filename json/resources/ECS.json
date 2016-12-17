@@ -11,39 +11,6 @@
       }
     }
   },
-  "TaskDefinition": {
-    "Name": "AWS::ECS::TaskDefinition",
-    "Properties": {
-      "ContainerDefinitions": {
-        "Description": "A list of container definitions in JSON format that describe the containers\n            that make up your task.",
-        "Array": true,
-        "Type": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitions",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Family": {
-        "Description": "The name of a family that this task definition is registered to. A\n              family groups multiple versions of a task definition. Amazon ECS gives\n            the first task definition that you registered to a family a revision number of 1. Amazon ECS\n            gives sequential revision numbers to each task definition that you add.If you don't specify a value, AWS CloudFormation generates a family name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "TaskRoleArn": {
-        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that grants containers in the task permission to call AWS APIs on your behalf. For more information, see IAM Roles for Tasks in the Amazon EC2 Container Service Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Volumes": {
-        "Description": "A list of volume definitions in JSON format for volumes that you can use in\n            your container definitions.",
-        "Array": true,
-        "Type": "AmazonEC2ContainerServiceTaskDefinitionVolumes",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Service": {
     "Name": "AWS::ECS::Service",
     "Properties": {
@@ -93,6 +60,39 @@
         "Description": "The name of the Amazon ECS service, such as sample-webapp.",
         "Array": false,
         "Type": "String"
+      }
+    }
+  },
+  "TaskDefinition": {
+    "Name": "AWS::ECS::TaskDefinition",
+    "Properties": {
+      "ContainerDefinitions": {
+        "Description": "A list of container definitions in JSON format that describe the containers\n            that make up your task.",
+        "Array": true,
+        "Type": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitions",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Family": {
+        "Description": "The name of a family that this task definition is registered to. A\n              family groups multiple versions of a task definition. Amazon ECS gives\n            the first task definition that you registered to a family a revision number of 1. Amazon ECS\n            gives sequential revision numbers to each task definition that you add.If you don't specify a value, AWS CloudFormation generates a family name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "TaskRoleArn": {
+        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that grants containers in the task permission to call AWS APIs on your behalf. For more information, see IAM Roles for Tasks in the Amazon EC2 Container Service Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Volumes": {
+        "Description": "A list of volume definitions in JSON format for volumes that you can use in\n            your container definitions.",
+        "Array": true,
+        "Type": "AmazonEC2ContainerServiceTaskDefinitionVolumes",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       }
     }
   }

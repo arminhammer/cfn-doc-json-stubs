@@ -1,4 +1,23 @@
 {
+  "TopicPolicy": {
+    "Name": "AWS::SNS::TopicPolicy",
+    "Properties": {
+      "PolicyDocument": {
+        "Description": "A policy document that contains permissions to add to the specified SNS\n            topics.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Topics": {
+        "Description": "The Amazon Resource Names (ARN) of the topics to which you want to add the policy.\n            You can use the Ref function to\n            specify an AWS::SNS::Topic\n            resource.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "Topic": {
     "Name": "AWS::SNS::Topic",
     "Properties": {
@@ -20,25 +39,6 @@
         "Description": "Returns the name for an Amazon SNS topic.",
         "Array": false,
         "Type": "String"
-      }
-    }
-  },
-  "TopicPolicy": {
-    "Name": "AWS::SNS::TopicPolicy",
-    "Properties": {
-      "PolicyDocument": {
-        "Description": "A policy document that contains permissions to add to the specified SNS\n            topics.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Topics": {
-        "Description": "The Amazon Resource Names (ARN) of the topics to which you want to add the policy.\n            You can use the Ref function to\n            specify an AWS::SNS::Topic\n            resource.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   },

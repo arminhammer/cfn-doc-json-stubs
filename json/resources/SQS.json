@@ -1,4 +1,23 @@
 {
+  "QueuePolicy": {
+    "Name": "AWS::SQS::QueuePolicy",
+    "Properties": {
+      "PolicyDocument": {
+        "Description": "A policy document containing permissions to add to the specified SQS queues.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Queues": {
+        "Description": "The URLs of the queues to which you want to add the policy. You can use the Ref function to specify an AWS::SQS::Queue resource.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "Queue": {
     "Name": "AWS::SQS::Queue",
     "Properties": {
@@ -53,25 +72,6 @@
         "Description": "Returns the Amazon Resource Name (ARN) of the queue. For example:\n                     arn:aws:sqs:us-east-1:123456789012:mystack-myqueue-15PG5C2FC1CW8",
         "Array": false,
         "Type": "String"
-      }
-    }
-  },
-  "QueuePolicy": {
-    "Name": "AWS::SQS::QueuePolicy",
-    "Properties": {
-      "PolicyDocument": {
-        "Description": "A policy document containing permissions to add to the specified SQS queues.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Queues": {
-        "Description": "The URLs of the queues to which you want to add the policy. You can use the Ref function to specify an AWS::SQS::Queue resource.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   }
