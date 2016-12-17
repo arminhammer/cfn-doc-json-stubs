@@ -1,58 +1,66 @@
 {
-  "Document": {
-    "Name": "AWS::SSM::Document",
-    "Properties": {
-      "Content": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Replacement"
-      },
-      "DocumentType": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Association": {
     "Name": "AWS::SSM::Association",
     "Properties": {
       "DocumentVersion": {
-        "Description": "",
+        "Description": "The version of the SSM document to associate with the target.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "InstanceId": {
-        "Description": "",
+        "Description": "The ID of the instance that the SSM document is associated with.",
         "Array": false,
         "Type": "String",
+        "Required": "Conditional. You must specify the InstanceId or\n              Targets property.",
         "UpdateRequires": "Replacement"
       },
       "Name": {
-        "Description": "",
+        "Description": "The name of the SSM document.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Parameters": {
-        "Description": "",
+        "Description": "Parameter values that the SSM document uses at runtime.",
         "Array": false,
-        "Type": "String",
+        "Type": "Stringtolist-of-stringsmap",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "ScheduleExpression": {
-        "Description": "",
+        "Description": "A Cron expression that specifies when the association is applied to the target. For\n            supported expressions, see the ScheduleExpression parameter for the CreateAssociation action in the\n              Amazon EC2 Simple Systems Manager API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Targets": {
-        "Description": "",
+        "Description": "The targets that the SSM document sends commands to.",
+        "Array": true,
+        "Type": "AmazonEC2SimpleSystemsManagerAssociationTargets",
+        "Required": "Conditional. You must specify the InstanceId or\n              Targets property.",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Document": {
+    "Name": "AWS::SSM::Document",
+    "Properties": {
+      "Content": {
+        "Description": "A JSON object that describes an instance configuration. For more information,\n                  see SSM Documents in the\n                     Amazon EC2 Simple Systems Manager API Reference.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "DocumentType": {
+        "Description": "The type of document to create that relates to the purpose of your document, such as\n            running commands, bootstrapping software, or automating tasks. For valid values, see the\n              CreateDocument action in the\n              Amazon EC2 Simple Systems Manager API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       }
     }

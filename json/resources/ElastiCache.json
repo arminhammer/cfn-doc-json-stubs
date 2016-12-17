@@ -1,176 +1,151 @@
 {
-  "ParameterGroup": {
-    "Name": "AWS::ElastiCache::ParameterGroup",
-    "Properties": {
-      "CacheParameterGroupFamily": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Description": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Properties": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SecurityGroupIngress": {
-    "Name": "AWS::ElastiCache::SecurityGroupIngress",
-    "Properties": {
-      "CacheSecurityGroupName": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupName": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "CacheCluster": {
     "Name": "AWS::ElastiCache::CacheCluster",
     "Properties": {
       "AutoMinorVersionUpgrade": {
-        "Description": "",
+        "Description": "Indicates that minor engine upgrades will be applied automatically to the cache\n                  cluster during the maintenance window.Default: true",
         "Array": false,
-        "Type": "String",
+        "Type": "Boolean",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "AZMode": {
-        "Description": "",
+        "Description": "For Memcached cache clusters, indicates whether the nodes are created in a\n                  single Availability Zone or across multiple Availability Zones in the cluster's\n                  region. For valid values, see CreateCacheCluster in\n                  the Amazon ElastiCache API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "Conditional. If you specify multiple Availability Zones in the\n                     PreferredAvailabilityZones property, you must specify cross\n                  Availability Zones for this property.",
         "UpdateRequires": "No interruption"
       },
       "CacheNodeType": {
-        "Description": "",
+        "Description": "The compute and memory capacity of nodes in a cache cluster.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Some interruptions"
       },
       "CacheParameterGroupName": {
-        "Description": "",
+        "Description": "The name of the cache parameter group that is associated with this cache\n                  cluster.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Some interruptions"
       },
       "CacheSecurityGroupNames": {
-        "Description": "",
-        "Array": false,
+        "Description": "A list of cache security group names that are associated with this cache\n                  cluster. If your cache cluster is in a VPC, specify the\n                     VpcSecurityGroupIds property instead.",
+        "Array": true,
         "Type": "String",
+        "Required": "Conditional: If your cache cluster isn't in a VPC, you must specify\n                  this property.",
         "UpdateRequires": "No interruption"
       },
       "CacheSubnetGroupName": {
-        "Description": "",
+        "Description": "The cache subnet group that you associate with a cache cluster.",
         "Array": false,
         "Type": "String",
+        "Required": "Conditional. If you specified the VpcSecurityGroupIds property, you must specify this property.",
         "UpdateRequires": "Replacement"
       },
       "ClusterName": {
-        "Description": "",
+        "Description": "A name for the cache cluster. If you don't specify a name, AWS CloudFormation generates a\n                  unique physical ID and uses that ID for the cache cluster. For more information,\n                  see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The name must contain 1 to 20 alphanumeric characters or hyphens. The name must\n                  start with a letter and cannot end with a hyphen or contain two consecutive\n                  hyphens.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Engine": {
-        "Description": "",
+        "Description": "The name of the cache engine to be used for this cache cluster, such as\n                     memcached or redis.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "EngineVersion": {
-        "Description": "",
+        "Description": "The version of the cache engine to be used for this cluster.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Some interruptions"
       },
       "NotificationTopicArn": {
-        "Description": "",
+        "Description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS)\n                  topic to which notifications will be sent.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "NumCacheNodes": {
-        "Description": "",
+        "Description": "The number of cache nodes that the cache cluster should have.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "Yes",
         "UpdateRequires": "No interruption. However, if the PreferredAvailabilityZone\n                  and PreferredAvailabilityZones properties were not previously\n                  specified and you don't specify any new values, an update requires replacement."
       },
       "Port": {
-        "Description": "",
+        "Description": "The port number on which each of the cache nodes will accept\n                  connections.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "PreferredAvailabilityZone": {
-        "Description": "",
+        "Description": "The Amazon EC2 Availability Zone in which the cache cluster is created.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "PreferredAvailabilityZones": {
-        "Description": "All other updates require replacement.",
-        "Array": false,
-        "Type": "String"
+        "Description": "For Memcached cache clusters, the list of Availability Zones in which cache\n                  nodes are created. The number of Availability Zones listed must equal the number\n                  of cache nodes. For example, if you want to create three nodes in two different\n                  Availability Zones, you can specify [\"us-east-1a\", \"us-east-1a\",\n                     \"us-east-1b\"], which would create two nodes in us-east-1a and one node\n                  in us-east-1b.If you specify a subnet group and you're creating your cache cluster in a VPC,\n                  you must specify Availability Zones that are associated with the subnets in the\n                  subnet group that you've chosen.If you want all the nodes in the same Availability Zone, use the\n                     PreferredAvailabilityZone property or repeat the Availability Zone\n                  multiple times in the list.If you specify an Availability Zone that was previously specified in the\n                  template, such as in the PreferredAvailabilityZone property, the\n                  update requires some interruptions.\n                  Also, if the PreferredAvailabilityZones property was already\n                  specified and you're updating its values (regardless of whether you specify the\n                  same Availability Zones), the update requires some interruptions.All other updates require replacement.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No"
       },
       "PreferredMaintenanceWindow": {
-        "Description": "",
+        "Description": "The weekly time range (in UTC) during which system maintenance can\n                  occur.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "SnapshotArns": {
-        "Description": "",
-        "Array": false,
+        "Description": "The ARN of the snapshot file that you want to use to seed a new Redis cache\n                  cluster. If you manage a Redis instance outside of Amazon ElastiCache, you can create a new\n                  cache cluster in ElastiCache by using a snapshot file that is stored in an Amazon S3\n                  bucket.",
+        "Array": true,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SnapshotName": {
-        "Description": "",
+        "Description": "The name of a snapshot from which to restore data into a new Redis cache\n                  cluster.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SnapshotRetentionLimit": {
-        "Description": "",
+        "Description": "For Redis cache clusters, the number of days for which ElastiCache retains automatic\n                  snapshots before deleting them. For example, if you set the value to\n                     5, a snapshot that was taken today will be retained for 5 days\n                  before being deleted.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "SnapshotWindow": {
-        "Description": "",
+        "Description": "For Redis cache clusters, the daily time range (in UTC) during which ElastiCache will\n                  begin taking a daily snapshot of your node group. For example, you can specify\n                     05:00-09:00.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Tags": {
-        "Description": "",
+        "Description": "An arbitrary set of tags (key–value pairs) for this cache\n                  cluster.",
         "Array": false,
-        "Type": "String",
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
         "UpdateRequires": "No interruption."
       },
       "VpcSecurityGroupIds": {
-        "Description": "",
-        "Array": false,
+        "Description": "A list of VPC security group IDs. If your cache cluster isn't in a VPC, specify\n                  the CacheSecurityGroupNames property instead.\n                  NoteYou must use the AWS::EC2::SecurityGroup resource instead of\n                        the AWS::ElastiCache::SecurityGroup resource in order to\n                        specify an ElastiCache security group that is in a VPC. In addition, if you use\n                        the default VPC for your\n                        AWS account, you must use the Fn::GetAtt function and the\n                           GroupId attribute to retrieve security group IDs (instead of\n                        the Ref function). To see a sample template, see the Template\n                        Snippet section.\n               ",
+        "Array": true,
         "Type": "String",
+        "Required": "Conditional: If your cache cluster is in a VPC, you must specify\n                  this property.",
         "UpdateRequires": "No interruption"
       },
       "ConfigurationEndpoint.Address": {
@@ -195,13 +170,66 @@
       }
     }
   },
+  "ParameterGroup": {
+    "Name": "AWS::ElastiCache::ParameterGroup",
+    "Properties": {
+      "CacheParameterGroupFamily": {
+        "Description": "The name of the cache parameter group family that the cache parameter group can be used\n               with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Description": {
+        "Description": "The description for the Cache Parameter Group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Properties": {
+        "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference\n                     Guide.Example:",
+        "Array": false,
+        "Type": "Map",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
   "SecurityGroup": {
     "Name": "AWS::ElastiCache::SecurityGroup",
     "Properties": {
       "Description": {
-        "Description": "",
+        "Description": "A description for the cache security group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SecurityGroupIngress": {
+    "Name": "AWS::ElastiCache::SecurityGroupIngress",
+    "Properties": {
+      "CacheSecurityGroupName": {
+        "Description": "The name of the Cache Security Group to authorize.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupName": {
+        "Description": "Name of the EC2 Security Group to include in the authorization.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Updates are not supported."
       }
     }
@@ -210,21 +238,24 @@
     "Name": "AWS::ElastiCache::SubnetGroup",
     "Properties": {
       "CacheSubnetGroupName": {
-        "Description": "",
+        "Description": "A name for the cache subnet group. If you don't specify a name, AWS CloudFormation generates\n                  a unique physical ID. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Description": {
-        "Description": "",
+        "Description": "The description for the cache subnet group.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "SubnetIds": {
-        "Description": "",
+        "Description": "The Amazon EC2 subnet IDs for the cache subnet group.",
         "Array": false,
-        "Type": "String",
+        "Type": "Stringlist",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -233,159 +264,185 @@
     "Name": "AWS::ElastiCache::ReplicationGroup",
     "Properties": {
       "AutomaticFailoverEnabled": {
-        "Description": "",
+        "Description": "Indicates whether Multi-AZ is enabled. When Multi-AZ is enabled, a read-only\n                  replica is automatically promoted to a read-write primary cluster if the existing\n                  primary cluster fails. If you specify true, you must specify a value\n                  greater than 1 for the NumCacheClusters property. By\n                  default, AWS CloudFormation sets the value to true.For Redis (clustered mode enabled) replication groups, you must enable automatic failover.For information about Multi-AZ constraints, see Replication with Multi-AZ and Automatic\n                     Failover (Redis) in the Amazon ElastiCache User Guide.NoteYou cannot enable automatic failover for Redis versions earlier than 2.8.6\n                     or for T1 and T2 cache node types.",
         "Array": false,
-        "Type": "String",
+        "Type": "Boolean",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "AutoMinorVersionUpgrade": {
-        "Description": "",
+        "Description": "Currently, this property isn't used by ElastiCache.",
         "Array": false,
-        "Type": "String",
+        "Type": "Boolean",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "CacheNodeType": {
-        "Description": "",
+        "Description": "The compute and memory capacity of nodes in the node group. To see valid\n                  values, see CreateReplicationGroup in the Amazon ElastiCache API\n                     Reference Guide.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "CacheParameterGroupName": {
-        "Description": "",
+        "Description": "The name of the parameter group to associate with this replication group. For\n                  valid and default values, see CreateReplicationGroup in the Amazon ElastiCache API\n                     Reference Guide.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Some interruptions"
       },
       "CacheSecurityGroupNames": {
-        "Description": "",
-        "Array": false,
+        "Description": "A list of cache security group names to associate with this replication\n                  group.ImportantIf you specify the CacheSecurityGroupNames property, don't also\n                     specify the SecurityGroupIds property.The SecurityGroupIds property is only for Amazon Virtual Private Cloud (Amazon VPC)\n                     security groups. If you specify an Amazon VPC security group, the deployment will\n                     fail.",
+        "Array": true,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "CacheSubnetGroupName": {
-        "Description": "",
+        "Description": "The name of a cache subnet group to use for this replication group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement "
       },
       "Engine": {
-        "Description": "",
+        "Description": "The name of the cache engine to use for the cache clusters in this replication\n                  group. Currently, you can specify only redis.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "EngineVersion": {
-        "Description": "",
+        "Description": "The version number of the cache engine to use for the cache clusters in this\n                  replication group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "NodeGroupConfiguration": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "Configuration options for the node group (shard).",
+        "Array": true,
+        "Type": "AmazonElastiCacheReplicationGroupNodeGroupConfiguration",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "NotificationTopicArn": {
-        "Description": "",
+        "Description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic to which notifications are\n                  sent.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "NumCacheClusters": {
-        "Description": "",
+        "Description": "The number of cache clusters for this replication group. If automatic failover\n                  is enabled, you must specify a value greater than 1. For valid\n                  values, see CreateReplicationGroup in the Amazon ElastiCache API\n                     Reference Guide.If you specify more than one node group (shard), this property is ignored. Use\n                  the ReplicasPerNodeGroup property instead.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "NumNodeGroups": {
-        "Description": "",
+        "Description": "The number of node groups (shards) for this Redis (clustered mode enabled) replication group.\n                  For Redis (clustered mode disabled), omit this property.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Port": {
-        "Description": "",
+        "Description": "The port number on which each member of the replication group accepts\n                  connections.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "PreferredCacheClusterAZs": {
-        "Description": "",
-        "Array": false,
+        "Description": "A list of Availability Zones (AZs) in which the cache clusters in this\n                  replication group are created.",
+        "Array": true,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "PreferredMaintenanceWindow": {
-        "Description": "",
+        "Description": "The weekly time range during which system maintenance can occur. Use the\n                  following format to specify a time range: ddd:hh24:mi-ddd:hh24:mi\n                  (24H Clock UTC). For example, you can specify sun:22:00-sun:23:30 for\n                  Sunday from 10 PM to 11:30 PM.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "PrimaryClusterId": {
-        "Description": "",
+        "Description": "The cache cluster that ElastiCache uses as the primary cluster for the replication\n                  group. The cache cluster must have a status of available.",
         "Array": false,
         "Type": "String",
+        "Required": "Conditional. This property is optional if you specify the\n                     NumCacheClusters, NumNodeGroups, or the\n                     ReplicasPerNodeGroup property.",
         "UpdateRequires": "No interruption"
       },
       "ReplicasPerNodeGroup": {
-        "Description": "",
+        "Description": "The number of replica nodes in each node group (shard). For valid values, see\n                     CreateReplicationGroup in the Amazon ElastiCache API\n                     Reference Guide.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "ReplicationGroupDescription": {
-        "Description": "",
+        "Description": "The description of the replication group.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "ReplicationGroupId": {
-        "Description": "",
+        "Description": "An ID for the replication group. If you don't specify an ID, AWS CloudFormation generates a\n                  unique physical ID. For more information, see Name Type.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SecurityGroupIds": {
-        "Description": "",
-        "Array": false,
+        "Description": "A list of Amazon Virtual Private Cloud (Amazon VPC) security groups to associate with this replication\n                  group.ImportantIf you specify the SecurityGroupIds property, don't also\n                     specify the CacheSecurityGroupNames property.The CacheSecurityGroupNames property is only for EC2-Classic\n                     security groups. If you specify an EC2-Classic security group, the deployment\n                     will fail.",
+        "Array": true,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "SnapshotArns": {
-        "Description": "",
-        "Array": false,
+        "Description": "A single-element string list that specifies an ARN of a Redis\n                     .rdb snapshot file that is stored in Amazon Simple Storage Service (Amazon S3). The\n                  snapshot file populates the node group. The Amazon S3 object name in the ARN cannot\n                  contain commas. For example, you can specify\n                     arn:aws:s3:::my_bucket/snapshot1.rdb.",
+        "Array": true,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SnapshotName": {
-        "Description": "",
+        "Description": "The name of a snapshot from which to restore data into the replication\n                  group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SnapshotRetentionLimit": {
-        "Description": "",
+        "Description": "The number of days that ElastiCache retains automatic snapshots before deleting\n                  them.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "SnapshottingClusterId": {
-        "Description": "",
+        "Description": "The ID of the cache cluster that ElastiCache uses as the daily snapshot source for\n                  the replication group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "SnapshotWindow": {
-        "Description": "",
+        "Description": "The time range (in UTC) when ElastiCache takes a daily snapshot of your node group\n                  that you specified in the SnapshottingClusterId property. For\n                  example, you can specify 05:00-09:00.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Tags": {
-        "Description": "",
+        "Description": "An arbitrary set of tags (key–value pairs) for this replication\n                  group.",
         "Array": false,
-        "Type": "String",
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
         "UpdateRequires": "No interruption."
       },
       "PrimaryEndPoint.Address": {

@@ -1,35 +1,71 @@
 {
+  "WaitCondition": {
+    "Name": "AWS::CloudFormation::WaitCondition",
+    "Properties": {
+      "Count": {
+        "Description": "The number of success signals that AWS CloudFormation must receive before it continues\n                        the stack creation process. When the wait condition receives the requisite\n                        number of success signals, AWS CloudFormation resumes the creation of the stack. If the\n                        wait condition does not receive the specified number of success signals\n                        before the Timeout period expires, AWS CloudFormation assumes that the wait condition has\n                        failed and rolls the stack back.",
+        "Array": false,
+        "Type": "Integer",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Handle": {
+        "Description": "A reference to the wait condition handle used to signal this wait\n                        condition. Use the Ref intrinsic function to specify an\n                            AWS::CloudFormation::WaitConditionHandle resource.Anytime you add a WaitCondition resource during a stack update, you must\n                        associate the wait condition with a new WaitConditionHandle resource. Do not\n                        reuse an old wait condition handle that has already been defined in the\n                        template. If you reuse a wait condition handle, the wait condition might\n                        evaluate old signals from a previous create or update stack command.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Timeout": {
+        "Description": "The length of time (in seconds) to wait for the number of signals that the\n                            Count property specifies. Timeout is a\n                        minimum-bound property, meaning the timeout occurs no sooner than the time\n                        you specify, but can occur shortly thereafter. The maximum time that can be\n                        specified for this property is 12 hours (43200 seconds).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Data": {
+        "Description": "Returns: A JSON object that contains the\n                                UniqueId and Data\n                            values from the wait condition signal(s) for the specified wait\n                            condition. For more information about wait condition signals, see Wait Condition Signal JSON\n                    Format.Example return value for a wait condition with 2 signals:",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
   "Stack": {
     "Name": "AWS::CloudFormation::Stack",
     "Properties": {
       "NotificationARNs": {
-        "Description": "",
-        "Array": false,
+        "Description": "A list of existing Amazon SNS topics where notifications about stack events are\n                  sent.",
+        "Array": true,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Parameters": {
-        "Description": "",
+        "Description": "The set of parameters passed to AWS CloudFormation when this nested stack is created.NoteIf you use the ref function to pass a parameter value to a\n                     nested stack, comma-delimited list parameters must be of type\n                        String. In other words, you cannot pass values that are of type\n                        CommaDelimitedList to nested stacks.",
         "Array": false,
-        "Type": "String",
+        "Type": "CloudFormationStackParametersPropertyType",
+        "Required": "Conditional (required if the nested stack\n                  requires input parameters).",
         "UpdateRequires": "Whether an update causes interruptions\n                  depends on the resources that are being update. An update never causes a nested\n                  stack to be replaced."
       },
       "Tags": {
-        "Description": "",
+        "Description": "An arbitrary set of tags (key–value pairs) to describe this\n                  stack.",
         "Array": false,
-        "Type": "String",
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
         "UpdateRequires": "No interruption."
       },
       "TemplateURL": {
-        "Description": "",
+        "Description": "The URL of a template that specifies the stack that you want to create as a\n                  resource. The template must be stored on an Amazon S3 bucket, so the URL must have the\n                  form:\n                     https://s3.amazonaws.com/.../TemplateName.template",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Whether an update causes interruptions\n                  depends on the resources that are being update. An update never causes a nested\n                  stack to be replaced."
       },
       "TimeoutInMinutes": {
-        "Description": "",
+        "Description": "The length of time, in minutes, that AWS CloudFormation waits for the nested stack to reach\n                  the CREATE_COMPLETE state. The default is no timeout. When AWS CloudFormation detects that the\n                  nested stack has reached the CREATE_COMPLETE state, it marks the nested stack\n                  resource as CREATE_COMPLETE in the parent stack and resumes creating the parent\n                  stack. If the timeout period expires before the nested stack reaches\n                  CREATE_COMPLETE, AWS CloudFormation marks the nested stack as failed and rolls back both the\n                  nested stack and parent stack.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "Updates are not supported."
       },
       "Outputs.NestedStackOutputName": {
@@ -39,93 +75,60 @@
       }
     }
   },
-  "WaitCondition": {
-    "Name": "AWS::CloudFormation::WaitCondition",
-    "Properties": {
-      "Count": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Handle": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Timeout": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Data": {
-        "Description": "Example return value for a wait condition with 2 signals:",
-        "Array": false,
-        "Type": "String"
-      }
-    }
+  "WaitConditionHandle": {
+    "Name": "AWS::CloudFormation::WaitConditionHandle",
+    "Properties": {}
   },
   "Authentication": {
     "Name": "AWS::CloudFormation::Authentication",
     "Properties": {
       "accessKeyId": {
-        "Description": "",
+        "Description": "Specifies the access key ID for S3 authentication.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Conditional Can be specified only if the type\n                  property is set to \"S3\"."
       },
       "buckets": {
-        "Description": "",
+        "Description": "A comma-delimited list of Amazon S3 buckets to be associated with the S3\n                  authentication credentials.",
         "Array": true,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Conditional Can be specified only if the type\n                  property is set to \"S3\"."
       },
       "password": {
-        "Description": "",
+        "Description": "Specifies the password for basic authentication.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Conditional Can be specified only if the type property is set to\n                     \"basic\"."
       },
       "secretKey": {
-        "Description": "",
+        "Description": "Specifies the secret key for S3 authentication.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Conditional Can be specified only if the type\n                  property is set to \"S3\"."
       },
       "type": {
-        "Description": "",
+        "Description": "Specifies whether the authentication scheme uses a user name and password\n                  (\"basic\") or an access key ID and secret key (\"S3\").If you specify \"basic\", specify the username, password, and uris properties.If you specify \"S3\", specify the accessKeyId, secretKey, and buckets (optional) properties.",
         "Array": false,
-        "Type": "StringValidvaluesare\"basic\"or\"S3\""
+        "Type": "StringValidvaluesare\"basic\"or\"S3\"",
+        "Required": "Yes"
       },
       "uris": {
-        "Description": "",
+        "Description": "A comma-delimited list of URIs to be associated with the basic authentication\n                  credentials. The authorization applies to the specified URIs and any more specific\n                  URI. For example, if you specify http://www.example.com, the\n                  authorization will also apply to http://www.example.com/test.",
         "Array": true,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Conditional Can be specified only if the type\n                  property is set to \"basic\"."
       },
       "username": {
-        "Description": "",
+        "Description": "Specifies the user name for basic authentication.",
         "Array": false,
-        "Type": "String"
+        "Type": "String",
+        "Required": "Conditional Can be specified only if the type property is set to\n                     \"basic\"."
       },
       "roleName": {
-        "Description": "",
+        "Description": "Describes the role for role-based authentication.\n                  ImportantThe EC2 instance must be able to access this role using an instance\n                        profile.",
         "Array": false,
-        "Type": "String."
-      }
-    }
-  },
-  "Interface": {
-    "Name": "AWS::CloudFormation::Interface",
-    "Properties": {
-      "ParameterGroups": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
-      "ParameterLabels": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
+        "Type": "String.",
+        "Required": "Conditional Can be specified only if the type\n                  property is set to \"S3\"."
       }
     }
   },
@@ -133,19 +136,35 @@
     "Name": "AWS::CloudFormation::CustomResource",
     "Properties": {
       "ServiceToken": {
-        "Description": "",
+        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "Interface": {
+    "Name": "AWS::CloudFormation::Interface",
+    "Properties": {
+      "ParameterGroups": {
+        "Description": "A list of parameter group types, where you specify group names, the parameters\n            in each group, and the order in which the parameters are shown.",
+        "Array": false,
+        "Type": "AWSCloudFormationInterfaceParameterGroup",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "ParameterLabels": {
+        "Description": "A mapping of parameters and their friendly names that the AWS CloudFormation console shows\n            when a stack is created or updated.",
+        "Array": false,
+        "Type": "AWSCloudFormationInterfaceParameterLabel",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },
   "Init": {
     "Name": "AWS::CloudFormation::Init",
-    "Properties": {}
-  },
-  "WaitConditionHandle": {
-    "Name": "AWS::CloudFormation::WaitConditionHandle",
     "Properties": {}
   }
 }

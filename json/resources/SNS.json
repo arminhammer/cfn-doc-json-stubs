@@ -3,15 +3,17 @@
     "Name": "AWS::SNS::TopicPolicy",
     "Properties": {
       "PolicyDocument": {
-        "Description": "",
+        "Description": "A policy document that contains permissions to add to the specified SNS\n            topics.",
         "Array": false,
-        "Type": "String",
+        "Type": "Object",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "Topics": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "The Amazon Resource Names (ARN) of the topics to which you want to add the policy.\n            You can use the Ref function to\n            specify an AWS::SNS::Topic\n            resource.",
+        "Array": true,
+        "Type": "AmazonSNStopicsARNs",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -20,15 +22,17 @@
     "Name": "AWS::SNS::Topic",
     "Properties": {
       "DisplayName": {
-        "Description": "",
+        "Description": "A developer-defined string that can be used to identify this SNS topic.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Subscription": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "The SNS subscriptions (endpoints) for this topic.",
+        "Array": true,
+        "Type": "SNSSubscriptions",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "TopicName": {
@@ -42,21 +46,24 @@
     "Name": "AWS::SNS::Subscription",
     "Properties": {
       "Endpoint": {
-        "Description": "",
+        "Description": "The endpoint that receives notifications from the Amazon SNS topic. The endpoint\n                  value depends on the protocol that you specify. For more information, see the\n                     Subscribe Endpoint\n                  parameter in the Amazon Simple Notification Service API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Protocol": {
-        "Description": "",
+        "Description": "The subscription's protocol. For more information, see the Subscribe Protocol parameter in\n                  the Amazon Simple Notification Service API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "TopicArn": {
-        "Description": "",
+        "Description": "The Amazon Resource Name (ARN) of the topic to subscribe to.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       }
     }

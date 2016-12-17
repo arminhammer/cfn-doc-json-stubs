@@ -3,9 +3,10 @@
     "Name": "AWS::CloudFront::Distribution",
     "Properties": {
       "DistributionConfig": {
-        "Description": "",
+        "Description": "The distribution's configuration information.",
         "Array": false,
-        "Type": "String",
+        "Type": "DistributionConfigtype",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "DomainName": {

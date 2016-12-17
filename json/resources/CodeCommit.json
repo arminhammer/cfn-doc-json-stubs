@@ -3,21 +3,24 @@
     "Name": "AWS::CodeCommit::Repository",
     "Properties": {
       "RepositoryDescription": {
-        "Description": "",
+        "Description": "A description about the AWS CodeCommit repository. For constraints, see the CreateRepository action in\n                  the AWS CodeCommit API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "RepositoryName": {
-        "Description": "",
+        "Description": "A name for the AWS CodeCommit repository.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "Triggers": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "Defines the actions to take in response to events that occur in the repository.\n                  For example, you can send email notifications when someone pushes to the\n                  repository.",
+        "Array": true,
+        "Type": "AWSCodeCommitRepositoryTrigger",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "CloneUrlHttp": {

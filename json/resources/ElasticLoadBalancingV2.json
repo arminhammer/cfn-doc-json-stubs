@@ -1,64 +1,26 @@
 {
-  "Listener": {
-    "Name": "AWS::ElasticLoadBalancingV2::Listener",
-    "Properties": {
-      "Certificates": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
-      "DefaultActions": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
-      "LoadBalancerArn": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "Replacement"
-      },
-      "Port": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
-      "Protocol": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      },
-      "SslPolicy": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "LoadBalancer": {
     "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
     "Properties": {
       "LoadBalancerAttributes": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "Specifies the load balancer configuration.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Name": {
-        "Description": "",
+        "Description": "Specifies a name for the load balancer. This name must be unique within your AWS\n            account and can have a maximum of 32 alphanumeric characters and hyphens. A name can't\n            begin or end with a hyphen.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Scheme": {
-        "Description": "",
+        "Description": "Specifies whether the load balancer is internal or Internet-facing. An internal load\n            balancer routes requests to targets using private IP addresses. An Internet-facing load\n            balancer routes requests from clients over the Internet to targets in your public\n            subnets. For valid and default values, see the Scheme parameter for the\n                CreateLoadBalancer action in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "SecurityGroups": {
@@ -67,15 +29,17 @@
         "Type": "String"
       },
       "Subnets": {
-        "Description": "",
-        "Array": false,
+        "Description": "Specifies a list of at least two IDs of the subnets to associate with the load\n            balancer. The subnets must be in different Availability Zones.",
+        "Array": true,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "Tags": {
-        "Description": "",
+        "Description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this\n            load balancer. Use tags to manage your resources.",
         "Array": false,
-        "Type": "String",
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "DNSName": {
@@ -100,31 +64,49 @@
       }
     }
   },
-  "ListenerRule": {
-    "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
+  "Listener": {
+    "Name": "AWS::ElasticLoadBalancingV2::Listener",
     "Properties": {
-      "Actions": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+      "Certificates": {
+        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerCertificates",
+        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
         "UpdateRequires": "No interruption"
       },
-      "Conditions": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+      "DefaultActions": {
+        "Description": "The default actions that the listener takes when handling incoming requests.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerDefaultActions",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
-      "ListenerArn": {
-        "Description": "",
+      "LoadBalancerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "Priority": {
-        "Description": "",
+      "Port": {
+        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "Integer",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Protocol": {
+        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SslPolicy": {
+        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       }
     }
@@ -133,105 +115,154 @@
     "Name": "AWS::ElasticLoadBalancingV2::TargetGroup",
     "Properties": {
       "HealthCheckIntervalSeconds": {
-        "Description": "",
+        "Description": "The approximate number of seconds between health checks for an individual target.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HealthCheckPath": {
-        "Description": "",
+        "Description": "The ping path destination where Elastic Load Balancing sends health check requests.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HealthCheckPort": {
-        "Description": "",
+        "Description": "The port that the load balancer uses when performing health checks on the targets.For valid and default values, see the HealthCheckPort parameter for the CreateTargetGroup action in the Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HealthCheckProtocol": {
-        "Description": "",
+        "Description": "The protocol that the load balancer uses when performing health checks on the targets, such as HTTP or HTTPS.For valid and default values, see the HealthCheckProtocol parameter for the CreateTargetGroup action in the Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HealthCheckTimeoutSeconds": {
-        "Description": "",
+        "Description": "The number of seconds to wait for a response before considering that a health check has failed.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HealthyThresholdCount": {
-        "Description": "",
+        "Description": "The number of consecutive successful health checks that are required before an unhealthy target is considered healthy.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Matcher": {
-        "Description": "",
+        "Description": "The HTTP codes that a healthy target uses when responding to a health check.",
         "Array": false,
-        "Type": "String",
+        "Type": "ElasticLoadBalancingTargetGroupMatcher",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Name": {
-        "Description": "",
+        "Description": "A name for the target group.ImportantThe target group name should be shorter than 22 characters because AWS CloudFormation uses the target group name to create the name of the load balancer.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Port": {
-        "Description": "",
+        "Description": "The port on which the targets receive traffic.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Protocol": {
-        "Description": "",
+        "Description": "The protocol to use for routing traffic to the targets.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Tags": {
-        "Description": "",
+        "Description": "An arbitrary set of tags (key–value pairs) for the target group. Use tags to help manage resources.",
         "Array": false,
-        "Type": "String",
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
         "UpdateRequires": "No interruption."
       },
       "TargetGroupAttributes": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "Target group configurations.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingTargetGroupTargetGroupAttributes",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "TargetGroupFullName": {
-        "Description": "",
+        "Description": "The full name of the target group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Targets": {
-        "Description": "",
-        "Array": false,
-        "Type": "String",
+        "Description": "The targets to add to this target group.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingTargetGroupTargetDescription",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "UnhealthyThresholdCount": {
-        "Description": "",
+        "Description": "The number of consecutive failed health checks that are required before a target is considered unhealthy.",
         "Array": false,
-        "Type": "String",
+        "Type": "Integer",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "VpcId": {
-        "Description": "",
+        "Description": "The ID of the VPC in which your targets are located.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "LoadBalancerArns": {
         "Description": "A list of  Amazon Resource Names (ARNs) of the load balancers that route traffic\n              to this target group, such as [\n                \"arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/50dc6c495c0c9188\"\n                ].",
         "Array": false,
         "Type": "String"
+      }
+    }
+  },
+  "ListenerRule": {
+    "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    "Properties": {
+      "Actions": {
+        "Description": "The action that the listener takes when a request meets the specified condition.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerRuleActions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Conditions": {
+        "Description": "The conditions under which a rule takes effect.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerRuleConditions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "ListenerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Priority": {
+        "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA target group can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "Integer",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   }
