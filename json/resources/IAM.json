@@ -31,28 +31,12 @@
     "Required": "No",
     "UpdateRequires": "Replacement"
   },
-  "ManagedPolicy": {
-    "Name": "AWS::IAM::ManagedPolicy",
-    "Description": "A description of the policy. For example, you can describe the permissions that\n                  are defined in the policy.The names of groups to attach to this policy.The path for the policy. By default, the path is /. For more\n                  information, see IAM\n                     Identifiers in the IAM User Guide\n                  guide.Policies that define the permissions for this managed policy. For more\n                  information about policy syntax, see IAM Policy Elements Reference in\n                     IAM User Guide.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.The names of roles to attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.The names of users to attach to this policy.",
-    "Array": true,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
   "InstanceProfile": {
     "Name": "AWS::IAM::InstanceProfile",
     "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.The roles associated with this IAM instance profile.Returns the Amazon Resource Name (ARN) for the instance profile. For example:This will return a value such as\n                  “arn:aws:iam::1234567890:instance-profile/MyProfile-ASDNSDLKJ”.",
     "Array": true,
     "Type": "referencestoAWS::IAM::RolesCurrently,amaximumofonerolecanbeassignedtoaninstanceprofile",
     "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "Policy": {
-    "Name": "AWS::IAM::Policy",
-    "Description": "The names of groups to which you want to add the policy.A policy document that contains permissions to add to the specified users or\n                  groups.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.The name of the policy. If you specify multiple policies for an entity, specify\n                  unique names. For example, if you specify a list of policies for an IAM role,\n                  each policy must have a unique name.The names of AWS::IAM::Roles to\n                  attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.The names of users for whom you want to add the policy.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
     "UpdateRequires": "No interruption"
   },
   "Role": {
@@ -62,5 +46,21 @@
     "Type": "String",
     "Required": "No",
     "UpdateRequires": "Replacement"
+  },
+  "ManagedPolicy": {
+    "Name": "AWS::IAM::ManagedPolicy",
+    "Description": "A description of the policy. For example, you can describe the permissions that\n                  are defined in the policy.The names of groups to attach to this policy.The path for the policy. By default, the path is /. For more\n                  information, see IAM\n                     Identifiers in the IAM User Guide\n                  guide.Policies that define the permissions for this managed policy. For more\n                  information about policy syntax, see IAM Policy Elements Reference in\n                     IAM User Guide.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.The names of roles to attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.The names of users to attach to this policy.",
+    "Array": true,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  },
+  "Policy": {
+    "Name": "AWS::IAM::Policy",
+    "Description": "The names of groups to which you want to add the policy.A policy document that contains permissions to add to the specified users or\n                  groups.NoteAWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.The name of the policy. If you specify multiple policies for an entity, specify\n                  unique names. For example, if you specify a list of policies for an IAM role,\n                  each policy must have a unique name.The names of AWS::IAM::Roles to\n                  attach to this policy.NoteIf a policy has a Ref to a role and if a resource (such as\n                        AWS::ECS::Service) also has a Ref to the same\n                     role, add a DependsOn attribute to the resource so that the\n                     resource depends on the policy. This dependency ensures that the role's policy\n                     is available throughout the resource's lifecycle. For example, when you delete\n                     a stack with an AWS::ECS::Service resource, the\n                        DependsOn attribute ensures that the\n                        AWS::ECS::Service resource can complete its deletion before its\n                     role's policy is deleted.The names of users for whom you want to add the policy.",
+    "Array": true,
+    "Type": "String",
+    "Required": "Conditional. You must specify at least one of the following\n                  properties: Groups, Roles, or Users.",
+    "UpdateRequires": "No interruption"
   }
 }

@@ -7,6 +7,14 @@
     "Required": "Conditional: If your cache cluster is in a VPC, you must specify\n                  this property.",
     "UpdateRequires": "No interruption"
   },
+  "SecurityGroupIngress": {
+    "Name": "AWS::ElastiCache::SecurityGroupIngress",
+    "Description": "The name of the Cache Security Group to authorize.Name of the EC2 Security Group to include in the authorization.Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
+    "Array": false,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "Updates are not supported."
+  },
   "ParameterGroup": {
     "Name": "AWS::ElastiCache::ParameterGroup",
     "Description": "The name of the cache parameter group family that the cache parameter group can be used\n               with.The description for the Cache Parameter Group.A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference\n                     Guide.Example:",
@@ -15,9 +23,9 @@
     "Required": "No",
     "UpdateRequires": "Updates are not supported."
   },
-  "SecurityGroupIngress": {
-    "Name": "AWS::ElastiCache::SecurityGroupIngress",
-    "Description": "The name of the Cache Security Group to authorize.Name of the EC2 Security Group to include in the authorization.Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
+  "SecurityGroup": {
+    "Name": "AWS::ElastiCache::SecurityGroup",
+    "Description": "A description for the cache security group.",
     "Array": false,
     "Type": "String",
     "Required": "No",
@@ -30,14 +38,6 @@
     "Type": "Stringlist",
     "Required": "Yes",
     "UpdateRequires": "No interruption"
-  },
-  "SecurityGroup": {
-    "Name": "AWS::ElastiCache::SecurityGroup",
-    "Description": "A description for the cache security group.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "Updates are not supported."
   },
   "ReplicationGroup": {
     "Name": "AWS::ElastiCache::ReplicationGroup",

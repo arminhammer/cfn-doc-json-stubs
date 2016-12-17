@@ -7,14 +7,6 @@
     "Required": "No",
     "UpdateRequires": "No interruption"
   },
-  "ClusterParameterGroup": {
-    "Name": "AWS::Redshift::ClusterParameterGroup",
-    "Description": "A description of the parameter group.The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
-    "Array": false,
-    "Type": "AmazonRedshiftParameterType",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
   "ClusterSecurityGroup": {
     "Name": "AWS::Redshift::ClusterSecurityGroup",
     "Description": "A description of the security group.",
@@ -22,6 +14,14 @@
     "Type": "String",
     "Required": "Yes",
     "UpdateRequires": "Replacement"
+  },
+  "ClusterParameterGroup": {
+    "Name": "AWS::Redshift::ClusterParameterGroup",
+    "Description": "A description of the parameter group.The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property. A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
+    "Array": false,
+    "Type": "AmazonRedshiftParameterType",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
   },
   "ClusterSecurityGroupIngress": {
     "Name": "AWS::Redshift::ClusterSecurityGroupIngress",

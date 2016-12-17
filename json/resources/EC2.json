@@ -7,14 +7,6 @@
     "Required": "No",
     "UpdateRequires": "Updates are not supported."
   },
-  "VolumeAttachment": {
-    "Name": "AWS::EC2::VolumeAttachment",
-    "Description": "How the device is exposed to the instance (e.g., /dev/sdh, or xvdh).The ID of the instance to which the volume attaches. This value can be a reference to an\n                  AWS::EC2::Instance resource, or it can be\n                  the physical ID of an existing EC2 instance.The ID of the Amazon EBS volume. The volume and instance must be within the same\n                  Availability Zone. This value can be a reference to an AWS::EC2::Volume resource, or it can be the\n                  volume ID of an existing Amazon EBS volume.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Updates are not supported."
-  },
   "EIPAssociation": {
     "Name": "AWS::EC2::EIPAssociation",
     "Description": "Allocation ID for the VPC Elastic IP address you want to associate with an\n                  Amazon EC2 instance in your VPC.Elastic IP address that you want to associate with the Amazon EC2 instance specified\n                  by the InstanceId property. You can specify an existing Elastic IP\n                  address or a reference to an Elastic IP address allocated with a AWS::EC2::EIP resource.Instance ID of the Amazon EC2 instance that you want to associate with the Elastic\n                  IP address specified by the EIP property.The ID of the network interface to associate with the Elastic IP address (VPC\n                  only).The private IP address that you want to associate with the Elastic IP address.\n                  The private IP address is restricted to the primary and secondary private IP\n                  addresses that are associated with the network interface. By default, the private\n                  IP address that is associated with the EIP is the primary private IP address of\n                  the network interface.",
@@ -22,6 +14,14 @@
     "Type": "String",
     "Required": "No",
     "UpdateRequires": "No interruption"
+  },
+  "VolumeAttachment": {
+    "Name": "AWS::EC2::VolumeAttachment",
+    "Description": "How the device is exposed to the instance (e.g., /dev/sdh, or xvdh).The ID of the instance to which the volume attaches. This value can be a reference to an\n                  AWS::EC2::Instance resource, or it can be\n                  the physical ID of an existing EC2 instance.The ID of the Amazon EBS volume. The volume and instance must be within the same\n                  Availability Zone. This value can be a reference to an AWS::EC2::Volume resource, or it can be the\n                  volume ID of an existing Amazon EBS volume.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "Updates are not supported."
   },
   "EIP": {
     "Name": "AWS::EC2::EIP",
@@ -33,7 +33,7 @@
   },
   "Instance": {
     "Name": "AWS::EC2::Instance",
-    "Description": "Indicates whether Amazon Elastic Compute Cloud (Amazon EC2) always associates the instance with a dedicated host. If you want Amazon EC2 to always restart the instance (if it was stopped) onto the same host on which it was launched, specify host. If you want Amazon EC2 to restart the instance on any available host, but to try to launch the instance onto the last host it ran on (on a best-effort basis), specify default.Specifies the name of the Availability Zone in which the instance is\n                  located.For more information about AWS regions and Availability Zones, see Regions and Availability Zones in the Amazon EC2 User\n                     Guide.Defines a set of Amazon Elastic Block Store block device mappings, ephemeral instance store\n                  block device mappings, or both. For more information, see Amazon Elastic Block Store or Amazon EC2 Instance Store in the\n                  Amazon EC2 User Guide for Linux Instances.Specifies whether the instance can be terminated through the API.Specifies whether the instance is optimized for Amazon Elastic Block Store I/O. This\n                  optimization provides dedicated throughput to Amazon EBS and an optimized configuration\n                  stack to provide optimal EBS I/O performance.For more information about the instance types that can be launched as Amazon EBS\n                  optimized instances, see Amazon\n                     EBS-Optimized Instances in the Amazon Elastic Compute Cloud\n                     User Guide. Additional fees are incurred when using Amazon EBS-optimized\n                  instances.Update requires:If you specify host for the Affinity property, the ID of a dedicated host that the instance is associated with. If you don't specify an ID, Amazon EC2 launches the instance onto any available, compatible dedicated host in your account. This type of launch is called an untargeted launch. Note that for untargeted launches, you must have a compatible, dedicated host available to successfully launch instances.The physical ID (resource name) of an instance profile or a reference to an\n                     AWS::IAM::InstanceProfile resource.For more information about IAM roles, see Working with Roles in the\n   AWS Identity and Access Management User Guide.Provides the unique ID of the Amazon Machine Image (AMI) that was assigned\n                  during registration.Indicates whether an instance stops or terminates when you shut down the\n                  instance from the instance's operating system shutdown command. You can specify\n                     stop or terminate. For more information, see the\n                  RunInstances command in the\n                     Amazon EC2 API Reference.The instance type, such as t2.micro. The default type is\n                     \"m3.medium\". For a list of instance types, see Instance Families and\n                  Types.Update requires:The number of IPv6 addresses to associate with the instance's primary network\n                  interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range.\n                  To specify specific IPv6 addresses, use the Ipv6Addresses property\n                  and don't specify this property.For restrictions on which instance types support IPv6 addresses, see the RunInstances\n                  action in the Amazon EC2 API Reference.One or more specific IPv6 addresses from the IPv6 CIDR block range of your\n                  subnet to associate with the instance's primary network interface. To specify a\n                  number of IPv6 addresses, use the Ipv6AddressCount property and don't\n                  specify this property.For information about restrictions on which instance types support IPv6\n                  addresses, see the RunInstances action in the\n                  Amazon EC2 API Reference.The kernel ID.Update requires:Provides the name of the Amazon EC2 key pair.Specifies whether detailed monitoring is enabled for the instance.A list of embedded objects that describes the network interfaces to associate\n                  with this instance.NoteIf you use this property to point to a network interface, you must terminate\n                     the original interface before attaching a new one to allow the update of the\n                     instance to succeed.If this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the\nDependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,\nsee DependsOn Attribute.The name of an existing placement group that you want to launch the instance\n                  into (for cluster instances).The private IP address for this instance.ImportantIf you make an update to an instance that requires replacement, you must\n                        assign a new private IP address. During a replacement, AWS CloudFormation creates a new\n                        instance but doesn't delete the old instance until the stack has\n                        successfully updated. If the stack update fails, AWS CloudFormation uses the old instance\n                        in order to roll back the stack to the previous working state. The old and\n                        new instances cannot have the same private IP address.(Optional) If you're using Amazon VPC, you can use this parameter to assign the\n                  instance a specific available IP address from the subnet (for example, 10.0.0.25).\n                  By default, Amazon VPC selects an IP address from the subnet for the instance.The ID of the RAM disk to select. Some kernels require additional drivers at\n                  launch. Check the kernel requirements for information about whether you need to\n                  specify a RAM disk. To find kernel requirements, go to the AWS Resource Center and\n                  search for the kernel ID.Update requires:A list that contains the security group IDs for VPC security groups to assign\n                  to the Amazon EC2 instance. If you specified the NetworkInterfaces\n                  property, do not specify this property.Update requires:Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security\n                  groups to assign to the Amazon EC2 instance. The list can contain both the name of\n                  existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources\n                  created in the template.Controls whether source/destination checking is enabled on the instance. Also\n                  determines if an instance in a VPC will perform network address translation\n                  (NAT).A value of \"true\" means that source/destination checking is\n                  enabled, and a value of \"false\" means that checking is disabled. For\n                  the instance to perform NAT, the value must be\n                     \"false\". For more information, see NAT\n                     Instances in the Amazon Virtual Private Cloud User\n                     Guide.The Amazon EC2 Simple Systems Manager (SSM) document\n                  and parameter values to associate with this instance. To use this property, you\n                  must specify an IAM role for the instance. For more information, see Prerequisites for Remotely\n                     Running Commands on EC2 Instances in the\n                     Amazon EC2 User Guide for Windows Instances.NoteYou can currently associate only one document with an instance.If you're using Amazon VPC, this property specifies the ID of the subnet that\n                  you want to launch the instance into. If you specified the\n                     NetworkInterfaces property, do not specify this property.An arbitrary set of tags (key–value pairs) for this instance.The tenancy of the instance that you want to launch, such as default, dedicated, or host. If you specify a tenancy value of dedicated or host, you must launch the instance in a VPC. For more information, see Dedicated Instances in the Amazon VPC User Guide.Update requires:Base64-encoded MIME user data that is made available to the instances.Update requires:NoteFor EBS-backed instances, changing the UserData stops\n                              and then starts the instance; however, Amazon EC2 doesn't automatically run\n                              the updated UserData. To update configurations on your\n                              instance, use the cfn-hup helper\n                              script.The Amazon EBS volumes to attach to the instance.NoteBefore detaching a volume, unmount any file systems on the device within\n                        your operating system. If you don't unmount the file system, a volume might\n                        get stuck in a busy state while detaching.Reserved.Update requires:\n    The Availability Zone where the specified instance is launched. For example: us-east-1b.You can retrieve a list of all Availability Zones for a region by using the Fn::GetAZs intrinsic function.The private DNS name of the specified instance. For example: ip-10-24-34-0.ec2.internal.The public DNS name of the specified instance. For example: ec2-107-20-50-45.compute-1.amazonaws.com.The private IP address of the specified instance. For example: 10.24.34.0.The public IP address of the specified instance. For example: 192.0.2.0.",
+    "Description": "Indicates whether Amazon Elastic Compute Cloud (Amazon EC2) always associates the instance with a dedicated host. If you want Amazon EC2 to always restart the instance (if it was stopped) onto the same host on which it was launched, specify host. If you want Amazon EC2 to restart the instance on any available host, but to try to launch the instance onto the last host it ran on (on a best-effort basis), specify default.Specifies the name of the Availability Zone in which the instance is\n                  located.For more information about AWS regions and Availability Zones, see Regions and Availability Zones in the Amazon EC2 User\n                     Guide.Defines a set of Amazon Elastic Block Store block device mappings, ephemeral instance store\n                  block device mappings, or both. For more information, see Amazon Elastic Block Store or Amazon EC2 Instance Store in the\n                  Amazon EC2 User Guide for Linux Instances.Specifies whether the instance can be terminated through the API.Specifies whether the instance is optimized for Amazon Elastic Block Store I/O. This\n                  optimization provides dedicated throughput to Amazon EBS and an optimized configuration\n                  stack to provide optimal EBS I/O performance.For more information about the instance types that can be launched as Amazon EBS\n                  optimized instances, see Amazon\n                     EBS-Optimized Instances in the Amazon Elastic Compute Cloud\n                     User Guide. Additional fees are incurred when using Amazon EBS-optimized\n                  instances.Update requires:If you specify host for the Affinity property, the ID of a dedicated host that the instance is associated with. If you don't specify an ID, Amazon EC2 launches the instance onto any available, compatible dedicated host in your account. This type of launch is called an untargeted launch. Note that for untargeted launches, you must have a compatible, dedicated host available to successfully launch instances.The physical ID of an instance profile or a reference to an AWS::IAM::InstanceProfile\n                  resource.For more information about IAM roles, see Working with Roles in the\n   AWS Identity and Access Management User Guide.Provides the unique ID of the Amazon Machine Image (AMI) that was assigned\n                  during registration.Indicates whether an instance stops or terminates when you shut down the\n                  instance from the instance's operating system shutdown command. You can specify\n                     stop or terminate. For more information, see the\n                  RunInstances command in the\n                     Amazon EC2 API Reference.The instance type, such as t2.micro. The default type is\n                     \"m3.medium\". For a list of instance types, see Instance Families and\n                  Types.Update requires:The number of IPv6 addresses to associate with the instance's primary network\n                  interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range.\n                  To specify specific IPv6 addresses, use the Ipv6Addresses property\n                  and don't specify this property.For restrictions on which instance types support IPv6 addresses, see the RunInstances\n                  action in the Amazon EC2 API Reference.One or more specific IPv6 addresses from the IPv6 CIDR block range of your\n                  subnet to associate with the instance's primary network interface. To specify a\n                  number of IPv6 addresses, use the Ipv6AddressCount property and don't\n                  specify this property.For information about restrictions on which instance types support IPv6\n                  addresses, see the RunInstances action in the\n                  Amazon EC2 API Reference.The kernel ID.Update requires:Provides the name of the Amazon EC2 key pair.Specifies whether detailed monitoring is enabled for the instance.A list of embedded objects that describes the network interfaces to associate\n                  with this instance.NoteIf you use this property to point to a network interface, you must terminate\n                     the original interface before attaching a new one to allow the update of the\n                     instance to succeed.If this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the\nDependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,\nsee DependsOn Attribute.The name of an existing placement group that you want to launch the instance\n                  into (for cluster instances).The private IP address for this instance.ImportantIf you make an update to an instance that requires replacement, you must\n                        assign a new private IP address. During a replacement, AWS CloudFormation creates a new\n                        instance but doesn't delete the old instance until the stack has\n                        successfully updated. If the stack update fails, AWS CloudFormation uses the old instance\n                        in order to roll back the stack to the previous working state. The old and\n                        new instances cannot have the same private IP address.(Optional) If you're using Amazon VPC, you can use this parameter to assign the\n                  instance a specific available IP address from the subnet (for example, 10.0.0.25).\n                  By default, Amazon VPC selects an IP address from the subnet for the instance.The ID of the RAM disk to select. Some kernels require additional drivers at\n                  launch. Check the kernel requirements for information about whether you need to\n                  specify a RAM disk. To find kernel requirements, go to the AWS Resource Center and\n                  search for the kernel ID.Update requires:A list that contains the security group IDs for VPC security groups to assign\n                  to the Amazon EC2 instance. If you specified the NetworkInterfaces\n                  property, do not specify this property.Update requires:Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security\n                  groups to assign to the Amazon EC2 instance. The list can contain both the name of\n                  existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources\n                  created in the template.Controls whether source/destination checking is enabled on the instance. Also\n                  determines if an instance in a VPC will perform network address translation\n                  (NAT).A value of \"true\" means that source/destination checking is\n                  enabled, and a value of \"false\" means that checking is disabled. For\n                  the instance to perform NAT, the value must be\n                     \"false\". For more information, see NAT\n                     Instances in the Amazon Virtual Private Cloud User\n                     Guide.The Amazon EC2 Simple Systems Manager (SSM) document\n                  and parameter values to associate with this instance. To use this property, you\n                  must specify an IAM role for the instance. For more information, see Prerequisites for Remotely\n                     Running Commands on EC2 Instances in the\n                     Amazon EC2 User Guide for Windows Instances.NoteYou can currently associate only one document with an instance.If you're using Amazon VPC, this property specifies the ID of the subnet that\n                  you want to launch the instance into. If you specified the\n                     NetworkInterfaces property, do not specify this property.An arbitrary set of tags (key–value pairs) for this instance.The tenancy of the instance that you want to launch, such as default, dedicated, or host. If you specify a tenancy value of dedicated or host, you must launch the instance in a VPC. For more information, see Dedicated Instances in the Amazon VPC User Guide.Update requires:Base64-encoded MIME user data that is made available to the instances.Update requires:NoteFor EBS-backed instances, changing the UserData stops\n                              and then starts the instance; however, Amazon EC2 doesn't automatically run\n                              the updated UserData. To update configurations on your\n                              instance, use the cfn-hup helper\n                              script.The Amazon EBS volumes to attach to the instance.NoteBefore detaching a volume, unmount any file systems on the device within\n                        your operating system. If you don't unmount the file system, a volume might\n                        get stuck in a busy state while detaching.Reserved.Update requires:\n    The Availability Zone where the specified instance is launched. For example: us-east-1b.You can retrieve a list of all Availability Zones for a region by using the Fn::GetAZs intrinsic function.The private DNS name of the specified instance. For example: ip-10-24-34-0.ec2.internal.The public DNS name of the specified instance. For example: ec2-107-20-50-45.compute-1.amazonaws.com.The private IP address of the specified instance. For example: 10.24.34.0.The public IP address of the specified instance. For example: 192.0.2.0.",
     "Array": true,
     "Type": "String",
     "Required": "No",
@@ -55,14 +55,6 @@
     "Required": "Yes, for VPC security groups without a default\n                  VPC",
     "UpdateRequires": "Replacement"
   },
-  "CustomerGateway": {
-    "Name": "AWS::EC2::CustomerGateway",
-    "Description": "The customer gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).The internet-routable IP address for the customer gateway's outside interface. The address must be\n               static.The tags that you want to attach to the resource.The type of VPN connection that this customer gateway supports.Example: ipsec.1",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
-  },
   "DHCPOptions": {
     "Name": "AWS::EC2::DHCPOptions",
     "Description": "A domain name of your choice.Example: \"example.com\"The IP (IPv4) address of a domain name server. You can specify up to four addresses.Example: \"DomainNameServers\" : [ \"10.0.0.1\", \"10.0.0.2\"\n                  ]Example: To preserve the order of IP addresses, specify a comma delimited list as a single string: \"DomainNameServers\" : [ \"10.0.0.1, 10.0.0.2\" ]The IP address (IPv4) of a NetBIOS name server. You can specify up to four addresses.Example: \"NetbiosNameServers\" : [ \"10.0.0.1\", \"10.0.0.2\" ]Example: To preserve the order of IP addresses, specify a comma delimited list as a single string: \"NetbiosNameServers\" : [ \"10.0.0.1, 10.0.0.2\" ]An integer value indicating the NetBIOS node type:1: Broadcast (\"B\")2: Point-to-point (\"P\")4: Mixed mode (\"M\")8: Hybrid (\"H\")For more information about these values and about NetBIOS node types, see\n                     RFC 2132, RFC 1001, and RFC 1002. We recommend that\n                  you use only the value 2 at this time (broadcast and multicast are\n                  not currently supported).Example: \"NetbiosNodeType\" : 2The IP address (IPv4) of a Network Time Protocol (NTP) server. You can specify up to four\n                  addresses.Example: \"NtpServers\" : [ \"10.0.0.1\" ]Example: To preserve the order of IP addresses, specify a comma delimited list as a single string: \"NtpServers\" : [ \"10.0.0.1, 10.0.0.2\" ]An arbitrary set of tags (key–value pairs) for this resource.",
@@ -79,9 +71,9 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
-  "Host": {
-    "Name": "AWS::EC2::Host",
-    "Description": "Indicates if the host accepts EC2 instances with only matching configurations or if\n            instances must also specify the host ID. Instances that don't specify a host ID can't\n            launch onto a host with AutoPlacement set to off. By default,\n            AWS CloudFormation sets this property to on. For more information, see Understanding Instance\n              Placement and Host Affinity in the\n            Amazon EC2 User Guide for Linux Instances.The Availability Zone (AZ) in which to launch the dedicated host.The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
+  "CustomerGateway": {
+    "Name": "AWS::EC2::CustomerGateway",
+    "Description": "The customer gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).The internet-routable IP address for the customer gateway's outside interface. The address must be\n               static.The tags that you want to attach to the resource.The type of VPN connection that this customer gateway supports.Example: ipsec.1",
     "Array": false,
     "Type": "String",
     "Required": "Yes",
@@ -95,6 +87,14 @@
     "Required": "No",
     "UpdateRequires": "No interruption."
   },
+  "Host": {
+    "Name": "AWS::EC2::Host",
+    "Description": "Indicates if the host accepts EC2 instances with only matching configurations or if\n            instances must also specify the host ID. Instances that don't specify a host ID can't\n            launch onto a host with AutoPlacement set to off. By default,\n            AWS CloudFormation sets this property to on. For more information, see Understanding Instance\n              Placement and Host Affinity in the\n            Amazon EC2 User Guide for Linux Instances.The Availability Zone (AZ) in which to launch the dedicated host.The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "Replacement"
+  },
   "NatGateway": {
     "Name": "AWS::EC2::NatGateway",
     "Description": "The allocation ID of an Elastic IP address to associate with the NAT gateway. If the\n            Elastic IP address is associated with another resource, you must first disassociate\n            it.The public subnet in which to create the NAT gateway.",
@@ -103,14 +103,6 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
-  "NetworkAclEntry": {
-    "Name": "AWS::EC2::NetworkAclEntry",
-    "Description": "The IPv4 CIDR range to allow or deny, in CIDR notation (e.g., 172.16.0.0/24).Whether this rule applies to egress traffic from the subnet (true)\n                  or ingress traffic to the subnet (false). By default, AWS CloudFormation specifies\n                     false.The Internet Control Message Protocol (ICMP) code and type.The IPv6 CIDR range to allow or deny, in CIDR notation.ID of the ACL where the entry will be created.The range of port numbers for the UDP/TCP protocol.The IP protocol that the rule applies to. You must specify -1 or a\n                  protocol number (go to Protocol Numbers at iana.org). You can specify -1 for all\n                  protocols.NoteIf you specify -1, all ports are opened and the\n                        PortRange property is ignored.Whether to allow or deny traffic that matches the rule; valid values are \"allow\" or \"deny\".Rule number to assign to the entry (e.g., 100). This must be a positive integer\n                  from 1 to 32766.",
-    "Array": false,
-    "Type": "Number",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement."
-  },
   "NetworkAcl": {
     "Name": "AWS::EC2::NetworkAcl",
     "Description": "An arbitrary set of tags (key–value pairs) for this ACL.The ID of the VPC where the network ACL will be created.",
@@ -118,6 +110,14 @@
     "Type": "String",
     "Required": "Yes",
     "UpdateRequires": "Replacement"
+  },
+  "NetworkAclEntry": {
+    "Name": "AWS::EC2::NetworkAclEntry",
+    "Description": "The IPv4 CIDR range to allow or deny, in CIDR notation (e.g., 172.16.0.0/24).Whether this rule applies to egress traffic from the subnet (true)\n                  or ingress traffic to the subnet (false). By default, AWS CloudFormation specifies\n                     false.The Internet Control Message Protocol (ICMP) code and type.The IPv6 CIDR range to allow or deny, in CIDR notation.ID of the ACL where the entry will be created.The range of port numbers for the UDP/TCP protocol.The IP protocol that the rule applies to. You must specify -1 or a\n                  protocol number (go to Protocol Numbers at iana.org). You can specify -1 for all\n                  protocols.NoteIf you specify -1, all ports are opened and the\n                        PortRange property is ignored.Whether to allow or deny traffic that matches the rule; valid values are \"allow\" or \"deny\".Rule number to assign to the entry, such as 100. ACL entries are\n                  processed in ascending order by rule number. Entries can't use the same rule\n                  number unless one is an egress rule and the other is an ingress rule. For valid\n                  values, see the CreateNetworkAclEntry action in the\n                     Amazon EC2 API Reference.",
+    "Array": false,
+    "Type": "Number",
+    "Required": "Yes",
+    "UpdateRequires": "Replacement."
   },
   "NetworkInterfaceAttachment": {
     "Name": "AWS::EC2::NetworkInterfaceAttachment",
@@ -143,14 +143,6 @@
     "Required": "No",
     "UpdateRequires": "Replacement"
   },
-  "RouteTable": {
-    "Name": "AWS::EC2::RouteTable",
-    "Description": "The ID of the VPC where the route table will be created.Example: vpc-11ad4878An arbitrary set of tags (key–value pairs) for this route table.",
-    "Array": false,
-    "Type": "AWSCloudFormationResourceTags",
-    "Required": "No",
-    "UpdateRequires": "No interruption."
-  },
   "Route": {
     "Name": "AWS::EC2::Route",
     "Description": "The IPv4 CIDR address block used for the destination match. For example,\n                     0.0.0.0/0. Routing decisions are based on the most specific\n                  match.The IPv6 CIDR address block used for the destination match. For example,\n                     ::/0. Routing decisions are based on the most specific\n                  match.The ID of an Internet gateway or virtual private gateway that is attached to\n                  your VPC. For example: igw-eaad4883.For route entries that specify a gateway, you must specify a dependency on the\n                  gateway attachment resource.  For more information, see DependsOn Attribute.The ID of a NAT instance in your VPC. For example,\n                  i-1a2b3c4d.The ID of a NAT gateway. For example,\n                  nat-0a12bc456789de0fg.Allows the routing of network interface IDs.The ID of the route table where the route will\n                  be added.The ID of a VPC peering connection.",
@@ -159,13 +151,13 @@
     "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
     "UpdateRequires": "No interruption"
   },
-  "SecurityGroupEgress": {
-    "Name": "AWS::EC2::SecurityGroupEgress",
-    "Description": "An IPv4 CIDR range.An IPv6 CIDR range.The AWS service prefix of an Amazon VPC endpoint. For more information, see VPC Endpoints in the\n              Amazon VPC User Guide.Specifies the group ID of the destination Amazon VPC security group.Start of port range for the TCP and UDP protocols, or an ICMP type number. If\n                  you specify icmp for the IpProtocol property, you can\n                  specify -1 as a wildcard (i.e., any ICMP type number).ID of the Amazon VPC security group to modify. This value can be a reference to an AWS::EC2::SecurityGroup resource that has a\n                  valid VpcId property or the ID of an existing Amazon VPC security group.IP protocol name or number. For valid values, see the IpProtocol parameter in AuthorizeSecurityGroupIngressEnd of port range for the TCP and UDP protocols, or an ICMP code. If you\n                  specify icmp for the IpProtocol property, you can\n                  specify -1 as a wildcard (i.e., any ICMP code).",
+  "RouteTable": {
+    "Name": "AWS::EC2::RouteTable",
+    "Description": "The ID of the VPC where the route table will be created.Example: vpc-11ad4878An arbitrary set of tags (key–value pairs) for this route table.",
     "Array": false,
-    "Type": "Integer",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Type": "AWSCloudFormationResourceTags",
+    "Required": "No",
+    "UpdateRequires": "No interruption."
   },
   "SpotFleet": {
     "Name": "AWS::EC2::SpotFleet",
@@ -175,17 +167,25 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
-  "SubnetNetworkAclAssociation": {
-    "Name": "AWS::EC2::SubnetNetworkAclAssociation",
-    "Description": "The ID representing the current association between the original network ACL and the subnet.The ID of the new ACL to associate with the subnet.Returns the value of this object's SubnetId property.",
+  "SecurityGroupEgress": {
+    "Name": "AWS::EC2::SecurityGroupEgress",
+    "Description": "An IPv4 CIDR range.An IPv6 CIDR range.The AWS service prefix of an Amazon VPC endpoint. For more information, see VPC Endpoints in the\n              Amazon VPC User Guide.Specifies the group ID of the destination Amazon VPC security group.Start of port range for the TCP and UDP protocols, or an ICMP type number. If\n                  you specify icmp for the IpProtocol property, you can\n                  specify -1 as a wildcard (i.e., any ICMP type number).ID of the Amazon VPC security group to modify. This value can be a reference to an AWS::EC2::SecurityGroup resource that has a\n                  valid VpcId property or the ID of an existing Amazon VPC security group.IP protocol name or number. For valid values, see the IpProtocol parameter in AuthorizeSecurityGroupIngressEnd of port range for the TCP and UDP protocols, or an ICMP code. If you\n                  specify icmp for the IpProtocol property, you can\n                  specify -1 as a wildcard (i.e., any ICMP code).",
     "Array": false,
-    "Type": "String",
+    "Type": "Integer",
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
   "SubnetRouteTableAssociation": {
     "Name": "AWS::EC2::SubnetRouteTableAssociation",
     "Description": "The ID of the route table. This is commonly written as a reference to a route table declared\n                  elsewhere in the template. For example:The ID of the subnet. This is commonly written as a reference to a subnet declared elsewhere in the\n                  template. For example:",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "Replacement"
+  },
+  "SubnetNetworkAclAssociation": {
+    "Name": "AWS::EC2::SubnetNetworkAclAssociation",
+    "Description": "The ID representing the current association between the original network ACL and the subnet.The ID of the new ACL to associate with the subnet.Returns the value of this object's SubnetId property.",
     "Array": false,
     "Type": "String",
     "Required": "Yes",
@@ -199,13 +199,13 @@
     "Required": "Yes",
     "UpdateRequires": "No interruption."
   },
-  "SubnetCidrBlock": {
-    "Name": "AWS::EC2::SubnetCidrBlock",
-    "Description": "The IPv6 CIDR block for the subnet. The CIDR block must have a prefix length of\n                  /64.The ID of the subnet to associate the IPv6 CIDR block with.",
+  "VPCGatewayAttachment": {
+    "Name": "AWS::EC2::VPCGatewayAttachment",
+    "Description": "The ID of the Internet gateway.The ID of the VPC to associate with this gateway.The ID of the virtual private network (VPN) gateway to attach to the VPC.",
     "Array": false,
     "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
+    "Required": "Conditional You must specify either\n                     InternetGatewayId or VpnGatewayId, but not both.",
+    "UpdateRequires": "No interruption"
   },
   "VPCDHCPOptionsAssociation": {
     "Name": "AWS::EC2::VPCDHCPOptionsAssociation",
@@ -215,21 +215,13 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
-  "VPCGatewayAttachment": {
-    "Name": "AWS::EC2::VPCGatewayAttachment",
-    "Description": "The ID of the Internet gateway.The ID of the VPC to associate with this gateway.The ID of the virtual private network (VPN) gateway to attach to the VPC.",
+  "SubnetCidrBlock": {
+    "Name": "AWS::EC2::SubnetCidrBlock",
+    "Description": "The IPv6 CIDR block for the subnet. The CIDR block must have a prefix length of\n                  /64.The ID of the subnet to associate the IPv6 CIDR block with.",
     "Array": false,
     "Type": "String",
-    "Required": "Conditional You must specify either\n                     InternetGatewayId or VpnGatewayId, but not both.",
-    "UpdateRequires": "No interruption"
-  },
-  "VPC": {
-    "Name": "AWS::EC2::VPC",
-    "Description": "The CIDR block you want the VPC to cover. For example: \"10.0.0.0/16\".Specifies whether DNS resolution is supported for the VPC. If this attribute is\n                     true, the Amazon DNS server resolves DNS hostnames for your\n                  instances to their corresponding IP addresses; otherwise, it does not. By default\n                  the value is set to true.Specifies whether the instances launched in the VPC get DNS hostnames. If this\n                  attribute is true, instances in the VPC get DNS hostnames; otherwise,\n                  they do not. You can only set EnableDnsHostnames to true\n                  if you also set the EnableDnsSupport attribute to true.\n                  By default, the value is set to false.The allowed tenancy of instances launched into the VPC. \"default\": Instances can be launched with any\n                        tenancy.\"dedicated\": Any instance launched into the VPC automatically has dedicated tenancy, unless you launch it with the default\n                        tenancy.Valid values: \"default\" or\n                     \"dedicated\"An arbitrary set of tags (key–value pairs) for this VPC. To name a VPC resource, specify a value for the Name key.The set of IP addresses for the VPC. For example,\n                     10.0.0.0/16.The default network ACL ID that is associated with the VPC. For example,\n                        acl-814dafe3.The default security group ID that is associated with the VPC. For example,\n                        sg-b178e0d3.A list of IPv6 CIDR blocks that are associated with the VPC, such as [\n                        2001:db8:1234:1a00::/56 ].",
-    "Array": false,
-    "Type": "AWSCloudFormationResourceTags",
-    "Required": "No",
-    "UpdateRequires": "No interruption."
+    "Required": "Yes",
+    "UpdateRequires": "Replacement"
   },
   "VPCCidrBlock": {
     "Name": "AWS::EC2::VPCCidrBlock",
@@ -247,6 +239,14 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
+  "VPC": {
+    "Name": "AWS::EC2::VPC",
+    "Description": "The CIDR block you want the VPC to cover. For example: \"10.0.0.0/16\".Specifies whether DNS resolution is supported for the VPC. If this attribute is\n                     true, the Amazon DNS server resolves DNS hostnames for your\n                  instances to their corresponding IP addresses; otherwise, it does not. By default\n                  the value is set to true.Specifies whether the instances launched in the VPC get DNS hostnames. If this\n                  attribute is true, instances in the VPC get DNS hostnames; otherwise,\n                  they do not. You can only set EnableDnsHostnames to true\n                  if you also set the EnableDnsSupport attribute to true.\n                  By default, the value is set to false.The allowed tenancy of instances launched into the VPC. \"default\": Instances can be launched with any\n                        tenancy.\"dedicated\": Any instance launched into the VPC automatically has dedicated tenancy, unless you launch it with the default\n                        tenancy.Valid values: \"default\" or\n                     \"dedicated\"An arbitrary set of tags (key–value pairs) for this VPC. To name a VPC resource, specify a value for the Name key.The set of IP addresses for the VPC. For example,\n                     10.0.0.0/16.The default network ACL ID that is associated with the VPC. For example,\n                        acl-814dafe3.The default security group ID that is associated with the VPC. For example,\n                        sg-b178e0d3.A list of IPv6 CIDR blocks that are associated with the VPC, such as [\n                        2001:db8:1234:1a00::/56 ].",
+    "Array": false,
+    "Type": "AWSCloudFormationResourceTags",
+    "Required": "No",
+    "UpdateRequires": "No interruption."
+  },
   "VPCPeeringConnection": {
     "Name": "AWS::EC2::VPCPeeringConnection",
     "Description": "The ID of the VPC with which you are creating the peering connection.An arbitrary set of tags (key–value pairs) for this\n                        resource.The ID of the VPC that is requesting a peering connection.",
@@ -254,6 +254,14 @@
     "Type": "String",
     "Required": "Yes",
     "UpdateRequires": "Replacement"
+  },
+  "VPNGatewayRoutePropagation": {
+    "Name": "AWS::EC2::VPNGatewayRoutePropagation",
+    "Description": "A list of routing table IDs that are associated with a VPC. The routing\n                  tables must be associated with the same VPC that the virtual private gateway is\n                  attached to.The ID of the virtual private gateway that is attached to a VPC. The virtual\n                  private gateway must be attached to the same VPC that the routing tables are\n                  associated with.",
+    "Array": true,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
   },
   "VPNConnectionRoute": {
     "Name": "AWS::EC2::VPNConnectionRoute",
@@ -278,13 +286,5 @@
     "Type": "AWSCloudFormationResourceTags",
     "Required": "No",
     "UpdateRequires": "No interruption."
-  },
-  "VPNGatewayRoutePropagation": {
-    "Name": "AWS::EC2::VPNGatewayRoutePropagation",
-    "Description": "A list of routing table IDs that are associated with a VPC. The routing\n                  tables must be associated with the same VPC that the virtual private gateway is\n                  attached to.The ID of the virtual private gateway that is attached to a VPC. The virtual\n                  private gateway must be attached to the same VPC that the routing tables are\n                  associated with.",
-    "Array": true,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
   }
 }

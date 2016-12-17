@@ -114,10 +114,17 @@ function scrapeHtmlPage(body, pageType) {
     let split = output.Name.split('::')
     let group = split[1]
     let name = split[2]
+    if(pageType === 'Properties') {
+      group = output.Name
+    }
     if(!result[pageType][group]) {
       result[pageType][group] = {}
     }
-    result[pageType][group][name] = output
+    if(pageType === 'Properties') {
+      result[pageType][group] = output
+    } else {
+      result[pageType][group][name] = output
+    }
   })
   .catch((err) => {
     console.error(err)
@@ -157,4 +164,5 @@ function generateJson() {
   })
 }
 
+//downloadPages()
 generateJson()

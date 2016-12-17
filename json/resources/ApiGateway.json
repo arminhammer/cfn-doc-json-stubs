@@ -1,12 +1,4 @@
 {
-  "Account": {
-    "Name": "AWS::ApiGateway::Account",
-    "Description": "The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch Logs in your account.",
-    "Array": false,
-    "Type": "String",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
   "ApiKey": {
     "Name": "AWS::ApiGateway::ApiKey",
     "Description": "A description of the purpose of the API key.Indicates whether the API key can be used by clients.A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.A list of stages to associated with this API key.",
@@ -15,9 +7,9 @@
     "Required": "No",
     "UpdateRequires": "No interruption"
   },
-  "BasePathMapping": {
-    "Name": "AWS::ApiGateway::BasePathMapping",
-    "Description": "The base path name that callers of the API must provide in the URL after the domain name.The name of a DomainName resource.The name of the API.The name of the API's stage.",
+  "Account": {
+    "Name": "AWS::ApiGateway::Account",
+    "Description": "The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch Logs in your account.",
     "Array": false,
     "Type": "String",
     "Required": "No",
@@ -34,6 +26,14 @@
   "ClientCertificate": {
     "Name": "AWS::ApiGateway::ClientCertificate",
     "Description": "A description of the client certificate.",
+    "Array": false,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  },
+  "BasePathMapping": {
+    "Name": "AWS::ApiGateway::BasePathMapping",
+    "Description": "The base path name that callers of the API must provide in the URL after the domain name.The name of a DomainName resource.The name of the API.The name of the API's stage.",
     "Array": false,
     "Type": "String",
     "Required": "No",
@@ -73,7 +73,7 @@
   },
   "RestApi": {
     "Name": "AWS::ApiGateway::RestApi",
-    "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.The ID of the API Gateway RestApi resource that you want to clone.A description of the purpose of this API Gateway RestApi resource.If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.A name for the API Gateway RestApi resource.Custom header parameters for the request.The root resource ID for a RestApi resource, such as a0bc123d4e.",
+    "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.\n            For YAML templates, you can also specify the specification in the YAML format.The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.The ID of the API Gateway RestApi resource that you want to clone.A description of the purpose of this API Gateway RestApi resource.If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.A name for the API Gateway RestApi resource.Custom header parameters for the request.The root resource ID for a RestApi resource, such as a0bc123d4e.",
     "Array": true,
     "Type": "String",
     "Required": "No",

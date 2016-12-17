@@ -7,14 +7,6 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
-  "Rule": {
-    "Name": "AWS::WAF::Rule",
-    "Description": "A friendly name or description for the metrics of the rule. For valid values,\n                  see the MetricName parameter for the CreateRule\n                  action in the AWS WAF API Reference.A friendly name or description of the rule.The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions in order to be allowed or blocked.",
-    "Array": true,
-    "Type": "AWSWAFRulePredicates",
-    "Required": "No",
-    "UpdateRequires": "No interruption"
-  },
   "IPSet": {
     "Name": "AWS::WAF::IPSet",
     "Description": "The IP address type and IP address range (in CIDR notation) from which web\n            requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront\n            (CloudFront) distribution, this descriptor is the value of one of the following fields in the\n            CloudFront access logs:If the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    requestA friendly name or description of the IPSet.",
@@ -23,19 +15,11 @@
     "Required": "Yes",
     "UpdateRequires": "Replacement"
   },
-  "SizeConstraintSet": {
-    "Name": "AWS::WAF::SizeConstraintSet",
-    "Description": "A friendly name or description for the SizeConstraintSet.The size constraint and the part of the web request to check.",
+  "Rule": {
+    "Name": "AWS::WAF::Rule",
+    "Description": "A friendly name or description for the metrics of the rule. For valid values,\n                  see the MetricName parameter for the CreateRule\n                  action in the AWS WAF API Reference.A friendly name or description of the rule.The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions in order to be allowed or blocked.",
     "Array": true,
-    "Type": "AWSWAFSizeConstraintSetSizeConstraint",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
-  "SqlInjectionMatchSet": {
-    "Name": "AWS::WAF::SqlInjectionMatchSet",
-    "Description": "A friendly name or description of the SqlInjectionMatchSet.The parts of web requests that you want AWS WAF to inspect for malicious SQL code\n            and, if you want AWS WAF to inspect a header, the name of the header.",
-    "Array": true,
-    "Type": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuples",
+    "Type": "AWSWAFRulePredicates",
     "Required": "No",
     "UpdateRequires": "No interruption"
   },
@@ -53,6 +37,22 @@
     "Array": true,
     "Type": "AWSWAFXssMatchSetXssMatchTuple",
     "Required": "No",
+    "UpdateRequires": "No interruption"
+  },
+  "SqlInjectionMatchSet": {
+    "Name": "AWS::WAF::SqlInjectionMatchSet",
+    "Description": "A friendly name or description of the SqlInjectionMatchSet.The parts of web requests that you want AWS WAF to inspect for malicious SQL code\n            and, if you want AWS WAF to inspect a header, the name of the header.",
+    "Array": true,
+    "Type": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuples",
+    "Required": "No",
+    "UpdateRequires": "No interruption"
+  },
+  "SizeConstraintSet": {
+    "Name": "AWS::WAF::SizeConstraintSet",
+    "Description": "A friendly name or description for the SizeConstraintSet.The size constraint and the part of the web request to check.",
+    "Array": true,
+    "Type": "AWSWAFSizeConstraintSetSizeConstraint",
+    "Required": "Yes",
     "UpdateRequires": "No interruption"
   }
 }

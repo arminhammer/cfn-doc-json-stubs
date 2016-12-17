@@ -1,18 +1,18 @@
 {
+  "Document": {
+    "Name": "AWS::SSM::Document",
+    "Description": "A JSON object that describes an instance configuration. For more information,\n                  see SSM Documents in the\n                     Amazon EC2 Simple Systems Manager API Reference.The type of document to create that relates to the purpose of your document, such as\n            running commands, bootstrapping software, or automating tasks. For valid values, see the\n              CreateDocument action in the\n              Amazon EC2 Simple Systems Manager API Reference.",
+    "Array": false,
+    "Type": "String",
+    "Required": "No",
+    "UpdateRequires": "Replacement"
+  },
   "Association": {
     "Name": "AWS::SSM::Association",
     "Description": "The version of the SSM document to associate with the target.The ID of the instance that the SSM document is associated with.The name of the SSM document.Parameter values that the SSM document uses at runtime.A Cron expression that specifies when the association is applied to the target. For\n            supported expressions, see the ScheduleExpression parameter for the CreateAssociation action in the\n              Amazon EC2 Simple Systems Manager API Reference.The targets that the SSM document sends commands to.",
     "Array": true,
     "Type": "AmazonEC2SimpleSystemsManagerAssociationTargets",
     "Required": "Conditional. You must specify the InstanceId or\n              Targets property.",
-    "UpdateRequires": "Replacement"
-  },
-  "Document": {
-    "Name": "AWS::SSM::Document",
-    "Description": "A JSON object that describes an instance configuration. For more information,\n                  see SSM Documents in the\n                     Amazon EC2 Simple Systems Manager API Reference.",
-    "Array": false,
-    "Type": "Object",
-    "Required": "Yes",
     "UpdateRequires": "Replacement"
   }
 }

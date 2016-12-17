@@ -1,12 +1,4 @@
 {
-  "Certificate": {
-    "Name": "AWS::IoT::Certificate",
-    "Description": "The certificate signing request (CSR).The status of the certificate.Returns the Amazon Resource Name (ARN) for the instance profile. For\n                     example:A value similar to the following is\n                     returned:",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
   "Policy": {
     "Name": "AWS::IoT::Policy",
     "Description": "The JSON document that describes the policy.The name (the physical ID) of the AWS IoT policy.",
@@ -14,6 +6,14 @@
     "Type": "String",
     "Required": "No",
     "UpdateRequires": "Replacement"
+  },
+  "Certificate": {
+    "Name": "AWS::IoT::Certificate",
+    "Description": "The certificate signing request (CSR).The status of the certificate.Returns the Amazon Resource Name (ARN) for the instance profile. For\n                     example:A value similar to the following is\n                     returned:",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
   },
   "PolicyPrincipalAttachment": {
     "Name": "AWS::IoT::PolicyPrincipalAttachment",
@@ -31,14 +31,6 @@
     "Required": "No",
     "UpdateRequires": "Replacement"
   },
-  "ThingPrincipalAttachment": {
-    "Name": "AWS::IoT::ThingPrincipalAttachment",
-    "Description": "The principal, which can be a certificate ARN (as returned from the\n                     CreateCertificate operation) or an Amazon Cognito ID.The name of the AWS IoT thing.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "Replacement"
-  },
   "TopicRule": {
     "Name": "AWS::IoT::TopicRule",
     "Description": "The name (the physical ID) of the AWS IoT rule.The actions associated with the AWS IoT rule.",
@@ -46,5 +38,13 @@
     "Type": "TopicRulePayloadobject",
     "Required": "Yes",
     "UpdateRequires": "No interruption"
+  },
+  "ThingPrincipalAttachment": {
+    "Name": "AWS::IoT::ThingPrincipalAttachment",
+    "Description": "The principal, which can be a certificate ARN (as returned from the\n                     CreateCertificate operation) or an Amazon Cognito ID.The name of the AWS IoT thing.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "Replacement"
   }
 }

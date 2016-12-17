@@ -1,12 +1,4 @@
 {
-  "Destination": {
-    "Name": "AWS::Logs::Destination",
-    "Description": "The name of the CloudWatch Logs destination.An AWS Identity and Access Management (IAM) policy that specifies who can write to your\n                  destination.The Amazon Resource Name (ARN) of an IAM role that permits CloudWatch Logs to send data\n                  to the specified AWS resource (TargetArn).The ARN of the AWS resource that receives log events. Currently, you can\n                  specify only an Amazon Kinesis stream.",
-    "Array": false,
-    "Type": "String",
-    "Required": "Yes",
-    "UpdateRequires": "No interruption"
-  },
   "LogGroup": {
     "Name": "AWS::Logs::LogGroup",
     "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The number of days log events are kept in CloudWatch Logs. When a log event expires,\n                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in\n                  the Amazon CloudWatch Logs API Reference.The Amazon resource name (ARN) of the CloudWatch Logs log group, such as\n                        arn:aws:logs:us-east-1:123456789012:log-group:/mystack-testgroup-12ABC1AB12A1:*.",
@@ -22,6 +14,14 @@
     "Type": "String",
     "Required": "No",
     "UpdateRequires": "Replacement"
+  },
+  "Destination": {
+    "Name": "AWS::Logs::Destination",
+    "Description": "The name of the CloudWatch Logs destination.An AWS Identity and Access Management (IAM) policy that specifies who can write to your\n                  destination.The Amazon Resource Name (ARN) of an IAM role that permits CloudWatch Logs to send data\n                  to the specified AWS resource (TargetArn).The ARN of the AWS resource that receives log events. Currently, you can\n                  specify only an Amazon Kinesis stream.",
+    "Array": false,
+    "Type": "String",
+    "Required": "Yes",
+    "UpdateRequires": "No interruption"
   },
   "MetricFilter": {
     "Name": "AWS::Logs::MetricFilter",
