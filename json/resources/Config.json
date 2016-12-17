@@ -1,51 +1,4 @@
 {
-  "ConfigRule": {
-    "Name": "AWS::Config::ConfigRule",
-    "Properties": {
-      "ConfigRuleName": {
-        "Description": "A name for the AWS Config rule. If you don't specify a name, AWS CloudFormation generates a unique\n            physical ID and uses that ID for the rule name. For more information, see Name Type.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "A description about this AWS Config rule.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "InputParameters": {
-        "Description": "Input parameter values that are passed to the AWS Config rule (Lambda function).",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "MaximumExecutionFrequency": {
-        "Description": "The maximum frequency at which the AWS Config rule runs evaluations. For valid values, see\n            the ConfigRule data type in the\n              AWS Config API Reference.If the rule runs an evaluation when AWS Config delivers a configuration snapshot, the rule\n            cannot run more frequently than the snapshot delivery frequency. Set an execution\n            frequency value that is equal to or greater than the value of the snapshot delivery\n            frequency, which is a property the AWS::Config::DeliveryChannel resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Scope": {
-        "Description": "Defines which AWS resources will trigger an evaluation when their configurations\n            change. The scope can include one or more resource types, a combination of a tag key and\n            value, or a combination of one resource type and one resource ID. Specify a scope to\n            constrain the resources that are evaluated. If you don't specify a scope, the rule\n            evaluates all resources in the recording group.",
-        "Array": false,
-        "Type": "AWSConfigConfigRuleScope",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Source": {
-        "Description": "Specifies the rule owner, the rule identifier, and the events that cause the\n            function to evaluate your AWS resources.",
-        "Array": false,
-        "Type": "AWSConfigConfigRuleSource",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "ConfigurationRecorder": {
     "Name": "AWS::Config::ConfigurationRecorder",
     "Properties": {
@@ -108,6 +61,53 @@
         "Array": false,
         "Type": "String",
         "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ConfigRule": {
+    "Name": "AWS::Config::ConfigRule",
+    "Properties": {
+      "ConfigRuleName": {
+        "Description": "A name for the AWS Config rule. If you don't specify a name, AWS CloudFormation generates a unique\n            physical ID and uses that ID for the rule name. For more information, see Name Type.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "A description about this AWS Config rule.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "InputParameters": {
+        "Description": "Input parameter values that are passed to the AWS Config rule (Lambda function).",
+        "Array": false,
+        "Type": "Object",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "MaximumExecutionFrequency": {
+        "Description": "The maximum frequency at which the AWS Config rule runs evaluations. For valid values, see\n            the ConfigRule data type in the\n              AWS Config API Reference.If the rule runs an evaluation when AWS Config delivers a configuration snapshot, the rule\n            cannot run more frequently than the snapshot delivery frequency. Set an execution\n            frequency value that is equal to or greater than the value of the snapshot delivery\n            frequency, which is a property the AWS::Config::DeliveryChannel resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Scope": {
+        "Description": "Defines which AWS resources will trigger an evaluation when their configurations\n            change. The scope can include one or more resource types, a combination of a tag key and\n            value, or a combination of one resource type and one resource ID. Specify a scope to\n            constrain the resources that are evaluated. If you don't specify a scope, the rule\n            evaluates all resources in the recording group.",
+        "Array": false,
+        "Type": "AWSConfigConfigRuleScope",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Source": {
+        "Description": "Specifies the rule owner, the rule identifier, and the events that cause the\n            function to evaluate your AWS resources.",
+        "Array": false,
+        "Type": "AWSConfigConfigRuleSource",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }

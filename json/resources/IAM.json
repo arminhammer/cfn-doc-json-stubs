@@ -1,4 +1,30 @@
 {
+  "AccessKey": {
+    "Name": "AWS::IAM::AccessKey",
+    "Properties": {
+      "Serial": {
+        "Description": "This value is specific to AWS CloudFormation and can only be incremented. Incrementing this\n                  value notifies AWS CloudFormation that you want to rotate your access key. When you update your stack, AWS CloudFormation will\n                  replace the existing access key with a new key.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Status": {
+        "Description": "The status of the access key. By default, AWS CloudFormation sets this property value to\n                     Active.Valid values:\n                  Active or Inactive",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "UserName": {
+        "Description": "The name of the user that the new key will belong to.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "UserToGroupAddition": {
     "Name": "AWS::IAM::UserToGroupAddition",
     "Properties": {
@@ -14,39 +40,6 @@
         "Array": true,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Group": {
-    "Name": "AWS::IAM::Group",
-    "Properties": {
-      "GroupName": {
-        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ManagedPolicyArns": {
-        "Description": "One or more managed policy ARNs to attach to this group.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Path": {
-        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Policies": {
-        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
-        "Array": true,
-        "Type": "IAMPolicies",
-        "Required": "No",
         "UpdateRequires": "No interruption"
       }
     }
@@ -98,29 +91,36 @@
       }
     }
   },
-  "AccessKey": {
-    "Name": "AWS::IAM::AccessKey",
+  "Group": {
+    "Name": "AWS::IAM::Group",
     "Properties": {
-      "Serial": {
-        "Description": "This value is specific to AWS CloudFormation and can only be incremented. Incrementing this\n                  value notifies AWS CloudFormation that you want to rotate your access key. When you update your stack, AWS CloudFormation will\n                  replace the existing access key with a new key.",
+      "GroupName": {
+        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
         "Array": false,
-        "Type": "Number",
+        "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
-      "Status": {
-        "Description": "The status of the access key. By default, AWS CloudFormation sets this property value to\n                     Active.Valid values:\n                  Active or Inactive",
+      "ManagedPolicyArns": {
+        "Description": "One or more managed policy ARNs to attach to this group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Path": {
+        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
-      "UserName": {
-        "Description": "The name of the user that the new key will belong to.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+      "Policies": {
+        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
+        "Array": true,
+        "Type": "IAMPolicies",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },

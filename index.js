@@ -206,14 +206,11 @@ function scrapeHtmlPage(body, pageType) {
       })
       // Clean up title in case it has parenthesis
       if(obj.titles[i].includes('(')) {
-        console.log('Title has parens:')
-        console.log(obj.titles[i])
         obj.titles[i] = obj.titles[i].replace(/\(.+\)/g,'').trim()
-        console.log(obj.titles[i])
       }
-      if(output.Type && output.Required) {
+      if((output.Type && output.Required) || (obj.titles[i] === 'PolicyName')) {
         block.Properties[obj.titles[i]] = output
-       }
+      }
     }
     let split = block.Name.split('::')
     let group = split[1]

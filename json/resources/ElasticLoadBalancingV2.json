@@ -1,4 +1,51 @@
 {
+  "Listener": {
+    "Name": "AWS::ElasticLoadBalancingV2::Listener",
+    "Properties": {
+      "Certificates": {
+        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerCertificates",
+        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
+        "UpdateRequires": "No interruption"
+      },
+      "DefaultActions": {
+        "Description": "The default actions that the listener takes when handling incoming requests.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingListenerDefaultActions",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "LoadBalancerArn": {
+        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Port": {
+        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Protocol": {
+        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SslPolicy": {
+        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "ListenerRule": {
     "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
     "Properties": {
@@ -74,53 +121,6 @@
         "Description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this\n            load balancer. Use tags to manage your resources.",
         "Array": false,
         "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Listener": {
-    "Name": "AWS::ElasticLoadBalancingV2::Listener",
-    "Properties": {
-      "Certificates": {
-        "Description": "The SSL server certificate for the listener. With a certificate, you can encrypt traffic between the load balancer and the clients that initiate HTTPS sessions, and traffic between the load balancer and your targets.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerCertificates",
-        "Required": "Conditional. If you specify HTTPS for the Protocol property, specify a certificate.",
-        "UpdateRequires": "No interruption"
-      },
-      "DefaultActions": {
-        "Description": "The default actions that the listener takes when handling incoming requests.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingListenerDefaultActions",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "LoadBalancerArn": {
-        "Description": "The Amazon Resource Name (ARN) of the load balancer to associate with the listener.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Port": {
-        "Description": "The port on which the listener listens for requests.For valid values, see the Port parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Protocol": {
-        "Description": "The protocol that clients must use to send requests to the listener.For valid values, see the Protocol parameter for the CreateListener action in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SslPolicy": {
-        "Description": "The security policy that defines the ciphers and protocols that the load balancer supports.",
-        "Array": false,
-        "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }

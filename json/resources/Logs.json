@@ -32,6 +32,25 @@
       }
     }
   },
+  "LogGroup": {
+    "Name": "AWS::Logs::LogGroup",
+    "Properties": {
+      "LogGroupName": {
+        "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RetentionInDays": {
+        "Description": "The number of days log events are kept in CloudWatch Logs. When a log event expires,\n                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in\n                  the Amazon CloudWatch Logs API Reference.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "LogStream": {
     "Name": "AWS::Logs::LogStream",
     "Properties": {
@@ -51,21 +70,28 @@
       }
     }
   },
-  "LogGroup": {
-    "Name": "AWS::Logs::LogGroup",
+  "MetricFilter": {
+    "Name": "AWS::Logs::MetricFilter",
     "Properties": {
-      "LogGroupName": {
-        "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+      "FilterPattern": {
+        "Description": "Describes the pattern that CloudWatch Logs follows to interpret each entry in a log. For\n                  example, a log entry might contain fields such as timestamps, IP addresses, error\n                  codes, bytes transferred, and so on. You use the pattern to specify those fields\n                  and to specify what to look for in the log file. For example, if you're interested\n                  in error codes that begin with 1234, your filter pattern might be\n                     [timestamps, ip_addresses, error_codes = 1234*, size, ...].",
         "Array": false,
         "Type": "String",
-        "Required": "No",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "LogGroupName": {
+        "Description": "The name of an existing log group that you want to associate with this metric\n                  filter.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "RetentionInDays": {
-        "Description": "The number of days log events are kept in CloudWatch Logs. When a log event expires,\n                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in\n                  the Amazon CloudWatch Logs API Reference.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
+      "MetricTransformations": {
+        "Description": "Describes how to transform data from a log into a CloudWatch metric.ImportantCurrently, you can specify only one metric transformation for each metric\n                        filter. If you want to specify multiple metric transformations, you must\n                        specify multiple metric filters.",
+        "Array": true,
+        "Type": "CloudWatchLogsMetricFilterMetricTransformationProperty",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -100,32 +126,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "MetricFilter": {
-    "Name": "AWS::Logs::MetricFilter",
-    "Properties": {
-      "FilterPattern": {
-        "Description": "Describes the pattern that CloudWatch Logs follows to interpret each entry in a log. For\n                  example, a log entry might contain fields such as timestamps, IP addresses, error\n                  codes, bytes transferred, and so on. You use the pattern to specify those fields\n                  and to specify what to look for in the log file. For example, if you're interested\n                  in error codes that begin with 1234, your filter pattern might be\n                     [timestamps, ip_addresses, error_codes = 1234*, size, ...].",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "LogGroupName": {
-        "Description": "The name of an existing log group that you want to associate with this metric\n                  filter.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "MetricTransformations": {
-        "Description": "Describes how to transform data from a log into a CloudWatch metric.ImportantCurrently, you can specify only one metric transformation for each metric\n                        filter. If you want to specify multiple metric transformations, you must\n                        specify multiple metric filters.",
-        "Array": true,
-        "Type": "CloudWatchLogsMetricFilterMetricTransformationProperty",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
       }
     }
   }

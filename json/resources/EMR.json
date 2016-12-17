@@ -88,6 +88,39 @@
       }
     }
   },
+  "Step": {
+    "Name": "AWS::EMR::Step",
+    "Properties": {
+      "ActionOnFailure": {
+        "Description": "The action to take if the job flow step fails. Currently, AWS CloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more information, see Managing Cluster Termination in the Amazon EMR Management Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "HadoopJarStep": {
+        "Description": "The JAR file that includes the main function that Amazon EMR executes.",
+        "Array": false,
+        "Type": "AmazonEMRStepHadoopJarStepConfig",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "JobFlowId": {
+        "Description": "The ID of a cluster in which you want to run this job flow step.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Name": {
+        "Description": "A name for the job flow step.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "InstanceGroupConfig": {
     "Name": "AWS::EMR::InstanceGroupConfig",
     "Properties": {
@@ -152,39 +185,6 @@
         "Array": false,
         "Type": "String",
         "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Step": {
-    "Name": "AWS::EMR::Step",
-    "Properties": {
-      "ActionOnFailure": {
-        "Description": "The action to take if the job flow step fails. Currently, AWS CloudFormation supports CONTINUE and CANCEL_AND_WAIT. For more information, see Managing Cluster Termination in the Amazon EMR Management Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "HadoopJarStep": {
-        "Description": "The JAR file that includes the main function that Amazon EMR executes.",
-        "Array": false,
-        "Type": "AmazonEMRStepHadoopJarStepConfig",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "JobFlowId": {
-        "Description": "The ID of a cluster in which you want to run this job flow step.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Name": {
-        "Description": "A name for the job flow step.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
         "UpdateRequires": "Replacement"
       }
     }

@@ -329,36 +329,29 @@
       }
     }
   },
-  "DBClusterParameterGroup": {
-    "Name": "AWS::RDS::DBClusterParameterGroup",
+  "DBSubnetGroup": {
+    "Name": "AWS::RDS::DBSubnetGroup",
     "Properties": {
-      "Description": {
-        "Description": "A friendly description for this DB cluster parameter group.",
+      "DBSubnetGroupDescription": {
+        "Description": "The description for the DB Subnet Group.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "UpdateRequires": "No interruption"
       },
-      "Family": {
-        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
-        "Array": false,
+      "SubnetIds": {
+        "Description": "The EC2 Subnet IDs for the DB Subnet Group.",
+        "Array": true,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
-        "Array": false,
-        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
+        "UpdateRequires": "No interruption"
       },
       "Tags": {
-        "Description": "The tags that you want to attach to this parameter group.",
+        "Description": "The tags that you want to attach to the RDS database subnet group.",
         "Array": true,
-        "Type": "resourcetags",
+        "Type": "resourcetagsinkey-valueformat",
         "Required": "No",
-        "UpdateRequires": "Updates are not supported."
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -486,29 +479,36 @@
       }
     }
   },
-  "DBSubnetGroup": {
-    "Name": "AWS::RDS::DBSubnetGroup",
+  "DBClusterParameterGroup": {
+    "Name": "AWS::RDS::DBClusterParameterGroup",
     "Properties": {
-      "DBSubnetGroupDescription": {
-        "Description": "The description for the DB Subnet Group.",
+      "Description": {
+        "Description": "A friendly description for this DB cluster parameter group.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Replacement"
       },
-      "SubnetIds": {
-        "Description": "The EC2 Subnet IDs for the DB Subnet Group.",
-        "Array": true,
+      "Family": {
+        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
+        "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Replacement"
+      },
+      "Parameters": {
+        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
+        "Array": false,
+        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
       },
       "Tags": {
-        "Description": "The tags that you want to attach to the RDS database subnet group.",
+        "Description": "The tags that you want to attach to this parameter group.",
         "Array": true,
-        "Type": "resourcetagsinkey-valueformat",
+        "Type": "resourcetags",
         "Required": "No",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Updates are not supported."
       }
     }
   },

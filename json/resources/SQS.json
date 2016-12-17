@@ -1,23 +1,4 @@
 {
-  "QueuePolicy": {
-    "Name": "AWS::SQS::QueuePolicy",
-    "Properties": {
-      "PolicyDocument": {
-        "Description": "A policy document containing permissions to add to the specified SQS queues.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Queues": {
-        "Description": "The URLs of the queues to which you want to add the policy. You can use the Ref function to specify an AWS::SQS::Queue resource.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Queue": {
     "Name": "AWS::SQS::Queue",
     "Properties": {
@@ -68,6 +49,25 @@
         "Array": false,
         "Type": "Number",
         "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "QueuePolicy": {
+    "Name": "AWS::SQS::QueuePolicy",
+    "Properties": {
+      "PolicyDocument": {
+        "Description": "A policy document containing permissions to add to the specified SQS queues.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Queues": {
+        "Description": "The URLs of the queues to which you want to add the policy. You can use the Ref function to specify an AWS::SQS::Queue resource.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
