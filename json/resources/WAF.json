@@ -1,23 +1,4 @@
 {
-  "IPSet": {
-    "Name": "AWS::WAF::IPSet",
-    "Properties": {
-      "IPSetDescriptors": {
-        "Description": "The IP address type and IP address range (in CIDR notation) from which web\n            requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront\n            (CloudFront) distribution, this descriptor is the value of one of the following fields in the\n            CloudFront access logs:If the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    request",
-        "Array": true,
-        "Type": "AWSWAFIPSetIPSetDescriptors",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A friendly name or description of the IPSet.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "ByteMatchSet": {
     "Name": "AWS::WAF::ByteMatchSet",
     "Properties": {
@@ -59,6 +40,44 @@
         "Array": true,
         "Type": "AWSWAFRulePredicates",
         "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "IPSet": {
+    "Name": "AWS::WAF::IPSet",
+    "Properties": {
+      "IPSetDescriptors": {
+        "Description": "The IP address type and IP address range (in CIDR notation) from which web\n            requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront\n            (CloudFront) distribution, this descriptor is the value of one of the following fields in the\n            CloudFront access logs:If the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    request",
+        "Array": true,
+        "Type": "AWSWAFIPSetIPSetDescriptors",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A friendly name or description of the IPSet.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "SizeConstraintSet": {
+    "Name": "AWS::WAF::SizeConstraintSet",
+    "Properties": {
+      "Name": {
+        "Description": "A friendly name or description for the SizeConstraintSet.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "SizeConstraints": {
+        "Description": "The size constraint and the part of the web request to check.",
+        "Array": true,
+        "Type": "AWSWAFSizeConstraintSetSizeConstraint",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }
@@ -111,25 +130,6 @@
         "Array": true,
         "Type": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuples",
         "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "SizeConstraintSet": {
-    "Name": "AWS::WAF::SizeConstraintSet",
-    "Properties": {
-      "Name": {
-        "Description": "A friendly name or description for the SizeConstraintSet.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SizeConstraints": {
-        "Description": "The size constraint and the part of the web request to check.",
-        "Array": true,
-        "Type": "AWSWAFSizeConstraintSetSizeConstraint",
-        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }

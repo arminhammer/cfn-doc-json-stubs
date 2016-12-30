@@ -25,32 +25,6 @@
       }
     }
   },
-  "SecurityGroupIngress": {
-    "Name": "AWS::ElastiCache::SecurityGroupIngress",
-    "Properties": {
-      "CacheSecurityGroupName": {
-        "Description": "The name of the Cache Security Group to authorize.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupName": {
-        "Description": "Name of the EC2 Security Group to include in the authorization.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "CacheCluster": {
     "Name": "AWS::ElastiCache::CacheCluster",
     "Properties": {
@@ -207,6 +181,32 @@
     "Properties": {
       "Description": {
         "Description": "A description for the cache security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SecurityGroupIngress": {
+    "Name": "AWS::ElastiCache::SecurityGroupIngress",
+    "Properties": {
+      "CacheSecurityGroupName": {
+        "Description": "The name of the Cache Security Group to authorize.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupName": {
+        "Description": "Name of the EC2 Security Group to include in the authorization.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
         "Array": false,
         "Type": "String",
         "Required": "No",

@@ -1,44 +1,4 @@
 {
-  "EIPAssociation": {
-    "Name": "AWS::EC2::EIPAssociation",
-    "Properties": {
-      "AllocationId": {
-        "Description": "Allocation ID for the VPC Elastic IP address you want to associate with an\n                  Amazon EC2 instance in your VPC.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. Required for a VPC.",
-        "UpdateRequires": "Replacement if you also change the InstanceId or\n                     NetworkInterfaceId property. If not, update requires No interruption."
-      },
-      "EIP": {
-        "Description": "Elastic IP address that you want to associate with the Amazon EC2 instance specified\n                  by the InstanceId property. You can specify an existing Elastic IP\n                  address or a reference to an Elastic IP address allocated with a AWS::EC2::EIP resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. Required for Elastic IP addresses\n                  for use in EC2-Classic.",
-        "UpdateRequires": "Replacement if you also change the InstanceId or\n                     NetworkInterfaceId property. If not, update requires No interruption."
-      },
-      "InstanceId": {
-        "Description": "Instance ID of the Amazon EC2 instance that you want to associate with the Elastic\n                  IP address specified by the EIP property.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement if you also change the AllocationId or\n                     EIP property. If not, update requires No interruption."
-      },
-      "NetworkInterfaceId": {
-        "Description": "The ID of the network interface to associate with the Elastic IP address (VPC\n                  only).",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement if you also change the AllocationId or\n                     EIP property. If not, update requires No interruption."
-      },
-      "PrivateIpAddress": {
-        "Description": "The private IP address that you want to associate with the Elastic IP address.\n                  The private IP address is restricted to the primary and secondary private IP\n                  addresses that are associated with the network interface. By default, the private\n                  IP address that is associated with the EIP is the primary private IP address of\n                  the network interface.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Volume": {
     "Name": "AWS::EC2::Volume",
     "Properties": {
@@ -107,25 +67,6 @@
       }
     }
   },
-  "EIP": {
-    "Name": "AWS::EC2::EIP",
-    "Properties": {
-      "InstanceId": {
-        "Description": "The Instance ID of the Amazon EC2 instance that you want to associate with this\n                  Elastic IP address.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Domain": {
-        "Description": "Set to vpc to allocate the address to your Virtual Private Cloud\n                  (VPC). No other values are supported.NoteIf you define an Elastic IP address and associate it with a VPC that is\n                     defined in the same template, you must declare a dependency on the VPC-gateway\n                     attachment by using the DependsOn attribute on this resource. For\n                     more information, see DependsOn Attribute.For more information, see AllocateAddress in the Amazon EC2 API Reference. For more\n                  information about Elastic IP Addresses in VPC, go to IP Addressing in Your VPC in the Amazon VPC User\n                     Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. Required when allocating an address to a VPC",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "VolumeAttachment": {
     "Name": "AWS::EC2::VolumeAttachment",
     "Properties": {
@@ -152,42 +93,61 @@
       }
     }
   },
-  "SecurityGroup": {
-    "Name": "AWS::EC2::SecurityGroup",
+  "EIPAssociation": {
+    "Name": "AWS::EC2::EIPAssociation",
     "Properties": {
-      "GroupDescription": {
-        "Description": "Description of the security group.",
+      "AllocationId": {
+        "Description": "Allocation ID for the VPC Elastic IP address you want to associate with an\n                  Amazon EC2 instance in your VPC.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "Required": "Conditional. Required for a VPC.",
+        "UpdateRequires": "Replacement if you also change the InstanceId or\n                     NetworkInterfaceId property. If not, update requires No interruption."
       },
-      "SecurityGroupEgress": {
-        "Description": "A list of Amazon EC2 security group egress rules.",
-        "Array": true,
-        "Type": "EC2SecurityGroupRulePropertyType",
+      "EIP": {
+        "Description": "Elastic IP address that you want to associate with the Amazon EC2 instance specified\n                  by the InstanceId property. You can specify an existing Elastic IP\n                  address or a reference to an Elastic IP address allocated with a AWS::EC2::EIP resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. Required for Elastic IP addresses\n                  for use in EC2-Classic.",
+        "UpdateRequires": "Replacement if you also change the InstanceId or\n                     NetworkInterfaceId property. If not, update requires No interruption."
+      },
+      "InstanceId": {
+        "Description": "Instance ID of the Amazon EC2 instance that you want to associate with the Elastic\n                  IP address specified by the EIP property.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement if you also change the AllocationId or\n                     EIP property. If not, update requires No interruption."
+      },
+      "NetworkInterfaceId": {
+        "Description": "The ID of the network interface to associate with the Elastic IP address (VPC\n                  only).",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement if you also change the AllocationId or\n                     EIP property. If not, update requires No interruption."
+      },
+      "PrivateIpAddress": {
+        "Description": "The private IP address that you want to associate with the Elastic IP address.\n                  The private IP address is restricted to the primary and secondary private IP\n                  addresses that are associated with the network interface. By default, the private\n                  IP address that is associated with the EIP is the primary private IP address of\n                  the network interface.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "EIP": {
+    "Name": "AWS::EC2::EIP",
+    "Properties": {
+      "InstanceId": {
+        "Description": "The Instance ID of the Amazon EC2 instance that you want to associate with this\n                  Elastic IP address.",
+        "Array": false,
+        "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
-      "SecurityGroupIngress": {
-        "Description": "A list of Amazon EC2 security group ingress rules.",
-        "Array": true,
-        "Type": "EC2SecurityGroupRulePropertyType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to the resource.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      },
-      "VpcId": {
-        "Description": "The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { \"Ref\" : \"myVPC\" }.For more information about using the Ref function, see Ref.NoteFor more information about VPC security groups, go to Security Groups in the Amazon VPC User Guide.",
+      "Domain": {
+        "Description": "Set to vpc to allocate the address to your Virtual Private Cloud\n                  (VPC). No other values are supported.NoteIf you define an Elastic IP address and associate it with a VPC that is\n                     defined in the same template, you must declare a dependency on the VPC-gateway\n                     attachment by using the DependsOn attribute on this resource. For\n                     more information, see DependsOn Attribute.For more information, see AllocateAddress in the Amazon EC2 API Reference. For more\n                  information about Elastic IP Addresses in VPC, go to IP Addressing in Your VPC in the Amazon VPC User\n                     Guide.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes, for VPC security groups without a default\n                  VPC",
+        "Required": "Conditional. Required when allocating an address to a VPC",
         "UpdateRequires": "Replacement"
       }
     }
@@ -475,28 +435,42 @@
       }
     }
   },
-  "Host": {
-    "Name": "AWS::EC2::Host",
+  "SecurityGroup": {
+    "Name": "AWS::EC2::SecurityGroup",
     "Properties": {
-      "AutoPlacement": {
-        "Description": "Indicates if the host accepts EC2 instances with only matching configurations or if\n            instances must also specify the host ID. Instances that don't specify a host ID can't\n            launch onto a host with AutoPlacement set to off. By default,\n            AWS CloudFormation sets this property to on. For more information, see Understanding Instance\n              Placement and Host Affinity in the\n            Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "AvailabilityZone": {
-        "Description": "The Availability Zone (AZ) in which to launch the dedicated host.",
+      "GroupDescription": {
+        "Description": "Description of the security group.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "InstanceType": {
-        "Description": "The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
+      "SecurityGroupEgress": {
+        "Description": "A list of Amazon EC2 security group egress rules.",
+        "Array": true,
+        "Type": "EC2SecurityGroupRulePropertyType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "SecurityGroupIngress": {
+        "Description": "A list of Amazon EC2 security group ingress rules.",
+        "Array": true,
+        "Type": "EC2SecurityGroupRulePropertyType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Tags": {
+        "Description": "The tags that you want to attach to the resource.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      },
+      "VpcId": {
+        "Description": "The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { \"Ref\" : \"myVPC\" }.For more information about using the Ref function, see Ref.NoteFor more information about VPC security groups, go to Security Groups in the Amazon VPC User Guide.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
+        "Required": "Yes, for VPC security groups without a default\n                  VPC",
         "UpdateRequires": "Replacement"
       }
     }
@@ -534,43 +508,15 @@
       }
     }
   },
-  "FlowLog": {
-    "Name": "AWS::EC2::FlowLog",
+  "InternetGateway": {
+    "Name": "AWS::EC2::InternetGateway",
     "Properties": {
-      "DeliverLogsPermissionArn": {
-        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account.",
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this resource.",
         "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "LogGroupName": {
-        "Description": "The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ResourceId": {
-        "Description": "The ID of the subnet, network interface, or VPC for which you want to create a flow log.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ResourceType": {
-        "Description": "The type of resource that you specified in the ResourceId property. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property. For valid values, see the ResourceType parameter for the CreateFlowLogs action in the Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "TrafficType": {
-        "Description": "The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic. For valid values, see the TrafficType parameter for the CreateFlowLogs action in the Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
       }
     }
   },
@@ -621,15 +567,69 @@
       }
     }
   },
-  "InternetGateway": {
-    "Name": "AWS::EC2::InternetGateway",
+  "FlowLog": {
+    "Name": "AWS::EC2::FlowLog",
     "Properties": {
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this resource.",
+      "DeliverLogsPermissionArn": {
+        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account.",
         "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "LogGroupName": {
+        "Description": "The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ResourceId": {
+        "Description": "The ID of the subnet, network interface, or VPC for which you want to create a flow log.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ResourceType": {
+        "Description": "The type of resource that you specified in the ResourceId property. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property. For valid values, see the ResourceType parameter for the CreateFlowLogs action in the Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "TrafficType": {
+        "Description": "The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic. For valid values, see the TrafficType parameter for the CreateFlowLogs action in the Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Host": {
+    "Name": "AWS::EC2::Host",
+    "Properties": {
+      "AutoPlacement": {
+        "Description": "Indicates if the host accepts EC2 instances with only matching configurations or if\n            instances must also specify the host ID. Instances that don't specify a host ID can't\n            launch onto a host with AutoPlacement set to off. By default,\n            AWS CloudFormation sets this property to on. For more information, see Understanding Instance\n              Placement and Host Affinity in the\n            Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
         "Required": "No",
-        "UpdateRequires": "No interruption."
+        "UpdateRequires": "No interruption"
+      },
+      "AvailabilityZone": {
+        "Description": "The Availability Zone (AZ) in which to launch the dedicated host.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceType": {
+        "Description": "The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -720,25 +720,6 @@
       }
     }
   },
-  "NetworkAcl": {
-    "Name": "AWS::EC2::NetworkAcl",
-    "Properties": {
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this ACL.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      },
-      "VpcId": {
-        "Description": "The ID of the VPC where the network ACL will be created.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "NetworkInterfaceAttachment": {
     "Name": "AWS::EC2::NetworkInterfaceAttachment",
     "Properties": {
@@ -772,6 +753,25 @@
       }
     }
   },
+  "NetworkAcl": {
+    "Name": "AWS::EC2::NetworkAcl",
+    "Properties": {
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this ACL.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      },
+      "VpcId": {
+        "Description": "The ID of the VPC where the network ACL will be created.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "RouteTable": {
     "Name": "AWS::EC2::RouteTable",
     "Properties": {
@@ -788,6 +788,79 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
+      }
+    }
+  },
+  "Route": {
+    "Name": "AWS::EC2::Route",
+    "Properties": {
+      "DestinationCidrBlock": {
+        "Description": "The IPv4 CIDR address block used for the destination match. For example,\n                     0.0.0.0/0. Routing decisions are based on the most specific\n                  match.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify the DestinationCidrBlock or DestinationIpv6CidrBlock property.",
+        "UpdateRequires": "Replacement"
+      },
+      "DestinationIpv6CidrBlock": {
+        "Description": "The IPv6 CIDR address block used for the destination match. For example,\n                     ::/0. Routing decisions are based on the most specific\n                  match.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify the DestinationCidrBlock or DestinationIpv6CidrBlock property.",
+        "UpdateRequires": "Replacement"
+      },
+      "GatewayId": {
+        "Description": "The ID of an Internet gateway or virtual private gateway that is attached to\n                  your VPC. For example: igw-eaad4883.For route entries that specify a gateway, you must specify a dependency on the\n                  gateway attachment resource.  For more information, see DependsOn Attribute.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
+        "UpdateRequires": "No interruption"
+      },
+      "InstanceId": {
+        "Description": "The ID of a NAT instance in your VPC. For example,\n                  i-1a2b3c4d.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
+        "UpdateRequires": "No interruption"
+      },
+      "NatGatewayId": {
+        "Description": "The ID of a NAT gateway. For example,\n                  nat-0a12bc456789de0fg.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
+        "UpdateRequires": "No interruption"
+      },
+      "NetworkInterfaceId": {
+        "Description": "Allows the routing of network interface IDs.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
+        "UpdateRequires": "No interruption"
+      },
+      "RouteTableId": {
+        "Description": "The ID of the route table where the route will\n                  be added.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "VpcPeeringConnectionId": {
+        "Description": "The ID of a VPC peering connection.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "PlacementGroup": {
+    "Name": "AWS::EC2::PlacementGroup",
+    "Properties": {
+      "Strategy": {
+        "Description": "The placement strategy, which relates to the instance types that can be added\n            to the placement group. For example, for the cluster strategy, you can\n            cluster C4 instance types but not T2 instance types. For valid values, see CreatePlacementGroup in the\n              Amazon EC2 API Reference. By default, AWS CloudFormation sets the value of this\n            property to cluster.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -866,79 +939,6 @@
       }
     }
   },
-  "PlacementGroup": {
-    "Name": "AWS::EC2::PlacementGroup",
-    "Properties": {
-      "Strategy": {
-        "Description": "The placement strategy, which relates to the instance types that can be added\n            to the placement group. For example, for the cluster strategy, you can\n            cluster C4 instance types but not T2 instance types. For valid values, see CreatePlacementGroup in the\n              Amazon EC2 API Reference. By default, AWS CloudFormation sets the value of this\n            property to cluster.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "Route": {
-    "Name": "AWS::EC2::Route",
-    "Properties": {
-      "DestinationCidrBlock": {
-        "Description": "The IPv4 CIDR address block used for the destination match. For example,\n                     0.0.0.0/0. Routing decisions are based on the most specific\n                  match.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify the DestinationCidrBlock or DestinationIpv6CidrBlock property.",
-        "UpdateRequires": "Replacement"
-      },
-      "DestinationIpv6CidrBlock": {
-        "Description": "The IPv6 CIDR address block used for the destination match. For example,\n                     ::/0. Routing decisions are based on the most specific\n                  match.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify the DestinationCidrBlock or DestinationIpv6CidrBlock property.",
-        "UpdateRequires": "Replacement"
-      },
-      "GatewayId": {
-        "Description": "The ID of an Internet gateway or virtual private gateway that is attached to\n                  your VPC. For example: igw-eaad4883.For route entries that specify a gateway, you must specify a dependency on the\n                  gateway attachment resource.  For more information, see DependsOn Attribute.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
-        "UpdateRequires": "No interruption"
-      },
-      "InstanceId": {
-        "Description": "The ID of a NAT instance in your VPC. For example,\n                  i-1a2b3c4d.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
-        "UpdateRequires": "No interruption"
-      },
-      "NatGatewayId": {
-        "Description": "The ID of a NAT gateway. For example,\n                  nat-0a12bc456789de0fg.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
-        "UpdateRequires": "No interruption"
-      },
-      "NetworkInterfaceId": {
-        "Description": "Allows the routing of network interface IDs.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
-        "UpdateRequires": "No interruption"
-      },
-      "RouteTableId": {
-        "Description": "The ID of the route table where the route will\n                  be added.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "VpcPeeringConnectionId": {
-        "Description": "The ID of a VPC peering connection.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify only one of the following properties:\n                     GatewayId, InstanceId, NatGatewayId,\n                     NetworkInterfaceId, or VpcPeeringConnectionId.",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "SubnetNetworkAclAssociation": {
     "Name": "AWS::EC2::SubnetNetworkAclAssociation",
     "Properties": {
@@ -953,6 +953,18 @@
         "Description": "The ID of the new ACL to associate with the subnet.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "SpotFleet": {
+    "Name": "AWS::EC2::SpotFleet",
+    "Properties": {
+      "SpotFleetRequestConfigData": {
+        "Description": "The configuration for a Spot fleet request.",
+        "Array": false,
+        "Type": "AmazonEC2SpotFleetSpotFleetRequestConfigData",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       }
@@ -1019,18 +1031,6 @@
       }
     }
   },
-  "SpotFleet": {
-    "Name": "AWS::EC2::SpotFleet",
-    "Properties": {
-      "SpotFleetRequestConfigData": {
-        "Description": "The configuration for a Spot fleet request.",
-        "Array": false,
-        "Type": "AmazonEC2SpotFleetSpotFleetRequestConfigData",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "SubnetRouteTableAssociation": {
     "Name": "AWS::EC2::SubnetRouteTableAssociation",
     "Properties": {
@@ -1050,22 +1050,29 @@
       }
     }
   },
-  "VPCDHCPOptionsAssociation": {
-    "Name": "AWS::EC2::VPCDHCPOptionsAssociation",
+  "VPCGatewayAttachment": {
+    "Name": "AWS::EC2::VPCGatewayAttachment",
     "Properties": {
-      "DhcpOptionsId": {
-        "Description": "The ID of the DHCP options you want to associate with the VPC. Specify\n                     default if you want the VPC to use no DHCP options.",
+      "InternetGatewayId": {
+        "Description": "The ID of the Internet gateway.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional You must specify either InternetGatewayId or\n               VpnGatewayId, but not both.",
+        "UpdateRequires": "No interruption"
+      },
+      "VpcId": {
+        "Description": "The ID of the VPC to associate with this gateway.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
-      "VpcId": {
-        "Description": "The ID of the VPC to associate with this DHCP options set.",
+      "VpnGatewayId": {
+        "Description": "The ID of the virtual private network (VPN) gateway to attach to the VPC.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
+        "Required": "Conditional You must specify either\n                     InternetGatewayId or VpnGatewayId, but not both.",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -1081,6 +1088,25 @@
       },
       "SubnetId": {
         "Description": "The ID of the subnet to associate the IPv6 CIDR block with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "VPCDHCPOptionsAssociation": {
+    "Name": "AWS::EC2::VPCDHCPOptionsAssociation",
+    "Properties": {
+      "DhcpOptionsId": {
+        "Description": "The ID of the DHCP options you want to associate with the VPC. Specify\n                     default if you want the VPC to use no DHCP options.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "VpcId": {
+        "Description": "The ID of the VPC to associate with this DHCP options set.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -1128,32 +1154,6 @@
       }
     }
   },
-  "VPCGatewayAttachment": {
-    "Name": "AWS::EC2::VPCGatewayAttachment",
-    "Properties": {
-      "InternetGatewayId": {
-        "Description": "The ID of the Internet gateway.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional You must specify either InternetGatewayId or\n               VpnGatewayId, but not both.",
-        "UpdateRequires": "No interruption"
-      },
-      "VpcId": {
-        "Description": "The ID of the VPC to associate with this gateway.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "VpnGatewayId": {
-        "Description": "The ID of the virtual private network (VPN) gateway to attach to the VPC.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional You must specify either\n                     InternetGatewayId or VpnGatewayId, but not both.",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "VPC": {
     "Name": "AWS::EC2::VPC",
     "Properties": {
@@ -1191,6 +1191,51 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
+      }
+    }
+  },
+  "VPCPeeringConnection": {
+    "Name": "AWS::EC2::VPCPeeringConnection",
+    "Properties": {
+      "PeerVpcId": {
+        "Description": "The ID of the VPC with which you are creating the peering connection.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this\n                        resource.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption."
+      },
+      "VpcId": {
+        "Description": "The ID of the VPC that is requesting a peering connection.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "VPNConnectionRoute": {
+    "Name": "AWS::EC2::VPNConnectionRoute",
+    "Properties": {
+      "DestinationCidrBlock": {
+        "Description": "The CIDR block that is associated with the local subnet of the customer\n                  network.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes.",
+        "UpdateRequires": "Replacement"
+      },
+      "VpnConnectionId": {
+        "Description": "The ID of the VPN connection.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes.",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -1242,51 +1287,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "VPCPeeringConnection": {
-    "Name": "AWS::EC2::VPCPeeringConnection",
-    "Properties": {
-      "PeerVpcId": {
-        "Description": "The ID of the VPC with which you are creating the peering connection.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this\n                        resource.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption."
-      },
-      "VpcId": {
-        "Description": "The ID of the VPC that is requesting a peering connection.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "VPNConnectionRoute": {
-    "Name": "AWS::EC2::VPNConnectionRoute",
-    "Properties": {
-      "DestinationCidrBlock": {
-        "Description": "The CIDR block that is associated with the local subnet of the customer\n                  network.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes.",
-        "UpdateRequires": "Replacement"
-      },
-      "VpnConnectionId": {
-        "Description": "The ID of the VPN connection.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes.",
         "UpdateRequires": "Replacement"
       }
     }

@@ -1,4 +1,30 @@
 {
+  "ClusterParameterGroup": {
+    "Name": "AWS::Redshift::ClusterParameterGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the parameter group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ParameterGroupFamily": {
+        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Parameters": {
+        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
+        "Array": false,
+        "Type": "AmazonRedshiftParameterType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "Cluster": {
     "Name": "AWS::Redshift::Cluster",
     "Properties": {
@@ -174,32 +200,6 @@
         "Description": "A list of VPC security groups that are associated with this cluster.",
         "Array": true,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "ClusterParameterGroup": {
-    "Name": "AWS::Redshift::ClusterParameterGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the parameter group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ParameterGroupFamily": {
-        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
-        "Array": false,
-        "Type": "AmazonRedshiftParameterType",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }

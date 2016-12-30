@@ -111,7 +111,7 @@ const sanitizeReplacementsProperties = {
 }
 
 const sanitizeAsArrays = {
-
+  AmazonS3NotificationConfiguration: ['LambdaConfigurations', 'QueueConfigurations', 'TopicConfigurations']
 }
 
 const result = {
@@ -160,9 +160,9 @@ function sanitizeTypes (output, pageType) {
     output.Array = true
   }
   let originalType = output.Type
-  if (sanitizeAsArrays[originalType]) {
+  /*if (sanitizeAsArrays[originalType]) {
     output.Array = true
-  }
+  }*/
   if (pageType == 'Resources') {
     if (sanitizeReplacementsResources[originalType]) {
       output.Type = sanitizeReplacementsResources[originalType]
@@ -171,6 +171,17 @@ function sanitizeTypes (output, pageType) {
     if (sanitizeReplacementsProperties[originalType]) {
       output.Type = sanitizeReplacementsProperties[originalType]
     }
+  }
+}
+
+function overrideArrays(block) {
+  if (sanitizeAsArrays[block.Name]) {
+    // let blah = sanitizeAsArrays[block.Name]
+    sanitizeAsArrays[block.Name].forEach((prop) => {
+      if(block.Properties[prop]) {
+        block.Properties[prop].Array = true
+      }
+    })
   }
 }
 
@@ -212,6 +223,7 @@ function scrapeHtmlPage(body, pageType) {
         block.Properties[obj.titles[i]] = output
       }
     }
+    overrideArrays(block)
     let split = block.Name.split('::')
     let group = split[1]
     let name = split[2]

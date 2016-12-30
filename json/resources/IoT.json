@@ -18,25 +18,6 @@
       }
     }
   },
-  "PolicyPrincipalAttachment": {
-    "Name": "AWS::IoT::PolicyPrincipalAttachment",
-    "Properties": {
-      "PolicyName": {
-        "Description": "The name of the policy.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Principal": {
-        "Description": "The principal, which can be a certificate ARN (as returned from the\n                     CreateCertificate operation) or an Amazon Cognito ID.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Policy": {
     "Name": "AWS::IoT::Policy",
     "Properties": {
@@ -52,6 +33,25 @@
         "Array": false,
         "Type": "String",
         "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "PolicyPrincipalAttachment": {
+    "Name": "AWS::IoT::PolicyPrincipalAttachment",
+    "Properties": {
+      "PolicyName": {
+        "Description": "The name of the policy.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Principal": {
+        "Description": "The principal, which can be a certificate ARN (as returned from the\n                     CreateCertificate operation) or an Amazon Cognito ID.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       }
     }

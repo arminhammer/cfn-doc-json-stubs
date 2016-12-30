@@ -1,23 +1,4 @@
 {
-  "FileSystem": {
-    "Name": "AWS::EFS::FileSystem",
-    "Properties": {
-      "FileSystemTags": {
-        "Description": "Tags to associate with the file system.",
-        "Array": false,
-        "Type": "AmazonElasticFileSystemFileSystemFileSystemTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "PerformanceMode": {
-        "Description": "The performance mode of the file system. For valid values, see the PerformanceMode parameter for the CreateFileSystem action in the Amazon Elastic File System User Guide.For more information about performance modes, see Amazon EFS Performance in the Amazon Elastic File System User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "MountTarget": {
     "Name": "AWS::EFS::MountTarget",
     "Properties": {
@@ -47,6 +28,25 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "FileSystem": {
+    "Name": "AWS::EFS::FileSystem",
+    "Properties": {
+      "FileSystemTags": {
+        "Description": "Tags to associate with the file system.",
+        "Array": false,
+        "Type": "AmazonElasticFileSystemFileSystemFileSystemTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "PerformanceMode": {
+        "Description": "The performance mode of the file system. For valid values, see the PerformanceMode parameter for the CreateFileSystem action in the Amazon Elastic File System User Guide.For more information about performance modes, see Amazon EFS Performance in the Amazon Elastic File System User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       }
     }

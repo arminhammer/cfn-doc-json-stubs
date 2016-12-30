@@ -1,4 +1,21 @@
 {
+  "AmazonAPIGatewayApiKeyStageKey": {
+    "Name": "AmazonAPIGatewayApiKeyStageKey",
+    "Properties": {
+      "RestApiId": {
+        "Description": "The ID of a RestApi resource that includes the stage with which you want to associate the API key.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "StageName": {
+        "Description": "The name of the stage with which to associate the API key. The stage must be included in the RestApi resource that you specified in the RestApiId property.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
   "AmazonAPIGatewayUsagePlanQuotaSettings": {
     "Name": "AmazonAPIGatewayUsagePlanQuotaSettings",
     "Properties": {
@@ -33,23 +50,6 @@
       },
       "Stage": {
         "Description": "The name of an API Gateway stage to associate with the usage plan.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "AmazonAPIGatewayApiKeyStageKey": {
-    "Name": "AmazonAPIGatewayApiKeyStageKey",
-    "Properties": {
-      "RestApiId": {
-        "Description": "The ID of a RestApi resource that includes the stage with which you want to associate the API key.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "StageName": {
-        "Description": "The name of the stage with which to associate the API key. The stage must be included in the RestApi resource that you specified in the RestApiId property.",
         "Array": false,
         "Type": "String",
         "Required": "No"
@@ -233,26 +233,32 @@
       }
     }
   },
-  "AmazonAPIGatewayMethodMethodResponse": {
-    "Name": "AmazonAPIGatewayMethodMethodResponse",
+  "AmazonAPIGatewayMethodIntegrationIntegrationResponse": {
+    "Name": "AmazonAPIGatewayMethodIntegrationIntegrationResponse",
     "Properties": {
-      "ResponseModels": {
-        "Description": "The resources used for the response's content type. Specify response models as key-value pairs (string-to-string maps), with a content type as the key and a Model resource name as the value.",
+      "ResponseParameters": {
+        "Description": "The response parameters from the back-end response that API Gateway sends to the method\n            response. Specify response parameters as key-value pairs (string-to-string mappings).Use the destination as the key and the source as the value:The destination must be an existing response parameter in the MethodResponse property.The source must be an existing method request parameter or a static value. You\n                must enclose static values in single quotation marks and pre-encode these values\n                based on the destination specified in the request.For more information, see API Gateway API Request and Response\n              Parameter-Mapping Reference in the\n            API Gateway Developer Guide.",
         "Array": false,
         "Type": "Map",
         "Required": "No"
       },
-      "ResponseParameters": {
-        "Description": "Response parameters that API Gateway sends to the client that called a method. Specify response parameters as key-value pairs (string-to-Boolean maps), with a destination as the key and a Boolean as the value. Specify the destination using the following pattern: method.response.header.name, where the name is a valid, unique header name. The Boolean specifies whether a parameter is required.",
+      "ResponseTemplates": {
+        "Description": "The templates used to transform the integration response body. Specify templates as key-value pairs (string-to-string maps), with a content type as the key and a template as the value. For more information, see API Gateway API Request and Response Payload-Mapping Template Reference in the API Gateway Developer Guide.",
         "Array": false,
         "Type": "Map",
+        "Required": "No"
+      },
+      "SelectionPattern": {
+        "Description": "A regular expression that specifies which error strings or status codes from the back end map to the integration response.",
+        "Array": false,
+        "Type": "String",
         "Required": "No"
       },
       "StatusCode": {
-        "Description": "The method response's status code, which you map to an IntegrationResponse.",
+        "Description": "The status code that API Gateway uses to map the integration response to a MethodResponse status code.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes"
+        "Required": "No"
       }
     }
   },
@@ -321,6 +327,29 @@
       }
     }
   },
+  "AmazonAPIGatewayMethodMethodResponse": {
+    "Name": "AmazonAPIGatewayMethodMethodResponse",
+    "Properties": {
+      "ResponseModels": {
+        "Description": "The resources used for the response's content type. Specify response models as key-value pairs (string-to-string maps), with a content type as the key and a Model resource name as the value.",
+        "Array": false,
+        "Type": "Map",
+        "Required": "No"
+      },
+      "ResponseParameters": {
+        "Description": "Response parameters that API Gateway sends to the client that called a method. Specify response parameters as key-value pairs (string-to-Boolean maps), with a destination as the key and a Boolean as the value. Specify the destination using the following pattern: method.response.header.name, where the name is a valid, unique header name. The Boolean specifies whether a parameter is required.",
+        "Array": false,
+        "Type": "Map",
+        "Required": "No"
+      },
+      "StatusCode": {
+        "Description": "The method response's status code, which you map to an IntegrationResponse.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AmazonAPIGatewayRestApiS3Location": {
     "Name": "AmazonAPIGatewayRestApiS3Location",
     "Properties": {
@@ -344,35 +373,6 @@
       },
       "Version": {
         "Description": "For versioning-enabled buckets, a specific version of the OpenAPI file.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "AmazonAPIGatewayMethodIntegrationIntegrationResponse": {
-    "Name": "AmazonAPIGatewayMethodIntegrationIntegrationResponse",
-    "Properties": {
-      "ResponseParameters": {
-        "Description": "The response parameters from the back-end response that API Gateway sends to the method\n            response. Specify response parameters as key-value pairs (string-to-string mappings).Use the destination as the key and the source as the value:The destination must be an existing response parameter in the MethodResponse property.The source must be an existing method request parameter or a static value. You\n                must enclose static values in single quotation marks and pre-encode these values\n                based on the destination specified in the request.For more information, see API Gateway API Request and Response\n              Parameter-Mapping Reference in the\n            API Gateway Developer Guide.",
-        "Array": false,
-        "Type": "Map",
-        "Required": "No"
-      },
-      "ResponseTemplates": {
-        "Description": "The templates used to transform the integration response body. Specify templates as key-value pairs (string-to-string maps), with a content type as the key and a template as the value. For more information, see API Gateway API Request and Response Payload-Mapping Template Reference in the API Gateway Developer Guide.",
-        "Array": false,
-        "Type": "Map",
-        "Required": "No"
-      },
-      "SelectionPattern": {
-        "Description": "A regular expression that specifies which error strings or status codes from the back end map to the integration response.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "StatusCode": {
-        "Description": "The status code that API Gateway uses to map the integration response to a MethodResponse status code.",
         "Array": false,
         "Type": "String",
         "Required": "No"
@@ -444,6 +444,29 @@
       }
     }
   },
+  "ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment": {
+    "Name": "ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment",
+    "Properties": {
+      "MetricIntervalLowerBound": {
+        "Description": "The lower bound of the breach size. The lower bound is the difference between the breach threshold and the aggregated CloudWatch metric value. If the metric value is within the lower and upper bounds, Application Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be greater than or equal to the threshold plus the lower bound to trigger this step adjustment (the metric value is inclusive). If the metric value is below the breach threshold, the metric must be greater than the threshold plus the lower bound to trigger this step adjustment (the metric value is exclusive). A null value indicates negative infinity.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Conditional. You must specify at least one upper or lower bound."
+      },
+      "MetricIntervalUpperBound": {
+        "Description": "The upper bound of the breach size. The upper bound is the difference between the breach threshold and the CloudWatch metric value. If the metric value is within the lower and upper bounds, Application Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be less than the threshold plus the upper bound to trigger this step adjustment (the metric value is exclusive). If the metric value is below the breach threshold, the metric must be less than or equal to the threshold plus the upper bound to trigger this step adjustment (the metric value is inclusive). A null value indicates positive infinity.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Conditional. You must specify at least one upper or lower bound."
+      },
+      "ScalingAdjustment": {
+        "Description": "The amount by which to scale. The adjustment is based on the value that you specified in the AdjustmentType property (either an absolute number or a percentage). A positive value adds to the current capacity and a negative number subtracts from the current capacity.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      }
+    }
+  },
   "AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType": {
     "Name": "AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType",
     "Properties": {
@@ -508,29 +531,6 @@
       }
     }
   },
-  "ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment": {
-    "Name": "ApplicationAutoScalingScalingPolicyStepScalingPolicyConfigurationStepAdjustment",
-    "Properties": {
-      "MetricIntervalLowerBound": {
-        "Description": "The lower bound of the breach size. The lower bound is the difference between the breach threshold and the aggregated CloudWatch metric value. If the metric value is within the lower and upper bounds, Application Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be greater than or equal to the threshold plus the lower bound to trigger this step adjustment (the metric value is inclusive). If the metric value is below the breach threshold, the metric must be greater than the threshold plus the lower bound to trigger this step adjustment (the metric value is exclusive). A null value indicates negative infinity.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Conditional. You must specify at least one upper or lower bound."
-      },
-      "MetricIntervalUpperBound": {
-        "Description": "The upper bound of the breach size. The upper bound is the difference between the breach threshold and the CloudWatch metric value. If the metric value is within the lower and upper bounds, Application Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be less than the threshold plus the upper bound to trigger this step adjustment (the metric value is exclusive). If the metric value is below the breach threshold, the metric must be less than or equal to the threshold plus the upper bound to trigger this step adjustment (the metric value is inclusive). A null value indicates positive infinity.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Conditional. You must specify at least one upper or lower bound."
-      },
-      "ScalingAdjustment": {
-        "Description": "The amount by which to scale. The adjustment is based on the value that you specified in the AdjustmentType property (either an absolute number or a percentage). A positive value adds to the current capacity and a negative number subtracts from the current capacity.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      }
-    }
-  },
   "AWSCloudFormationAutoScalingEBSBlockDevicePropertyType": {
     "Name": "AWSCloudFormationAutoScalingEBSBlockDevicePropertyType",
     "Properties": {
@@ -568,6 +568,23 @@
       "VolumeType": {
         "Description": "The volume type. By default, Auto Scaling uses the standard volume type.\n                  For more information, see Ebs in the Auto Scaling API Reference.",
         "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "AutoScalingMetricsCollection": {
+    "Name": "AutoScalingMetricsCollection",
+    "Properties": {
+      "Granularity": {
+        "Description": "The frequency at which Auto Scaling sends aggregated data to CloudWatch. For example, you can\n                  specify 1Minute to send aggregated data to CloudWatch every minute.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Metrics": {
+        "Description": "The list of metrics to collect. If you don't specify any metrics, all metrics\n                  are enabled.",
+        "Array": true,
         "Type": "String",
         "Required": "No"
       }
@@ -613,23 +630,6 @@
       }
     }
   },
-  "AutoScalingMetricsCollection": {
-    "Name": "AutoScalingMetricsCollection",
-    "Properties": {
-      "Granularity": {
-        "Description": "The frequency at which Auto Scaling sends aggregated data to CloudWatch. For example, you can\n                  specify 1Minute to send aggregated data to CloudWatch every minute.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Metrics": {
-        "Description": "The list of metrics to collect. If you don't specify any metrics, all metrics\n                  are enabled.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "AutoScalingScalingPolicyStepAdjustments": {
     "Name": "AutoScalingScalingPolicyStepAdjustments",
     "Properties": {
@@ -670,20 +670,29 @@
       }
     }
   },
-  "ElasticBeanstalkSourceBundlePropertyType": {
-    "Name": "ElasticBeanstalkSourceBundlePropertyType",
+  "ElasticBeanstalkEnvironmentTierPropertyType": {
+    "Name": "ElasticBeanstalkEnvironmentTierPropertyType",
     "Properties": {
-      "S3Bucket": {
-        "Description": "The Amazon S3 bucket where the data is located.",
+      "Name": {
+        "Description": "The name of the environment tier. You can specify WebServer or\n                     Worker.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes"
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       },
-      "S3Key": {
-        "Description": "The Amazon S3 key where the data is located.",
+      "Type": {
+        "Description": "The type of this environment tier. You can specify Standard for\n                  the WebServer tier or SQS/HTTP for the\n                     Worker tier.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes"
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Version": {
+        "Description": "The version of this environment tier.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -727,29 +736,20 @@
       }
     }
   },
-  "ElasticBeanstalkEnvironmentTierPropertyType": {
-    "Name": "ElasticBeanstalkEnvironmentTierPropertyType",
+  "ElasticBeanstalkSourceBundlePropertyType": {
+    "Name": "ElasticBeanstalkSourceBundlePropertyType",
     "Properties": {
-      "Name": {
-        "Description": "The name of the environment tier. You can specify WebServer or\n                     Worker.",
+      "S3Bucket": {
+        "Description": "The Amazon S3 bucket where the data is located.",
         "Array": false,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
+        "Required": "Yes"
       },
-      "Type": {
-        "Description": "The type of this environment tier. You can specify Standard for\n                  the WebServer tier or SQS/HTTP for the\n                     Worker tier.",
+      "S3Key": {
+        "Description": "The Amazon S3 key where the data is located.",
         "Array": false,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Version": {
-        "Description": "The version of this environment tier.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
+        "Required": "Yes"
       }
     }
   },
@@ -759,23 +759,6 @@
       "default": {
         "Description": "The default label that the AWS CloudFormation console uses to name a parameter group or\n                  parameter.",
         "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "AWSCloudFormationInterfaceParameterGroup": {
-    "Name": "AWSCloudFormationInterfaceParameterGroup",
-    "Properties": {
-      "Label": {
-        "Description": "A name for the parameter group.",
-        "Array": false,
-        "Type": "AWSCloudFormationInterfaceLabel",
-        "Required": "No"
-      },
-      "Parameters": {
-        "Description": "A list of case-sensitive parameter logical IDs to include in the group.\n                  Parameters must already be defined in the Parameters section of the\n                  template. A parameter can be included in only one parameter group.The console lists the parameters that you don't associate with a parameter\n                  group  in alphabetical order in the Other parameters group.",
-        "Array": true,
         "Type": "String",
         "Required": "No"
       }
@@ -858,6 +841,23 @@
       }
     }
   },
+  "AWSCloudFormationInterfaceParameterGroup": {
+    "Name": "AWSCloudFormationInterfaceParameterGroup",
+    "Properties": {
+      "Label": {
+        "Description": "A name for the parameter group.",
+        "Array": false,
+        "Type": "AWSCloudFormationInterfaceLabel",
+        "Required": "No"
+      },
+      "Parameters": {
+        "Description": "A list of case-sensitive parameter logical IDs to include in the group.\n                  Parameters must already be defined in the Parameters section of the\n                  template. A parameter can be included in only one parameter group.The console lists the parameters that you don't associate with a parameter\n                  group  in alphabetical order in the Other parameters group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
   "AWSCloudFormationInterfaceParameterLabel": {
     "Name": "AWSCloudFormationInterfaceParameterLabel",
     "Properties": {
@@ -866,6 +866,64 @@
         "Array": false,
         "Type": "AWSCloudFormationInterfaceLabel",
         "Required": "No"
+      }
+    }
+  },
+  "CloudFrontDistributionConfigOriginCustomOrigin": {
+    "Name": "CloudFrontDistributionConfigOriginCustomOrigin",
+    "Properties": {
+      "HTTPPort": {
+        "Description": "The HTTP port the custom origin listens on.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "HTTPSPort": {
+        "Description": "The HTTPS port the custom origin listens on.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "OriginProtocolPolicy": {
+        "Description": "The origin protocol policy to apply to your origin.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "OriginSSLProtocols": {
+        "Description": "The SSL protocols that CloudFront can use when establishing an HTTPS connection with your origin. By default, AWS CloudFormation specifies the TLSv1 and SSLv3 protocols.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "CloudFrontDistributionConfigCustomErrorResponse": {
+    "Name": "CloudFrontDistributionConfigCustomErrorResponse",
+    "Properties": {
+      "ErrorCachingMinTTL": {
+        "Description": "The minimum amount of time, in seconds, that Amazon CloudFront caches the HTTP status code\n                  that you specified in the ErrorCode property. The default value is\n                     300.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "ErrorCode": {
+        "Description": "An HTTP status code for which you want to specify a custom error page. You can\n                  specify 400, 403, 404, 405,\n                     414, 500, 501, 502,\n                     503, or 504.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      },
+      "ResponseCode": {
+        "Description": "The HTTP status code that CloudFront returns to viewer along with the custom error\n                  page. You can specify 200, 400, 403,\n                     404, 405, 414, 500,\n                     501, 502, 503, or\n                  504.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Conditional. Required if you specified the\n                     ResponsePagePath property."
+      },
+      "ResponsePagePath": {
+        "Description": "The path to the custom error page that CloudFront returns to a viewer when your\n                  origin returns the HTTP status code that you specified in the\n                     ErrorCode property. For example, you can specify\n                     /404-errors/403-forbidden.html.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. Required if you specified the ResponseCode\n                  property."
       }
     }
   },
@@ -940,64 +998,6 @@
       }
     }
   },
-  "CloudFrontDistributionConfigOriginCustomOrigin": {
-    "Name": "CloudFrontDistributionConfigOriginCustomOrigin",
-    "Properties": {
-      "HTTPPort": {
-        "Description": "The HTTP port the custom origin listens on.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "HTTPSPort": {
-        "Description": "The HTTPS port the custom origin listens on.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "OriginProtocolPolicy": {
-        "Description": "The origin protocol policy to apply to your origin.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "OriginSSLProtocols": {
-        "Description": "The SSL protocols that CloudFront can use when establishing an HTTPS connection with your origin. By default, AWS CloudFormation specifies the TLSv1 and SSLv3 protocols.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "CloudFrontDistributionConfigCustomErrorResponse": {
-    "Name": "CloudFrontDistributionConfigCustomErrorResponse",
-    "Properties": {
-      "ErrorCachingMinTTL": {
-        "Description": "The minimum amount of time, in seconds, that Amazon CloudFront caches the HTTP status code\n                  that you specified in the ErrorCode property. The default value is\n                     300.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "ErrorCode": {
-        "Description": "An HTTP status code for which you want to specify a custom error page. You can\n                  specify 400, 403, 404, 405,\n                     414, 500, 501, 502,\n                     503, or 504.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      },
-      "ResponseCode": {
-        "Description": "The HTTP status code that CloudFront returns to viewer along with the custom error\n                  page. You can specify 200, 400, 403,\n                     404, 405, 414, 500,\n                     501, 502, 503, or\n                  504.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Conditional. Required if you specified the\n                     ResponsePagePath property."
-      },
-      "ResponsePagePath": {
-        "Description": "The path to the custom error page that CloudFront returns to a viewer when your\n                  origin returns the HTTP status code that you specified in the\n                     ErrorCode property. For example, you can specify\n                     /404-errors/403-forbidden.html.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. Required if you specified the ResponseCode\n                  property."
-      }
-    }
-  },
   "CloudFrontDistributionConfigRestrictionsGeoRestriction": {
     "Name": "CloudFrontDistributionConfigRestrictionsGeoRestriction",
     "Properties": {
@@ -1012,6 +1012,23 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
+      }
+    }
+  },
+  "CloudFrontForwardedValuesCookies": {
+    "Name": "CloudFrontForwardedValuesCookies",
+    "Properties": {
+      "Forward": {
+        "Description": "The cookies to forward to the origin of the cache behavior. You can specify\n                     none, all, or whitelist.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "WhitelistedNames": {
+        "Description": "The names of cookies to forward to the origin for the cache behavior.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. Required if you specified whitelist for\n                  the Forward property."
       }
     }
   },
@@ -1058,23 +1075,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Conditional. Required if you specified the\n                     IamCertificateId or AcmCertificateArn\n                  property."
-      }
-    }
-  },
-  "CloudFrontForwardedValuesCookies": {
-    "Name": "CloudFrontForwardedValuesCookies",
-    "Properties": {
-      "Forward": {
-        "Description": "The cookies to forward to the origin of the cache behavior. You can specify\n                     none, all, or whitelist.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "WhitelistedNames": {
-        "Description": "The names of cookies to forward to the origin for the cache behavior.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. Required if you specified whitelist for\n                  the Forward property."
       }
     }
   },
@@ -1196,29 +1196,6 @@
       }
     }
   },
-  "CloudFrontLogging": {
-    "Name": "CloudFrontLogging",
-    "Properties": {
-      "Bucket": {
-        "Description": "The Amazon S3 bucket address where access logs are stored, for example,\n                     mybucket.s3.amazonaws.com.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "IncludeCookies": {
-        "Description": "Indicates whether CloudFront includes cookies in access logs.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "Prefix": {
-        "Description": "A prefix for the access log file names for this distribution.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "CloudFrontDistributionConfigOriginOriginCustomHeader": {
     "Name": "CloudFrontDistributionConfigOriginOriginCustomHeader",
     "Properties": {
@@ -1236,11 +1213,23 @@
       }
     }
   },
-  "CloudFrontDistributionConfigOriginS3Origin": {
-    "Name": "CloudFrontDistributionConfigOriginS3Origin",
+  "CloudFrontLogging": {
+    "Name": "CloudFrontLogging",
     "Properties": {
-      "OriginAccessIdentity": {
-        "Description": "The CloudFront origin access identity to associate with the origin. This is used to\n                  configure the origin so that end users can access objects in an Amazon S3 bucket\n                  through CloudFront only.",
+      "Bucket": {
+        "Description": "The Amazon S3 bucket address where access logs are stored, for example,\n                     mybucket.s3.amazonaws.com.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "IncludeCookies": {
+        "Description": "Indicates whether CloudFront includes cookies in access logs.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "Prefix": {
+        "Description": "A prefix for the access log file names for this distribution.",
         "Array": false,
         "Type": "String",
         "Required": "No"
@@ -1288,6 +1277,63 @@
       }
     }
   },
+  "CloudFrontDistributionConfigOriginS3Origin": {
+    "Name": "CloudFrontDistributionConfigOriginS3Origin",
+    "Properties": {
+      "OriginAccessIdentity": {
+        "Description": "The CloudFront origin access identity to associate with the origin. This is used to\n                  configure the origin so that end users can access objects in an Amazon S3 bucket\n                  through CloudFront only.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "AWSCodeBuildProjectEnvironment": {
+    "Name": "AWSCodeBuildProjectEnvironment",
+    "Properties": {
+      "ComputeType": {
+        "Description": "The type of compute environment, such as BUILD_GENERAL1_SMALL. The\n            compute type determines the number of CPU cores and memory the build environment uses.\n            For valid values, see the computeType field in the\n            AWS CodeBuild User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "EnvironmentVariables": {
+        "Description": "The environment variables that your builds can use. For more information, see the\n              environmentVariables field in the\n              AWS CodeBuild User Guide.",
+        "Array": true,
+        "Type": "AWSCodeBuildProjectEnvironmentEnvironmentVariables",
+        "Required": "No"
+      },
+      "Image": {
+        "Description": "The Docker image identifier that the build environment uses. For more information,\n            see the image field in the\n            AWS CodeBuild User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Type": {
+        "Description": "The type of build environment. For valid values, see the environment-type field in the\n              AWS CodeBuild User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "AWSCodeBuildProjectEnvironmentEnvironmentVariables": {
+    "Name": "AWSCodeBuildProjectEnvironmentEnvironmentVariables",
+    "Properties": {
+      "Name": {
+        "Description": "The name of an environment variable.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Value": {
+        "Description": "The value of the environment variable.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AWSCodeBuildProjectArtifacts": {
     "Name": "AWSCodeBuildProjectArtifacts",
     "Properties": {
@@ -1323,52 +1369,6 @@
       },
       "Type": {
         "Description": "The type of build output artifact. For valid values, see the artifacts-type field\n            in the AWS CodeBuild User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSCodeBuildProjectEnvironmentEnvironmentVariables": {
-    "Name": "AWSCodeBuildProjectEnvironmentEnvironmentVariables",
-    "Properties": {
-      "Name": {
-        "Description": "The name of an environment variable.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Value": {
-        "Description": "The value of the environment variable.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSCodeBuildProjectEnvironment": {
-    "Name": "AWSCodeBuildProjectEnvironment",
-    "Properties": {
-      "ComputeType": {
-        "Description": "The type of compute environment, such as BUILD_GENERAL1_SMALL. The\n            compute type determines the number of CPU cores and memory the build environment uses.\n            For valid values, see the computeType field in the\n            AWS CodeBuild User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "EnvironmentVariables": {
-        "Description": "The environment variables that your builds can use. For more information, see the\n              environmentVariables field in the\n              AWS CodeBuild User Guide.",
-        "Array": true,
-        "Type": "AWSCodeBuildProjectEnvironmentEnvironmentVariables",
-        "Required": "No"
-      },
-      "Image": {
-        "Description": "The Docker image identifier that the build environment uses. For more information,\n            see the image field in the\n            AWS CodeBuild User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Type": {
-        "Description": "The type of build environment. For valid values, see the environment-type field in the\n              AWS CodeBuild User Guide.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -1450,6 +1450,23 @@
       }
     }
   },
+  "AWSCodeDeployDeploymentGroupDeploymentRevisionGitHubLocation": {
+    "Name": "AWSCodeDeployDeploymentGroupDeploymentRevisionGitHubLocation",
+    "Properties": {
+      "CommitId": {
+        "Description": "The SHA1 commit ID of the GitHub commit to use as your application\n                  revision.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Repository": {
+        "Description": "The GitHub account and repository name that includes the application revision.\n                  Specify the value as\n                        account/repository_name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AWSCodeDeployDeploymentGroupDeploymentRevisionS3Location": {
     "Name": "AWSCodeDeployDeploymentGroupDeploymentRevisionS3Location",
     "Properties": {
@@ -1485,20 +1502,26 @@
       }
     }
   },
-  "AWSCodeDeployDeploymentGroupDeploymentRevisionGitHubLocation": {
-    "Name": "AWSCodeDeployDeploymentGroupDeploymentRevisionGitHubLocation",
+  "AWSCodeDeployDeploymentGroupDeploymentRevision": {
+    "Name": "AWSCodeDeployDeploymentGroupDeploymentRevision",
     "Properties": {
-      "CommitId": {
-        "Description": "The SHA1 commit ID of the GitHub commit to use as your application\n                  revision.",
+      "GitHubLocation": {
+        "Description": "If your application revision is stored in GitHub, information about the\n                  location where it is stored.",
         "Array": false,
-        "Type": "String",
-        "Required": "Yes"
+        "Type": "AWSCodeDeployDeploymentGroupDeploymentRevisionGitHubLocation",
+        "Required": "No"
       },
-      "Repository": {
-        "Description": "The GitHub account and repository name that includes the application revision.\n                  Specify the value as\n                        account/repository_name.",
+      "RevisionType": {
+        "Description": "The application revision's location, such as in an S3 bucket or GitHub\n                  repository. For valid values, see RevisionLocation in the\n                     AWS CodeDeploy API Reference.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes"
+        "Required": "No"
+      },
+      "S3Location": {
+        "Description": "If the application revision is stored in an S3 bucket, information about the\n                  location.",
+        "Array": false,
+        "Type": "AWSCodeDeployDeploymentGroupDeploymentRevisionS3Location",
+        "Required": "No"
       }
     }
   },
@@ -1522,29 +1545,6 @@
         "Array": false,
         "Type": "AWSCodeDeployDeploymentGroupDeploymentRevision",
         "Required": "Yes"
-      }
-    }
-  },
-  "AWSCodeDeployDeploymentGroupDeploymentRevision": {
-    "Name": "AWSCodeDeployDeploymentGroupDeploymentRevision",
-    "Properties": {
-      "GitHubLocation": {
-        "Description": "If your application revision is stored in GitHub, information about the\n                  location where it is stored.",
-        "Array": false,
-        "Type": "AWSCodeDeployDeploymentGroupDeploymentRevisionGitHubLocation",
-        "Required": "No"
-      },
-      "RevisionType": {
-        "Description": "The application revision's location, such as in an S3 bucket or GitHub\n                  repository. For valid values, see RevisionLocation in the\n                     AWS CodeDeploy API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "S3Location": {
-        "Description": "If the application revision is stored in an S3 bucket, information about the\n                  location.",
-        "Array": false,
-        "Type": "AWSCodeDeployDeploymentGroupDeploymentRevisionS3Location",
-        "Required": "No"
       }
     }
   },
@@ -1594,23 +1594,6 @@
       }
     }
   },
-  "AWSCodePipelinePipelineArtifactStoreEncryptionKey": {
-    "Name": "AWSCodePipelinePipelineArtifactStoreEncryptionKey",
-    "Properties": {
-      "Id": {
-        "Description": "The ID of the key. For an AWS KMS key, specify the key ID or key Amazon Resource\n                  Number (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Type": {
-        "Description": "The type of encryption key, such as KMS. For valid values, see\n                     EncryptionKey in the\n                     AWS CodePipeline API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
   "AWSCodePipelinePipelineArtifactStore": {
     "Name": "AWSCodePipelinePipelineArtifactStore",
     "Properties": {
@@ -1634,6 +1617,23 @@
       }
     }
   },
+  "AWSCodePipelinePipelineArtifactStoreEncryptionKey": {
+    "Name": "AWSCodePipelinePipelineArtifactStoreEncryptionKey",
+    "Properties": {
+      "Id": {
+        "Description": "The ID of the key. For an AWS KMS key, specify the key ID or key Amazon Resource\n                  Number (ARN).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Type": {
+        "Description": "The type of encryption key, such as KMS. For valid values, see\n                     EncryptionKey in the\n                     AWS CodePipeline API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AWSCodePipelinePipelineDisableInboundStageTransitions": {
     "Name": "AWSCodePipelinePipelineDisableInboundStageTransitions",
     "Properties": {
@@ -1645,17 +1645,6 @@
       },
       "StageName": {
         "Description": "The name of the stage to which transitions are disabled.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSCodePipelinePipelineStagesActionsInputArtifacts": {
-    "Name": "AWSCodePipelinePipelineStagesActionsInputArtifacts",
-    "Properties": {
-      "Name": {
-        "Description": "The name of the artifact that the AWS CodePipeline action works on, such as My\n                     App.The input artifact of an action must match the output artifact from\n                  any preceding action.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -1691,28 +1680,22 @@
       }
     }
   },
-  "AWSCodePipelinePipelineStagesActionsOutputArtifacts": {
-    "Name": "AWSCodePipelinePipelineStagesActionsOutputArtifacts",
+  "AWSCodePipelinePipelineStagesActionsInputArtifacts": {
+    "Name": "AWSCodePipelinePipelineStagesActionsInputArtifacts",
     "Properties": {
       "Name": {
-        "Description": "The name of the artifact that is the result of an AWS CodePipeline action, such as\n                     My App. Output artifact names must be unique within a\n                  pipeline.",
+        "Description": "The name of the artifact that the AWS CodePipeline action works on, such as My\n                     App.The input artifact of an action must match the output artifact from\n                  any preceding action.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       }
     }
   },
-  "AWSCodePipelinePipelineStagesBlockers": {
-    "Name": "AWSCodePipelinePipelineStagesBlockers",
+  "AWSCodePipelinePipelineStagesActionsOutputArtifacts": {
+    "Name": "AWSCodePipelinePipelineStagesActionsOutputArtifacts",
     "Properties": {
       "Name": {
-        "Description": "The name of the gate declaration.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Type": {
-        "Description": "The type of gate declaration. For valid values, see BlockerDeclaration in\n                  the AWS CodePipeline API Reference.",
+        "Description": "The name of the artifact that is the result of an AWS CodePipeline action, such as\n                     My App. Output artifact names must be unique within a\n                  pipeline.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -1763,6 +1746,23 @@
         "Array": false,
         "Type": "Number",
         "Required": "No"
+      }
+    }
+  },
+  "AWSCodePipelinePipelineStagesBlockers": {
+    "Name": "AWSCodePipelinePipelineStagesBlockers",
+    "Properties": {
+      "Name": {
+        "Description": "The name of the gate declaration.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Type": {
+        "Description": "The type of gate declaration. For valid values, see BlockerDeclaration in\n                  the AWS CodePipeline API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
       }
     }
   },
@@ -1829,6 +1829,29 @@
       }
     }
   },
+  "AWSConfigConfigurationRecorderRecordingGroup": {
+    "Name": "AWSConfigConfigurationRecorderRecordingGroup",
+    "Properties": {
+      "AllSupported": {
+        "Description": "Indicates whether to record all supported resource types. If you specify this\n            property, do not specify the ResourceTypes property.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "IncludeGlobalResourceTypes": {
+        "Description": "Indicates whether AWS Config records all supported global resource types. When AWS Config\n            supports new global resource types, AWS Config will automatically start recording them if you\n            enable this property.NoteIf you set this property to true, you must set the\n                AllSupported property to\n              true.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "ResourceTypes": {
+        "Description": "A list of valid AWS resource types to include in this recording group, such as\n              AWS::EC2::Instance or\n              AWS::CloudTrail::Trail. If you specify this property, do not\n            specify the AllSupported property. For a list of supported resource types,\n            see Supported resource types in the AWS Config Developer Guide.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
   "AWSConfigConfigRuleScope": {
     "Name": "AWSConfigConfigRuleScope",
     "Properties": {
@@ -1858,37 +1881,20 @@
       }
     }
   },
-  "AWSConfigConfigurationRecorderRecordingGroup": {
-    "Name": "AWSConfigConfigurationRecorderRecordingGroup",
+  "AWSDataPipelineParameterObjectsAttributes": {
+    "Name": "AWSDataPipelineParameterObjectsAttributes",
     "Properties": {
-      "AllSupported": {
-        "Description": "Indicates whether to record all supported resource types. If you specify this\n            property, do not specify the ResourceTypes property.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "IncludeGlobalResourceTypes": {
-        "Description": "Indicates whether AWS Config records all supported global resource types. When AWS Config\n            supports new global resource types, AWS Config will automatically start recording them if you\n            enable this property.NoteIf you set this property to true, you must set the\n                AllSupported property to\n              true.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "ResourceTypes": {
-        "Description": "A list of valid AWS resource types to include in this recording group, such as\n              AWS::EC2::Instance or\n              AWS::CloudTrail::Trail. If you specify this property, do not\n            specify the AllSupported property. For a list of supported resource types,\n            see Supported resource types in the AWS Config Developer Guide.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "AWSConfigDeliveryChannelConfigSnapshotDeliveryProperties": {
-    "Name": "AWSConfigDeliveryChannelConfigSnapshotDeliveryProperties",
-    "Properties": {
-      "DeliveryFrequency": {
-        "Description": "The frequency with which AWS Config delivers configuration snapshots. For valid\n            values, see ConfigSnapshotDeliveryProperties in the\n            AWS Config API Reference.",
+      "Key": {
+        "Description": "Specifies the name of a parameter attribute. To view parameter attributes, see\n                     Creating a Pipeline Using\n                     Parameterized Templates in the\n                  AWS Data Pipeline Developer Guide.",
         "Array": false,
         "Type": "String",
-        "Required": "No"
+        "Required": "Yes"
+      },
+      "StringValue": {
+        "Description": "A parameter attribute value.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional if the key that you are using requires it."
       }
     }
   },
@@ -1909,23 +1915,6 @@
       }
     }
   },
-  "AWSDataPipelineParameterObjectsAttributes": {
-    "Name": "AWSDataPipelineParameterObjectsAttributes",
-    "Properties": {
-      "Key": {
-        "Description": "Specifies the name of a parameter attribute. To view parameter attributes, see\n                     Creating a Pipeline Using\n                     Parameterized Templates in the\n                  AWS Data Pipeline Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "StringValue": {
-        "Description": "A parameter attribute value.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional if the key that you are using requires it."
-      }
-    }
-  },
   "AWSDataPipelinePipelineParameterValues": {
     "Name": "AWSDataPipelinePipelineParameterValues",
     "Properties": {
@@ -1943,29 +1932,6 @@
       }
     }
   },
-  "AWSDataPipelineDataPipelineObjectFields": {
-    "Name": "AWSDataPipelineDataPipelineObjectFields",
-    "Properties": {
-      "Key": {
-        "Description": "Specifies the name of a field for a particular object. To view fields for a\n                  data pipeline object, see Pipeline Object Reference in the\n                     AWS Data Pipeline Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "RefValue": {
-        "Description": "A field value that you specify as an identifier of another object in the same\n                  pipeline definition.NoteYou can specify the field value as either a string value\n                        (StringValue) or a reference to another object\n                        (RefValue), but not both.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional if the key that you are using requires it."
-      },
-      "StringValue": {
-        "Description": "A field value that you specify as a string. To view valid values for a\n                  particular field, see Pipeline\n                     Object Reference in the AWS Data Pipeline Developer Guide.NoteYou can specify the field value as either a string value\n                        (StringValue) or a reference to another object\n                        (RefValue), but not both.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional if the key that you are using requires it."
-      }
-    }
-  },
   "AWSDataPipelinePipelineParameterObjects": {
     "Name": "AWSDataPipelinePipelineParameterObjects",
     "Properties": {
@@ -1977,23 +1943,6 @@
       },
       "Id": {
         "Description": "The identifier of the parameter object.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSDataPipelinePipelinePipelineTags": {
-    "Name": "AWSDataPipelinePipelinePipelineTags",
-    "Properties": {
-      "Key": {
-        "Description": "The key name of a tag.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Value": {
-        "Description": "The value to associate with the key name.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -2023,23 +1972,6 @@
       }
     }
   },
-  "DynamoDBAttributeDefinitions": {
-    "Name": "DynamoDBAttributeDefinitions",
-    "Properties": {
-      "AttributeName": {
-        "Description": "The name of an attribute. Attribute names can be 1 – 255 characters long\n                  and have no character restrictions.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "AttributeType": {
-        "Description": "The data type for the attribute. You can specify S for string\n                  data, N for numeric data, or B for binary data.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
   "AWSDirectoryServiceMicrosoftADVpcSettings": {
     "Name": "AWSDirectoryServiceMicrosoftADVpcSettings",
     "Properties": {
@@ -2057,6 +1989,46 @@
       }
     }
   },
+  "AWSDataPipelineDataPipelineObjectFields": {
+    "Name": "AWSDataPipelineDataPipelineObjectFields",
+    "Properties": {
+      "Key": {
+        "Description": "Specifies the name of a field for a particular object. To view fields for a\n                  data pipeline object, see Pipeline Object Reference in the\n                     AWS Data Pipeline Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "RefValue": {
+        "Description": "A field value that you specify as an identifier of another object in the same\n                  pipeline definition.NoteYou can specify the field value as either a string value\n                        (StringValue) or a reference to another object\n                        (RefValue), but not both.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional if the key that you are using requires it."
+      },
+      "StringValue": {
+        "Description": "A field value that you specify as a string. To view valid values for a\n                  particular field, see Pipeline\n                     Object Reference in the AWS Data Pipeline Developer Guide.NoteYou can specify the field value as either a string value\n                        (StringValue) or a reference to another object\n                        (RefValue), but not both.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional if the key that you are using requires it."
+      }
+    }
+  },
+  "AWSDataPipelinePipelinePipelineTags": {
+    "Name": "AWSDataPipelinePipelinePipelineTags",
+    "Properties": {
+      "Key": {
+        "Description": "The key name of a tag.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Value": {
+        "Description": "The value to associate with the key name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AWSDirectoryServiceSimpleADVpcSettings": {
     "Name": "AWSDirectoryServiceSimpleADVpcSettings",
     "Properties": {
@@ -2068,6 +2040,40 @@
       },
       "VpcId": {
         "Description": "The VPC ID in which to create the Simple AD directory.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "DynamoDBKeySchema": {
+    "Name": "DynamoDBKeySchema",
+    "Properties": {
+      "AttributeName": {
+        "Description": "The attribute name that is used as the primary key for this table. Primary key\n                  element names can be 1 – 255 characters long and have no character\n                  restrictions.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "KeyType": {
+        "Description": "Represents the attribute data, consisting of the data type and the attribute\n                  value itself. You can specify HASH or RANGE.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "DynamoDBAttributeDefinitions": {
+    "Name": "DynamoDBAttributeDefinitions",
+    "Properties": {
+      "AttributeName": {
+        "Description": "The name of an attribute. Attribute names can be 1 – 255 characters long\n                  and have no character restrictions.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "AttributeType": {
+        "Description": "The data type for the attribute. You can specify S for string\n                  data, N for numeric data, or B for binary data.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -2103,40 +2109,6 @@
       }
     }
   },
-  "DynamoDBProvisionedThroughput": {
-    "Name": "DynamoDBProvisionedThroughput",
-    "Properties": {
-      "ReadCapacityUnits": {
-        "Description": "Sets the desired minimum number of consistent reads of items (up to 1KB in\n                  size) per second for the specified table before Amazon DynamoDB balances the\n                  load.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      },
-      "WriteCapacityUnits": {
-        "Description": "Sets the desired minimum number of consistent writes of items (up to 1KB in\n                  size) per second for the specified table before Amazon DynamoDB balances the\n                  load.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      }
-    }
-  },
-  "DynamoDBProjectionObject": {
-    "Name": "DynamoDBProjectionObject",
-    "Properties": {
-      "NonKeyAttributes": {
-        "Description": "The non-key attribute names that are projected into the index.For local secondary indexes, the total count of NonKeyAttributes\n                  summed across all of the local secondary indexes must not exceed 20. If you\n                  project the same attribute into two different indexes, this counts as two distinct\n                  attributes in determining the total.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No"
-      },
-      "ProjectionType": {
-        "Description": "The set of attributes that are projected into the index:Only the index and primary keys are projected into the\n                              index.Only the specified table attributes are projected into the index.\n                              The list of projected attributes are in\n                              NonKeyAttributes.All of the table attributes are projected into the index.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "DynamoDBLocalSecondaryIndexes": {
     "Name": "DynamoDBLocalSecondaryIndexes",
     "Properties": {
@@ -2160,17 +2132,45 @@
       }
     }
   },
-  "DynamoDBKeySchema": {
-    "Name": "DynamoDBKeySchema",
+  "DynamoDBProjectionObject": {
+    "Name": "DynamoDBProjectionObject",
     "Properties": {
-      "AttributeName": {
-        "Description": "The attribute name that is used as the primary key for this table. Primary key\n                  element names can be 1 – 255 characters long and have no character\n                  restrictions.",
+      "NonKeyAttributes": {
+        "Description": "The non-key attribute names that are projected into the index.For local secondary indexes, the total count of NonKeyAttributes\n                  summed across all of the local secondary indexes must not exceed 20. If you\n                  project the same attribute into two different indexes, this counts as two distinct\n                  attributes in determining the total.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No"
+      },
+      "ProjectionType": {
+        "Description": "The set of attributes that are projected into the index:Only the index and primary keys are projected into the\n                              index.Only the specified table attributes are projected into the index.\n                              The list of projected attributes are in\n                              NonKeyAttributes.All of the table attributes are projected into the index.",
         "Array": false,
         "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "DynamoDBProvisionedThroughput": {
+    "Name": "DynamoDBProvisionedThroughput",
+    "Properties": {
+      "ReadCapacityUnits": {
+        "Description": "Sets the desired minimum number of consistent reads of items (up to 1KB in\n                  size) per second for the specified table before Amazon DynamoDB balances the\n                  load.",
+        "Array": false,
+        "Type": "Number",
         "Required": "Yes"
       },
-      "KeyType": {
-        "Description": "Represents the attribute data, consisting of the data type and the attribute\n                  value itself. You can specify HASH or RANGE.",
+      "WriteCapacityUnits": {
+        "Description": "Sets the desired minimum number of consistent writes of items (up to 1KB in\n                  size) per second for the specified table before Amazon DynamoDB balances the\n                  load.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      }
+    }
+  },
+  "DynamoDBTableStreamSpecification": {
+    "Name": "DynamoDBTableStreamSpecification",
+    "Properties": {
+      "StreamViewType": {
+        "Description": "Determines the information that the stream captures when an item in the table\n                  is modified. For valid values, see StreamSpecification in\n                  the Amazon DynamoDB API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -2203,34 +2203,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Conditional You can specify either VirtualName or\n                     Ebs, but not both."
-      }
-    }
-  },
-  "DynamoDBTableStreamSpecification": {
-    "Name": "DynamoDBTableStreamSpecification",
-    "Properties": {
-      "StreamViewType": {
-        "Description": "Determines the information that the stream captures when an item in the table\n                  is modified. For valid values, see StreamSpecification in\n                  the Amazon DynamoDB API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "ElasticLoadBalancingAppCookieStickinessPolicyType": {
-    "Name": "ElasticLoadBalancingAppCookieStickinessPolicyType",
-    "Properties": {
-      "CookieName": {
-        "Description": "Name of the application cookie used for stickiness.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "PolicyName": {
-        "Description": "The name of the policy being created. The name must be unique within the set of\n                  policies for this Load Balancer.NoteTo associate this policy with a listener, include the policy name in the\n                        listener's PolicyNames property.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
       }
     }
   },
@@ -2276,6 +2248,39 @@
       }
     }
   },
+  "ElasticLoadBalancingLBCookieStickinessPolicyType": {
+    "Name": "ElasticLoadBalancingLBCookieStickinessPolicyType",
+    "Properties": {
+      "CookieExpirationPeriod": {
+        "Description": "The time period, in seconds, after which the cookie should be considered stale. If this parameter\n                  isn't specified, the sticky session will last for the duration of the browser session.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "PolicyName": {
+        "Description": "The name of the policy being created. The name must be unique within the set of\n                  policies for this load balancer.NoteTo associate this policy with a listener, include the policy name in the\n                     listener's PolicyNames\n                     property.",
+        "Array": false,
+        "Type": "String"
+      }
+    }
+  },
+  "ElasticLoadBalancingAppCookieStickinessPolicyType": {
+    "Name": "ElasticLoadBalancingAppCookieStickinessPolicyType",
+    "Properties": {
+      "CookieName": {
+        "Description": "Name of the application cookie used for stickiness.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "PolicyName": {
+        "Description": "The name of the policy being created. The name must be unique within the set of\n                  policies for this Load Balancer.NoteTo associate this policy with a listener, include the policy name in the\n                        listener's PolicyNames property.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "ElasticLoadBalancingAccessLoggingPolicy": {
     "Name": "ElasticLoadBalancingAccessLoggingPolicy",
     "Properties": {
@@ -2302,50 +2307,6 @@
         "Array": false,
         "Type": "String",
         "Required": "No"
-      }
-    }
-  },
-  "ElasticLoadBalancingConnectionSettings": {
-    "Name": "ElasticLoadBalancingConnectionSettings",
-    "Properties": {
-      "IdleTimeout": {
-        "Description": "The time (in seconds) that a connection to the load balancer can remain idle,\n                  which means no data is sent over the connection. After the specified time, the\n                  load balancer closes the connection.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      }
-    }
-  },
-  "ElasticLoadBalancingConnectionDrainingPolicy": {
-    "Name": "ElasticLoadBalancingConnectionDrainingPolicy",
-    "Properties": {
-      "Enabled": {
-        "Description": "Whether or not connection draining is enabled for the load balancer.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "Yes"
-      },
-      "Timeout": {
-        "Description": "The time in seconds after the load balancer closes all connections to a\n                  deregistered or unhealthy instance.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      }
-    }
-  },
-  "ElasticLoadBalancingLBCookieStickinessPolicyType": {
-    "Name": "ElasticLoadBalancingLBCookieStickinessPolicyType",
-    "Properties": {
-      "CookieExpirationPeriod": {
-        "Description": "The time period, in seconds, after which the cookie should be considered stale. If this parameter\n                  isn't specified, the sticky session will last for the duration of the browser session.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "PolicyName": {
-        "Description": "The name of the policy being created. The name must be unique within the set of\n                  policies for this load balancer.NoteTo associate this policy with a listener, include the policy name in the\n                     listener's PolicyNames\n                     property.",
-        "Array": false,
-        "Type": "String"
       }
     }
   },
@@ -2380,6 +2341,45 @@
         "Description": "Specifies the number of consecutive health probe failures required before moving the instance to\n                  the Unhealthy state.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "ElasticLoadBalancingConnectionDrainingPolicy": {
+    "Name": "ElasticLoadBalancingConnectionDrainingPolicy",
+    "Properties": {
+      "Enabled": {
+        "Description": "Whether or not connection draining is enabled for the load balancer.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "Yes"
+      },
+      "Timeout": {
+        "Description": "The time in seconds after the load balancer closes all connections to a\n                  deregistered or unhealthy instance.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      }
+    }
+  },
+  "AWSConfigDeliveryChannelConfigSnapshotDeliveryProperties": {
+    "Name": "AWSConfigDeliveryChannelConfigSnapshotDeliveryProperties",
+    "Properties": {
+      "DeliveryFrequency": {
+        "Description": "The frequency with which AWS Config delivers configuration snapshots. For valid\n            values, see ConfigSnapshotDeliveryProperties in the\n            AWS Config API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "ElasticLoadBalancingConnectionSettings": {
+    "Name": "ElasticLoadBalancingConnectionSettings",
+    "Properties": {
+      "IdleTimeout": {
+        "Description": "The time (in seconds) that a connection to the load balancer can remain idle,\n                  which means no data is sent over the connection. After the specified time, the\n                  load balancer closes the connection.",
+        "Array": false,
+        "Type": "Number",
         "Required": "Yes"
       }
     }
@@ -2425,18 +2425,18 @@
       }
     }
   },
-  "AmazonEC2InstanceSsmAssociationsAssociationParameters": {
-    "Name": "AmazonEC2InstanceSsmAssociationsAssociationParameters",
+  "AmazonEC2InstanceSsmAssociations": {
+    "Name": "AmazonEC2InstanceSsmAssociations",
     "Properties": {
-      "Key": {
-        "Description": "The name of an input parameter that is in the associated SSM document.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Value": {
-        "Description": "The value of an input parameter.",
+      "AssociationParameters": {
+        "Description": "The input parameter values to use with the associated SSM document.",
         "Array": true,
+        "Type": "AmazonEC2InstanceSsmAssociationsAssociationParameters",
+        "Required": "No"
+      },
+      "DocumentName": {
+        "Description": "The name of an SSM document to associate with the instance.",
+        "Array": false,
         "Type": "String",
         "Required": "Yes"
       }
@@ -2477,18 +2477,18 @@
       }
     }
   },
-  "AmazonEC2InstanceSsmAssociations": {
-    "Name": "AmazonEC2InstanceSsmAssociations",
+  "AmazonEC2InstanceSsmAssociationsAssociationParameters": {
+    "Name": "AmazonEC2InstanceSsmAssociationsAssociationParameters",
     "Properties": {
-      "AssociationParameters": {
-        "Description": "The input parameter values to use with the associated SSM document.",
-        "Array": true,
-        "Type": "AmazonEC2InstanceSsmAssociationsAssociationParameters",
-        "Required": "No"
-      },
-      "DocumentName": {
-        "Description": "The name of an SSM document to associate with the instance.",
+      "Key": {
+        "Description": "The name of an input parameter that is in the associated SSM document.",
         "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Value": {
+        "Description": "The value of an input parameter.",
+        "Array": true,
         "Type": "String",
         "Required": "Yes"
       }
@@ -2605,6 +2605,23 @@
       }
     }
   },
+  "EC2NetworkAclEntryPortRange": {
+    "Name": "EC2NetworkAclEntryPortRange",
+    "Properties": {
+      "From": {
+        "Description": "The first port in the range.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Conditional. Required if you specify 6 (TCP) or 17 (UDP) for the protocol parameter."
+      },
+      "To": {
+        "Description": "The last port in the range.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Conditional. Required if you specify 6 (TCP) or 17 (UDP) for the protocol parameter."
+      }
+    }
+  },
   "EC2NetworkAclEntryIcmp": {
     "Name": "EC2NetworkAclEntryIcmp",
     "Properties": {
@@ -2630,23 +2647,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
-      }
-    }
-  },
-  "EC2NetworkAclEntryPortRange": {
-    "Name": "EC2NetworkAclEntryPortRange",
-    "Properties": {
-      "From": {
-        "Description": "The first port in the range.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Conditional. Required if you specify 6 (TCP) or 17 (UDP) for the protocol parameter."
-      },
-      "To": {
-        "Description": "The last port in the range.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Conditional. Required if you specify 6 (TCP) or 17 (UDP) for the protocol parameter."
       }
     }
   },
@@ -2750,6 +2750,17 @@
       }
     }
   },
+  "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile": {
+    "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile",
+    "Properties": {
+      "Arn": {
+        "Description": "The Amazon Resource Name (ARN) of the instance profile to associate with the\n                  instances. The instance profile contains the IAM role that is associated with\n                  the instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
   "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings": {
     "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsBlockDeviceMappings",
     "Properties": {
@@ -2779,17 +2790,6 @@
       }
     }
   },
-  "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile": {
-    "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsIamInstanceProfile",
-    "Properties": {
-      "Arn": {
-        "Description": "The Amazon Resource Name (ARN) of the instance profile to associate with the\n                  instances. The instance profile contains the IAM role that is associated with\n                  the instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "AmazonEC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring": {
     "Name": "AmazonEC2SpotFleetSpotFleetRequestConfigDataLaunchSpecificationsMonitoring",
     "Properties": {
@@ -2798,6 +2798,23 @@
         "Array": false,
         "Type": "Boolean",
         "Required": "No"
+      }
+    }
+  },
+  "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses": {
+    "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses",
+    "Properties": {
+      "Primary": {
+        "Description": "Indicates whether the private IP address is the primary private IP address. You\n                  can designate only one IP address as primary.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "PrivateIpAddress": {
+        "Description": "The private IP address.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
       }
     }
   },
@@ -2872,23 +2889,6 @@
       }
     }
   },
-  "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses": {
-    "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsNetworkInterfacesPrivateIpAddresses",
-    "Properties": {
-      "Primary": {
-        "Description": "Indicates whether the private IP address is the primary private IP address. You\n                  can designate only one IP address as primary.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "PrivateIpAddress": {
-        "Description": "The private IP address.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
   "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement": {
     "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsPlacement",
     "Properties": {
@@ -2906,65 +2906,6 @@
       }
     }
   },
-  "AmazonEC2SpotFleetSpotFleetRequestConfigData": {
-    "Name": "AmazonEC2SpotFleetSpotFleetRequestConfigData",
-    "Properties": {
-      "AllocationStrategy": {
-        "Description": "Indicates how to allocate the target capacity across the Spot pools that you\n                  specified in the Spot fleet request. For valid values, see SpotFleetRequestConfigData in the\n                     Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "ExcessCapacityTerminationPolicy": {
-        "Description": "Indicates whether running Spot instances are terminated if you decrease the\n                  target capacity of the Spot fleet request below the current size of the Spot\n                  fleet. For valid values, see SpotFleetRequestConfigData in the\n                     Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "IamFleetRole": {
-        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that grants the\n                  Spot fleet the ability to bid on, launch, and terminate instances on your behalf.\n                  For more information, see Spot\n                     Fleet Prerequisites in the\n                  Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "LaunchSpecifications": {
-        "Description": "The launch specifications for the Spot fleet request.",
-        "Array": true,
-        "Type": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications",
-        "Required": "Yes"
-      },
-      "SpotPrice": {
-        "Description": "The bid price per unit hour. For more information, see How Spot Fleet Works in the\n                     Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "TargetCapacity": {
-        "Description": "The number of units to request for the spot fleet. You can choose to set the\n                  target capacity as the number of instances or as a performance characteristic that\n                  is important to your application workload, such as vCPUs, memory, or I/O. For more\n                  information, see How Spot Fleet\n                     Works in the Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      },
-      "TerminateInstancesWithExpiration": {
-        "Description": "Indicates whether running Spot instances are terminated when the Spot fleet\n                  request expires.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "ValidFrom": {
-        "Description": "The start date and time of the request, in UTC format\n                     (YYYY-MM-DDTHH:MM:SSZ).\n                  By default, Amazon Elastic Compute Cloud (Amazon EC2 ) starts fulfilling the request immediately.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "ValidUntil": {
-        "Description": "The end date and time of the request, in UTC format\n                     (YYYY-MM-DDTHH:MM:SSZ).\n                  After the end date and time, Amazon EC2 doesn't request new Spot instances or enable\n                  them to fulfill the request.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups": {
     "Name": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecificationsSecurityGroups",
     "Properties": {
@@ -2972,23 +2913,6 @@
         "Description": "The ID of a security group.",
         "Array": false,
         "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "AmazonEC2ContainerServiceServiceDeploymentConfiguration": {
-    "Name": "AmazonEC2ContainerServiceServiceDeploymentConfiguration",
-    "Properties": {
-      "MaximumPercent": {
-        "Description": "The maximum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that can run in a service during a deployment. To calculate the maximum number of tasks, Amazon ECS uses this formula: the value of DesiredCount * (the value of the MaximumPercent/100), rounded down to the nearest integer value.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "MinimumHealthyPercent": {
-        "Description": "The minimum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that must continue to run and remain healthy during a deployment. To calculate the minimum number of tasks, Amazon ECS uses this formula: the value of DesiredCount * (the value of the MinimumHealthyPercent/100), rounded up to the nearest integer value.",
-        "Array": false,
-        "Type": "Number",
         "Required": "No"
       }
     }
@@ -3094,6 +3018,82 @@
       }
     }
   },
+  "AmazonEC2SpotFleetSpotFleetRequestConfigData": {
+    "Name": "AmazonEC2SpotFleetSpotFleetRequestConfigData",
+    "Properties": {
+      "AllocationStrategy": {
+        "Description": "Indicates how to allocate the target capacity across the Spot pools that you\n                  specified in the Spot fleet request. For valid values, see SpotFleetRequestConfigData in the\n                     Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "ExcessCapacityTerminationPolicy": {
+        "Description": "Indicates whether running Spot instances are terminated if you decrease the\n                  target capacity of the Spot fleet request below the current size of the Spot\n                  fleet. For valid values, see SpotFleetRequestConfigData in the\n                     Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "IamFleetRole": {
+        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that grants the\n                  Spot fleet the ability to bid on, launch, and terminate instances on your behalf.\n                  For more information, see Spot\n                     Fleet Prerequisites in the\n                  Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "LaunchSpecifications": {
+        "Description": "The launch specifications for the Spot fleet request.",
+        "Array": true,
+        "Type": "AmazonElasticComputeCloudSpotFleetSpotFleetRequestConfigDataLaunchSpecifications",
+        "Required": "Yes"
+      },
+      "SpotPrice": {
+        "Description": "The bid price per unit hour. For more information, see How Spot Fleet Works in the\n                     Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "TargetCapacity": {
+        "Description": "The number of units to request for the spot fleet. You can choose to set the\n                  target capacity as the number of instances or as a performance characteristic that\n                  is important to your application workload, such as vCPUs, memory, or I/O. For more\n                  information, see How Spot Fleet\n                     Works in the Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      },
+      "TerminateInstancesWithExpiration": {
+        "Description": "Indicates whether running Spot instances are terminated when the Spot fleet\n                  request expires.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "ValidFrom": {
+        "Description": "The start date and time of the request, in UTC format\n                     (YYYY-MM-DDTHH:MM:SSZ).\n                  By default, Amazon Elastic Compute Cloud (Amazon EC2 ) starts fulfilling the request immediately.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "ValidUntil": {
+        "Description": "The end date and time of the request, in UTC format\n                     (YYYY-MM-DDTHH:MM:SSZ).\n                  After the end date and time, Amazon EC2 doesn't request new Spot instances or enable\n                  them to fulfill the request.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "AmazonEC2ContainerServiceServiceDeploymentConfiguration": {
+    "Name": "AmazonEC2ContainerServiceServiceDeploymentConfiguration",
+    "Properties": {
+      "MaximumPercent": {
+        "Description": "The maximum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that can run in a service during a deployment. To calculate the maximum number of tasks, Amazon ECS uses this formula: the value of DesiredCount * (the value of the MaximumPercent/100), rounded down to the nearest integer value.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "MinimumHealthyPercent": {
+        "Description": "The minimum number of tasks, specified as a percentage of the Amazon ECS service's DesiredCount value, that must continue to run and remain healthy during a deployment. To calculate the minimum number of tasks, Amazon ECS uses this formula: the value of DesiredCount * (the value of the MinimumHealthyPercent/100), rounded up to the nearest integer value.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      }
+    }
+  },
   "AmazonEC2ContainerServiceServiceLoadBalancers": {
     "Name": "AmazonEC2ContainerServiceServiceLoadBalancers",
     "Properties": {
@@ -3140,23 +3140,6 @@
       }
     }
   },
-  "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration": {
-    "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration",
-    "Properties": {
-      "LogDriver": {
-        "Description": "The log driver to use for the container. This parameter requires that your container instance uses Docker Remote API Version 1.18 or greater. For more information, see the logDriver content for the LogConfiguration data type in the Amazon EC2 Container Service API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Options": {
-        "Description": "The configuration options to send to the log driver. This parameter requires that your container instance uses Docker Remote API Version 1.18 or greater.",
-        "Array": false,
-        "Type": "Map",
-        "Required": "No"
-      }
-    }
-  },
   "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry": {
     "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsHostEntry",
     "Properties": {
@@ -3197,25 +3180,19 @@
       }
     }
   },
-  "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings": {
-    "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings",
+  "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration": {
+    "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsLogConfiguration",
     "Properties": {
-      "ContainerPort": {
-        "Description": "The port number on the container bound to the host port.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      },
-      "HostPort": {
-        "Description": "The host port number on the container instance that you want to reserve for\n                  your container. You can specify a non-reserved host port for your container port\n                  mapping, omit the host port, or set the host port to 0. If you\n                  specify a container port but no host port, your container host port is assigned\n                  automatically .Don't specify a host port in the 49153 to 65535 port\n                  range; these ports are reserved for automatic assignment. Other reserved ports\n                  include 22 for SSH, 2375 and 2376 for\n                  Docker, and 51678 for the Amazon EC2 Container Service container agent. Don't specify a\n                  host port that is being used for a task—that port is reserved while the\n                  task is running.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "Protocol": {
-        "Description": "The protocol used for the port mapping. For valid values, see the protocol parameter in the Amazon EC2 Container Service Developer Guide. By default, AWS CloudFormation specifies tcp.",
+      "LogDriver": {
+        "Description": "The log driver to use for the container. This parameter requires that your container instance uses Docker Remote API Version 1.18 or greater. For more information, see the logDriver content for the LogConfiguration data type in the Amazon EC2 Container Service API Reference.",
         "Array": false,
         "Type": "String",
+        "Required": "Yes"
+      },
+      "Options": {
+        "Description": "The configuration options to send to the log driver. This parameter requires that your container instance uses Docker Remote API Version 1.18 or greater.",
+        "Array": false,
+        "Type": "Map",
         "Required": "No"
       }
     }
@@ -3243,19 +3220,25 @@
       }
     }
   },
-  "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsVolumesFrom": {
-    "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsVolumesFrom",
+  "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings": {
+    "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsPortMappings",
     "Properties": {
-      "SourceContainer": {
-        "Description": "The name of the container that has the volumes to mount.",
+      "ContainerPort": {
+        "Description": "The port number on the container bound to the host port.",
         "Array": false,
-        "Type": "String",
+        "Type": "Number",
         "Required": "Yes"
       },
-      "ReadOnly": {
-        "Description": "Indicates whether the container can write to the volume. If you specify\n                     true, the container has read-only access to the volume.\n                  If you specify false, the container can write to the\n                  volume. By default, the value is false.",
+      "HostPort": {
+        "Description": "The host port number on the container instance that you want to reserve for\n                  your container. You can specify a non-reserved host port for your container port\n                  mapping, omit the host port, or set the host port to 0. If you\n                  specify a container port but no host port, your container host port is assigned\n                  automatically .Don't specify a host port in the 49153 to 65535 port\n                  range; these ports are reserved for automatic assignment. Other reserved ports\n                  include 22 for SSH, 2375 and 2376 for\n                  Docker, and 51678 for the Amazon EC2 Container Service container agent. Don't specify a\n                  host port that is being used for a task—that port is reserved while the\n                  task is running.",
         "Array": false,
-        "Type": "Boolean",
+        "Type": "Number",
+        "Required": "No"
+      },
+      "Protocol": {
+        "Description": "The protocol used for the port mapping. For valid values, see the protocol parameter in the Amazon EC2 Container Service Developer Guide. By default, AWS CloudFormation specifies tcp.",
+        "Array": false,
+        "Type": "String",
         "Required": "No"
       }
     }
@@ -3415,6 +3398,17 @@
       }
     }
   },
+  "AmazonEC2ContainerServiceTaskDefinitionVolumesHost": {
+    "Name": "AmazonEC2ContainerServiceTaskDefinitionVolumesHost",
+    "Properties": {
+      "SourcePath": {
+        "Description": "The data volume path on the host container instance.If you don't specify this parameter, the Docker daemon assigns a path for you,\n                  but the data volume might not persist after the associated container stops\n                  running. If you do specify a path, the data volume persists at that location on\n                  the host container instance until you manually delete it.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
   "AmazonEC2ContainerServiceTaskDefinitionVolumes": {
     "Name": "AmazonEC2ContainerServiceTaskDefinitionVolumes",
     "Properties": {
@@ -3428,6 +3422,23 @@
         "Description": "Determines whether your data volume persists on the host container instance and\n                  at the location where it is stored.",
         "Array": false,
         "Type": "AmazonEC2ContainerServiceTaskDefinitionVolumesHost",
+        "Required": "No"
+      }
+    }
+  },
+  "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsVolumesFrom": {
+    "Name": "AmazonEC2ContainerServiceTaskDefinitionContainerDefinitionsVolumesFrom",
+    "Properties": {
+      "SourceContainer": {
+        "Description": "The name of the container that has the volumes to mount.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "ReadOnly": {
+        "Description": "Indicates whether the container can write to the volume. If you specify\n                     true, the container has read-only access to the volume.\n                  If you specify false, the container can write to the\n                  volume. By default, the value is false.",
+        "Array": false,
+        "Type": "Boolean",
         "Required": "No"
       }
     }
@@ -3449,14 +3460,37 @@
       }
     }
   },
-  "AmazonEC2ContainerServiceTaskDefinitionVolumesHost": {
-    "Name": "AmazonEC2ContainerServiceTaskDefinitionVolumesHost",
+  "ElasticLoadBalancingListenerDefaultActions": {
+    "Name": "ElasticLoadBalancingListenerDefaultActions",
     "Properties": {
-      "SourcePath": {
-        "Description": "The data volume path on the host container instance.If you don't specify this parameter, the Docker daemon assigns a path for you,\n                  but the data volume might not persist after the associated container stops\n                  running. If you do specify a path, the data volume persists at that location on\n                  the host container instance until you manually delete it.",
+      "TargetGroupArn": {
+        "Description": "The Amazon Resource Name (ARN) of the target group to which Elastic Load Balancing routes the traffic.",
         "Array": false,
         "Type": "String",
-        "Required": "No"
+        "Required": "Yes"
+      },
+      "Type": {
+        "Description": "The type of action. For valid values, see the Type contents for the\n              Action data type in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "ElasticLoadBalancingListenerRuleActions": {
+    "Name": "ElasticLoadBalancingListenerRuleActions",
+    "Properties": {
+      "TargetGroupArn": {
+        "Description": "The Amazon Resource Name (ARN) of the target group to which Elastic Load Balancing routes the traffic.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Type": {
+        "Description": "The type of action. For valid values, see the Type contents for the\n              Action data type in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
       }
     }
   },
@@ -3517,68 +3551,6 @@
       }
     }
   },
-  "ElasticLoadBalancingListenerDefaultActions": {
-    "Name": "ElasticLoadBalancingListenerDefaultActions",
-    "Properties": {
-      "TargetGroupArn": {
-        "Description": "The Amazon Resource Name (ARN) of the target group to which Elastic Load Balancing routes the traffic.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Type": {
-        "Description": "The type of action. For valid values, see the Type contents for the\n              Action data type in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "ElasticLoadBalancingListenerRuleActions": {
-    "Name": "ElasticLoadBalancingListenerRuleActions",
-    "Properties": {
-      "TargetGroupArn": {
-        "Description": "The Amazon Resource Name (ARN) of the target group to which Elastic Load Balancing routes the traffic.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Type": {
-        "Description": "The type of action. For valid values, see the Type contents for the\n              Action data type in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes": {
-    "Name": "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes",
-    "Properties": {
-      "Key": {
-        "Description": "The name of an attribute that you want to configure. For the list of attributes that you can configure, see the Key contents for the LoadBalancerAttribute data type in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "Value": {
-        "Description": "A value for the attribute.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "ElasticLoadBalancingTargetGroupMatcher": {
-    "Name": "ElasticLoadBalancingTargetGroupMatcher",
-    "Properties": {
-      "HttpCode": {
-        "Description": "The HTTP codes that a healthy target must use when responding to a health check,\n            such as 200,202 or 200-399.For valid and default values, see the HttpCode contents for the Matcher data type in the Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "ElasticLoadBalancingTargetGroupTargetDescription": {
     "Name": "ElasticLoadBalancingTargetGroupTargetDescription",
     "Properties": {
@@ -3596,29 +3568,28 @@
       }
     }
   },
-  "AmazonElasticsearchServiceDomainEBSOptions": {
-    "Name": "AmazonElasticsearchServiceDomainEBSOptions",
+  "ElasticLoadBalancingTargetGroupMatcher": {
+    "Name": "ElasticLoadBalancingTargetGroupMatcher",
     "Properties": {
-      "EBSEnabled": {
-        "Description": "Specifies whether Amazon EBS volumes are attached to data nodes in the Amazon ES\n            domain.",
+      "HttpCode": {
+        "Description": "The HTTP codes that a healthy target must use when responding to a health check,\n            such as 200,202 or 200-399.For valid and default values, see the HttpCode contents for the Matcher data type in the Elastic Load Balancing API Reference version 2015-12-01.",
         "Array": false,
-        "Type": "Boolean",
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes": {
+    "Name": "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes",
+    "Properties": {
+      "Key": {
+        "Description": "The name of an attribute that you want to configure. For the list of attributes that you can configure, see the Key contents for the LoadBalancerAttribute data type in the Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "String",
         "Required": "No"
       },
-      "Iops": {
-        "Description": "The number of I/O operations per second (IOPS) that the volume supports. This\n            property applies only to the Provisioned IOPS (SSD) EBS volume type.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "VolumeSize": {
-        "Description": "The size of the EBS volume for each data node. The minimum and maximum size of an\n            EBS volume depends on the EBS volume type and the instance type to which it is attached.\n            For more information, see Configuring EBS-based Storage in the\n            Amazon Elasticsearch Service Developer Guide.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "VolumeType": {
-        "Description": "The EBS volume type to use with the Amazon ES domain, such as standard,\n              gp2, or io1. For more information about each type, see\n              Amazon EBS Volume Types in the Amazon EC2 User Guide for Linux Instances.",
+      "Value": {
+        "Description": "A value for the attribute.",
         "Array": false,
         "Type": "String",
         "Required": "No"
@@ -3667,6 +3638,46 @@
         "Description": "The version of the application.",
         "Array": false,
         "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "AmazonElasticsearchServiceDomainEBSOptions": {
+    "Name": "AmazonElasticsearchServiceDomainEBSOptions",
+    "Properties": {
+      "EBSEnabled": {
+        "Description": "Specifies whether Amazon EBS volumes are attached to data nodes in the Amazon ES\n            domain.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "Iops": {
+        "Description": "The number of I/O operations per second (IOPS) that the volume supports. This\n            property applies only to the Provisioned IOPS (SSD) EBS volume type.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "VolumeSize": {
+        "Description": "The size of the EBS volume for each data node. The minimum and maximum size of an\n            EBS volume depends on the EBS volume type and the instance type to which it is attached.\n            For more information, see Configuring EBS-based Storage in the\n            Amazon Elasticsearch Service Developer Guide.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "VolumeType": {
+        "Description": "The EBS volume type to use with the Amazon ES domain, such as standard,\n              gp2, or io1. For more information about each type, see\n              Amazon EBS Volume Types in the Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "AmazonElasticsearchServiceDomainSnapshotOptions": {
+    "Name": "AmazonElasticsearchServiceDomainSnapshotOptions",
+    "Properties": {
+      "AutomatedSnapshotStartHour": {
+        "Description": "The hour in UTC during which the service takes an automated daily snapshot of the\n            indices in the Amazon ES domain. For example, if you specify 0, Amazon ES\n            takes an automated snapshot everyday between midnight and 1 am. You can specify a value\n            between 0 and 23.",
+        "Array": false,
+        "Type": "Number",
         "Required": "No"
       }
     }
@@ -3729,14 +3740,43 @@
       }
     }
   },
-  "AmazonElasticsearchServiceDomainSnapshotOptions": {
-    "Name": "AmazonElasticsearchServiceDomainSnapshotOptions",
+  "AmazonEMRClusterConfiguration": {
+    "Name": "AmazonEMRClusterConfiguration",
     "Properties": {
-      "AutomatedSnapshotStartHour": {
-        "Description": "The hour in UTC during which the service takes an automated daily snapshot of the\n            indices in the Amazon ES domain. For example, if you specify 0, Amazon ES\n            takes an automated snapshot everyday between midnight and 1 am. You can specify a value\n            between 0 and 23.",
+      "Classification": {
+        "Description": "The name of an application-specific configuration file. For more information see,\n              Configuring Applications in the Amazon EMR Release\n              Guide.",
         "Array": false,
-        "Type": "Number",
+        "Type": "String",
         "Required": "No"
+      },
+      "ConfigurationProperties": {
+        "Description": "The settings that you want to change in the application-specific configuration file.\n            For more information see, Configuring Applications in the Amazon EMR Release\n              Guide.",
+        "Array": false,
+        "Type": "Map",
+        "Required": "No"
+      },
+      "Configurations": {
+        "Description": "A list of configurations to apply to this configuration. You can nest configurations\n            so that a single configuration can have its own configurations. In other words, you can\n            configure a configuration. For more information see, Configuring Applications in the Amazon EMR Release\n              Guide.",
+        "Array": true,
+        "Type": "AmazonEMRClusterConfiguration",
+        "Required": "No"
+      }
+    }
+  },
+  "AmazonEMRClusterBootstrapActionConfig": {
+    "Name": "AmazonEMRClusterBootstrapActionConfig",
+    "Properties": {
+      "Name": {
+        "Description": "The name of the bootstrap action to add to your cluster.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "ScriptBootstrapAction": {
+        "Description": "The script that the bootstrap action runs.",
+        "Array": false,
+        "Type": "AmazonEMRClusterBootstrapActionConfigScriptBootstrapActionConfig",
+        "Required": "Yes"
       }
     }
   },
@@ -3796,46 +3836,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
-      }
-    }
-  },
-  "AmazonEMRClusterBootstrapActionConfig": {
-    "Name": "AmazonEMRClusterBootstrapActionConfig",
-    "Properties": {
-      "Name": {
-        "Description": "The name of the bootstrap action to add to your cluster.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "ScriptBootstrapAction": {
-        "Description": "The script that the bootstrap action runs.",
-        "Array": false,
-        "Type": "AmazonEMRClusterBootstrapActionConfigScriptBootstrapActionConfig",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AmazonEMRClusterConfiguration": {
-    "Name": "AmazonEMRClusterConfiguration",
-    "Properties": {
-      "Classification": {
-        "Description": "The name of an application-specific configuration file. For more information see,\n              Configuring Applications in the Amazon EMR Release\n              Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "ConfigurationProperties": {
-        "Description": "The settings that you want to change in the application-specific configuration file.\n            For more information see, Configuring Applications in the Amazon EMR Release\n              Guide.",
-        "Array": false,
-        "Type": "Map",
-        "Required": "No"
-      },
-      "Configurations": {
-        "Description": "A list of configurations to apply to this configuration. You can nest configurations\n            so that a single configuration can have its own configurations. In other words, you can\n            configure a configuration. For more information see, Configuring Applications in the Amazon EMR Release\n              Guide.",
-        "Array": true,
-        "Type": "AmazonEMRClusterConfiguration",
-        "Required": "No"
       }
     }
   },
@@ -3916,23 +3916,6 @@
       }
     }
   },
-  "AmazonEMREbsConfigurationEbsBlockDeviceConfigs": {
-    "Name": "AmazonEMREbsConfigurationEbsBlockDeviceConfigs",
-    "Properties": {
-      "VolumeSpecification": {
-        "Description": "The settings for the Amazon EBS volumes.",
-        "Array": false,
-        "Type": "AmazonEMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification",
-        "Required": "Yes"
-      },
-      "VolumesPerInstance": {
-        "Description": "The number of Amazon EBS volumes that you want to create for each instance in the EMR cluster or instance group.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      }
-    }
-  },
   "AmazonEMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification": {
     "Name": "AmazonEMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification",
     "Properties": {
@@ -3953,6 +3936,23 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
+      }
+    }
+  },
+  "AmazonEMREbsConfigurationEbsBlockDeviceConfigs": {
+    "Name": "AmazonEMREbsConfigurationEbsBlockDeviceConfigs",
+    "Properties": {
+      "VolumeSpecification": {
+        "Description": "The settings for the Amazon EBS volumes.",
+        "Array": false,
+        "Type": "AmazonEMREbsConfigurationEbsBlockDeviceConfigVolumeSpecification",
+        "Required": "Yes"
+      },
+      "VolumesPerInstance": {
+        "Description": "The number of Amazon EBS volumes that you want to create for each instance in the EMR cluster or instance group.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
       }
     }
   },
@@ -4019,35 +4019,6 @@
       }
     }
   },
-  "AmazonCloudWatchEventsRuleTarget": {
-    "Name": "AmazonCloudWatchEventsRuleTarget",
-    "Properties": {
-      "Arn": {
-        "Description": "The Amazon Resource Name (ARN) of the target.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Id": {
-        "Description": "A unique, user-defined identifier for the target. Acceptable values include\n                  alphanumeric characters, periods (.), hypens (-), and\n                  underscores (_).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Input": {
-        "Description": "A JSON-formatted text string that is passed to the target. This value overrides the matched event.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No. If you don't specify both this property and the InputPath, CloudWatch Events passes the entire matched event to the target."
-      },
-      "InputPath": {
-        "Description": "When you don't want to pass the entire matched event, the JSONPath that describes which part of the event to pass to the target.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No. If you don't specify both this property and the Input, CloudWatch Events passes the entire matched event to the target."
-      }
-    }
-  },
   "AmazonGameLiftBuildStorageLocation": {
     "Name": "AmazonGameLiftBuildStorageLocation",
     "Properties": {
@@ -4091,6 +4062,35 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
+      }
+    }
+  },
+  "AmazonCloudWatchEventsRuleTarget": {
+    "Name": "AmazonCloudWatchEventsRuleTarget",
+    "Properties": {
+      "Arn": {
+        "Description": "The Amazon Resource Name (ARN) of the target.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Id": {
+        "Description": "A unique, user-defined identifier for the target. Acceptable values include\n                  alphanumeric characters, periods (.), hypens (-), and\n                  underscores (_).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Input": {
+        "Description": "A JSON-formatted text string that is passed to the target. This value overrides the matched event.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No. If you don't specify both this property and the InputPath, CloudWatch Events passes the entire matched event to the target."
+      },
+      "InputPath": {
+        "Description": "When you don't want to pass the entire matched event, the JSONPath that describes which part of the event to pass to the target.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No. If you don't specify both this property and the Input, CloudWatch Events passes the entire matched event to the target."
       }
     }
   },
@@ -4230,47 +4230,29 @@
       }
     }
   },
-  "AWSIoTDynamoDBAction": {
-    "Name": "AWSIoTDynamoDBAction",
+  "AWSIoTCloudwatchAlarmAction": {
+    "Name": "AWSIoTCloudwatchAlarmAction",
     "Properties": {
-      "HashKeyField": {
-        "Description": "The name of the hash key.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "HashKeyValue": {
-        "Description": "The value of the hash key.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "PayloadField": {
-        "Description": "The name of the column in the DynamoDB table that contains the result of the query. You\n            can customize this name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "RangeKeyField": {
-        "Description": "The name of the range key.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "RangeKeyValue": {
-        "Description": "The value of the range key.",
+      "AlarmName": {
+        "Description": "The CloudWatch alarm name.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       },
       "RoleArn": {
-        "Description": "The ARN of the IAM role that grants access to the DynamoDB table.",
+        "Description": "The IAM role that allows access to the CloudWatch alarm.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       },
-      "TableName": {
-        "Description": "The name of the DynamoDB table.",
+      "StateReason": {
+        "Description": "The reason for the change of the alarm state.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "StateValue": {
+        "Description": "The value of the alarm state.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -4318,29 +4300,47 @@
       }
     }
   },
-  "AWSIoTCloudwatchAlarmAction": {
-    "Name": "AWSIoTCloudwatchAlarmAction",
+  "AWSIoTDynamoDBAction": {
+    "Name": "AWSIoTDynamoDBAction",
     "Properties": {
-      "AlarmName": {
-        "Description": "The CloudWatch alarm name.",
+      "HashKeyField": {
+        "Description": "The name of the hash key.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "HashKeyValue": {
+        "Description": "The value of the hash key.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "PayloadField": {
+        "Description": "The name of the column in the DynamoDB table that contains the result of the query. You\n            can customize this name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "RangeKeyField": {
+        "Description": "The name of the range key.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "RangeKeyValue": {
+        "Description": "The value of the range key.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       },
       "RoleArn": {
-        "Description": "The IAM role that allows access to the CloudWatch alarm.",
+        "Description": "The ARN of the IAM role that grants access to the DynamoDB table.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       },
-      "StateReason": {
-        "Description": "The reason for the change of the alarm state.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "StateValue": {
-        "Description": "The value of the alarm state.",
+      "TableName": {
+        "Description": "The name of the DynamoDB table.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -4410,6 +4410,23 @@
       }
     }
   },
+  "AWSIoTRepublishAction": {
+    "Name": "AWSIoTRepublishAction",
+    "Properties": {
+      "RoleArn": {
+        "Description": "The ARN of the IAM role that grants publishing access.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Topic": {
+        "Description": "The name of the MQTT topic topic different from the one currently\n                  specified.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AWSIoTKinesisAction": {
     "Name": "AWSIoTKinesisAction",
     "Properties": {
@@ -4430,46 +4447,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
-      }
-    }
-  },
-  "AWSIoTRepublishAction": {
-    "Name": "AWSIoTRepublishAction",
-    "Properties": {
-      "RoleArn": {
-        "Description": "The ARN of the IAM role that grants publishing access.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Topic": {
-        "Description": "The name of the MQTT topic topic different from the one currently\n                  specified.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSIoTSqsAction": {
-    "Name": "AWSIoTSqsAction",
-    "Properties": {
-      "QueueUrl": {
-        "Description": "The URL of the Amazon Simple Queue Service (Amazon SQS) queue.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "RoleArn": {
-        "Description": "The ARN of the IAM role that grants access to Amazon SQS.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "UseBase64": {
-        "Description": "Specifies whether Base64 encoding should be used.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
       }
     }
   },
@@ -4516,6 +4493,29 @@
         "Array": false,
         "Type": "String",
         "Required": "Yes"
+      }
+    }
+  },
+  "AWSIoTSqsAction": {
+    "Name": "AWSIoTSqsAction",
+    "Properties": {
+      "QueueUrl": {
+        "Description": "The URL of the Amazon Simple Queue Service (Amazon SQS) queue.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "RoleArn": {
+        "Description": "The ARN of the IAM role that grants access to Amazon SQS.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "UseBase64": {
+        "Description": "Specifies whether Base64 encoding should be used.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
       }
     }
   },
@@ -4750,6 +4750,17 @@
       }
     }
   },
+  "AmazonKinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig": {
+    "Name": "AmazonKinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig",
+    "Properties": {
+      "AWSKMSKeyARN": {
+        "Description": "The Amazon Resource Name (ARN) of the AWS KMS encryption key that Amazon S3 uses to encrypt data delivered by the Firehose stream. The key must belong to the same region as the destination S3 bucket.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AmazonKinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration": {
     "Name": "AmazonKinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfiguration",
     "Properties": {
@@ -4764,17 +4775,6 @@
         "Array": false,
         "Type": "String",
         "Required": "No"
-      }
-    }
-  },
-  "AmazonKinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig": {
-    "Name": "AmazonKinesisFirehoseDeliveryStreamS3DestinationConfigurationEncryptionConfigurationKMSEncryptionConfig",
-    "Properties": {
-      "AWSKMSKeyARN": {
-        "Description": "The Amazon Resource Name (ARN) of the AWS KMS encryption key that Amazon S3 uses to encrypt data delivered by the Firehose stream. The key must belong to the same region as the destination S3 bucket.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
       }
     }
   },
@@ -4882,6 +4882,29 @@
       }
     }
   },
+  "AWSOpsWorksAppEnvironment": {
+    "Name": "AWSOpsWorksAppEnvironment",
+    "Properties": {
+      "Key": {
+        "Description": "The name of the environment variable, which can consist of up to 64 characters.\n                  You can use upper and lowercase letters, numbers, and underscores (_), but the\n                  name must start with a letter or underscore.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Secure": {
+        "Description": "Indicates whether the value of the environment variable is concealed, such as\n                  with a DescribeApps\n                  response. To conceal an environment variable's value, set the value to\n                     true.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "Value": {
+        "Description": "The value of the environment variable, which can be empty. You can specify a\n                  value of up to 256 characters.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "CloudWatchLogsMetricFilterMetricTransformationProperty": {
     "Name": "CloudWatchLogsMetricFilterMetricTransformationProperty",
     "Properties": {
@@ -4955,93 +4978,6 @@
       }
     }
   },
-  "AWSOpsWorksAppEnvironment": {
-    "Name": "AWSOpsWorksAppEnvironment",
-    "Properties": {
-      "Key": {
-        "Description": "The name of the environment variable, which can consist of up to 64 characters.\n                  You can use upper and lowercase letters, numbers, and underscores (_), but the\n                  name must start with a letter or underscore.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Secure": {
-        "Description": "Indicates whether the value of the environment variable is concealed, such as\n                  with a DescribeApps\n                  response. To conceal an environment variable's value, set the value to\n                     true.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "Value": {
-        "Description": "The value of the environment variable, which can be empty. You can specify a\n                  value of up to 256 characters.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSOpsWorksInstanceBlockDeviceMappingEbsBlockDevice": {
-    "Name": "AWSOpsWorksInstanceBlockDeviceMappingEbsBlockDevice",
-    "Properties": {
-      "DeleteOnTermination": {
-        "Description": "Indicates whether to delete the volume when the instance is terminated.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "Iops": {
-        "Description": "The number of I/O operations per second (IOPS) that the volume supports. For\n                  more information, see Iops for the EbsBlockDevice action in the\n                     Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "SnapshotId": {
-        "Description": "The snapshot ID of the volume that you want to use. If you specify both the\n                     SnapshotId and VolumeSize properties,\n                     VolumeSize must be equal to or greater than the size of the\n                  snapshot.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "VolumeSize": {
-        "Description": "The volume size, in Gibibytes (GiB). If you specify both the\n                     SnapshotId and VolumeSize properties,\n                     VolumeSize must be equal to or greater than the size of the\n                  snapshot. For more information about specifying volume size, see VolumeSize for the\n                     EbsBlockDevice action in the\n                     Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No"
-      },
-      "VolumeType": {
-        "Description": "The volume type. For more information about specifying the volume type, see\n                     VolumeType for the\n                     EbsBlockDevice action in the\n                     Amazon EC2 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
-  "AWSOpsWorksInstanceBlockDeviceMapping": {
-    "Name": "AWSOpsWorksInstanceBlockDeviceMapping",
-    "Properties": {
-      "DeviceName": {
-        "Description": "The name of the device that is exposed to the instance, such as\n                     /dev/dsh or xvdh. For the root device, you can use\n                  the explicit device name or you can set this parameter to\n                  ROOT_DEVICE. If you set the parameter to ROOT_DEVICE,\n                  AWS OpsWorks provides the correct device name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "Ebs": {
-        "Description": "Configuration information about the Amazon Elastic Block Store (Amazon EBS) volume.",
-        "Array": false,
-        "Type": "AWSOpsWorksInstanceBlockDeviceMappingEbsBlockDevice",
-        "Required": "Conditional You can specify either the VirtualName or\n                     Ebs, but not both."
-      },
-      "NoDevice": {
-        "Description": "Suppresses the device that is specified in the block device mapping of the\n                  AWS OpsWorks instance Amazon Machine Image (AMI).",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      },
-      "VirtualName": {
-        "Description": "The name of the virtual device. The name must be in the form\n                        ephemeralX, where\n                     X is a number equal to or greater than zero (0), for\n                  example, ephemeral0.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional You can specify either the VirtualName or\n                     Ebs, but not both."
-      }
-    }
-  },
   "AWSOpsWorksTimeBasedAutoScalingType": {
     "Name": "AWSOpsWorksTimeBasedAutoScalingType",
     "Properties": {
@@ -5089,13 +5025,66 @@
       }
     }
   },
-  "AWSOpsWorksLayerLifeCycleConfiguration": {
-    "Name": "AWSOpsWorksLayerLifeCycleConfiguration",
+  "AWSOpsWorksInstanceBlockDeviceMapping": {
+    "Name": "AWSOpsWorksInstanceBlockDeviceMapping",
     "Properties": {
-      "ShutdownEventConfiguration": {
-        "Description": "Specifies the shutdown event configuration for a layer.",
+      "DeviceName": {
+        "Description": "The name of the device that is exposed to the instance, such as\n                     /dev/dsh or xvdh. For the root device, you can use\n                  the explicit device name or you can set this parameter to\n                  ROOT_DEVICE. If you set the parameter to ROOT_DEVICE,\n                  AWS OpsWorks provides the correct device name.",
         "Array": false,
-        "Type": "AWSOpsWorksLayerLifeCycleConfigurationShutdownEventConfiguration",
+        "Type": "String",
+        "Required": "No"
+      },
+      "Ebs": {
+        "Description": "Configuration information about the Amazon Elastic Block Store (Amazon EBS) volume.",
+        "Array": false,
+        "Type": "AWSOpsWorksInstanceBlockDeviceMappingEbsBlockDevice",
+        "Required": "Conditional You can specify either the VirtualName or\n                     Ebs, but not both."
+      },
+      "NoDevice": {
+        "Description": "Suppresses the device that is specified in the block device mapping of the\n                  AWS OpsWorks instance Amazon Machine Image (AMI).",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "VirtualName": {
+        "Description": "The name of the virtual device. The name must be in the form\n                        ephemeralX, where\n                     X is a number equal to or greater than zero (0), for\n                  example, ephemeral0.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional You can specify either the VirtualName or\n                     Ebs, but not both."
+      }
+    }
+  },
+  "AWSOpsWorksInstanceBlockDeviceMappingEbsBlockDevice": {
+    "Name": "AWSOpsWorksInstanceBlockDeviceMappingEbsBlockDevice",
+    "Properties": {
+      "DeleteOnTermination": {
+        "Description": "Indicates whether to delete the volume when the instance is terminated.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "Iops": {
+        "Description": "The number of I/O operations per second (IOPS) that the volume supports. For\n                  more information, see Iops for the EbsBlockDevice action in the\n                     Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "SnapshotId": {
+        "Description": "The snapshot ID of the volume that you want to use. If you specify both the\n                     SnapshotId and VolumeSize properties,\n                     VolumeSize must be equal to or greater than the size of the\n                  snapshot.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      },
+      "VolumeSize": {
+        "Description": "The volume size, in Gibibytes (GiB). If you specify both the\n                     SnapshotId and VolumeSize properties,\n                     VolumeSize must be equal to or greater than the size of the\n                  snapshot. For more information about specifying volume size, see VolumeSize for the\n                     EbsBlockDevice action in the\n                     Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No"
+      },
+      "VolumeType": {
+        "Description": "The volume type. For more information about specifying the volume type, see\n                     VolumeType for the\n                     EbsBlockDevice action in the\n                     Amazon EC2 API Reference.",
+        "Array": false,
+        "Type": "String",
         "Required": "No"
       }
     }
@@ -5113,29 +5102,6 @@
         "Description": "The time, in seconds, that AWS OpsWorks waits after a shutdown event has been\n                  triggered before shutting down an instance.",
         "Array": false,
         "Type": "Number",
-        "Required": "No"
-      }
-    }
-  },
-  "AWSOpsWorksLoadBasedAutoScalingType": {
-    "Name": "AWSOpsWorksLoadBasedAutoScalingType",
-    "Properties": {
-      "DownScaling": {
-        "Description": "The threshold below which the instances are scaled down (stopped). If the load\n                  falls below this threshold for a specified amount of time, AWS OpsWorks stops a specified\n                  number of instances.",
-        "Array": false,
-        "Type": "AWSOpsWorksAutoScalingThresholdsType",
-        "Required": "No"
-      },
-      "Enable": {
-        "Description": "Whether to enable automatic load-based scaling for the layer.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No"
-      },
-      "UpScaling": {
-        "Description": "The threshold above which the instances are scaled up (added). If the load\n                  exceeds this thresholds for a specified amount of time, AWS OpsWorks starts a specified\n                  number of instances.",
-        "Array": false,
-        "Type": "AWSOpsWorksAutoScalingThresholdsType",
         "Required": "No"
       }
     }
@@ -5177,6 +5143,40 @@
         "Description": "The amount of time, in minutes, that the load must exceed a threshold before\n                  instances are added or removed.",
         "Array": false,
         "Type": "Number",
+        "Required": "No"
+      }
+    }
+  },
+  "AWSOpsWorksLayerLifeCycleConfiguration": {
+    "Name": "AWSOpsWorksLayerLifeCycleConfiguration",
+    "Properties": {
+      "ShutdownEventConfiguration": {
+        "Description": "Specifies the shutdown event configuration for a layer.",
+        "Array": false,
+        "Type": "AWSOpsWorksLayerLifeCycleConfigurationShutdownEventConfiguration",
+        "Required": "No"
+      }
+    }
+  },
+  "AWSOpsWorksLoadBasedAutoScalingType": {
+    "Name": "AWSOpsWorksLoadBasedAutoScalingType",
+    "Properties": {
+      "DownScaling": {
+        "Description": "The threshold below which the instances are scaled down (stopped). If the load\n                  falls below this threshold for a specified amount of time, AWS OpsWorks stops a specified\n                  number of instances.",
+        "Array": false,
+        "Type": "AWSOpsWorksAutoScalingThresholdsType",
+        "Required": "No"
+      },
+      "Enable": {
+        "Description": "Whether to enable automatic load-based scaling for the layer.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No"
+      },
+      "UpScaling": {
+        "Description": "The threshold above which the instances are scaled up (added). If the load\n                  exceeds this thresholds for a specified amount of time, AWS OpsWorks starts a specified\n                  number of instances.",
+        "Array": false,
+        "Type": "AWSOpsWorksAutoScalingThresholdsType",
         "Required": "No"
       }
     }
@@ -5257,23 +5257,6 @@
       }
     }
   },
-  "AWSOpsWorksStackElasticIp": {
-    "Name": "AWSOpsWorksStackElasticIp",
-    "Properties": {
-      "Ip": {
-        "Description": "The Elastic IP address.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Name": {
-        "Description": "A name for the Elastic IP address.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "AWSOpsWorksChefConfigurationType": {
     "Name": "AWSOpsWorksChefConfigurationType",
     "Properties": {
@@ -5291,20 +5274,43 @@
       }
     }
   },
-  "AWSOpsWorksStackConfigurationManagerType": {
-    "Name": "AWSOpsWorksStackConfigurationManagerType",
+  "AWSOpsWorksStackElasticIp": {
+    "Name": "AWSOpsWorksStackElasticIp",
     "Properties": {
-      "Name": {
-        "Description": "The name of the configuration manager.",
+      "Ip": {
+        "Description": "The Elastic IP address.",
         "Array": false,
         "Type": "String",
-        "Required": "No"
+        "Required": "Yes"
       },
-      "Version": {
-        "Description": "The Chef version.",
+      "Name": {
+        "Description": "A name for the Elastic IP address.",
         "Array": false,
         "Type": "String",
         "Required": "No"
+      }
+    }
+  },
+  "AWSOpsWorksStackRdsDbInstance": {
+    "Name": "AWSOpsWorksStackRdsDbInstance",
+    "Properties": {
+      "DbPassword": {
+        "Description": "The password of the registered database.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "DbUser": {
+        "Description": "The master user name of the registered database.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "RdsDbInstanceArn": {
+        "Description": "The Amazon Resource Name (ARN) of the Amazon RDS DB instance to register with the\n                  AWS OpsWorks stack.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
       }
     }
   },
@@ -5349,59 +5355,20 @@
       }
     }
   },
-  "AWSOpsWorksStackRdsDbInstance": {
-    "Name": "AWSOpsWorksStackRdsDbInstance",
+  "AWSOpsWorksStackConfigurationManagerType": {
+    "Name": "AWSOpsWorksStackConfigurationManagerType",
     "Properties": {
-      "DbPassword": {
-        "Description": "The password of the registered database.",
+      "Name": {
+        "Description": "The name of the configuration manager.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes"
+        "Required": "No"
       },
-      "DbUser": {
-        "Description": "The master user name of the registered database.",
+      "Version": {
+        "Description": "The Chef version.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes"
-      },
-      "RdsDbInstanceArn": {
-        "Description": "The Amazon Resource Name (ARN) of the Amazon RDS DB instance to register with the\n                  AWS OpsWorks stack.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AmazonRDSSecurityGroupRule": {
-    "Name": "AmazonRDSSecurityGroupRule",
-    "Properties": {
-      "CIDRIP": {
-        "Description": "The IP range to authorize.For an overview of CIDR ranges, go to the Wikipedia\n                  Tutorial.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupId": {
-        "Description": "Id of the VPC or EC2 Security Group to authorize.For VPC DB Security Groups, use EC2SecurityGroupId. For EC2 Security Groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupName": {
-        "Description": "Name of the EC2 Security Group to authorize.For VPC DB Security Groups, use EC2SecurityGroupId. For EC2 Security Groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "AWS Account Number of the owner of the EC2 Security Group specified in the EC2SecurityGroupName\n                  parameter. The AWS Access Key ID is not an acceptable value.For VPC DB Security Groups, use EC2SecurityGroupId. For EC2 Security Groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
+        "Required": "No"
       }
     }
   },
@@ -5471,6 +5438,39 @@
         "Array": true,
         "Type": "String",
         "Required": "No"
+      }
+    }
+  },
+  "AmazonRDSSecurityGroupRule": {
+    "Name": "AmazonRDSSecurityGroupRule",
+    "Properties": {
+      "CIDRIP": {
+        "Description": "The IP range to authorize.For an overview of CIDR ranges, go to the Wikipedia\n                  Tutorial.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupId": {
+        "Description": "Id of the VPC or EC2 Security Group to authorize.For VPC DB Security Groups, use EC2SecurityGroupId. For EC2 Security Groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupName": {
+        "Description": "Name of the EC2 Security Group to authorize.For VPC DB Security Groups, use EC2SecurityGroupId. For EC2 Security Groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "AWS Account Number of the owner of the EC2 Security Group specified in the EC2SecurityGroupName\n                  parameter. The AWS Access Key ID is not an acceptable value.For VPC DB Security Groups, use EC2SecurityGroupId. For EC2 Security Groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -5595,29 +5595,6 @@
       }
     }
   },
-  "AmazonRoute53RecordSetGeoLocationProperty": {
-    "Name": "AmazonRoute53RecordSetGeoLocationProperty",
-    "Properties": {
-      "ContinentCode": {
-        "Description": "All DNS queries from the continent that you specified are routed to this\n                  resource record set. If you specify this property, omit the\n                     CountryCode and SubdivisionCode properties.For valid values, see the ContinentCode element in the\n                  Amazon Route 53 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify this or the CountryCode\n                  property."
-      },
-      "CountryCode": {
-        "Description": "All DNS queries from the country that you specified are routed to this resource\n                  record set. If you specify this property, omit the ContinentCode\n                  property.For valid values, see the CountryCode element in the\n                  Amazon Route 53 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. You must specify this or the ContinentCode\n                  property."
-      },
-      "SubdivisionCode": {
-        "Description": "If you specified US for the country code, you can specify a state\n                  in the United States. All DNS queries from the state that you specified are routed\n                  to this resource record set. If you specify this property, you must specify\n                     US for the CountryCode and omit the\n                     ContinentCode property.For valid values, see the SubdivisionCode element in the\n                  Amazon Route 53 API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
-      }
-    }
-  },
   "AmazonS3CorsConfigurationRule": {
     "Name": "AmazonS3CorsConfigurationRule",
     "Properties": {
@@ -5659,14 +5636,26 @@
       }
     }
   },
-  "AmazonS3CorsConfiguration": {
-    "Name": "AmazonS3CorsConfiguration",
+  "AmazonRoute53RecordSetGeoLocationProperty": {
+    "Name": "AmazonRoute53RecordSetGeoLocationProperty",
     "Properties": {
-      "CorsRules": {
-        "Description": "A set of origins and methods that you allow.",
+      "ContinentCode": {
+        "Description": "All DNS queries from the continent that you specified are routed to this\n                  resource record set. If you specify this property, omit the\n                     CountryCode and SubdivisionCode properties.For valid values, see the ContinentCode element in the\n                  Amazon Route 53 API Reference.",
         "Array": false,
-        "Type": "AmazonS3CorsConfigurationRule",
-        "Required": "Yes"
+        "Type": "String",
+        "Required": "Conditional. You must specify this or the CountryCode\n                  property."
+      },
+      "CountryCode": {
+        "Description": "All DNS queries from the country that you specified are routed to this resource\n                  record set. If you specify this property, omit the ContinentCode\n                  property.For valid values, see the CountryCode element in the\n                  Amazon Route 53 API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. You must specify this or the ContinentCode\n                  property."
+      },
+      "SubdivisionCode": {
+        "Description": "If you specified US for the country code, you can specify a state\n                  in the United States. All DNS queries from the state that you specified are routed\n                  to this resource record set. If you specify this property, you must specify\n                     US for the CountryCode and omit the\n                     ContinentCode property.For valid values, see the SubdivisionCode element in the\n                  Amazon Route 53 API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
       }
     }
   },
@@ -5683,6 +5672,17 @@
         "Description": "The number of days between the time that a new version of the object is\n                  uploaded to the bucket and when old versions of the object are transitioned to the\n                  specified storage class.",
         "Array": false,
         "Type": "Number",
+        "Required": "Yes"
+      }
+    }
+  },
+  "AmazonS3CorsConfiguration": {
+    "Name": "AmazonS3CorsConfiguration",
+    "Properties": {
+      "CorsRules": {
+        "Description": "A set of origins and methods that you allow.",
+        "Array": false,
+        "Type": "AmazonS3CorsConfigurationRule",
         "Required": "Yes"
       }
     }
@@ -5803,6 +5803,29 @@
       }
     }
   },
+  "AmazonSimpleStorageServiceNotificationConfigurationLambdaConfigurations": {
+    "Name": "AmazonSimpleStorageServiceNotificationConfigurationLambdaConfigurations",
+    "Properties": {
+      "Event": {
+        "Description": "The S3 bucket event for which to invoke the Lambda function.\n                  For more information, see Supported Event Types in the\n                  Amazon Simple Storage Service Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Filter": {
+        "Description": "The filtering rules that determine which objects invoke the Lambda function. For\n                  example, you can create a filter so that only image files with a\n                     .jpg extension invoke the function when they are added to\n                  the S3 bucket.",
+        "Array": false,
+        "Type": "AmazonS3NotificationConfigurationConfigFilter",
+        "Required": "No"
+      },
+      "Function": {
+        "Description": "The Amazon Resource Name (ARN) of the Lambda function that Amazon S3 invokes when the\n                  specified event type occurs.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
   "AmazonSimpleStorageServiceNotificationConfigurationQueueConfigurations": {
     "Name": "AmazonSimpleStorageServiceNotificationConfigurationQueueConfigurations",
     "Properties": {
@@ -5826,26 +5849,26 @@
       }
     }
   },
-  "AmazonSimpleStorageServiceNotificationConfigurationLambdaConfigurations": {
-    "Name": "AmazonSimpleStorageServiceNotificationConfigurationLambdaConfigurations",
+  "AmazonS3NotificationConfiguration": {
+    "Name": "AmazonS3NotificationConfiguration",
     "Properties": {
-      "Event": {
-        "Description": "The S3 bucket event for which to invoke the Lambda function.\n                  For more information, see Supported Event Types in the\n                  Amazon Simple Storage Service Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Filter": {
-        "Description": "The filtering rules that determine which objects invoke the Lambda function. For\n                  example, you can create a filter so that only image files with a\n                     .jpg extension invoke the function when they are added to\n                  the S3 bucket.",
-        "Array": false,
-        "Type": "AmazonS3NotificationConfigurationConfigFilter",
+      "LambdaConfigurations": {
+        "Description": "The AWS Lambda functions to invoke and the events for which to invoke the\n                  functions.",
+        "Array": true,
+        "Type": "AmazonSimpleStorageServiceNotificationConfigurationLambdaConfigurations",
         "Required": "No"
       },
-      "Function": {
-        "Description": "The Amazon Resource Name (ARN) of the Lambda function that Amazon S3 invokes when the\n                  specified event type occurs.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
+      "QueueConfigurations": {
+        "Description": "The Amazon Simple Queue Service queues to publish messages to and the events for which to publish\n                  messages.",
+        "Array": true,
+        "Type": "AmazonSimpleStorageServiceNotificationConfigurationQueueConfigurations",
+        "Required": "No"
+      },
+      "TopicConfigurations": {
+        "Description": "The topic to which notifications are sent and the events for which notification\n                  are generated.",
+        "Array": true,
+        "Type": "AmazonS3NotificationConfigurationTopicConfigurations",
+        "Required": "No"
       }
     }
   },
@@ -5872,14 +5895,31 @@
       }
     }
   },
-  "AmazonS3NotificationConfigurationConfigFilter": {
-    "Name": "AmazonS3NotificationConfigurationConfigFilter",
+  "AmazonS3NotificationConfigurationConfigFilterS3Key": {
+    "Name": "AmazonS3NotificationConfigurationConfigFilterS3Key",
     "Properties": {
-      "S3Key": {
-        "Description": "Amazon S3 filtering rules that describe for which object key names to send\n                  notifications.",
-        "Array": false,
-        "Type": "AmazonS3NotificationConfigurationConfigFilterS3Key",
+      "Rules": {
+        "Description": "The object key name to filter on and whether to filter on the suffix or prefix\n                  of the key name.",
+        "Array": true,
+        "Type": "AmazonS3NotificationConfigurationConfigFilterS3KeyRules",
         "Required": "Yes"
+      }
+    }
+  },
+  "AmazonS3ReplicationConfigurationRulesDestination": {
+    "Name": "AmazonS3ReplicationConfigurationRulesDestination",
+    "Properties": {
+      "Bucket": {
+        "Description": "The Amazon resource name (ARN) of an S3 bucket where Amazon S3 stores replicated\n                  objects. This destination bucket must be in a different region than your source\n                  bucket.If you have multiple rules in your replication configuration, specify the same\n                  destination bucket for all of the rules.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "StorageClass": {
+        "Description": "The storage class to use when replicating objects, such as standard or reduced\n                  redundancy. By default, Amazon S3 uses the storage class of the source object to create\n                  object replica. For valid values, see the StorageClass element of the\n                     PUT Bucket\n                     replication action in the Amazon Simple Storage Service API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
       }
     }
   },
@@ -5900,54 +5940,48 @@
       }
     }
   },
-  "AmazonS3NotificationConfigurationConfigFilterS3Key": {
-    "Name": "AmazonS3NotificationConfigurationConfigFilterS3Key",
+  "AmazonS3NotificationConfigurationConfigFilter": {
+    "Name": "AmazonS3NotificationConfigurationConfigFilter",
     "Properties": {
+      "S3Key": {
+        "Description": "Amazon S3 filtering rules that describe for which object key names to send\n                  notifications.",
+        "Array": false,
+        "Type": "AmazonS3NotificationConfigurationConfigFilterS3Key",
+        "Required": "Yes"
+      }
+    }
+  },
+  "AmazonS3WebsiteConfigurationRedirectAllRequestsToProperty": {
+    "Name": "AmazonS3WebsiteConfigurationRedirectAllRequestsToProperty",
+    "Properties": {
+      "HostName": {
+        "Description": "Name of the host where requests are redirected.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Protocol": {
+        "Description": "Protocol to use (http or https) when redirecting\n                  requests. The default is the protocol that is used in the original request.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No"
+      }
+    }
+  },
+  "AmazonS3ReplicationConfiguration": {
+    "Name": "AmazonS3ReplicationConfiguration",
+    "Properties": {
+      "Role": {
+        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that Amazon S3 assumes\n                  when replicating objects. For more information, see How to Set Up Cross-Region\n                     Replication in the Amazon Simple Storage Service Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
       "Rules": {
-        "Description": "The object key name to filter on and whether to filter on the suffix or prefix\n                  of the key name.",
+        "Description": "A replication rule that specifies which objects to replicate and where they are\n                  stored.",
         "Array": true,
-        "Type": "AmazonS3NotificationConfigurationConfigFilterS3KeyRules",
+        "Type": "AmazonS3ReplicationConfigurationRules",
         "Required": "Yes"
-      }
-    }
-  },
-  "AmazonS3NotificationConfiguration": {
-    "Name": "AmazonS3NotificationConfiguration",
-    "Properties": {
-      "LambdaConfigurations": {
-        "Description": "The AWS Lambda functions to invoke and the events for which to invoke the\n                  functions.",
-        "Array": false,
-        "Type": "AmazonSimpleStorageServiceNotificationConfigurationLambdaConfigurations",
-        "Required": "No"
-      },
-      "QueueConfigurations": {
-        "Description": "The Amazon Simple Queue Service queues to publish messages to and the events for which to publish\n                  messages.",
-        "Array": false,
-        "Type": "AmazonSimpleStorageServiceNotificationConfigurationQueueConfigurations",
-        "Required": "No"
-      },
-      "TopicConfigurations": {
-        "Description": "The topic to which notifications are sent and the events for which notification\n                  are generated.",
-        "Array": false,
-        "Type": "AmazonS3NotificationConfigurationTopicConfigurations",
-        "Required": "No"
-      }
-    }
-  },
-  "AmazonS3ReplicationConfigurationRulesDestination": {
-    "Name": "AmazonS3ReplicationConfigurationRulesDestination",
-    "Properties": {
-      "Bucket": {
-        "Description": "The Amazon resource name (ARN) of an S3 bucket where Amazon S3 stores replicated\n                  objects. This destination bucket must be in a different region than your source\n                  bucket.If you have multiple rules in your replication configuration, specify the same\n                  destination bucket for all of the rules.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "StorageClass": {
-        "Description": "The storage class to use when replicating objects, such as standard or reduced\n                  redundancy. By default, Amazon S3 uses the storage class of the source object to create\n                  object replica. For valid values, see the StorageClass element of the\n                     PUT Bucket\n                     replication action in the Amazon Simple Storage Service API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No"
       }
     }
   },
@@ -5980,23 +6014,6 @@
       }
     }
   },
-  "AmazonS3ReplicationConfiguration": {
-    "Name": "AmazonS3ReplicationConfiguration",
-    "Properties": {
-      "Role": {
-        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that Amazon S3 assumes\n                  when replicating objects. For more information, see How to Set Up Cross-Region\n                     Replication in the Amazon Simple Storage Service Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Rules": {
-        "Description": "A replication rule that specifies which objects to replicate and where they are\n                  stored.",
-        "Array": true,
-        "Type": "AmazonS3ReplicationConfigurationRules",
-        "Required": "Yes"
-      }
-    }
-  },
   "AmazonS3VersioningConfiguration": {
     "Name": "AmazonS3VersioningConfiguration",
     "Properties": {
@@ -6008,19 +6025,19 @@
       }
     }
   },
-  "AmazonS3WebsiteConfigurationRedirectAllRequestsToProperty": {
-    "Name": "AmazonS3WebsiteConfigurationRedirectAllRequestsToProperty",
+  "AmazonS3WebsiteConfigurationRoutingRulesProperty": {
+    "Name": "AmazonS3WebsiteConfigurationRoutingRulesProperty",
     "Properties": {
-      "HostName": {
-        "Description": "Name of the host where requests are redirected.",
+      "RedirectRule": {
+        "Description": "Redirect requests to another host, to another page, or with another\n                  protocol.",
         "Array": false,
-        "Type": "String",
+        "Type": "AmazonS3WebsiteConfigurationRoutingRulesRedirectRuleProperty",
         "Required": "Yes"
       },
-      "Protocol": {
-        "Description": "Protocol to use (http or https) when redirecting\n                  requests. The default is the protocol that is used in the original request.",
+      "RoutingRuleCondition": {
+        "Description": "Rules that define when a redirect is applied.",
         "Array": false,
-        "Type": "String",
+        "Type": "AmazonS3WebsiteConfigurationRoutingRulesRoutingRuleConditionProperty",
         "Required": "No"
       }
     }
@@ -6077,23 +6094,6 @@
       }
     }
   },
-  "AmazonS3WebsiteConfigurationRoutingRulesProperty": {
-    "Name": "AmazonS3WebsiteConfigurationRoutingRulesProperty",
-    "Properties": {
-      "RedirectRule": {
-        "Description": "Redirect requests to another host, to another page, or with another\n                  protocol.",
-        "Array": false,
-        "Type": "AmazonS3WebsiteConfigurationRoutingRulesRedirectRuleProperty",
-        "Required": "Yes"
-      },
-      "RoutingRuleCondition": {
-        "Description": "Rules that define when a redirect is applied.",
-        "Array": false,
-        "Type": "AmazonS3WebsiteConfigurationRoutingRulesRoutingRuleConditionProperty",
-        "Required": "No"
-      }
-    }
-  },
   "AmazonS3WebsiteConfigurationProperty": {
     "Name": "AmazonS3WebsiteConfigurationProperty",
     "Properties": {
@@ -6123,20 +6123,20 @@
       }
     }
   },
-  "AmazonSQSRedrivePolicy": {
-    "Name": "AmazonSQSRedrivePolicy",
+  "AmazonSNSSubscriptionPropertyType": {
+    "Name": "AmazonSNSSubscriptionPropertyType",
     "Properties": {
-      "deadLetterTargetArn": {
-        "Description": "The Amazon Resource Name (ARN) of the dead letter queue to which the messages are\n            sent to after the maxReceiveCount value has been exceeded.",
+      "Endpoint": {
+        "Description": "The subscription's endpoint (format depends on the protocol). For more\n                  information, see the Subscribe\n                     Endpoint parameter in the\n                  Amazon Simple Notification Service API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       },
-      "maxReceiveCount": {
-        "Description": "The number of times a message is delivered to the source queue before being sent to\n            the dead letter queue.",
+      "Protocol": {
+        "Description": "The subscription's protocol. For more information, see the Subscribe Protocol parameter in\n                  the Amazon Simple Notification Service API Reference.",
         "Array": false,
-        "Type": "Number",
-        "Required": "No"
+        "Type": "String",
+        "Required": "Yes"
       }
     }
   },
@@ -6157,26 +6157,26 @@
       }
     }
   },
-  "AmazonSNSSubscriptionPropertyType": {
-    "Name": "AmazonSNSSubscriptionPropertyType",
+  "CloudFormationStackParametersPropertyType": {
+    "Name": "CloudFormationStackParametersPropertyType",
+    "Properties": {}
+  },
+  "AmazonSQSRedrivePolicy": {
+    "Name": "AmazonSQSRedrivePolicy",
     "Properties": {
-      "Endpoint": {
-        "Description": "The subscription's endpoint (format depends on the protocol). For more\n                  information, see the Subscribe\n                     Endpoint parameter in the\n                  Amazon Simple Notification Service API Reference.",
+      "deadLetterTargetArn": {
+        "Description": "The Amazon Resource Name (ARN) of the dead letter queue to which the messages are\n            sent to after the maxReceiveCount value has been exceeded.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
       },
-      "Protocol": {
-        "Description": "The subscription's protocol. For more information, see the Subscribe Protocol parameter in\n                  the Amazon Simple Notification Service API Reference.",
+      "maxReceiveCount": {
+        "Description": "The number of times a message is delivered to the source queue before being sent to\n            the dead letter queue.",
         "Array": false,
-        "Type": "String",
-        "Required": "Yes"
+        "Type": "Number",
+        "Required": "No"
       }
     }
-  },
-  "CloudFormationStackParametersPropertyType": {
-    "Name": "CloudFormationStackParametersPropertyType",
-    "Properties": {}
   },
   "AWSWAFByteMatchSetByteMatchTuplesFieldToMatch": {
     "Name": "AWSWAFByteMatchSetByteMatchTuplesFieldToMatch",
@@ -6189,23 +6189,6 @@
       },
       "Type": {
         "Description": "The part of the web request in which AWS WAF searches for the target string. For\n            valid values, see FieldToMatch\n            in the AWS WAF API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSWAFIPSetIPSetDescriptors": {
-    "Name": "AWSWAFIPSetIPSetDescriptors",
-    "Properties": {
-      "Type": {
-        "Description": "The IP address type, such as IPV4. For valid values, see the\n                     Type contents of the IPSetDescriptor data type\n                  in the AWS WAF API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "Value": {
-        "Description": "An IP address (in CIDR notation) that AWS WAF permits, blocks, or counts. For\n                  example, to specify a single IP address such as 192.0.2.44, specify\n                     192.0.2.44/32. To specify a range of IP addresses such as\n                     192.0.2.0 to 192.0.2.255, specify\n                     192.0.2.0/24.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -6241,6 +6224,23 @@
       },
       "TextTransformation": {
         "Description": "Specifies how AWS WAF processes the target string value. Text transformations\n                  eliminate some of the unusual formatting that attackers use in web requests in an\n                  effort to bypass AWS WAF. If you specify a transformation, AWS WAF transforms the\n                  target string value before inspecting a web request for a match.For example, AWS WAF can replace whitespace characters (such as \\t\n                  and \\n) with a single space. For valid values, see the\n                     TextTransformation content for the ByteMatchTuple data type in\n                  the AWS WAF API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "AWSWAFIPSetIPSetDescriptors": {
+    "Name": "AWSWAFIPSetIPSetDescriptors",
+    "Properties": {
+      "Type": {
+        "Description": "The IP address type, such as IPV4. For valid values, see the\n                     Type contents of the IPSetDescriptor data type\n                  in the AWS WAF API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "Value": {
+        "Description": "An IP address (in CIDR notation) that AWS WAF permits, blocks, or counts. For\n                  example, to specify a single IP address such as 192.0.2.44, specify\n                     192.0.2.44/32. To specify a range of IP addresses such as\n                     192.0.2.0 to 192.0.2.255, specify\n                     192.0.2.0/24.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -6316,11 +6316,17 @@
       }
     }
   },
-  "AWSWAFWebACLAction": {
-    "Name": "AWSWAFWebACLAction",
+  "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch": {
+    "Name": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch",
     "Properties": {
+      "Data": {
+        "Description": "If you specify HEADER for the Type property, the name\n                  of the header that AWS WAF searches for, such as User-Agent or\n                     Referer. If you specify any other value for the Type\n                  property, do not specify this property.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional"
+      },
       "Type": {
-        "Description": "For actions that are associated with a rule, the action that AWS WAF takes when a\n                  web request matches all conditions in a rule.For the default action of a web access control list (ACL), the action that\n                  AWS WAF takes when a web request doesn't match all conditions in any rule.For valid value, see the Type contents of the WafAction data type in the\n                     AWS WAF API Reference.",
+        "Description": "The part of the web request in which AWS WAF searches for the target string. For\n                  valid values, see FieldToMatch in the AWS WAF API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -6344,17 +6350,68 @@
       }
     }
   },
-  "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch": {
-    "Name": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuplesFieldToMatch",
+  "AWSWAFWebACLAction": {
+    "Name": "AWSWAFWebACLAction",
     "Properties": {
-      "Data": {
-        "Description": "If you specify HEADER for the Type property, the name\n                  of the header that AWS WAF searches for, such as User-Agent or\n                     Referer. If you specify any other value for the Type\n                  property, do not specify this property.",
+      "Type": {
+        "Description": "For actions that are associated with a rule, the action that AWS WAF takes when a\n                  web request matches all conditions in a rule.For the default action of a web access control list (ACL), the action that\n                  AWS WAF takes when a web request doesn't match all conditions in any rule.For valid value, see the Type contents of the WafAction data type in the\n                     AWS WAF API Reference.",
         "Array": false,
         "Type": "String",
-        "Required": "Conditional"
+        "Required": "Yes"
+      }
+    }
+  },
+  "AWSWAFWebACLRules": {
+    "Name": "AWSWAFWebACLRules",
+    "Properties": {
+      "Action": {
+        "Description": "The action that Amazon CloudFront (CloudFront) or AWS WAF takes when a web request matches all\n                  conditions in the rule, such as allow, block, or count the request.",
+        "Array": false,
+        "Type": "AWSWAFWebACLAction",
+        "Required": "Yes"
       },
-      "Type": {
-        "Description": "The part of the web request in which AWS WAF searches for the target string. For\n                  valid values, see FieldToMatch in the AWS WAF API Reference.",
+      "Priority": {
+        "Description": "The order in which AWS WAF evaluates the rules in a web ACL. AWS WAF evaluates\n                  rules with a lower value before rules with a higher value. The value must be a\n                  unique integer. If you have multiple rules in a web ACL, the priority numbers do\n                  not need to be consecutive.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      },
+      "RuleId": {
+        "Description": "The ID of an AWS WAF rule to\n                  associate with a web ACL.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      }
+    }
+  },
+  "AWSCodePipelineCustomActionTypeArtifactDetails": {
+    "Name": "AWSCodePipelineCustomActionTypeArtifactDetails",
+    "Properties": {
+      "MaximumCount": {
+        "Description": "The maximum number of artifacts allowed for the action type.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      },
+      "MinimumCount": {
+        "Description": "The minimum number of artifacts allowed for the action type.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "Yes"
+      }
+    }
+  },
+  "AmazonRedshiftParameterType": {
+    "Name": "AmazonRedshiftParameterType",
+    "Properties": {
+      "ParameterName": {
+        "Description": "The name of the parameter.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "ParameterValue": {
+        "Description": "The value of the parameter.",
         "Array": false,
         "Type": "String",
         "Required": "Yes"
@@ -6395,63 +6452,6 @@
       }
     }
   },
-  "AWSWAFWebACLRules": {
-    "Name": "AWSWAFWebACLRules",
-    "Properties": {
-      "Action": {
-        "Description": "The action that Amazon CloudFront (CloudFront) or AWS WAF takes when a web request matches all\n                  conditions in the rule, such as allow, block, or count the request.",
-        "Array": false,
-        "Type": "AWSWAFWebACLAction",
-        "Required": "Yes"
-      },
-      "Priority": {
-        "Description": "The order in which AWS WAF evaluates the rules in a web ACL. AWS WAF evaluates\n                  rules with a lower value before rules with a higher value. The value must be a\n                  unique integer. If you have multiple rules in a web ACL, the priority numbers do\n                  not need to be consecutive.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      },
-      "RuleId": {
-        "Description": "The ID of an AWS WAF rule to\n                  associate with a web ACL.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AmazonRedshiftParameterType": {
-    "Name": "AmazonRedshiftParameterType",
-    "Properties": {
-      "ParameterName": {
-        "Description": "The name of the parameter.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "ParameterValue": {
-        "Description": "The value of the parameter.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      }
-    }
-  },
-  "AWSCodePipelineCustomActionTypeArtifactDetails": {
-    "Name": "AWSCodePipelineCustomActionTypeArtifactDetails",
-    "Properties": {
-      "MaximumCount": {
-        "Description": "The maximum number of artifacts allowed for the action type.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      },
-      "MinimumCount": {
-        "Description": "The minimum number of artifacts allowed for the action type.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "Yes"
-      }
-    }
-  },
   "AWSCodePipelineCustomActionTypeSettings": {
     "Name": "AWSCodePipelineCustomActionTypeSettings",
     "Properties": {
@@ -6478,6 +6478,23 @@
         "Array": false,
         "Type": "String",
         "Required": "No"
+      }
+    }
+  },
+  "AmazonRoute53HostedZoneVPCs": {
+    "Name": "AmazonRoute53HostedZoneVPCs",
+    "Properties": {
+      "VPCId": {
+        "Description": "The ID of the Amazon VPC that you want to associate with the hosted zone.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
+      },
+      "VPCRegion": {
+        "Description": "The region in which the Amazon VPC was created as specified in the\n                     VPCId property.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes"
       }
     }
   },
@@ -6525,23 +6542,6 @@
         "Array": false,
         "Type": "String",
         "Required": "No"
-      }
-    }
-  },
-  "AmazonRoute53HostedZoneVPCs": {
-    "Name": "AmazonRoute53HostedZoneVPCs",
-    "Properties": {
-      "VPCId": {
-        "Description": "The ID of the Amazon VPC that you want to associate with the hosted zone.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
-      },
-      "VPCRegion": {
-        "Description": "The region in which the Amazon VPC was created as specified in the\n                     VPCId property.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes"
       }
     }
   }
