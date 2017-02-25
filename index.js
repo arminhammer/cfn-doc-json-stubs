@@ -277,5 +277,11 @@ function generateJson() {
   })
 }
 
-//downloadPages()
-generateJson()
+let selection = process.argv[2]
+if(selection === 'download') {
+  downloadPages()
+} else if(selection === 'generate-json') {
+  generateJson()
+} else {
+  console.log('Invalid command.')
+}

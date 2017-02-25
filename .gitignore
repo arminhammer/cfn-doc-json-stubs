@@ -1,8 +1,4 @@
 
 .idea/
 node_modules/
-buildpropertytypes.js
-buildresources.js
-scrapePropertyTypes.js
-scrapeResources.js
-testscrapindivid.js
+html/

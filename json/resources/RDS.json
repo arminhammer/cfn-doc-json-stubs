@@ -1,4 +1,37 @@
 {
+  "DBParameterGroup": {
+    "Name": "AWS::RDS::DBParameterGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A friendly description of the RDS parameter group. For example, \"My Parameter Group\".",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Family": {
+        "Description": "The database family of this RDS parameter group. For example, \"MySQL5.1\".",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Parameters": {
+        "Description": "The parameters to set for this RDS parameter group.",
+        "Array": false,
+        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
+        "Required": "No",
+        "UpdateRequires": "No interruption or Some interruptions. Changes to dynamic parameters are applied immediately. During an update, if you have static parameters (whether they were changed or not), triggers AWS CloudFormation to reboot the associated DB instance without failover."
+      },
+      "Tags": {
+        "Description": "The tags that you want to attach to the RDS parameter group.",
+        "Array": true,
+        "Type": "resourcetags",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "DBSecurityGroup": {
     "Name": "AWS::RDS::DBSecurityGroup",
     "Properties": {
@@ -43,7 +76,7 @@
         "UpdateRequires": "No interruption"
       },
       "AllowMajorVersionUpgrade": {
-        "Description": "Indicates whether major version upgrades are allowed. Setting this parameter\n                  does not result in an outage, and the change is applied asynchronously as soon as\n                  possible.Constraints: Set this parameter to true when\n                  you specify an EngineVersion that differs from the DB instance's\n                  current major version.",
+        "Description": "If you update the EngineVersion property to a version that's\n                  different from the DB instance's current major version, set this property to\n                     true. For more information, see ModifyDBInstance in the\n                     Amazon Relational Database Service API Reference.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
@@ -99,7 +132,7 @@
         "UpdateRequires": "Some interruptions"
       },
       "DBInstanceIdentifier": {
-        "Description": "A name for the DB instance. If you specify a name, AWS CloudFormation converts it to lower\n                  case. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses\n                  that ID for the DB instance. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Description": "A name for the DB instance. If you specify a name, AWS CloudFormation converts it to lower\n                  case. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses\n                  that ID for the DB instance. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -287,6 +320,13 @@
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
+      "Timezone": {
+        "Description": "The time zone of the DB instance, which you can specify to match the time zone\n                  of your applications. To see which engines supports time zones, see the\n                     Timezone parameter for the CreateDBInstance action in the\n                  Amazon Relational Database Service API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
       "VPCSecurityGroups": {
         "Description": "A list of the VPC security group IDs to assign to the DB instance. The list can\n                  include both the physical IDs of existing VPC security groups and references to\n                     AWS::EC2::SecurityGroup resources created in the\n                  template.If you set VPCSecurityGroups, you must not set DBSecurityGroups, and vice\n                  versa.ImportantYou\n              can migrate a\n              DB\n              instance in your stack from an RDS DB security group to a VPC security group, but\n              keep\n              the\n              following in mind:You cannot revert to using an RDS security group after you\n                           establish a VPC security group membership.When you migrate your DB instance to VPC security groups, if your\n                           stack update rolls back because the DB instance update fails, or because\n                           an update fails in another AWS CloudFormation resource, the rollback will fail because\n                           it cannot revert to an RDS security group.To use the properties that are available when you use a VPC security\n                           group, you must recreate the DB instance. If you don't, AWS CloudFormation submits\n                           only the property values that are listed in the DBSecurityGroups\n                           property.To avoid this situation, migrate your DB instance to using VPC security\n                     groups only when that is the only change in your stack template.",
         "Array": true,
@@ -296,36 +336,36 @@
       }
     }
   },
-  "DBParameterGroup": {
-    "Name": "AWS::RDS::DBParameterGroup",
+  "DBClusterParameterGroup": {
+    "Name": "AWS::RDS::DBClusterParameterGroup",
     "Properties": {
       "Description": {
-        "Description": "A friendly description of the RDS parameter group. For example, \"My Parameter Group\".",
+        "Description": "A friendly description for this DB cluster parameter group.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
+        "UpdateRequires": "Replacement"
       },
       "Family": {
-        "Description": "The database family of this RDS parameter group. For example, \"MySQL5.1\".",
+        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
+        "UpdateRequires": "Replacement"
       },
       "Parameters": {
-        "Description": "The parameters to set for this RDS parameter group.",
+        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
         "Array": false,
         "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
-        "Required": "No",
-        "UpdateRequires": "No interruption or Some interruptions. Changes to dynamic parameters are applied immediately. During an update, if you have static parameters (whether they were changed or not), triggers AWS CloudFormation to reboot the associated DB instance without failover."
+        "Required": "Yes",
+        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
       },
       "Tags": {
-        "Description": "The tags that you want to attach to the RDS parameter group.",
+        "Description": "The tags that you want to attach to this parameter group.",
         "Array": true,
         "Type": "resourcetags",
         "Required": "No",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Updates are not supported."
       }
     }
   },
@@ -442,7 +482,7 @@
         "Array": true,
         "Type": "resourcetags",
         "Required": "No",
-        "UpdateRequires": "Updates are not supported."
+        "UpdateRequires": "No interruption"
       },
       "VpcSecurityGroupIds": {
         "Description": "A list of VPC security groups to associate with this DB cluster.",
@@ -450,39 +490,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "DBClusterParameterGroup": {
-    "Name": "AWS::RDS::DBClusterParameterGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A friendly description for this DB cluster parameter group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Family": {
-        "Description": "The database family of this DB cluster parameter group, such as\n                     aurora5.6.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Parameters": {
-        "Description": "The parameters to set for this DB cluster parameter group. For a list of\n                  parameter keys, see Appendix: DB Cluster\n                     and DB Instance Parameters in the\n                     Amazon Relational Database Service User Guide.Changes to dynamic parameters are applied immediately. Changes to static\n                  parameters require a reboot without failover to the DB instance that is associated\n                  with the parameter group before the change can take effect.",
-        "Array": false,
-        "Type": "AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption or some\n                     interruptions, depending on the parameters that you update."
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to this parameter group.",
-        "Array": true,
-        "Type": "resourcetags",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
       }
     }
   },
@@ -507,6 +514,46 @@
         "Description": "The tags that you want to attach to the RDS database subnet group.",
         "Array": true,
         "Type": "resourcetagsinkey-valueformat",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "OptionGroup": {
+    "Name": "AWS::RDS::OptionGroup",
+    "Properties": {
+      "EngineName": {
+        "Description": "The name of the database engine that this option group is associated\n                  with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "MajorEngineVersion": {
+        "Description": "The major version number of the database engine that this option group is\n                  associated with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "OptionGroupDescription": {
+        "Description": "A description of the option group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "OptionConfigurations": {
+        "Description": "The configurations for this option group.",
+        "Array": false,
+        "Type": "AmazonRDSOptionGroupOptionConfigurations",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Tags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this option group.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }
@@ -580,46 +627,6 @@
         "Description": "The AWS Account Number of the owner of the EC2 security group specified in the EC2SecurityGroupName\n                  parameter. The AWS Access Key ID is not an acceptable value.For VPC DB security groups, use EC2SecurityGroupId. For EC2 security groups, use\n                  EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId.",
         "Array": false,
         "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "OptionGroup": {
-    "Name": "AWS::RDS::OptionGroup",
-    "Properties": {
-      "EngineName": {
-        "Description": "The name of the database engine that this option group is associated\n                  with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "MajorEngineVersion": {
-        "Description": "The major version number of the database engine that this option group is\n                  associated with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "OptionGroupDescription": {
-        "Description": "A description of the option group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "OptionConfigurations": {
-        "Description": "The configurations for this option group.",
-        "Array": false,
-        "Type": "AmazonRDSOptionGroupOptionConfigurations",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this option group.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }

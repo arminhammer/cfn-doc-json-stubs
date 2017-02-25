@@ -17,7 +17,7 @@
         "UpdateRequires": "No interruption"
       },
       "Name": {
-        "Description": "A name for the rule. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the rule name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Description": "A name for the rule. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the rule name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -45,7 +45,7 @@
         "UpdateRequires": "No interruption"
       },
       "Targets": {
-        "Description": "The resources, such as Lambda functions or Amazon Kinesis streams, that CloudWatch Events routes events to and invokes when the rule is triggered.  For information about valid targets, see the PutTargets action in the Amazon CloudWatch Events API Reference.",
+        "Description": "The resources, such as Lambda functions or Amazon Kinesis streams, that CloudWatch Events routes events to\n            and invokes when the rule is triggered. For information about valid targets, see the\n              PutTargets action in the\n              Amazon CloudWatch Events API Reference.NoteCreating rules with built-in targets is supported only in the AWS Management\n              Console.",
         "Array": true,
         "Type": "AmazonCloudWatchEventsRuleTarget",
         "Required": "No",

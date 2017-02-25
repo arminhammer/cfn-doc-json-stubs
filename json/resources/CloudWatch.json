@@ -24,7 +24,7 @@
         "UpdateRequires": "No interruption"
       },
       "AlarmName": {
-        "Description": "A name for the alarm. If you don't specify a name, AWS CloudFormation generates a unique\n                  physical ID and uses that ID for the alarm name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Description": "A name for the alarm. If you don't specify a name, AWS CloudFormation generates a unique\n                  physical ID and uses that ID for the alarm name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
         "Type": "String",
         "Required": "No",

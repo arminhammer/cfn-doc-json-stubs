@@ -1,37 +1,4 @@
 {
-  "Alias": {
-    "Name": "AWS::Lambda::Alias",
-    "Properties": {
-      "Description": {
-        "Description": "Information about the alias, such as its purpose or the Lambda function that is associated with it.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "FunctionName": {
-        "Description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionVersion": {
-        "Description": "The version of the Lambda function that you want to associate with this alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the alias.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Function": {
     "Name": "AWS::Lambda::Function",
     "Properties": {
@@ -57,7 +24,7 @@
         "UpdateRequires": "No interruption"
       },
       "FunctionName": {
-        "Description": "A name for the function. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the function's name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Description": "A name for the function. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the function's name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -111,6 +78,79 @@
         "Type": "AWSLambdaFunctionVPCConfig",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Alias": {
+    "Name": "AWS::Lambda::Alias",
+    "Properties": {
+      "Description": {
+        "Description": "Information about the alias, such as its purpose or the Lambda function that is associated with it.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "FunctionName": {
+        "Description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionVersion": {
+        "Description": "The version of the Lambda function that you want to associate with this alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the alias.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "EventSourceMapping": {
+    "Name": "AWS::Lambda::EventSourceMapping",
+    "Properties": {
+      "BatchSize": {
+        "Description": "The largest number of records that Lambda retrieves from your event source when\n                  invoking your function. Your function receives an event with all the retrieved\n                  records. For the default and valid values, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Enabled": {
+        "Description": "Indicates whether Lambda begins polling the event source.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "EventSourceArn": {
+        "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that is the source\n                  of events. Any record added to this stream can invoke the Lambda function. For more\n                  information, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionName": {
+        "Description": "The name or ARN of a Lambda function to invoke when Lambda detects an event on\n                  the stream.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "StartingPosition": {
+        "Description": "The position in the stream where Lambda starts reading. For valid values, see\n                     CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -173,46 +213,6 @@
       },
       "FunctionName": {
         "Description": "The Lambda function for which you want to publish a version. You can specify the function's name or its Amazon Resource Name (ARN).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "EventSourceMapping": {
-    "Name": "AWS::Lambda::EventSourceMapping",
-    "Properties": {
-      "BatchSize": {
-        "Description": "The largest number of records that Lambda retrieves from your event source when\n                  invoking your function. Your function receives an event with all the retrieved\n                  records. For the default and valid values, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Enabled": {
-        "Description": "Indicates whether Lambda begins polling the event source.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "EventSourceArn": {
-        "Description": "The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that is the source\n                  of events. Any record added to this stream can invoke the Lambda function. For more\n                  information, see CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionName": {
-        "Description": "The name or ARN of a Lambda function to invoke when Lambda detects an event on\n                  the stream.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "StartingPosition": {
-        "Description": "The position in the stream where Lambda starts reading. For valid values, see\n                     CreateEventSourceMapping in the\n                  AWS Lambda Developer Guide.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",

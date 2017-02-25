@@ -11,39 +11,6 @@
       }
     }
   },
-  "ApiKey": {
-    "Name": "AWS::ApiGateway::ApiKey",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the purpose of the API key.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Enabled": {
-        "Description": "Indicates whether the API key can be used by clients.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "StageKeys": {
-        "Description": "A list of stages to associated with this API key.",
-        "Array": true,
-        "Type": "AmazonAPIGatewayApiKeyStageKey",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Authorizer": {
     "Name": "AWS::ApiGateway::Authorizer",
     "Properties": {
@@ -112,6 +79,39 @@
       }
     }
   },
+  "ApiKey": {
+    "Name": "AWS::ApiGateway::ApiKey",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the purpose of the API key.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Enabled": {
+        "Description": "Indicates whether the API key can be used by clients.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "StageKeys": {
+        "Description": "A list of stages to associated with this API key.",
+        "Array": true,
+        "Type": "AmazonAPIGatewayApiKeyStageKey",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "BasePathMapping": {
     "Name": "AWS::ApiGateway::BasePathMapping",
     "Properties": {
@@ -145,51 +145,44 @@
       }
     }
   },
-  "Model": {
-    "Name": "AWS::ApiGateway::Model",
-    "Properties": {
-      "ContentType": {
-        "Description": "The content type for the model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "A description that identifies this model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "RestApiId": {
-        "Description": "The ID of a REST API with which to associate this model.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Schema": {
-        "Description": "The schema to use to transform data to one or more output formats.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "ClientCertificate": {
     "Name": "AWS::ApiGateway::ClientCertificate",
     "Properties": {
       "Description": {
         "Description": "A description of the client certificate.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Deployment": {
+    "Name": "AWS::ApiGateway::Deployment",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the purpose of the API Gateway deployment.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "RestApiId": {
+        "Description": "The ID of the RestApi resource to deploy.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "StageDescription": {
+        "Description": "Configures the stage that API Gateway creates with this deployment.",
+        "Array": false,
+        "Type": "AmazonAPIGatewayDeploymentStageDescription",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "StageName": {
+        "Description": "A name for the stage that API Gateway creates with this deployment. Use only alphanumeric characters.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -272,33 +265,94 @@
       }
     }
   },
-  "Deployment": {
-    "Name": "AWS::ApiGateway::Deployment",
+  "Model": {
+    "Name": "AWS::ApiGateway::Model",
     "Properties": {
+      "ContentType": {
+        "Description": "The content type for the model.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
       "Description": {
-        "Description": "A description of the purpose of the API Gateway deployment.",
+        "Description": "A description that identifies this model.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
+      "Name": {
+        "Description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
       "RestApiId": {
-        "Description": "The ID of the RestApi resource to deploy.",
+        "Description": "The ID of a REST API with which to associate this model.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "StageDescription": {
-        "Description": "Configures the stage that API Gateway creates with this deployment.",
+      "Schema": {
+        "Description": "The schema to use to transform data to one or more output formats. Specify null\n              ({}) if you don't want to specify a schema.",
         "Array": false,
-        "Type": "AmazonAPIGatewayDeploymentStageDescription",
+        "Type": "Object",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "RestApi": {
+    "Name": "AWS::ApiGateway::RestApi",
+    "Properties": {
+      "Body": {
+        "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.\n            For YAML templates, you can also specify the specification in the YAML format.",
+        "Array": false,
+        "Type": "Object",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
-      "StageName": {
-        "Description": "A name for the stage that API Gateway creates with this deployment. Use only alphanumeric characters.",
+      "BodyS3Location": {
+        "Description": "The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.",
         "Array": false,
+        "Type": "AmazonAPIGatewayRestApiS3Location",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "CloneFrom": {
+        "Description": "The ID of the API Gateway RestApi resource that you want to clone.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Description": {
+        "Description": "A description of the purpose of this API Gateway RestApi resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "FailOnWarnings": {
+        "Description": "If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "A name for the API Gateway RestApi resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. Required if you don't specify a OpenAPI definition.",
+        "UpdateRequires": "No interruption"
+      },
+      "Parameters": {
+        "Description": "Custom header parameters for the request.",
+        "Array": true,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
@@ -365,60 +419,6 @@
       "UsagePlanName": {
         "Description": "A name for this usage plan.",
         "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "RestApi": {
-    "Name": "AWS::ApiGateway::RestApi",
-    "Properties": {
-      "Body": {
-        "Description": "An OpenAPI specification that defines a set of RESTful APIs in the JSON format.\n            For YAML templates, you can also specify the specification in the YAML format.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "BodyS3Location": {
-        "Description": "The Amazon Simple Storage Service (Amazon S3) location that points to a OpenAPI file, which defines a set of RESTful APIs in JSON or YAML format.",
-        "Array": false,
-        "Type": "AmazonAPIGatewayRestApiS3Location",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "CloneFrom": {
-        "Description": "The ID of the API Gateway RestApi resource that you want to clone.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Description": {
-        "Description": "A description of the purpose of this API Gateway RestApi resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "FailOnWarnings": {
-        "Description": "If a warning occurs while API Gateway is creating the RestApi resource, indicates whether to roll back the resource.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "A name for the API Gateway RestApi resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. Required if you don't specify a OpenAPI definition.",
-        "UpdateRequires": "No interruption"
-      },
-      "Parameters": {
-        "Description": "Custom header parameters for the request.",
-        "Array": true,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"

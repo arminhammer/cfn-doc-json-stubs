@@ -1,37 +1,4 @@
 {
-  "Group": {
-    "Name": "AWS::IAM::Group",
-    "Properties": {
-      "GroupName": {
-        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ManagedPolicyArns": {
-        "Description": "One or more managed policy ARNs to attach to this group.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Path": {
-        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Policies": {
-        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
-        "Array": true,
-        "Type": "IAMPolicies",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "AccessKey": {
     "Name": "AWS::IAM::AccessKey",
     "Properties": {
@@ -77,6 +44,39 @@
       }
     }
   },
+  "Group": {
+    "Name": "AWS::IAM::Group",
+    "Properties": {
+      "GroupName": {
+        "Description": "A name for the IAM group. For valid values, see the GroupName parameter for the CreateGroup action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ManagedPolicyArns": {
+        "Description": "One or more managed policy ARNs to attach to this group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Path": {
+        "Description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Policies": {
+        "Description": "The policies to associate with this group. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
+        "Array": true,
+        "Type": "IAMPolicies",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "User": {
     "Name": "AWS::IAM::User",
     "Properties": {
@@ -116,7 +116,7 @@
         "UpdateRequires": "No interruption"
       },
       "UserName": {
-        "Description": "A name for the IAM user. For valid values, see the UserName parameter for the CreateUser action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the user name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Description": "A name for the IAM user. For valid values, see the UserName parameter for the CreateUser action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the user name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -175,14 +175,14 @@
     "Name": "AWS::IAM::InstanceProfile",
     "Properties": {
       "Path": {
-        "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.",
+        "Description": "The path associated with this IAM instance profile. For information about IAM paths, see Friendly Names and Paths in the AWS Identity and Access Management User\n                     Guide.By default, AWS CloudFormation specifies / for the path.",
         "Array": false,
         "Type": "String",
-        "Required": "Yes",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Roles": {
-        "Description": "The roles associated with this IAM instance profile.",
+        "Description": "The name of an existing IAM role to associate with this instance profile.\n                  Currently, a maximum of one role can be assigned to an instance profile.",
         "Array": true,
         "Type": "String",
         "Required": "Yes",
@@ -262,7 +262,7 @@
         "UpdateRequires": "No interruption"
       },
       "RoleName": {
-        "Description": "A name for the IAM role. For valid values, see the RoleName parameter for the CreateRole action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
+        "Description": "A name for the IAM role. For valid values, see the RoleName parameter for the CreateRole action in the IAM API Reference. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the group name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.If you specify a name, you must specify the CAPABILITY_NAMED_IAM value to acknowledge your template's capabilities. For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.WarningNaming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple regions. To prevent this, we recommend using Fn::Join and AWS::Region to create a region-specific name, as in the following example: {\"Fn::Join\": [\"\", [{\"Ref\": \"AWS::Region\"}, {\"Ref\": \"MyResourceName\"}]]}.",
         "Array": false,
         "Type": "String",
         "Required": "No",

@@ -10,7 +10,7 @@
         "UpdateRequires": "No interruption"
       },
       "Attributes": {
-        "Description": "One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.",
+        "Description": "One or more user-defined key-value pairs to be added to the app attributes\n                  bag.",
         "Array": true,
         "Type": "Map",
         "Required": "No",
@@ -104,6 +104,129 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "Layer": {
+    "Name": "AWS::OpsWorks::Layer",
+    "Properties": {
+      "Attributes": {
+        "Description": "One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.",
+        "Array": true,
+        "Type": "Map",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "AutoAssignElasticIps": {
+        "Description": "Whether to automatically assign an Elastic IP address to Amazon EC2 instances in\n                  this layer.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "AutoAssignPublicIps": {
+        "Description": "For AWS OpsWorks stacks that are running in a VPC, whether to automatically assign a\n                  public IP address to Amazon EC2 instances in this layer.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomInstanceProfileArn": {
+        "Description": "The Amazon Resource Name (ARN) of an IAM instance profile that is to be used\n                  for the Amazon EC2 instances in this layer.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomJson": {
+        "Description": "A custom stack configuration and deployment attributes that AWS OpsWorks installs on\n                  the layer's instances. For more information, see the CustomJson\n                  parameter for the CreateLayer action in the\n                  AWS OpsWorks Stacks API Reference.",
+        "Array": false,
+        "Type": "Object",
+        "Required": "No"
+      },
+      "CustomRecipes": {
+        "Description": "Custom event recipes for this layer.",
+        "Array": false,
+        "Type": "AWSOpsWorksRecipesType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "CustomSecurityGroupIds": {
+        "Description": "Custom security group IDs for this layer.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "EnableAutoHealing": {
+        "Description": "Whether to automatically heal Amazon EC2 instances that have become disconnected or\n                  timed out.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "InstallUpdatesOnBoot": {
+        "Description": "Whether to install operating system and package updates when the instance\n                  boots.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "LifecycleEventConfiguration": {
+        "Description": "The lifecycle events for the AWS OpsWorks layer.",
+        "Array": false,
+        "Type": "AWSOpsWorksLayerLifeCycleConfiguration",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "LoadBasedAutoScaling": {
+        "Description": "The load-based scaling configuration for the AWS OpsWorks layer.",
+        "Array": false,
+        "Type": "AWSOpsWorksLoadBasedAutoScalingType",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "The AWS OpsWorks layer name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Packages": {
+        "Description": "The packages for this layer.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Shortname": {
+        "Description": "The layer short name, which is used internally by AWS OpsWorks and by Chef recipes.\n                  The short name is also used as the name for the directory where your app files are\n                  installed.The name can have a maximum of 200 characters, which are limited to the\n                  alphanumeric characters, '-', '_', and '.'.ImportantIf you update a property that requires the layer to be replaced, you must specify a new short name. You cannot have multiple layers with the same short name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "StackId": {
+        "Description": "The ID of the AWS OpsWorks stack that this layer will be associated with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Type": {
+        "Description": "The layer type. A stack cannot have more than one layer of the same type,\n                  except for the custom type. You can have any number of\n                     custom types. For more information, see CreateLayer in the\n                     AWS OpsWorks Stacks API Reference.ImportantIf you update a property that requires the layer to be replaced, you must\n                     specify a new type unless you have a custom type. You can have any\n                     number of custom types.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "VolumeConfigurations": {
+        "Description": "Describes the Amazon EBS volumes for this layer.",
+        "Array": true,
+        "Type": "AWSOpsWorksVolumeConfigurationType",
+        "Required": "No",
+        "UpdateRequires": "Some interruptions"
       }
     }
   },
@@ -256,129 +379,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "Layer": {
-    "Name": "AWS::OpsWorks::Layer",
-    "Properties": {
-      "Attributes": {
-        "Description": "One or more user-defined key-value pairs to be added to the stack attributes\n                  bag.",
-        "Array": true,
-        "Type": "Map",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "AutoAssignElasticIps": {
-        "Description": "Whether to automatically assign an Elastic IP address to Amazon EC2 instances in\n                  this layer.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "AutoAssignPublicIps": {
-        "Description": "For AWS OpsWorks stacks that are running in a VPC, whether to automatically assign a\n                  public IP address to Amazon EC2 instances in this layer.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "CustomInstanceProfileArn": {
-        "Description": "The Amazon Resource Name (ARN) of an IAM instance profile that is to be used\n                  for the Amazon EC2 instances in this layer.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "CustomJson": {
-        "Description": "A custom stack configuration and deployment attributes that AWS OpsWorks installs on\n                  the layer's instances. For more information, see the CustomJson\n                  parameter for the CreateLayer action in the\n                  AWS OpsWorks Stacks API Reference.",
-        "Array": false,
-        "Type": "Object",
-        "Required": "No"
-      },
-      "CustomRecipes": {
-        "Description": "Custom event recipes for this layer.",
-        "Array": false,
-        "Type": "AWSOpsWorksRecipesType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "CustomSecurityGroupIds": {
-        "Description": "Custom security group IDs for this layer.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "EnableAutoHealing": {
-        "Description": "Whether to automatically heal Amazon EC2 instances that have become disconnected or\n                  timed out.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "InstallUpdatesOnBoot": {
-        "Description": "Whether to install operating system and package updates when the instance\n                  boots.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "LifecycleEventConfiguration": {
-        "Description": "The lifecycle events for the AWS OpsWorks layer.",
-        "Array": false,
-        "Type": "AWSOpsWorksLayerLifeCycleConfiguration",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "LoadBasedAutoScaling": {
-        "Description": "The load-based scaling configuration for the AWS OpsWorks layer.",
-        "Array": false,
-        "Type": "AWSOpsWorksLoadBasedAutoScalingType",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "The AWS OpsWorks layer name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Packages": {
-        "Description": "The packages for this layer.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Shortname": {
-        "Description": "The layer short name, which is used internally by AWS OpsWorks and by Chef recipes.\n                  The short name is also used as the name for the directory where your app files are\n                  installed.The name can have a maximum of 200 characters, which are limited to the\n                  alphanumeric characters, '-', '_', and '.'.ImportantIf you update a property that requires the layer to be replaced, you must specify a new short name. You cannot have multiple layers with the same short name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "StackId": {
-        "Description": "The ID of the AWS OpsWorks stack that this layer will be associated with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Type": {
-        "Description": "The layer type. A stack cannot have more than one layer of the same type,\n                  except for the custom type. You can have any number of\n                     custom types. For more information, see CreateLayer in the\n                     AWS OpsWorks Stacks API Reference.ImportantIf you update a property that requires the layer to be replaced, you must\n                     specify a new type unless you have a custom type. You can have any\n                     number of custom types.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "VolumeConfigurations": {
-        "Description": "Describes the Amazon EBS volumes for this layer.",
-        "Array": true,
-        "Type": "AWSOpsWorksVolumeConfigurationType",
-        "Required": "No",
-        "UpdateRequires": "Some interruptions"
       }
     }
   },

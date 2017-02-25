@@ -1,4 +1,42 @@
 {
+  "SecurityGroupIngress": {
+    "Name": "AWS::ElastiCache::SecurityGroupIngress",
+    "Properties": {
+      "CacheSecurityGroupName": {
+        "Description": "The name of the Cache Security Group to authorize.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupName": {
+        "Description": "Name of the EC2 Security Group to include in the authorization.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SecurityGroup": {
+    "Name": "AWS::ElastiCache::SecurityGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description for the cache security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
   "ParameterGroup": {
     "Name": "AWS::ElastiCache::ParameterGroup",
     "Properties": {
@@ -22,6 +60,32 @@
         "Type": "Map",
         "Required": "No",
         "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "SubnetGroup": {
+    "Name": "AWS::ElastiCache::SubnetGroup",
+    "Properties": {
+      "CacheSubnetGroupName": {
+        "Description": "A name for the cache subnet group. If you don't specify a name, AWS CloudFormation generates\n                  a unique physical ID. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "The description for the cache subnet group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SubnetIds": {
+        "Description": "The Amazon EC2 subnet IDs for the cache subnet group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   },
@@ -71,7 +135,7 @@
         "UpdateRequires": "Replacement"
       },
       "ClusterName": {
-        "Description": "A name for the cache cluster. If you don't specify a name, AWS CloudFormation generates a\n                  unique physical ID and uses that ID for the cache cluster. For more information,\n                  see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.The name must contain 1 to 20 alphanumeric characters or hyphens. The name must\n                  start with a letter and cannot end with a hyphen or contain two consecutive\n                  hyphens.",
+        "Description": "A name for the cache cluster. If you don't specify a name, AWS CloudFormation generates a\n                  unique physical ID and uses that ID for the cache cluster. For more information,\n                  see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.\nYou can perform updates that require no or some interruption. If you must replace the resource, specify a new name.The name must contain 1 to 20 alphanumeric characters or hyphens. The name must\n                  start with a letter and cannot end with a hyphen or contain two consecutive\n                  hyphens.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -172,70 +236,6 @@
         "Array": true,
         "Type": "String",
         "Required": "Conditional: If your cache cluster is in a VPC, you must specify\n                  this property.",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "SecurityGroup": {
-    "Name": "AWS::ElastiCache::SecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description for the cache security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SecurityGroupIngress": {
-    "Name": "AWS::ElastiCache::SecurityGroupIngress",
-    "Properties": {
-      "CacheSecurityGroupName": {
-        "Description": "The name of the Cache Security Group to authorize.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupName": {
-        "Description": "Name of the EC2 Security Group to include in the authorization.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified\n                  in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable\n                  value.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "SubnetGroup": {
-    "Name": "AWS::ElastiCache::SubnetGroup",
-    "Properties": {
-      "CacheSubnetGroupName": {
-        "Description": "A name for the cache subnet group. If you don't specify a name, AWS CloudFormation generates\n                  a unique physical ID. For more information, see Name Type.ImportantIf you specify a name, you cannot do updates that require this resource to be replaced.\nYou can still do updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "The description for the cache subnet group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SubnetIds": {
-        "Description": "The Amazon EC2 subnet IDs for the cache subnet group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }

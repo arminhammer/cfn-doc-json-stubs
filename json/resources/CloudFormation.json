@@ -1,34 +1,4 @@
 {
-  "WaitCondition": {
-    "Name": "AWS::CloudFormation::WaitCondition",
-    "Properties": {
-      "Count": {
-        "Description": "The number of success signals that AWS CloudFormation must receive before it continues\n                        the stack creation process. When the wait condition receives the requisite\n                        number of success signals, AWS CloudFormation resumes the creation of the stack. If the\n                        wait condition does not receive the specified number of success signals\n                        before the Timeout period expires, AWS CloudFormation assumes that the wait condition has\n                        failed and rolls the stack back.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Handle": {
-        "Description": "A reference to the wait condition handle used to signal this wait\n                        condition. Use the Ref intrinsic function to specify an\n                            AWS::CloudFormation::WaitConditionHandle resource.Anytime you add a WaitCondition resource during a stack update, you must\n                        associate the wait condition with a new WaitConditionHandle resource. Do not\n                        reuse an old wait condition handle that has already been defined in the\n                        template. If you reuse a wait condition handle, the wait condition might\n                        evaluate old signals from a previous create or update stack command.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Timeout": {
-        "Description": "The length of time (in seconds) to wait for the number of signals that the\n                            Count property specifies. Timeout is a\n                        minimum-bound property, meaning the timeout occurs no sooner than the time\n                        you specify, but can occur shortly thereafter. The maximum time that can be\n                        specified for this property is 12 hours (43200 seconds).",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "WaitConditionHandle": {
-    "Name": "AWS::CloudFormation::WaitConditionHandle",
-    "Properties": {}
-  },
   "Stack": {
     "Name": "AWS::CloudFormation::Stack",
     "Properties": {
@@ -65,6 +35,48 @@
         "Array": false,
         "Type": "Number",
         "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "WaitConditionHandle": {
+    "Name": "AWS::CloudFormation::WaitConditionHandle",
+    "Properties": {}
+  },
+  "WaitCondition": {
+    "Name": "AWS::CloudFormation::WaitCondition",
+    "Properties": {
+      "Count": {
+        "Description": "The number of success signals that AWS CloudFormation must receive before it continues\n                        the stack creation process. When the wait condition receives the requisite\n                        number of success signals, AWS CloudFormation resumes the creation of the stack. If the\n                        wait condition does not receive the specified number of success signals\n                        before the Timeout period expires, AWS CloudFormation assumes that the wait condition has\n                        failed and rolls the stack back.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Handle": {
+        "Description": "A reference to the wait condition handle used to signal this wait\n                        condition. Use the Ref intrinsic function to specify an\n                            AWS::CloudFormation::WaitConditionHandle resource.Anytime you add a WaitCondition resource during a stack update, you must\n                        associate the wait condition with a new WaitConditionHandle resource. Do not\n                        reuse an old wait condition handle that has already been defined in the\n                        template. If you reuse a wait condition handle, the wait condition might\n                        evaluate old signals from a previous create or update stack command.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Timeout": {
+        "Description": "The length of time (in seconds) to wait for the number of signals that the\n                            Count property specifies. Timeout is a\n                        minimum-bound property, meaning the timeout occurs no sooner than the time\n                        you specify, but can occur shortly thereafter. The maximum time that can be\n                        specified for this property is 12 hours (43200 seconds).",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "CustomResource": {
+    "Name": "AWS::CloudFormation::CustomResource",
+    "Properties": {
+      "ServiceToken": {
+        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Updates are not supported."
       }
     }
@@ -138,18 +150,6 @@
         "Type": "AWSCloudFormationInterfaceParameterLabel",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "CustomResource": {
-    "Name": "AWS::CloudFormation::CustomResource",
-    "Properties": {
-      "ServiceToken": {
-        "Description": "The service token that was given to the template developer by the service provider\n                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The\n                  service token must be from the same region in which you are creating the\n                  stack.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
       }
     }
   },
