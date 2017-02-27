@@ -3,28 +3,28 @@
     "Name": "AWS::Redshift::Cluster",
     "Properties": {
       "AllowVersionUpgrade": {
-        "Description": "When a new version of the Amazon Redshift is released, indicates whether upgrades can be\n                  applied to the engine that is running on the cluster. The upgrades are applied\n                  during the maintenance window.",
+        "Description": "When a new version of the Amazon Redshift is released, indicates whether upgrades can be                  applied to the engine that is running on the cluster. The upgrades are applied                  during the maintenance window.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "AutomatedSnapshotRetentionPeriod": {
-        "Description": "The number of days that automated snapshots are retained. If you set the value\n                  to 0, automated snapshots are disabled.",
+        "Description": "The number of days that automated snapshots are retained. If you set the value                  to 0, automated snapshots are disabled.",
         "Array": false,
         "Type": "Number",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "AvailabilityZone": {
-        "Description": "The Amazon EC2 Availability Zone in which you want to provision your Amazon Redshift cluster.\n                  For example, if you have several Amazon EC2 instances running in a specific\n                  Availability Zone, you might want the cluster to be provisioned in the same zone\n                  in order to decrease network latency.",
+        "Description": "The Amazon EC2 Availability Zone in which you want to provision your Amazon Redshift cluster.                  For example, if you have several Amazon EC2 instances running in a specific                  Availability Zone, you might want the cluster to be provisioned in the same zone                  in order to decrease network latency.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "ClusterParameterGroupName": {
-        "Description": "The name of the parameter group that you want to associate with this\n                  cluster.",
+        "Description": "The name of the parameter group that you want to associate with this                  cluster.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -38,14 +38,14 @@
         "UpdateRequires": "No interruption"
       },
       "ClusterSubnetGroupName": {
-        "Description": "The name of a cluster subnet group that you want to associate with this\n                  cluster.",
+        "Description": "The name of a cluster subnet group that you want to associate with this                  cluster.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "ClusterType": {
-        "Description": "The type of cluster. You can specify single-node or\n                     multi-node.",
+        "Description": "The type of cluster. You can specify single-node or                     multi-node.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -59,7 +59,7 @@
         "UpdateRequires": "No interruption"
       },
       "DBName": {
-        "Description": "The name of the first database that is created when the cluster is\n                  created.",
+        "Description": "The name of the first database that is created when the cluster is                  created.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -80,28 +80,28 @@
         "UpdateRequires": "Replacement"
       },
       "HsmClientCertificateIdentifier": {
-        "Description": "Specifies the name of the HSM client certificate that the Amazon Redshift cluster uses to\n                  retrieve the data encryption keys stored in an HSM.",
+        "Description": "Specifies the name of the HSM client certificate that the Amazon Redshift cluster uses to                  retrieve the data encryption keys stored in an HSM.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "HsmConfigurationIdentifier": {
-        "Description": "Specifies the name of the HSM configuration that contains the information that\n                  the Amazon Redshift cluster can use to retrieve and store keys in an HSM.",
+        "Description": "Specifies the name of the HSM configuration that contains the information that                  the Amazon Redshift cluster can use to retrieve and store keys in an HSM.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "KmsKeyId": {
-        "Description": "The AWS Key Management Service (AWS KMS) key ID that you want to use to encrypt data in the\n                  cluster.",
+        "Description": "The AWS Key Management Service (AWS KMS) key ID that you want to use to encrypt data in the                  cluster.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "MasterUsername": {
-        "Description": "The user name that is associated with the master user account for this\n                  cluster.",
+        "Description": "The user name that is associated with the master user account for this                  cluster.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -122,14 +122,14 @@
         "UpdateRequires": "No interruption"
       },
       "NumberOfNodes": {
-        "Description": "The number of compute nodes in the cluster. If you specify\n                     multi-node for the ClusterType parameter, you must\n                  specify a number greater than 1.",
+        "Description": "The number of compute nodes in the cluster. If you specify                     multi-node for the ClusterType parameter, you must                  specify a number greater than 1.",
         "Array": false,
         "Type": "Number",
         "Required": "Conditional",
         "UpdateRequires": "Some interruptions"
       },
       "OwnerAccount": {
-        "Description": "When you restore from a snapshot from another AWS account, the 12-digit AWS\n                  account ID that contains that snapshot.",
+        "Description": "When you restore from a snapshot from another AWS account, the 12-digit AWS                  account ID that contains that snapshot.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -143,7 +143,7 @@
         "UpdateRequires": "Replacement"
       },
       "PreferredMaintenanceWindow": {
-        "Description": "The weekly time range (in UTC) during which automated cluster maintenance can\n                  occur.  The format of the time range is\n                  ddd:hh24:mi-ddd:hh24:mi.",
+        "Description": "The weekly time range (in UTC) during which automated cluster maintenance can                  occur.  The format of the time range is                  ddd:hh24:mi-ddd:hh24:mi.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -160,14 +160,14 @@
         "Description": "The name of the cluster the source snapshot was created from. For more information about restoring from a snapshot, see the RestoreFromClusterSnapshot action in the Amazon Redshift API Reference.",
         "Array": false,
         "Type": "String",
-        "Required": "Conditional. This property is required if your IAM policy includes\n                  a restriction on the cluster name, where the resource element specifies anything\n                  other than the wildcard character (*) for the cluster name.",
+        "Required": "Conditional. This property is required if your IAM policy includes                  a restriction on the cluster name, where the resource element specifies anything                  other than the wildcard character (*) for the cluster name.",
         "UpdateRequires": "Replacement"
       },
       "SnapshotIdentifier": {
         "Description": "The name of the snapshot from which to create a new cluster.",
         "Array": false,
         "Type": "String",
-        "Required": "Conditional. If you specified the\n                     SnapshotClusterIdentifier property, you must specify this\n                  property.",
+        "Required": "Conditional. If you specified the                     SnapshotClusterIdentifier property, you must specify this                  property.",
         "UpdateRequires": "Replacement"
       },
       "VpcSecurityGroupIds": {
@@ -176,18 +176,6 @@
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
-      }
-    }
-  },
-  "ClusterSecurityGroup": {
-    "Name": "AWS::Redshift::ClusterSecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -202,18 +190,51 @@
         "UpdateRequires": "Replacement"
       },
       "ParameterGroupFamily": {
-        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The\n                  cluster engine version determines the set of parameters that you can specify in\n                  the Parameters property.",
+        "Description": "The Amazon Redshift engine version that applies to this cluster parameter group. The                  cluster engine version determines the set of parameters that you can specify in                  the Parameters property.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Parameters": {
-        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine\n                  version that you specified in the ParameterGroupFamily property. For\n                  more information, see Amazon Redshift Parameter Groups in the\n                  Amazon Redshift Cluster Management Guide.",
+        "Description": "A list of parameter names and values that are allowed by the Amazon Redshift engine                  version that you specified in the ParameterGroupFamily property. For                  more information, see Amazon Redshift Parameter Groups in the                  Amazon Redshift Cluster Management Guide.",
         "Array": false,
         "Type": "AmazonRedshiftParameterType",
         "Required": "No",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ClusterSecurityGroupIngress": {
+    "Name": "AWS::Redshift::ClusterSecurityGroupIngress",
+    "Properties": {
+      "ClusterSecurityGroupName": {
+        "Description": "The name of the Amazon Redshift security group that will be associated with the ingress                  rule.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "CIDRIP": {
+        "Description": "The IP address range that has inbound access to the Amazon Redshift security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupName": {
+        "Description": "The Amazon EC2 security group that will be added the Amazon Redshift security group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "EC2SecurityGroupOwnerId": {
+        "Description": "The 12-digit AWS account number of the owner of the Amazon EC2 security group that                  is specified by the EC2SecurityGroupName parameter.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Conditional. If you specify the EC2SecurityGroupName                  property, you must specify this property.",
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -236,35 +257,14 @@
       }
     }
   },
-  "ClusterSecurityGroupIngress": {
-    "Name": "AWS::Redshift::ClusterSecurityGroupIngress",
+  "ClusterSecurityGroup": {
+    "Name": "AWS::Redshift::ClusterSecurityGroup",
     "Properties": {
-      "ClusterSecurityGroupName": {
-        "Description": "The name of the Amazon Redshift security group that will be associated with the ingress\n                  rule.",
+      "Description": {
+        "Description": "A description of the security group.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "CIDRIP": {
-        "Description": "The IP address range that has inbound access to the Amazon Redshift security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupName": {
-        "Description": "The Amazon EC2 security group that will be added the Amazon Redshift security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "EC2SecurityGroupOwnerId": {
-        "Description": "The 12-digit AWS account number of the owner of the Amazon EC2 security group that\n                  is specified by the EC2SecurityGroupName parameter.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Conditional. If you specify the EC2SecurityGroupName\n                  property, you must specify this property.",
         "UpdateRequires": "Replacement"
       }
     }

@@ -3,21 +3,21 @@
     "Name": "AWS::DirectoryService::MicrosoftAD",
     "Properties": {
       "CreateAlias": {
-        "Description": "A unique alias to assign to the Microsoft Active Directory in AWS. AWS Directory Service uses\n                  the alias to construct the access URL for the directory, such as\n                        http://alias.awsapps.com. By\n                  default, AWS CloudFormation does not create an alias.",
+        "Description": "A unique alias to assign to the Microsoft Active Directory in AWS. AWS Directory Service uses                  the alias to construct the access URL for the directory, such as                        http://alias.awsapps.com. By                  default, AWS CloudFormation does not create an alias.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "EnableSso": {
-        "Description": "Whether to enable single sign-on for a Microsoft Active Directory in AWS.\n                  Single sign-on allows users in your directory to access certain AWS services from\n                  a computer joined to the directory without having to enter their credentials\n                  separately. If you don't specify a value, AWS CloudFormation disables single sign-on by\n                  default.",
+        "Description": "Whether to enable single sign-on for a Microsoft Active Directory in AWS.                  Single sign-on allows users in your directory to access certain AWS services from                  a computer joined to the directory without having to enter their credentials                  separately. If you don't specify a value, AWS CloudFormation disables single sign-on by                  default.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Name": {
-        "Description": "The fully qualified name for the Microsoft Active Directory in AWS, such as\n                     corp.example.com. The name doesn't need to be publicly resolvable;\n                  it will resolve inside your VPC only.",
+        "Description": "The fully qualified name for the Microsoft Active Directory in AWS, such as                     corp.example.com. The name doesn't need to be publicly resolvable;                  it will resolve inside your VPC only.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -31,14 +31,14 @@
         "UpdateRequires": "Replacement"
       },
       "ShortName": {
-        "Description": "The NetBIOS name for your domain, such as CORP. If you don't\n                  specify a value, AWS Directory Service uses the first part of your directory DNS server name. For\n                  example, if your directory DNS server name is corp.example.com, AWS Directory Service\n                  specifies CORP for the NetBIOS name.",
+        "Description": "The NetBIOS name for your domain, such as CORP. If you don't                  specify a value, AWS Directory Service uses the first part of your directory DNS server name. For                  example, if your directory DNS server name is corp.example.com, AWS Directory Service                  specifies CORP for the NetBIOS name.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "VpcSettings": {
-        "Description": "Specifies the VPC settings of the Microsoft Active Directory server in\n                  AWS.",
+        "Description": "Specifies the VPC settings of the Microsoft Active Directory server in                  AWS.",
         "Array": false,
         "Type": "AWSDirectoryServiceMicrosoftADVpcSettings",
         "Required": "Yes",
@@ -50,7 +50,7 @@
     "Name": "AWS::DirectoryService::SimpleAD",
     "Properties": {
       "CreateAlias": {
-        "Description": "A unique alias to assign to the directory. AWS Directory Service uses the alias to construct\n                  the access URL for the directory, such as\n                        http://alias.awsapps.com. By\n                  default, AWS CloudFormation does not create an alias.",
+        "Description": "A unique alias to assign to the directory. AWS Directory Service uses the alias to construct                  the access URL for the directory, such as                        http://alias.awsapps.com. By                  default, AWS CloudFormation does not create an alias.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
@@ -64,35 +64,35 @@
         "UpdateRequires": "Replacement"
       },
       "EnableSso": {
-        "Description": "Whether to enable single sign-on for a directory. If you don't specify a value,\n                  AWS CloudFormation disables single sign-on by default.",
+        "Description": "Whether to enable single sign-on for a directory. If you don't specify a value,                  AWS CloudFormation disables single sign-on by default.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Name": {
-        "Description": "The fully qualified name for the directory, such as\n                     corp.example.com.",
+        "Description": "The fully qualified name for the directory, such as                     corp.example.com.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Password": {
-        "Description": "The password for the directory administrator. AWS Directory Service creates a directory\n                  administrator account with the user name Administrator and this\n                  password.",
+        "Description": "The password for the directory administrator. AWS Directory Service creates a directory                  administrator account with the user name Administrator and this                  password.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "ShortName": {
-        "Description": "The NetBIOS name of the on-premises directory, such as\n                  CORP.",
+        "Description": "The NetBIOS name of the on-premises directory, such as                  CORP.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Size": {
-        "Description": "The size of the directory. For valid values, see CreateDirectory in the\n                     AWS Directory Service API Reference.",
+        "Description": "The size of the directory. For valid values, see CreateDirectory in the                     AWS Directory Service API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",

@@ -21,7 +21,13 @@ const jsonResourcesDir = jsonDir + 'resources/'
 const htmlResourcesDir = htmlDir + 'resources/'
 const htmlPropertiesDir = htmlDir + 'properties/'
 
+const newlinePattern = /\r?\n|\r/g
+
 const sanitizeReplacementsResources = {
+  'NumberWeightexpectsintegervalues.': 'Number',
+  'AJSONobjectconsistingofstringkey-valuepairs,asshowninthefollowingexample:': 'Map',
+  'AJSONobjectconsistingofastringkey-valuepair,suchas:': 'Map',
+  'Stringtolist-of-stringsmap': 'Map',
   'AmazonSNStopicsARNs': 'String',
   'strings': 'String',
   'Mappingofkey-valuepairs': 'Map',
@@ -78,9 +84,11 @@ const sanitizeReplacementsResources = {
 }
 
 const sanitizeReplacementsProperties = {
+  'JSONname-valuepairs': 'Map',
   'Integer': 'Number',
   'Mappingofkey-valuepairs': 'Map',
   'strings': 'String',
+  'JSONobject': 'Object',
   'AutoScalingEBSBlockDevice': 'AWSCloudFormationAutoScalingEBSBlockDevicePropertyType',
   'CacheBehavior': 'CloudFrontDistributionConfigCacheBehavior',
   'DefaultCacheBehaviortype': 'CloudFrontDefaultCacheBehavior',
@@ -208,11 +216,11 @@ function scrapeHtmlPage(body, pageType) {
           output.Type = attr.replace(/Type: /g, '').replace(/\s/g, '')
           sanitizeTypes(output, pageType)
         } else if (attr.startsWith('Required: ')) {
-          output.Required = attr.replace(/Required: /g, '')
+          output.Required = attr.replace(/Required: /g, '').replace(newlinePattern,'')
         } else if (attr.startsWith('Update requires: ')) {
           output.UpdateRequires = attr.replace(/Update requires: /g, '')
         } else {
-          output.Description += attr
+          output.Description += attr.replace(newlinePattern,'')
         }
       })
       // Clean up title in case it has parenthesis

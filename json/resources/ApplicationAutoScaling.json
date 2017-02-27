@@ -85,7 +85,7 @@
         "UpdateRequires": "Replacement"
       },
       "ScalingTargetId": {
-        "Description": "The AWS CloudFormation-generated ID of an Application Auto Scaling scalable target. For more information about\n            the ID, see the Return Value section of the AWS::ApplicationAutoScaling::ScalableTarget resource.",
+        "Description": "The AWS CloudFormation-generated ID of an Application Auto Scaling scalable target. For more information about            the ID, see the Return Value section of the AWS::ApplicationAutoScaling::ScalableTarget resource.",
         "Array": false,
         "Type": "String",
         "Required": "Conditional. You must specify either the ScalingTargetId property or the ResourceId, ScalableDimension, and ServiceNamespace properties. If you specify this property, don't specify the ResourceId, ScalableDimension, and ServiceNamespace properties.",

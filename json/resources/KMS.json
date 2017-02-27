@@ -22,21 +22,21 @@
     "Name": "AWS::KMS::Key",
     "Properties": {
       "Description": {
-        "Description": "A description of the key. Use a description that helps your users decide\n                  whether the key is appropriate for a particular task.",
+        "Description": "A description of the key. Use a description that helps your users decide                  whether the key is appropriate for a particular task.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "Enabled": {
-        "Description": "Indicates whether the key is available for use. AWS CloudFormation sets this value to\n              true by default.",
+        "Description": "Indicates whether the key is available for use. AWS CloudFormation sets this value to              true by default.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "EnableKeyRotation": {
-        "Description": "Indicates whether AWS KMS rotates the key. AWS CloudFormation sets this value to\n                     false by default.",
+        "Description": "Indicates whether AWS KMS rotates the key. AWS CloudFormation sets this value to                     false by default.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",

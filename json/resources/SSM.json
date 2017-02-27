@@ -13,7 +13,7 @@
         "Description": "The ID of the instance that the SSM document is associated with.",
         "Array": false,
         "Type": "String",
-        "Required": "Conditional. You must specify the InstanceId or\n              Targets property.",
+        "Required": "Conditional. You must specify the InstanceId or              Targets property.",
         "UpdateRequires": "Replacement"
       },
       "Name": {
@@ -26,12 +26,12 @@
       "Parameters": {
         "Description": "Parameter values that the SSM document uses at runtime.",
         "Array": false,
-        "Type": "Stringtolist-of-stringsmap",
+        "Type": "Map",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "ScheduleExpression": {
-        "Description": "A Cron expression that specifies when the association is applied to the target. For\n            supported expressions, see the ScheduleExpression parameter for the CreateAssociation action in the\n              Amazon EC2 Systems Manager API Reference.",
+        "Description": "A Cron expression that specifies when the association is applied to the target. For            supported expressions, see the ScheduleExpression parameter for the CreateAssociation action in the              Amazon EC2 Systems Manager API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -41,7 +41,7 @@
         "Description": "The targets that the SSM document sends commands to.",
         "Array": true,
         "Type": "AmazonEC2SystemsManagerAssociationTargets",
-        "Required": "Conditional. You must specify the InstanceId or\n              Targets property.",
+        "Required": "Conditional. You must specify the InstanceId or              Targets property.",
         "UpdateRequires": "Replacement"
       }
     }
@@ -50,14 +50,14 @@
     "Name": "AWS::SSM::Document",
     "Properties": {
       "Content": {
-        "Description": "A JSON object that describes an instance configuration. For more information,\n            see Creating SSM Documents in\n            the Amazon EC2 User Guide for Linux Instances.",
+        "Description": "A JSON object that describes an instance configuration. For more information,            see Creating SSM Documents in            the Amazon EC2 User Guide for Linux Instances.",
         "Array": false,
         "Type": "Object",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "DocumentType": {
-        "Description": "The type of document to create that relates to the purpose of your document, such as\n            running commands, bootstrapping software, or automating tasks. For valid values, see the\n              CreateDocument action in the\n              Amazon EC2 Systems Manager API Reference.",
+        "Description": "The type of document to create that relates to the purpose of your document, such as            running commands, bootstrapping software, or automating tasks. For valid values, see the              CreateDocument action in the              Amazon EC2 Systems Manager API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "No",

@@ -3,7 +3,7 @@
     "Name": "AWS::WAF::ByteMatchSet",
     "Properties": {
       "ByteMatchTuples": {
-        "Description": "Settings for the ByteMatchSet, such as the bytes (typically a\n            string that corresponds with ASCII characters) that you want AWS WAF to search for in web\n            requests.",
+        "Description": "Settings for the ByteMatchSet, such as the bytes (typically a            string that corresponds with ASCII characters) that you want AWS WAF to search for in web            requests.",
         "Array": true,
         "Type": "AWSWAFByteMatchSetByteMatchTuples",
         "Required": "No",
@@ -22,7 +22,7 @@
     "Name": "AWS::WAF::IPSet",
     "Properties": {
       "IPSetDescriptors": {
-        "Description": "The IP address type and IP address range (in CIDR notation) from which web\n            requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront\n            (CloudFront) distribution, this descriptor is the value of one of the following fields in the\n            CloudFront access logs:If the viewer did not use an HTTP proxy or a load balancer to send the\n                    requestIf the viewer did use an HTTP proxy or a load balancer to send the\n                    request",
+        "Description": "The IP address type and IP address range (in CIDR notation) from which web            requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront            (CloudFront) distribution, this descriptor is the value of one of the following fields in the            CloudFront access logs:If the viewer did not use an HTTP proxy or a load balancer to send the                    requestIf the viewer did use an HTTP proxy or a load balancer to send the                    request",
         "Array": true,
         "Type": "AWSWAFIPSetIPSetDescriptors",
         "Required": "No",
@@ -37,27 +37,20 @@
       }
     }
   },
-  "Rule": {
-    "Name": "AWS::WAF::Rule",
+  "SqlInjectionMatchSet": {
+    "Name": "AWS::WAF::SqlInjectionMatchSet",
     "Properties": {
-      "MetricName": {
-        "Description": "A friendly name or description for the metrics of the rule. For valid values,\n                  see the MetricName parameter for the CreateRule\n                  action in the AWS WAF API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
       "Name": {
-        "Description": "A friendly name or description of the rule.",
+        "Description": "A friendly name or description of the SqlInjectionMatchSet.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "Predicates": {
-        "Description": "The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions in order to be allowed or blocked.",
+      "SqlInjectionMatchTuples": {
+        "Description": "The parts of web requests that you want AWS WAF to inspect for malicious SQL code            and, if you want AWS WAF to inspect a header, the name of the header.",
         "Array": true,
-        "Type": "AWSWAFRulePredicates",
+        "Type": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuples",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }
@@ -82,20 +75,27 @@
       }
     }
   },
-  "SqlInjectionMatchSet": {
-    "Name": "AWS::WAF::SqlInjectionMatchSet",
+  "Rule": {
+    "Name": "AWS::WAF::Rule",
     "Properties": {
-      "Name": {
-        "Description": "A friendly name or description of the SqlInjectionMatchSet.",
+      "MetricName": {
+        "Description": "A friendly name or description for the metrics of the rule. For valid values,                  see the MetricName parameter for the CreateRule                  action in the AWS WAF API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
-      "SqlInjectionMatchTuples": {
-        "Description": "The parts of web requests that you want AWS WAF to inspect for malicious SQL code\n            and, if you want AWS WAF to inspect a header, the name of the header.",
+      "Name": {
+        "Description": "A friendly name or description of the rule.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Predicates": {
+        "Description": "The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions in order to be allowed or blocked.",
         "Array": true,
-        "Type": "AWSWAFSqlInjectionMatchSetSqlInjectionMatchTuples",
+        "Type": "AWSWAFRulePredicates",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }
@@ -124,7 +124,7 @@
     "Name": "AWS::WAF::WebACL",
     "Properties": {
       "DefaultAction": {
-        "Description": "The action that you want AWS WAF to take when a request doesn't match the\n                  criteria in any of the rules that are associated with the web ACL.",
+        "Description": "The action that you want AWS WAF to take when a request doesn't match the                  criteria in any of the rules that are associated with the web ACL.",
         "Array": false,
         "Type": "AWSWAFWebACLAction",
         "Required": "Yes",

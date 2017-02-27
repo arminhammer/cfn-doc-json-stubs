@@ -13,5 +13,8 @@
     "fs-extra": "^2.0.0",
     "request-promise": "^4.1.1",
     "x-ray": "^2.3.2"
+  },
+  "devDependencies": {
+    "markdown-toc": "^1.1.0"
   }
 }

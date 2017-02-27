@@ -79,6 +79,53 @@
       }
     }
   },
+  "LoadBalancer": {
+    "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "Properties": {
+      "LoadBalancerAttributes": {
+        "Description": "Specifies the load balancer configuration.",
+        "Array": true,
+        "Type": "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Name": {
+        "Description": "Specifies a name for the load balancer. This name must be unique within your AWS            account and can have a maximum of 32 alphanumeric characters and hyphens. A name can't            begin or end with a hyphen.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Scheme": {
+        "Description": "Specifies whether the load balancer is internal or Internet-facing. An internal load            balancer routes requests to targets using private IP addresses. An Internet-facing load            balancer routes requests from clients over the Internet to targets in your public            subnets.For valid and default values, see the Scheme parameter for the                CreateLoadBalancer action in the              Elastic Load Balancing API Reference version 2015-12-01.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SecurityGroups": {
+        "Description": "Specifies a list of the IDs of the security groups to assign to the load            balancer.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Subnets": {
+        "Description": "Specifies a list of at least two IDs of the subnets to associate with the load            balancer. The subnets must be in different Availability Zones.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Tags": {
+        "Description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this            load balancer. Use tags to manage your resources.",
+        "Array": false,
+        "Type": "AWSCloudFormationResourceTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
   "TargetGroup": {
     "Name": "AWS::ElasticLoadBalancingV2::TargetGroup",
     "Properties": {
@@ -193,53 +240,6 @@
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
-      }
-    }
-  },
-  "LoadBalancer": {
-    "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
-    "Properties": {
-      "LoadBalancerAttributes": {
-        "Description": "Specifies the load balancer configuration.",
-        "Array": true,
-        "Type": "ElasticLoadBalancingLoadBalancerLoadBalancerAttributes",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Name": {
-        "Description": "Specifies a name for the load balancer. This name must be unique within your AWS\n            account and can have a maximum of 32 alphanumeric characters and hyphens. A name can't\n            begin or end with a hyphen.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Scheme": {
-        "Description": "Specifies whether the load balancer is internal or Internet-facing. An internal load\n            balancer routes requests to targets using private IP addresses. An Internet-facing load\n            balancer routes requests from clients over the Internet to targets in your public\n            subnets.For valid and default values, see the Scheme parameter for the\n                CreateLoadBalancer action in the\n              Elastic Load Balancing API Reference version 2015-12-01.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SecurityGroups": {
-        "Description": "Specifies a list of the IDs of the security groups to assign to the load\n            balancer.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "Subnets": {
-        "Description": "Specifies a list of at least two IDs of the subnets to associate with the load\n            balancer. The subnets must be in different Availability Zones.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Tags": {
-        "Description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this\n            load balancer. Use tags to manage your resources.",
-        "Array": false,
-        "Type": "AWSCloudFormationResourceTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
       }
     }
   }
