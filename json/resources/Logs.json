@@ -1,23 +1,4 @@
 {
-  "LogGroup": {
-    "Name": "AWS::Logs::LogGroup",
-    "Properties": {
-      "LogGroupName": {
-        "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "RetentionInDays": {
-        "Description": "The number of days log events are kept in CloudWatch Logs. When a log event expires,                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in                  the Amazon CloudWatch Logs API Reference.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "Destination": {
     "Name": "AWS::Logs::Destination",
     "Properties": {
@@ -92,6 +73,25 @@
         "Array": true,
         "Type": "CloudWatchLogsMetricFilterMetricTransformationProperty",
         "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "LogGroup": {
+    "Name": "AWS::Logs::LogGroup",
+    "Properties": {
+      "LogGroupName": {
+        "Description": "A name for the log group. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the table name. For more information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RetentionInDays": {
+        "Description": "The number of days log events are kept in CloudWatch Logs. When a log event expires,                  CloudWatch Logs automatically deletes it. For valid values, see PutRetentionPolicy in                  the Amazon CloudWatch Logs API Reference.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
         "UpdateRequires": "No interruption"
       }
     }

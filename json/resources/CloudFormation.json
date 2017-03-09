@@ -39,6 +39,10 @@
       }
     }
   },
+  "WaitConditionHandle": {
+    "Name": "AWS::CloudFormation::WaitConditionHandle",
+    "Properties": {}
+  },
   "WaitCondition": {
     "Name": "AWS::CloudFormation::WaitCondition",
     "Properties": {
@@ -65,9 +69,36 @@
       }
     }
   },
-  "WaitConditionHandle": {
-    "Name": "AWS::CloudFormation::WaitConditionHandle",
-    "Properties": {}
+  "CustomResource": {
+    "Name": "AWS::CloudFormation::CustomResource",
+    "Properties": {
+      "ServiceToken": {
+        "Description": "The service token that was given to the template developer by the service provider                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The                  service token must be from the same region in which you are creating the                  stack.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "Interface": {
+    "Name": "AWS::CloudFormation::Interface",
+    "Properties": {
+      "ParameterGroups": {
+        "Description": "A list of parameter group types, where you specify group names, the parameters            in each group, and the order in which the parameters are shown.",
+        "Array": false,
+        "Type": "AWSCloudFormationInterfaceParameterGroup",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "ParameterLabels": {
+        "Description": "A mapping of parameters and their friendly names that the AWS CloudFormation console shows            when a stack is created or updated.",
+        "Array": false,
+        "Type": "AWSCloudFormationInterfaceParameterLabel",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
   },
   "Authentication": {
     "Name": "AWS::CloudFormation::Authentication",
@@ -119,37 +150,6 @@
         "Array": false,
         "Type": "String",
         "Required": "Conditional Can be specified only if the type                  property is set to \"S3\"."
-      }
-    }
-  },
-  "CustomResource": {
-    "Name": "AWS::CloudFormation::CustomResource",
-    "Properties": {
-      "ServiceToken": {
-        "Description": "The service token that was given to the template developer by the service provider                  to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The                  service token must be from the same region in which you are creating the                  stack.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
-  "Interface": {
-    "Name": "AWS::CloudFormation::Interface",
-    "Properties": {
-      "ParameterGroups": {
-        "Description": "A list of parameter group types, where you specify group names, the parameters            in each group, and the order in which the parameters are shown.",
-        "Array": false,
-        "Type": "AWSCloudFormationInterfaceParameterGroup",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "ParameterLabels": {
-        "Description": "A mapping of parameters and their friendly names that the AWS CloudFormation console shows            when a stack is created or updated.",
-        "Array": false,
-        "Type": "AWSCloudFormationInterfaceParameterLabel",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
       }
     }
   },

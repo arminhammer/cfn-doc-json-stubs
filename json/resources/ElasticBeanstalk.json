@@ -74,25 +74,6 @@
       }
     }
   },
-  "Application": {
-    "Name": "AWS::ElasticBeanstalk::Application",
-    "Properties": {
-      "ApplicationName": {
-        "Description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates                  a unique physical ID and uses that ID for the application name. For more                  information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "Description": {
-        "Description": "An optional description of this application.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "ApplicationVersion": {
     "Name": "AWS::ElasticBeanstalk::ApplicationVersion",
     "Properties": {
@@ -116,6 +97,25 @@
         "Type": "ElasticBeanstalkSourceBundlePropertyType",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Application": {
+    "Name": "AWS::ElasticBeanstalk::Application",
+    "Properties": {
+      "ApplicationName": {
+        "Description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates                  a unique physical ID and uses that ID for the application name. For more                  information, see Name Type.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "An optional description of this application.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },
