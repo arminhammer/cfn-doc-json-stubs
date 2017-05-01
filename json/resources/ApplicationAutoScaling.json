@@ -24,14 +24,14 @@
         "UpdateRequires": "Replacement"
       },
       "RoleARN": {
-        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that allows Application Auto Scaling to modify your scalable target.",
+        "Description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that allows Application Auto Scaling to                                 modify your scalable target.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
       },
       "ScalableDimension": {
-        "Description": "The scalable dimension associated with the scalable target. Specify the service namespace, resource type, and scaling property, such as ecs:service:DesiredCount for the desired task count of an Amazon EC2 Container Service service. For valid values, see the ScalableDimension content for the ScalingPolicy data type in the Application Auto Scaling API Reference.",
+        "Description": "The scalable dimension associated with the scalable target. Specify the service namespace, resource type, and scaling property,                                 such as ecs:service:DesiredCount for the desired task count of an Amazon EC2 Container Service service. For valid values, see the ScalableDimension content for the ScalingPolicy data type in the Application Auto Scaling API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
@@ -64,28 +64,28 @@
         "UpdateRequires": "No interruption"
       },
       "ResourceId": {
-        "Description": "The unique resource identifier for the scalable target that this scaling policy applies to. For more information, see the ResourceId parameter for the PutScalingPolicy action in the Application Auto Scaling API Reference.",
+        "Description": "The unique resource identifier for the scalable target that this scaling policy applies to. For more information, see the                                 ResourceId parameter for the PutScalingPolicy action in the Application Auto Scaling API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Conditional. You must specify either the ScalingTargetId property or the ResourceId, ScalableDimension, and ServiceNamespace properties. If you specify the ResourceId, ScalableDimension, and ServiceNamespace properties, don't specify the ScalingTargetId property.",
         "UpdateRequires": "Replacement"
       },
       "ScalableDimension": {
-        "Description": "The scalable dimension of the scalable target that this scaling policy applies to. The scalable dimension contains the service namespace, resource type, and scaling property, such as ecs:service:DesiredCount for the desired task count of an Amazon ECS service.",
+        "Description": "The scalable dimension of the scalable target that this scaling policy applies to. The scalable dimension contains the service                                 namespace, resource type, and scaling property, such as ecs:service:DesiredCount for the desired task count of an Amazon ECS                                 service.",
         "Array": false,
         "Type": "String",
         "Required": "Conditional. You must specify either the ScalingTargetId property or the ResourceId, ScalableDimension, and ServiceNamespace properties. If you specify the ResourceId, ScalableDimension, and ServiceNamespace properties, don't specify the ScalingTargetId property.",
         "UpdateRequires": "Replacement"
       },
       "ServiceNamespace": {
-        "Description": "The AWS service namespace of the scalable target that this scaling policy applies to. For a list of service namespaces, see AWS Service Namespaces in the AWS General Reference.",
+        "Description": "The AWS service namespace of the scalable target that this scaling policy applies to. For a list of service namespaces, see                                 AWS Service Namespaces in the AWS General Reference.",
         "Array": false,
         "Type": "String",
         "Required": "Conditional. You must specify either the ScalingTargetId property or the ResourceId, ScalableDimension, and ServiceNamespace properties. If you specify the ResourceId, ScalableDimension, and ServiceNamespace properties, don't specify the ScalingTargetId property.",
         "UpdateRequires": "Replacement"
       },
       "ScalingTargetId": {
-        "Description": "The AWS CloudFormation-generated ID of an Application Auto Scaling scalable target. For more information about            the ID, see the Return Value section of the AWS::ApplicationAutoScaling::ScalableTarget resource.",
+        "Description": "The AWS CloudFormation-generated ID of an Application Auto Scaling scalable target. For more information about                                 the ID, see the Return Value section of the AWS::ApplicationAutoScaling::ScalableTarget resource.",
         "Array": false,
         "Type": "String",
         "Required": "Conditional. You must specify either the ScalingTargetId property or the ResourceId, ScalableDimension, and ServiceNamespace properties. If you specify this property, don't specify the ResourceId, ScalableDimension, and ServiceNamespace properties.",

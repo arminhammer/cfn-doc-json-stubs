@@ -1,16 +1,4 @@
 {
-  "Activity": {
-    "Name": "AWS::StepFunctions::Activity",
-    "Properties": {
-      "Name": {
-        "Description": "The name of the activity to create. This name must be unique for your AWS                  account and region.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "StateMachine": {
     "Name": "AWS::StepFunctions::StateMachine",
     "Properties": {
@@ -22,7 +10,19 @@
         "UpdateRequires": "Replacement"
       },
       "RoleArn": {
-        "Description": "The Amazon Resource Name (ARN) of the IAM role to use for this state                  machine.",
+        "Description": "The Amazon Resource Name (ARN) of the IAM role to use for this state                                 machine.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Activity": {
+    "Name": "AWS::StepFunctions::Activity",
+    "Properties": {
+      "Name": {
+        "Description": "The name of the activity to create. This name must be unique for your AWS                                 account and region.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",

@@ -3,28 +3,28 @@
     "Name": "AWS::CloudTrail::Trail",
     "Properties": {
       "CloudWatchLogsLogGroupArn": {
-        "Description": "The Amazon Resource Name (ARN) of a log group to which CloudTrail logs will be            delivered.",
+        "Description": "The Amazon Resource Name (ARN) of a log group to which CloudTrail logs will be                                 delivered.",
         "Array": false,
         "Type": "String",
-        "Required": "Conditional. This property is required if you specify the              CloudWatchLogsRoleArn property.",
+        "Required": "Conditional. This property is required if you specify the                                 CloudWatchLogsRoleArn property.",
         "UpdateRequires": "No interruption"
       },
       "CloudWatchLogsRoleArn": {
-        "Description": "The role ARN that Amazon CloudWatch Logs (CloudWatch Logs) assumes to write logs to a log group. For more information,            see Role              Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring in the              AWS CloudTrail User Guide.",
+        "Description": "The role ARN that Amazon CloudWatch Logs (CloudWatch Logs) assumes to write logs to a log group. For more information,                                 see Role                                    Policy Document for CloudTrail to Use CloudWatch Logs for Monitoring in the                                 AWS CloudTrail User Guide.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "EnableLogFileValidation": {
-        "Description": "Indicates whether CloudTrail validates the integrity of log files. By default, AWS CloudFormation sets            this value to false. When you disable log file integrity validation, CloudTrail            stops creating digest files. For more information, see CreateTrail in the              AWS CloudTrail API Reference.",
+        "Description": "Indicates whether CloudTrail validates the integrity of log files. By default, AWS CloudFormation sets                                 this value to false. When you disable log file integrity validation, CloudTrail                                 stops creating digest files. For more information, see CreateTrail in the                                 AWS CloudTrail API Reference.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "IncludeGlobalServiceEvents": {
-        "Description": "Indicates whether the trail is publishing events from global services, such as            IAM, to the log files. By default, AWS CloudFormation sets this value to false.",
+        "Description": "Indicates whether the trail is publishing events from global services, such as                                 IAM, to the log files. By default, AWS CloudFormation sets this value to false.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
@@ -38,14 +38,14 @@
         "UpdateRequires": "No interruption"
       },
       "IsMultiRegionTrail": {
-        "Description": "Indicates whether the CloudTrail trail is created in the region in which you create the            stack (false) or in all regions (true). By default, AWS CloudFormation sets            this value to false. For more information, see How Does CloudTrail Behave Regionally and Globally? in the              AWS CloudTrail User Guide.",
+        "Description": "Indicates whether the CloudTrail trail is created in the region in which you create the                                 stack (false) or in all regions (true). By default, AWS CloudFormation sets                                 this value to false. For more information, see How Does CloudTrail Behave Regionally and Globally? in the                                 AWS CloudTrail User Guide.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
       "KMSKeyId": {
-        "Description": "The AWS Key Management Service (AWS KMS) key ID that you want to use to encrypt CloudTrail logs. You can            specify an alias name (prefixed with alias/), an alias ARN, a key ARN, or a            globally unique identifier.",
+        "Description": "The AWS Key Management Service (AWS KMS) key ID that you want to use to encrypt CloudTrail logs. You can                                 specify an alias name (prefixed with alias/), an alias ARN, a key ARN, or a                                 globally unique identifier.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -66,7 +66,7 @@
         "UpdateRequires": "No interruption"
       },
       "SnsTopicName": {
-        "Description": "The name of an Amazon SNS topic that is notified when new log files are                  published.",
+        "Description": "The name of an Amazon SNS topic that is notified when new log files are                                 published.",
         "Array": false,
         "Type": "String",
         "Required": "No",

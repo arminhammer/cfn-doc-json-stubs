@@ -3,14 +3,14 @@
     "Name": "AWS::SSM::Document",
     "Properties": {
       "Content": {
-        "Description": "A JSON object that describes an instance configuration. For more information,            see Creating SSM Documents in            the Amazon EC2 User Guide for Linux Instances.",
+        "Description": "A JSON object that describes an instance configuration. For more information,                                 see Creating SSM Documents in                                 the Amazon EC2 User Guide for Linux Instances.NoteThe Content property is a non-stringified property. For more information about automation actions, see Systems Manager Automation Actions in                                     the Amazon EC2 Systems Manager User Guide.",
         "Array": false,
         "Type": "Object",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "DocumentType": {
-        "Description": "The type of document to create that relates to the purpose of your document, such as            running commands, bootstrapping software, or automating tasks. For valid values, see the              CreateDocument action in the              Amazon EC2 Systems Manager API Reference.",
+        "Description": "The type of document to create that relates to the purpose of your document, such as                                 running commands, bootstrapping software, or automating tasks. For valid values, see the                                 CreateDocument action in the                                 Amazon EC2 Systems Manager API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -32,7 +32,7 @@
         "Description": "The ID of the instance that the SSM document is associated with.",
         "Array": false,
         "Type": "String",
-        "Required": "Conditional. You must specify the InstanceId or              Targets property.",
+        "Required": "Conditional. You must specify the InstanceId or                                 Targets property.",
         "UpdateRequires": "Replacement"
       },
       "Name": {
@@ -50,7 +50,7 @@
         "UpdateRequires": "No interruption"
       },
       "ScheduleExpression": {
-        "Description": "A Cron expression that specifies when the association is applied to the target. For            supported expressions, see the ScheduleExpression parameter for the CreateAssociation action in the              Amazon EC2 Systems Manager API Reference.",
+        "Description": "A Cron expression that specifies when the association is applied to the target. For                                 supported expressions, see the ScheduleExpression parameter for the CreateAssociation action in the                                 Amazon EC2 Systems Manager API Reference.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -60,8 +60,41 @@
         "Description": "The targets that the SSM document sends commands to.",
         "Array": true,
         "Type": "AmazonEC2SystemsManagerAssociationTargets",
-        "Required": "Conditional. You must specify the InstanceId or              Targets property.",
+        "Required": "Conditional. You must specify the InstanceId or                                 Targets property.",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "Parameter": {
+    "Name": "AWS::SSM::Parameter",
+    "Properties": {
+      "Name": {
+        "Description": "The name of the parameter. Names must not be prefixed with aws or ssm.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "Description": {
+        "Description": "Information about the parameter that you want to add to the system.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "Type": {
+        "Description": "The type of parameter. Valid values include the following: String or StringList.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Value": {
+        "Description": "The parameter value. Value must not nest another parameter. Do not use {{}} in the value.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   }

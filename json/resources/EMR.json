@@ -3,21 +3,28 @@
     "Name": "AWS::EMR::Cluster",
     "Properties": {
       "AdditionalInfo": {
-        "Description": "Additional features that you want to select.",
+        "Description": "Additional                                 features that you want to select.",
         "Array": false,
         "Type": "Object",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Applications": {
-        "Description": "The software applications to deploy on the cluster, and the arguments that Amazon EMR            passes to those applications.",
+        "Description": "The software applications to deploy on the cluster, and the arguments that Amazon EMR                                 passes to those applications.",
         "Array": true,
         "Type": "AmazonEMRClusterApplication",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
+      "AutoScalingRole": {
+        "Description": "An AWS Identity and Access Management (IAM) role for automatic scaling policies. The default role is EMR_AutoScaling_DefaultRole. The IAM                                  role provides permissions that the automatic scaling feature requires to launch and terminate Amazon EC2 instances in an instance                                 group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
       "BootstrapActions": {
-        "Description": "A list of bootstrap actions that Amazon EMR runs before starting applications on the            cluster.",
+        "Description": "A list of bootstrap actions that Amazon EMR runs before starting applications on the                                 cluster.",
         "Array": true,
         "Type": "AmazonEMRClusterBootstrapActionConfig",
         "Required": "No",
@@ -38,14 +45,14 @@
         "UpdateRequires": "Replacement"
       },
       "JobFlowRole": {
-        "Description": "Also called instance profile and EC2 role.             Accepts an instance profile associated with the role that you want to use. All EC2             instances in the cluster assume this role.",
+        "Description": "Also                                 called instance profile and EC2 role. Accepts                                 an instance profile associated with the role that you want to use. All EC2 instances in                                 the cluster assume this role.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "LogUri": {
-        "Description": "An S3 bucket location to which Amazon EMR writes logs files from a job flow. If you don't            specify a value, Amazon EMR doesn't write any log files.",
+        "Description": "An S3 bucket location to which Amazon EMR writes logs files from a job flow. If you don't                                 specify a value, Amazon EMR doesn't write any log files.",
         "Array": false,
         "Type": "String",
         "Required": "No",
@@ -59,28 +66,35 @@
         "UpdateRequires": "Replacement"
       },
       "ReleaseLabel": {
-        "Description": "The Amazon EMR software release label. A release is a set of software applications and            components that you can install and configure on an Amazon EMR cluster. For more information,            see About Amazon EMR Releases in the Amazon EMR Release              Guide.Currently, AWS CloudFormation supports only Amazon EMR 4.0 and later software releases.",
+        "Description": "The Amazon EMR software release label. A release is a set of software applications and                                 components that you can install and configure on an Amazon EMR cluster. For more information,                                 see About Amazon EMR Releases in the Amazon EMR Release                                    Guide.Currently, AWS CloudFormation supports only Amazon EMR 4.0 and later software releases.",
         "Array": false,
         "Type": "String",
         "Required": "Conditional. If you specify the Applications property, you must specify this property.",
         "UpdateRequires": "Replacement"
       },
+      "SecurityConfiguration": {
+        "Description": "The name of the security configuration applied to the cluster.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
       "ServiceRole": {
-        "Description": "The IAM role that Amazon EMR assumes to access AWS resources on your behalf. For more            information, see Configure IAM Roles for Amazon EMR in the Amazon EMR Management              Guide.",
+        "Description": "The IAM role that Amazon EMR assumes to access AWS resources on your behalf. For more                                 information, see Configure IAM Roles for Amazon EMR in the Amazon EMR Management                                    Guide.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Tags": {
-        "Description": "An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR            cluster.",
+        "Description": "An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR                                 cluster.",
         "Array": false,
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
       },
       "VisibleToAllUsers": {
-        "Description": "Indicates whether the instances in the cluster are visible to all IAM users in the            AWS account. If you specify true, all IAM users can view and (if they            have permissions) manage the instances. If you specify false, only the            IAM user that created the cluster can view and manage it. By default, AWS CloudFormation sets this            property to false.",
+        "Description": "Indicates whether the instances in the cluster are visible to all IAM users in the                                 AWS account. If you specify true, all IAM users can view and (if they                                 have permissions) manage the instances. If you specify false, only the                                 IAM user that created the cluster can view and manage it. By default, AWS CloudFormation sets this                                 property to false.",
         "Array": false,
         "Type": "Boolean",
         "Required": "No",
@@ -92,14 +106,14 @@
     "Name": "AWS::EMR::InstanceGroupConfig",
     "Properties": {
       "BidPrice": {
-        "Description": "The bid price in USD for each EC2 instance in the instance group when launching            instances (nodes) as Spot Instances.",
+        "Description": "The bid price in USD for each EC2 instance in the instance group when launching                                 instances (nodes) as Spot Instances.",
         "Array": false,
         "Type": "String",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Configurations": {
-        "Description": "A list of configurations to apply to this instance group. For more information see,              Configuring Applications in the Amazon EMR Release              Guide.",
+        "Description": "A list of configurations to apply to this instance group. For more information see,                                 Configuring Applications in the Amazon EMR Release                                    Guide.",
         "Array": true,
         "Type": "AmazonEMRClusterConfiguration",
         "Required": "No",
@@ -120,28 +134,28 @@
         "UpdateRequires": "No interruption"
       },
       "InstanceRole": {
-        "Description": "The role of the servers in the Amazon EMR cluster, such as TASK. For more            information, see Instance Groups in the Amazon EMR Management            Guide.NoteCurrently, the only valid value is TASK. You configure the master and              core instance groups as part of the AWS::EMR::Cluster resource.",
+        "Description": "The role of the servers in the Amazon EMR cluster, such as TASK. For more                                 information, see Instance Groups in the Amazon EMR Management                                    Guide.NoteCurrently, the only valid value is TASK. You configure the master and                                    core instance groups as part of the AWS::EMR::Cluster resource.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "InstanceType": {
-        "Description": "The EC2 instance type for all instances in the instance group. For more information,            see Instance Configurations in the Amazon EMR Management              Guide.",
+        "Description": "The EC2 instance type for all instances in the instance group. For more information,                                 see Instance Configurations in the Amazon EMR Management                                    Guide.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "JobFlowId": {
-        "Description": "The ID of an Amazon EMR cluster that you want to associate this instance group            with.",
+        "Description": "The ID of an Amazon EMR cluster that you want to associate this instance group                                 with.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
         "UpdateRequires": "Replacement"
       },
       "Market": {
-        "Description": "The type of marketplace from which your instances are provisioned into this group,            either ON_DEMAND or SPOT. For more information, see Amazon EC2 Purchasing Options.",
+        "Description": "The type of marketplace from which your instances are provisioned into this group,                                 either ON_DEMAND or SPOT. For more information, see Amazon EC2 Purchasing Options.",
         "Array": false,
         "Type": "String",
         "Required": "No",
