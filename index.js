@@ -6,14 +6,16 @@ const fs = Promise.promisifyAll(require('fs-extra'));
 const url = require('url');
 const path = require('path');
 const rp = require('request-promise');
+const cheerio = require('cheerio');
 
-const resourcesUrl = 'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html';
-const propertiesUrl = 'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html';
+const resourcesUrl =
+  'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html';
+const propertiesUrl =
+  'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html';
 
 const htmlDir = 'html/';
 const jsonDir = 'json/';
-const jsonPropertiesFile = jsonDir + 'properties/properties.json';
-const jsonResourcesDir = jsonDir + 'resources/';
+const jsonResourcesDir = jsonDir;
 const htmlResourcesDir = htmlDir + 'resources/';
 const htmlPropertiesDir = htmlDir + 'properties/';
 
@@ -129,8 +131,8 @@ const result = {
 
 function getAndWriteFile(link, prefix) {
   let filename = path.basename(url.parse(link).pathname);
-  console.log(filename);
-  console.log(link);
+  //console.log(filename);
+  //console.log(link);
   return rp.get(link).then(body => {
     fs.outputFileAsync(prefix + filename, body).then(() => {
       console.log('Finished writing ' + filename);
@@ -181,7 +183,7 @@ function sanitizeTypes(output, pageType) {
       originalType !== 'Boolean' &&
       originalType !== 'Number'
     ) {
-      console.log(originalType);
+      //console.log(originalType);
     }
   } else if (pageType == 'Properties') {
     if (sanitizeReplacementsProperties[originalType]) {
@@ -191,7 +193,7 @@ function sanitizeTypes(output, pageType) {
       originalType !== 'Boolean' &&
       originalType !== 'Number'
     ) {
-      console.log(originalType);
+      //console.log(originalType);
     }
   }
 }
@@ -206,12 +208,12 @@ function overrideArrays(block) {
   }
 }
 
-function scrapeHtmlPage(body, pageType) {
+function scrapeHtmlPage(body, pageType, fileName) {
   return Promise.promisify(
     x(body, {
       name: '.topictitle',
       titles: ['dt'],
-      attributes: x('dd', [['p']])
+      attributes: x('dd', [['p@html']])
     })
   )()
     .then(obj => {
@@ -226,18 +228,26 @@ function scrapeHtmlPage(body, pageType) {
           Type: 'String'
         };
         obj.attributes[i].forEach(attr => {
-          attr = attr.trim();
-          if (attr.startsWith('Type: ')) {
-            output.Type = attr.replace(/Type: /g, '').replace(/\s/g, '');
+          let $ = cheerio.load(attr);
+          let attrContent = $.text().trim();
+          if (attrContent.startsWith('Type: ')) {
+            output.Type = attrContent.replace(/Type: /g, '').replace(/\s/g, '');
             sanitizeTypes(output, pageType);
-          } else if (attr.startsWith('Required: ')) {
-            output.Required = attr
+            let link = $('a').attr('href');
+            if (link) {
+              output.Type = link.replace('.html', '');
+            }
+          } else if (attrContent.startsWith('Required: ')) {
+            output.Required = attrContent
               .replace(/Required: /g, '')
               .replace(newlinePattern, '');
-          } else if (attr.startsWith('Update requires: ')) {
-            output.UpdateRequires = attr.replace(/Update requires: /g, '');
+          } else if (attrContent.startsWith('Update requires: ')) {
+            output.UpdateRequires = attrContent.replace(
+              /Update requires: /g,
+              ''
+            );
           } else {
-            output.Description += attr.replace(newlinePattern, '');
+            output.Description += attrContent.replace(newlinePattern, '');
           }
         });
         // Clean up title in case it has parenthesis
@@ -245,7 +255,8 @@ function scrapeHtmlPage(body, pageType) {
           obj.titles[i] = obj.titles[i].replace(/\(.+\)/g, '').trim();
         }
         if (
-          (output.Type && output.Required) || obj.titles[i] === 'PolicyName'
+          (output.Type && output.Required) ||
+          obj.titles[i] === 'PolicyName'
         ) {
           block.Properties[obj.titles[i]] = output;
         }
@@ -255,15 +266,16 @@ function scrapeHtmlPage(body, pageType) {
       let group = split[1];
       let name = split[2];
       if (pageType === 'Properties') {
-        group = block.Name;
-      }
-      if (!result[pageType][group]) {
-        result[pageType][group] = {};
-      }
-      if (pageType === 'Properties') {
+        group = fileName.replace('.html', '');
+        if (!result[pageType][group]) {
+          result[pageType][group] = {};
+        }
         result[pageType][group] = block;
       } else {
-        result[pageType][group][name] = block;
+        if (!result[pageType][group]) {
+          result[pageType][group] = { Resources: {}, Models: {} };
+        }
+        result[pageType][group].Resources[name] = block;
       }
     })
     .catch(err => {
@@ -271,30 +283,84 @@ function scrapeHtmlPage(body, pageType) {
     });
 }
 
+function calculateModels() {
+  console.log('calculating models...');
+  Object.keys(result.Resources).map(group => {
+    Object.keys(result.Resources[group].Resources).map(resource => {
+      let neededProps = getPropertyTypeArray(
+        result.Resources[group].Resources[resource],
+        [],
+        0
+      );
+      neededProps.map(n => {
+        result.Resources[group].Models[n] = result.Properties[n];
+      });
+    });
+  });
+}
+
+function getPropertyTypeArray(inputObject, typeResults, depth) {
+  if (!typeResults) typeResults = [];
+  depth++;
+  console.log(`depth: ${depth}`);
+  if (depth > 3) {
+    console.log('Growing');
+  }
+  try {
+    Object.keys(inputObject.Properties);
+  } catch (e) {
+    console.log('Caught');
+    console.log(inputObject);
+    console.log(e);
+  }
+  if (inputObject) {
+    Object.keys(inputObject.Properties).map(propName => {
+      let propObj = inputObject.Properties[propName];
+      if (
+        propObj.Type !== 'String' &&
+        propObj.Type !== 'Object' &&
+        propObj.Type !== 'Number' &&
+        propObj.Type !== 'Boolean'
+      ) {
+        if (!typeResults.includes(propObj.Type)) {
+          typeResults.push(propObj.Type);
+          if (result.Properties[propObj.Type]) {
+            getPropertyTypeArray(
+              result.Properties[propObj.Type],
+              typeResults,
+              depth
+            );
+          }
+        }
+        console.log('Done');
+      }
+    });
+  }
+  return typeResults;
+}
+
 function generateJson() {
   return fs
-    .readdirAsync(htmlResourcesDir)
-    .map(fileName => {
-      return fs
-        .readFileAsync(htmlResourcesDir + fileName, 'utf8')
-        .then(body => {
-          return scrapeHtmlPage(body, 'Resources');
-        });
-    })
-    .then(() => {
-      return fs.readdirAsync(htmlPropertiesDir);
-    })
+    .readdirAsync(htmlPropertiesDir)
     .map(fileName => {
       return fs
         .readFileAsync(htmlPropertiesDir + fileName, 'utf8')
         .then(body => {
-          return scrapeHtmlPage(body, 'Properties');
+          return scrapeHtmlPage(body, 'Properties', fileName);
         });
     })
     .then(() => {
-      return fs.writeJSONAsync(jsonPropertiesFile, result.Properties);
+      return fs.readdirAsync(htmlResourcesDir);
+    })
+    .map(fileName => {
+      return fs
+        .readFileAsync(htmlResourcesDir + fileName, 'utf8')
+        .then(body => {
+          return scrapeHtmlPage(body, 'Resources', fileName);
+        });
     })
     .then(() => {
+      calculateModels();
       for (let group in result.Resources) {
         fs.writeJSONAsync(
           jsonResourcesDir + group + '.json',
