@@ -186,18 +186,6 @@
       }
     }
   },
-  "ClusterSecurityGroup": {
-    "Name": "AWS::Redshift::ClusterSecurityGroup",
-    "Properties": {
-      "Description": {
-        "Description": "A description of the security group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "ClusterParameterGroup": {
     "Name": "AWS::Redshift::ClusterParameterGroup",
     "Properties": {
@@ -224,22 +212,15 @@
       }
     }
   },
-  "ClusterSubnetGroup": {
-    "Name": "AWS::Redshift::ClusterSubnetGroup",
+  "ClusterSecurityGroup": {
+    "Name": "AWS::Redshift::ClusterSecurityGroup",
     "Properties": {
       "Description": {
-        "Description": "A description of the subnet group.",
+        "Description": "A description of the security group.",
         "Array": false,
         "Type": "String",
         "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SubnetIds": {
-        "Description": "A list of VPC subnet IDs. You can modify a maximum of 20 subnets.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
+        "UpdateRequires": "Replacement"
       }
     }
   },
@@ -273,6 +254,25 @@
         "Type": "String",
         "Required": "Conditional. If you specify the EC2SecurityGroupName                                 property, you must specify this property.",
         "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "ClusterSubnetGroup": {
+    "Name": "AWS::Redshift::ClusterSubnetGroup",
+    "Properties": {
+      "Description": {
+        "Description": "A description of the subnet group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SubnetIds": {
+        "Description": "A list of VPC subnet IDs. You can modify a maximum of 20 subnets.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
       }
     }
   }

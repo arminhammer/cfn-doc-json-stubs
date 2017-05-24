@@ -92,9 +92,9 @@
         "UpdateRequires": "No interruption"
       },
       "Roles": {
-        "Description": "The map of roles associated with this pool. For a given role, the key will be either \"authenticated\" or \"unauthenticated\"                                 and the value will be the Role ARN.String to String map",
+        "Description": "The map of roles associated with this pool. For a given role, the key will be either \"authenticated\" or \"unauthenticated\"                                 and the value will be the Role ARN.",
         "Array": false,
-        "Type": "String",
+        "Type": "Map",
         "Required": "No",
         "UpdateRequires": "No interruption"
       }
@@ -311,32 +311,6 @@
       }
     }
   },
-  "UserPoolUserToGroupAttachment": {
-    "Name": "AWS::Cognito::UserPoolUserToGroupAttachment",
-    "Properties": {
-      "GroupName": {
-        "Description": "The name of the group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Username": {
-        "Description": "The user's user name.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "UserPoolId": {
-        "Description": "The ID of the user pool.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "UserPoolUser": {
     "Name": "AWS::Cognito::UserPoolUser",
     "Properties": {
@@ -387,6 +361,32 @@
         "Array": false,
         "Type": "ArrayofAmazonCognitoUserPoolUserAttributeType",
         "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
+  "UserPoolUserToGroupAttachment": {
+    "Name": "AWS::Cognito::UserPoolUserToGroupAttachment",
+    "Properties": {
+      "GroupName": {
+        "Description": "The name of the group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Username": {
+        "Description": "The user's user name.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "UserPoolId": {
+        "Description": "The ID of the user pool.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "Replacement"
       }
     }

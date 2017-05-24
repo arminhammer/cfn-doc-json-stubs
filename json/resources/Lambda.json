@@ -72,46 +72,6 @@
       }
     }
   },
-  "Permission": {
-    "Name": "AWS::Lambda::Permission",
-    "Properties": {
-      "Action": {
-        "Description": "The Lambda actions that you want to allow in this statement. For example, you can specify lambda:CreateFunction to specify a certain action, or use a wildcard (lambda:*) to grant permission to all Lambda actions. For a list of actions, see Actions and Condition Context Keys for AWS Lambda in the IAM User Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "FunctionName": {
-        "Description": "The name (physical ID), Amazon Resource Name (ARN), or alias ARN of the Lambda                                 function that you want to associate with this statement. Lambda adds this statement                                 to the function's access policy.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "Principal": {
-        "Description": "The entity for which you are granting permission to invoke the Lambda function.                                 This entity can be any valid AWS service principal, such as                                 s3.amazonaws.com or sns.amazonaws.com, or, if you are                                 granting cross-account permission, an AWS account ID. For example, you might want                                 to allow a custom application in another AWS account to push events to Lambda by                                 invoking your function.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "SourceAccount": {
-        "Description": "The AWS account ID (without hyphens) of the source owner. For example, if you                                 specify an S3 bucket in the SourceArn property, this value is the                                 bucket owner's account ID. You can use this property to ensure that all source                                 principals are owned by a specific account.ImportantThis property is not supported by all event sources. For more information, see the SourceAccount parameter for the AddPermission action in the AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SourceArn": {
-        "Description": "The ARN of a resource that is invoking your function. When granting Amazon Simple Storage Service                                 (Amazon S3) permission to invoke your function, specify this property with the bucket                                 ARN as its value. This ensures that events generated only from the specified                                 bucket, not just any bucket from any AWS account that creates a mapping to your                                 function, can invoke the function.ImportantThis property is not supported by all event sources. For more information, see the SourceArn parameter for the AddPermission action in the AWS Lambda Developer Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Function": {
     "Name": "AWS::Lambda::Function",
     "Properties": {
@@ -195,7 +155,7 @@
       "VpcConfig": {
         "Description": "If the Lambda function requires access to resources in a VPC, specify a VPC configuration that Lambda uses to set up an elastic                                 network interface (ENI). The ENI enables your function to connect to other resources in your VPC, but it doesn't provide public                                 Internet access. If your function requires Internet access (for example, to access AWS services that don't have VPC endpoints),                                 configure a Network Address Translation (NAT) instance inside your VPC or use an Amazon Virtual Private Cloud                                 (Amazon VPC) NAT gateway. For more information, see NAT Gateways in the Amazon VPC User Guide.",
         "Array": false,
-        "Type": "AWSLambdaFunctionVPCConfig",
+        "Type": "AWSLambdaFunctionVpcConfig",
         "Required": "No",
         "UpdateRequires": "No interruption"
       },
@@ -205,6 +165,46 @@
         "Type": "AWSCloudFormationResourceTags",
         "Required": "No",
         "UpdateRequires": "No interruption."
+      }
+    }
+  },
+  "Permission": {
+    "Name": "AWS::Lambda::Permission",
+    "Properties": {
+      "Action": {
+        "Description": "The Lambda actions that you want to allow in this statement. For example, you can specify lambda:CreateFunction to specify a certain action, or use a wildcard (lambda:*) to grant permission to all Lambda actions. For a list of actions, see Actions and Condition Context Keys for AWS Lambda in the IAM User Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "FunctionName": {
+        "Description": "The name (physical ID), Amazon Resource Name (ARN), or alias ARN of the Lambda                                 function that you want to associate with this statement. Lambda adds this statement                                 to the function's access policy.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "Principal": {
+        "Description": "The entity for which you are granting permission to invoke the Lambda function.                                 This entity can be any valid AWS service principal, such as                                 s3.amazonaws.com or sns.amazonaws.com, or, if you are                                 granting cross-account permission, an AWS account ID. For example, you might want                                 to allow a custom application in another AWS account to push events to Lambda by                                 invoking your function.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "SourceAccount": {
+        "Description": "The AWS account ID (without hyphens) of the source owner. For example, if you                                 specify an S3 bucket in the SourceArn property, this value is the                                 bucket owner's account ID. You can use this property to ensure that all source                                 principals are owned by a specific account.ImportantThis property is not supported by all event sources. For more information, see the SourceAccount parameter for the AddPermission action in the AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SourceArn": {
+        "Description": "The ARN of a resource that is invoking your function. When granting Amazon Simple Storage Service                                 (Amazon S3) permission to invoke your function, specify this property with the bucket                                 ARN as its value. This ensures that events generated only from the specified                                 bucket, not just any bucket from any AWS account that creates a mapping to your                                 function, can invoke the function.ImportantThis property is not supported by all event sources. For more information, see the SourceArn parameter for the AddPermission action in the AWS Lambda Developer Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
       }
     }
   },

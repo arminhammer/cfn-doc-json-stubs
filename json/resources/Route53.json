@@ -128,25 +128,6 @@
       }
     }
   },
-  "HealthCheck": {
-    "Name": "AWS::Route53::HealthCheck",
-    "Properties": {
-      "HealthCheckConfig": {
-        "Description": "An Amazon Route 53 health check.",
-        "Array": false,
-        "Type": "AmazonRoute53HealthCheckConfig",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "HealthCheckTags": {
-        "Description": "An arbitrary set of tags (key–value pairs) for this health check.",
-        "Array": true,
-        "Type": "AmazonRoute53HealthCheckTags",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "HostedZone": {
     "Name": "AWS::Route53::HostedZone",
     "Properties": {
@@ -176,6 +157,25 @@
         "Array": true,
         "Type": "AmazonRoute53HostedZoneVPCs",
         "Required": "No"
+      }
+    }
+  },
+  "HealthCheck": {
+    "Name": "AWS::Route53::HealthCheck",
+    "Properties": {
+      "HealthCheckConfig": {
+        "Description": "An Amazon Route 53 health check.",
+        "Array": false,
+        "Type": "AmazonRoute53HealthCheckConfig",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "HealthCheckTags": {
+        "Description": "An arbitrary set of tags (key–value pairs) for this health check.",
+        "Array": true,
+        "Type": "AmazonRoute53HealthCheckTags",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   }

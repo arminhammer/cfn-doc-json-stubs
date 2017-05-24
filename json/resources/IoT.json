@@ -56,25 +56,6 @@
       }
     }
   },
-  "ThingPrincipalAttachment": {
-    "Name": "AWS::IoT::ThingPrincipalAttachment",
-    "Properties": {
-      "Principal": {
-        "Description": "The principal, which can be a certificate ARN (as returned from the                                 CreateCertificate operation) or an Amazon Cognito ID.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "ThingName": {
-        "Description": "The name of the AWS IoT thing.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "Thing": {
     "Name": "AWS::IoT::Thing",
     "Properties": {
@@ -110,6 +91,25 @@
         "Type": "AWSIoTTopicRulePayload",
         "Required": "Yes",
         "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "ThingPrincipalAttachment": {
+    "Name": "AWS::IoT::ThingPrincipalAttachment",
+    "Properties": {
+      "Principal": {
+        "Description": "The principal, which can be a certificate ARN (as returned from the                                 CreateCertificate operation) or an Amazon Cognito ID.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "ThingName": {
+        "Description": "The name of the AWS IoT thing.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
       }
     }
   }

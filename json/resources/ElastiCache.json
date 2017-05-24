@@ -150,32 +150,6 @@
       }
     }
   },
-  "ParameterGroup": {
-    "Name": "AWS::ElastiCache::ParameterGroup",
-    "Properties": {
-      "CacheParameterGroupFamily": {
-        "Description": "The name of the cache parameter group family that the cache parameter group can be used                                 with.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Description": {
-        "Description": "The description for the Cache Parameter Group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Updates are not supported."
-      },
-      "Properties": {
-        "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference                                    Guide.Example:",
-        "Array": false,
-        "Type": "Map",
-        "Required": "No",
-        "UpdateRequires": "Updates are not supported."
-      }
-    }
-  },
   "SecurityGroupIngress": {
     "Name": "AWS::ElastiCache::SecurityGroupIngress",
     "Properties": {
@@ -209,6 +183,32 @@
         "Description": "A description for the cache security group.",
         "Array": false,
         "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "ParameterGroup": {
+    "Name": "AWS::ElastiCache::ParameterGroup",
+    "Properties": {
+      "CacheParameterGroupFamily": {
+        "Description": "The name of the cache parameter group family that the cache parameter group can be used                                 with.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Description": {
+        "Description": "The description for the Cache Parameter Group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Updates are not supported."
+      },
+      "Properties": {
+        "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference                                    Guide.Example:",
+        "Array": false,
+        "Type": "Map",
         "Required": "No",
         "UpdateRequires": "Updates are not supported."
       }

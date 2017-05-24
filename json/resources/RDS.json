@@ -460,32 +460,6 @@
       }
     }
   },
-  "DBSubnetGroup": {
-    "Name": "AWS::RDS::DBSubnetGroup",
-    "Properties": {
-      "DBSubnetGroupDescription": {
-        "Description": "The description for the DB Subnet Group.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "SubnetIds": {
-        "Description": "The EC2 Subnet IDs for the DB Subnet Group.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "Tags": {
-        "Description": "The tags that you want to attach to the RDS database subnet group.",
-        "Array": true,
-        "Type": "resourcetagsinkey-valueformat",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "DBClusterParameterGroup": {
     "Name": "AWS::RDS::DBClusterParameterGroup",
     "Properties": {
@@ -516,6 +490,32 @@
         "Type": "resourcetags",
         "Required": "No",
         "UpdateRequires": "Updates are not supported."
+      }
+    }
+  },
+  "DBSubnetGroup": {
+    "Name": "AWS::RDS::DBSubnetGroup",
+    "Properties": {
+      "DBSubnetGroupDescription": {
+        "Description": "The description for the DB Subnet Group.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "SubnetIds": {
+        "Description": "The EC2 Subnet IDs for the DB Subnet Group.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "Tags": {
+        "Description": "The tags that you want to attach to the RDS database subnet group.",
+        "Array": true,
+        "Type": "resourcetagsinkey-valueformat",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
       }
     }
   },

@@ -1,128 +1,4 @@
 {
-  "LaunchConfiguration": {
-    "Name": "AWS::AutoScaling::LaunchConfiguration",
-    "Properties": {
-      "AssociatePublicIpAddress": {
-        "Description": "For Amazon EC2 instances in a VPC, indicates whether instances in the Auto Scaling group                                 receive public IP addresses. If you specify true, each instance in                                 the Auto Scaling receives a unique public IP address.NoteIf this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the                                    DependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,                                    see DependsOn Attribute.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "BlockDeviceMappings": {
-        "Description": "Specifies how block devices are exposed to the instance. You can specify                                 virtual devices and EBS volumes.",
-        "Array": true,
-        "Type": "AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ClassicLinkVPCId": {
-        "Description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. You                                 can specify this property only for EC2-Classic instances. For more information,                                 see ClassicLink in the                                 Amazon Elastic Compute Cloud User                                    Guide.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ClassicLinkVPCSecurityGroups": {
-        "Description": "The IDs of one or more security groups for the VPC that you specified in the                                 ClassicLinkVPCId property.",
-        "Array": true,
-        "Type": "String",
-        "Required": "Conditional. If you specified the ClassicLinkVPCId                                 property, you must specify this property.",
-        "UpdateRequires": "Replacement"
-      },
-      "EbsOptimized": {
-        "Description": "Specifies whether the launch configuration is optimized for EBS I/O. This                                 optimization provides dedicated throughput to Amazon EBS and an optimized                                 configuration stack to provide optimal EBS I/O performance.Additional fees are incurred when using EBS-optimized instances. For more information about fees and supported instance types,                                 see EBS-Optimized Instances in the Amazon EC2 User Guide for Linux Instances.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No If this property is not specified, \"false\" is used.",
-        "UpdateRequires": "Replacement"
-      },
-      "IamInstanceProfile": {
-        "Description": "Provides the name or the Amazon Resource Name (ARN) of the instance profile                                 associated with the IAM role for the instance. The instance profile contains the                                 IAM role.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "ImageId": {
-        "Description": "Provides the unique ID of the Amazon Machine Image (AMI) that was assigned                                 during registration.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceId": {
-        "Description": "The ID of the Amazon EC2 instance you want to use to create the launch                                 configuration. Use this property if you want the launch configuration to use                                 settings from an existing Amazon EC2 instance.When you use an instance to create a launch configuration, all properties are                                 derived from the instance with the exception of BlockDeviceMapping                                 and AssociatePublicIpAddress. You can override any properties from                                 the instance by specifying them in the launch configuration.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceMonitoring": {
-        "Description": "Indicates whether detailed instance monitoring is enabled for the Auto Scaling group.                                 By default, this property is set to true (enabled).When detailed monitoring is enabled, Amazon CloudWatch (CloudWatch) generates metrics every                                 minute and your account is charged a fee. When you disable detailed monitoring,                                 CloudWatch generates metrics every 5 minutes. For more information, see Monitor Your Auto Scaling                                    Instances in the Auto Scaling Developer                                    Guide.",
-        "Array": false,
-        "Type": "Boolean",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "InstanceType": {
-        "Description": "Specifies the instance type of the EC2 instance.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "KernelId": {
-        "Description": "Provides the ID of the kernel associated with the EC2 AMI.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "KeyName": {
-        "Description": "Provides the name of the EC2 key pair.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "PlacementTenancy": {
-        "Description": "The tenancy of the instance. An instance with a tenancy of                                 dedicated runs on single-tenant hardware and can only be launched                                 in a VPC. You must set the value of this parameter to dedicated if                                 want to launch dedicated instances in a shared tenancy VPC (a VPC with the                                 instance placement tenancy attribute set to default). For more information, see                                 CreateLaunchConfiguration in the                                 Auto Scaling API Reference.If you specify this property, you must specify at least one subnet in the                                 VPCZoneIdentifier property of the AWS::AutoScaling::AutoScalingGroup resource.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "RamDiskId": {
-        "Description": "The ID of the RAM disk to select. Some kernels require additional drivers at                                 launch. Check the kernel requirements for information about whether you need to                                 specify a RAM disk. To find kernel requirements, refer to the AWS Resource Center                                 and search for the kernel ID.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SecurityGroups": {
-        "Description": "A list that contains the EC2 security groups to assign to the Amazon EC2                                 instances in the Auto Scaling group. The list can contain the name of existing EC2                                 security groups or references to AWS::EC2::SecurityGroup resources                                 created in the template. If your instances are launched within VPC, specify Amazon VPC                                 security group IDs.",
-        "Array": true,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "SpotPrice": {
-        "Description": "The spot price for this autoscaling group. If a spot price is set, then the                                 autoscaling group will launch when the current spot price is less than the amount                                 specified in the template.When you have specified a spot price for an auto scaling group, the group will                                 only launch when the spot price has been met, regardless of the setting in the                                 autoscaling group's DesiredCapacity.For more information about configuring a spot price for an autoscaling group,                                 see Using Auto Scaling to Launch Spot Instances in the                                 AutoScaling Developer Guide.NoteWhen you change your bid price by creating a new launch configuration,                                    running instances will continue to run as long as the bid price for those                                    running instances is higher than the current Spot price.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      },
-      "UserData": {
-        "Description": "The user data available to the launched EC2 instances.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "Replacement"
-      }
-    }
-  },
   "AutoScalingGroup": {
     "Name": "AWS::AutoScaling::AutoScalingGroup",
     "Properties": {
@@ -247,6 +123,130 @@
       }
     }
   },
+  "LaunchConfiguration": {
+    "Name": "AWS::AutoScaling::LaunchConfiguration",
+    "Properties": {
+      "AssociatePublicIpAddress": {
+        "Description": "For Amazon EC2 instances in a VPC, indicates whether instances in the Auto Scaling group                                 receive public IP addresses. If you specify true, each instance in                                 the Auto Scaling receives a unique public IP address.NoteIf this resource has a public IP address and is also in a VPC that is defined in the same template, you must use the                                    DependsOn attribute to declare a dependency on the VPC-gateway attachment. For more information,                                    see DependsOn Attribute.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "BlockDeviceMappings": {
+        "Description": "Specifies how block devices are exposed to the instance. You can specify                                 virtual devices and EBS volumes.",
+        "Array": true,
+        "Type": "AWSCloudFormationAutoScalingBlockDeviceMappingPropertyType",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ClassicLinkVPCId": {
+        "Description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. You                                 can specify this property only for EC2-Classic instances. For more information,                                 see ClassicLink in the                                 Amazon Elastic Compute Cloud User                                    Guide.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ClassicLinkVPCSecurityGroups": {
+        "Description": "The IDs of one or more security groups for the VPC that you specified in the                                 ClassicLinkVPCId property.",
+        "Array": true,
+        "Type": "String",
+        "Required": "Conditional. If you specified the ClassicLinkVPCId                                 property, you must specify this property.",
+        "UpdateRequires": "Replacement"
+      },
+      "EbsOptimized": {
+        "Description": "Specifies whether the launch configuration is optimized for EBS I/O. This                                 optimization provides dedicated throughput to Amazon EBS and an optimized                                 configuration stack to provide optimal EBS I/O performance.Additional fees are incurred when using EBS-optimized instances. For more information about fees and supported instance types,                                 see EBS-Optimized Instances in the Amazon EC2 User Guide for Linux Instances.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No If this property is not specified, \"false\" is used.",
+        "UpdateRequires": "Replacement"
+      },
+      "IamInstanceProfile": {
+        "Description": "Provides the name or the Amazon Resource Name (ARN) of the instance profile                                 associated with the IAM role for the instance. The instance profile contains the                                 IAM role.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "ImageId": {
+        "Description": "Provides the unique ID of the Amazon Machine Image (AMI) that was assigned                                 during registration.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceId": {
+        "Description": "The ID of the Amazon EC2 instance you want to use to create the launch                                 configuration. Use this property if you want the launch configuration to use                                 settings from an existing Amazon EC2 instance.When you use an instance to create a launch configuration, all properties are                                 derived from the instance with the exception of BlockDeviceMapping                                 and AssociatePublicIpAddress. You can override any properties from                                 the instance by specifying them in the launch configuration.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceMonitoring": {
+        "Description": "Indicates whether detailed instance monitoring is enabled for the Auto Scaling group.                                 By default, this property is set to true (enabled).When detailed monitoring is enabled, Amazon CloudWatch (CloudWatch) generates metrics every                                 minute and your account is charged a fee. When you disable detailed monitoring,                                 CloudWatch generates metrics every 5 minutes. For more information, see Monitor Your Auto Scaling                                    Instances in the Auto Scaling Developer                                    Guide.",
+        "Array": false,
+        "Type": "Boolean",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "InstanceType": {
+        "Description": "Specifies the instance type of the EC2 instance.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "KernelId": {
+        "Description": "Provides the ID of the kernel associated with the EC2 AMI.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "KeyName": {
+        "Description": "Provides the name of the EC2 key pair.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "PlacementTenancy": {
+        "Description": "The tenancy of the instance. An instance with a tenancy of                                 dedicated runs on single-tenant hardware and can only be launched                                 in a VPC. You must set the value of this parameter to dedicated if                                 want to launch dedicated instances in a shared tenancy VPC (a VPC with the                                 instance placement tenancy attribute set to default). For more information, see                                 CreateLaunchConfiguration in the                                 Auto Scaling API Reference.If you specify this property, you must specify at least one subnet in the                                 VPCZoneIdentifier property of the AWS::AutoScaling::AutoScalingGroup resource.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "RamDiskId": {
+        "Description": "The ID of the RAM disk to select. Some kernels require additional drivers at                                 launch. Check the kernel requirements for information about whether you need to                                 specify a RAM disk. To find kernel requirements, refer to the AWS Resource Center                                 and search for the kernel ID.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SecurityGroups": {
+        "Description": "A list that contains the EC2 security groups to assign to the Amazon EC2                                 instances in the Auto Scaling group. The list can contain the name of existing EC2                                 security groups or references to AWS::EC2::SecurityGroup resources                                 created in the template. If your instances are launched within VPC, specify Amazon VPC                                 security group IDs.",
+        "Array": true,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "SpotPrice": {
+        "Description": "The spot price for this autoscaling group. If a spot price is set, then the                                 autoscaling group will launch when the current spot price is less than the amount                                 specified in the template.When you have specified a spot price for an auto scaling group, the group will                                 only launch when the spot price has been met, regardless of the setting in the                                 autoscaling group's DesiredCapacity.For more information about configuring a spot price for an autoscaling group,                                 see Using Auto Scaling to Launch Spot Instances in the                                 AutoScaling Developer Guide.NoteWhen you change your bid price by creating a new launch configuration,                                    running instances will continue to run as long as the bid price for those                                    running instances is higher than the current Spot price.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      },
+      "UserData": {
+        "Description": "The user data available to the launched EC2 instances.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "Replacement"
+      }
+    }
+  },
   "ScalingPolicy": {
     "Name": "AWS::AutoScaling::ScalingPolicy",
     "Properties": {
@@ -315,60 +315,6 @@
       }
     }
   },
-  "LifecycleHook": {
-    "Name": "AWS::AutoScaling::LifecycleHook",
-    "Properties": {
-      "AutoScalingGroupName": {
-        "Description": "The name of the Auto Scaling group for the lifecycle hook.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "Replacement"
-      },
-      "DefaultResult": {
-        "Description": "The action the Auto Scaling group takes when the lifecycle hook timeout elapses or if                                 an unexpected failure occurs.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "HeartbeatTimeout": {
-        "Description": "The amount of time that can elapse before the lifecycle hook times out. When                                 the lifecycle hook times out, Auto Scaling performs the action that you specified in the                                 DefaultResult property.",
-        "Array": false,
-        "Type": "Number",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "LifecycleTransition": {
-        "Description": "The state of the Amazon EC2 instance to which you want to attach the lifecycle hook.                                 For valid values, see the LifecycleTransition content for the LifecycleHook data type in the                                 Auto Scaling API Reference.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "NotificationMetadata": {
-        "Description": "Additional information that you want to include when Auto Scaling sends a message to                                 the notification target.",
-        "Array": false,
-        "Type": "String",
-        "Required": "No",
-        "UpdateRequires": "No interruption"
-      },
-      "NotificationTargetARN": {
-        "Description": "The Amazon resource name (ARN) of the notification target that Auto Scaling uses to                                 notify you when an instance is in the transition state for the lifecycle hook. You                                 can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes                                 the following information: lifecycle action token, user account ID, Auto Scaling group                                 name, lifecycle hook name, instance ID, lifecycle transition, and notification                                 metadata.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      },
-      "RoleARN": {
-        "Description": "The ARN of the IAM role that allows the Auto Scaling group to publish to the                                 specified notification target. The role requires permissions to Amazon SNS and                                 Amazon SQS.",
-        "Array": false,
-        "Type": "String",
-        "Required": "Yes",
-        "UpdateRequires": "No interruption"
-      }
-    }
-  },
   "ScheduledAction": {
     "Name": "AWS::AutoScaling::ScheduledAction",
     "Properties": {
@@ -419,6 +365,60 @@
         "Array": false,
         "Type": "Date",
         "Required": "No",
+        "UpdateRequires": "No interruption"
+      }
+    }
+  },
+  "LifecycleHook": {
+    "Name": "AWS::AutoScaling::LifecycleHook",
+    "Properties": {
+      "AutoScalingGroupName": {
+        "Description": "The name of the Auto Scaling group for the lifecycle hook.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "Replacement"
+      },
+      "DefaultResult": {
+        "Description": "The action the Auto Scaling group takes when the lifecycle hook timeout elapses or if                                 an unexpected failure occurs.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "HeartbeatTimeout": {
+        "Description": "The amount of time that can elapse before the lifecycle hook times out. When                                 the lifecycle hook times out, Auto Scaling performs the action that you specified in the                                 DefaultResult property.",
+        "Array": false,
+        "Type": "Number",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "LifecycleTransition": {
+        "Description": "The state of the Amazon EC2 instance to which you want to attach the lifecycle hook.                                 For valid values, see the LifecycleTransition content for the LifecycleHook data type in the                                 Auto Scaling API Reference.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "NotificationMetadata": {
+        "Description": "Additional information that you want to include when Auto Scaling sends a message to                                 the notification target.",
+        "Array": false,
+        "Type": "String",
+        "Required": "No",
+        "UpdateRequires": "No interruption"
+      },
+      "NotificationTargetARN": {
+        "Description": "The Amazon resource name (ARN) of the notification target that Auto Scaling uses to                                 notify you when an instance is in the transition state for the lifecycle hook. You                                 can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes                                 the following information: lifecycle action token, user account ID, Auto Scaling group                                 name, lifecycle hook name, instance ID, lifecycle transition, and notification                                 metadata.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
+        "UpdateRequires": "No interruption"
+      },
+      "RoleARN": {
+        "Description": "The ARN of the IAM role that allows the Auto Scaling group to publish to the                                 specified notification target. The role requires permissions to Amazon SNS and                                 Amazon SQS.",
+        "Array": false,
+        "Type": "String",
+        "Required": "Yes",
         "UpdateRequires": "No interruption"
       }
     }

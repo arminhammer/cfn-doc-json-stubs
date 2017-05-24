@@ -38,7 +38,7 @@
       "PlacementStrategies": {
         "Description": "The placement strategies that determine how tasks for the service are placed.",
         "Array": false,
-        "Type": "AmazonEC2ContainerServiceServicePlacementStategies",
+        "Type": "AmazonEC2ContainerServiceServicePlacementStrategies",
         "Required": "No",
         "UpdateRequires": "Replacement"
       },
@@ -86,7 +86,7 @@
         "Description": "A list of volume definitions                                 in                                 JSON format for the volumes that you can use in your container                                 definitions.",
         "Array": true,
         "Type": "AmazonEC2ContainerServiceTaskDefinitionVolumes",
-        "Required": "Yes",
+        "Required": "No",
         "UpdateRequires": "Replacement"
       },
       "Family": {
