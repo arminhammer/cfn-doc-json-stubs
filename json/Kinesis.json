@@ -19,7 +19,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key–value pairs) to associate with the Amazon Kinesis                                 stream.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption"

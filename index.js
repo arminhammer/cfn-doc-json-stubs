@@ -174,6 +174,7 @@ function sanitizeTypes(output, pageType) {
       .replace(/\./g, '');
     output.Array = true;
   }
+
   let originalType = output.Type;
   if (pageType == 'Resources') {
     if (sanitizeReplacementsResources[originalType]) {
@@ -236,6 +237,9 @@ function scrapeHtmlPage(body, pageType, fileName) {
             let link = $('a').attr('href');
             if (link) {
               output.Type = link.replace('.html', '');
+              if (output.Type === 'aws-properties-resource-tags') {
+                output.Array = true;
+              }
             }
           } else if (attrContent.startsWith('Required: ')) {
             output.Required = attrContent
@@ -302,9 +306,9 @@ function calculateModels() {
 function getPropertyTypeArray(inputObject, typeResults, depth) {
   if (!typeResults) typeResults = [];
   depth++;
-  console.log(`depth: ${depth}`);
+  //console.log(`depth: ${depth}`);
   if (depth > 3) {
-    console.log('Growing');
+    //console.log('Growing');
   }
   try {
     Object.keys(inputObject.Properties);
@@ -332,7 +336,7 @@ function getPropertyTypeArray(inputObject, typeResults, depth) {
             );
           }
         }
-        console.log('Done');
+        //console.log('Done');
       }
     });
   }

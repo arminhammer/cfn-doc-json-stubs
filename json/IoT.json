@@ -1,24 +1,5 @@
 {
   "Resources": {
-    "Policy": {
-      "Name": "AWS::IoT::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Description": "The JSON document that describes the policy.",
-          "Array": false,
-          "Type": "Object",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "PolicyName": {
-          "Description": "The name (the physical ID) of the AWS IoT policy.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "Replacement"
-        }
-      }
-    },
     "Certificate": {
       "Name": "AWS::IoT::Certificate",
       "Properties": {
@@ -35,6 +16,25 @@
           "Type": "String",
           "Required": "Yes",
           "UpdateRequires": "No interruption"
+        }
+      }
+    },
+    "Policy": {
+      "Name": "AWS::IoT::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Description": "The JSON document that describes the policy.",
+          "Array": false,
+          "Type": "Object",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        },
+        "PolicyName": {
+          "Description": "The name (the physical ID) of the AWS IoT policy.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "Replacement"
         }
       }
     },

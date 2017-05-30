@@ -1,5 +1,73 @@
 {
   "Resources": {
+    "ScalingPolicy": {
+      "Name": "AWS::AutoScaling::ScalingPolicy",
+      "Properties": {
+        "AdjustmentType": {
+          "Description": "Specifies whether the ScalingAdjustment is an                                 absolute number or a percentage of the current capacity. Valid values are                                 ChangeInCapacity, ExactCapacity,                                 and PercentChangeInCapacity.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "AutoScalingGroupName": {
+          "Description": "The name or Amazon Resource Name (ARN) of the Auto Scaling Group that you                                 want to attach the policy to.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "Cooldown": {
+          "Description": "The amount of time, in seconds, after a scaling activity completes before                                 any further trigger-related scaling activities can start.Do not specify this property if you are using the StepScaling                                 policy type.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "EstimatedInstanceWarmup": {
+          "Description": "The estimated time, in seconds, until a newly launched instance can send                                 metrics to CloudWatch. By default, Auto Scaling uses the cooldown period, as specified in the                                 Cooldown property.Do not specify this property if you are using the SimpleScaling                                 policy type.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "MetricAggregationType": {
+          "Description": "The aggregation type for the CloudWatch metrics. You can specify                                 Minimum, Maximum, or Average. By default,                                 AWS CloudFormation specifies Average.Do not specify this property if you are using the SimpleScaling                                 policy type.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "MinAdjustmentMagnitude": {
+          "Description": "For the PercentChangeInCapacity adjustment type, the minimum                                 number of instances to scale. The scaling policy changes the desired capacity of                                 the Auto Scaling group by a minimum of this many instances. This property replaces the                                 MinAdjustmentStep property.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "PolicyType": {
+          "Description": "An Auto Scaling policy type. You can specify SimpleScaling or                                 StepScaling. By default, AWS CloudFormation specifies                                 SimpleScaling. For more information, see Scaling Policy                                    Types in the Auto Scaling User Guide.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "ScalingAdjustment": {
+          "Description": "The number of instances by which to scale. The AdjustmentType property determines if AWS CloudFormation interprets this number as an absolute number (when the ExactCapacity value is specified), increase or decrease capacity by a specified number (when the ChangeInCapacity value is specified), or increase or decrease capacity as a percentage of the existing Auto Scaling group size (when the PercentChangeInCapacity value is                                 specified). A positive value adds to the current capacity and a negative value subtracts from the current capacity. For exact                                 capacity, you must specify a positive value.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "Conditional. This property is required if the policy type                                 is SimpleScaling. This property is not supported with any other                                 policy type.",
+          "UpdateRequires": "No interruption"
+        },
+        "StepAdjustments": {
+          "Description": "A set of adjustments that enable you to scale based on the size of the alarm                                 breach.",
+          "Array": true,
+          "Type": "aws-properties-autoscaling-scalingpolicy-stepadjustments",
+          "Required": "Conditional. This property is required if the policy type                                 is StepScaling. This property is not supported with any other                                 policy type.",
+          "UpdateRequires": "No interruption"
+        }
+      }
+    },
     "AutoScalingGroup": {
       "Name": "AWS::AutoScaling::AutoScalingGroup",
       "Properties": {
@@ -248,70 +316,56 @@
         }
       }
     },
-    "ScalingPolicy": {
-      "Name": "AWS::AutoScaling::ScalingPolicy",
+    "LifecycleHook": {
+      "Name": "AWS::AutoScaling::LifecycleHook",
       "Properties": {
-        "AdjustmentType": {
-          "Description": "Specifies whether the ScalingAdjustment is an                                 absolute number or a percentage of the current capacity. Valid values are                                 ChangeInCapacity, ExactCapacity,                                 and PercentChangeInCapacity.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
         "AutoScalingGroupName": {
-          "Description": "The name or Amazon Resource Name (ARN) of the Auto Scaling Group that you                                 want to attach the policy to.",
+          "Description": "The name of the Auto Scaling group for the lifecycle hook.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        },
+        "DefaultResult": {
+          "Description": "The action the Auto Scaling group takes when the lifecycle hook timeout elapses or if                                 an unexpected failure occurs.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "HeartbeatTimeout": {
+          "Description": "The amount of time that can elapse before the lifecycle hook times out. When                                 the lifecycle hook times out, Auto Scaling performs the action that you specified in the                                 DefaultResult property.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "LifecycleTransition": {
+          "Description": "The state of the Amazon EC2 instance to which you want to attach the lifecycle hook.                                 For valid values, see the LifecycleTransition content for the LifecycleHook data type in the                                 Auto Scaling API Reference.",
           "Array": false,
           "Type": "String",
           "Required": "Yes",
           "UpdateRequires": "No interruption"
         },
-        "Cooldown": {
-          "Description": "The amount of time, in seconds, after a scaling activity completes before                                 any further trigger-related scaling activities can start.Do not specify this property if you are using the StepScaling                                 policy type.",
+        "NotificationMetadata": {
+          "Description": "Additional information that you want to include when Auto Scaling sends a message to                                 the notification target.",
           "Array": false,
           "Type": "String",
           "Required": "No",
           "UpdateRequires": "No interruption"
         },
-        "EstimatedInstanceWarmup": {
-          "Description": "The estimated time, in seconds, until a newly launched instance can send                                 metrics to CloudWatch. By default, Auto Scaling uses the cooldown period, as specified in the                                 Cooldown property.Do not specify this property if you are using the SimpleScaling                                 policy type.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "MetricAggregationType": {
-          "Description": "The aggregation type for the CloudWatch metrics. You can specify                                 Minimum, Maximum, or Average. By default,                                 AWS CloudFormation specifies Average.Do not specify this property if you are using the SimpleScaling                                 policy type.",
+        "NotificationTargetARN": {
+          "Description": "The Amazon resource name (ARN) of the notification target that Auto Scaling uses to                                 notify you when an instance is in the transition state for the lifecycle hook. You                                 can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes                                 the following information: lifecycle action token, user account ID, Auto Scaling group                                 name, lifecycle hook name, instance ID, lifecycle transition, and notification                                 metadata.",
           "Array": false,
           "Type": "String",
-          "Required": "No",
+          "Required": "Yes",
           "UpdateRequires": "No interruption"
         },
-        "MinAdjustmentMagnitude": {
-          "Description": "For the PercentChangeInCapacity adjustment type, the minimum                                 number of instances to scale. The scaling policy changes the desired capacity of                                 the Auto Scaling group by a minimum of this many instances. This property replaces the                                 MinAdjustmentStep property.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "PolicyType": {
-          "Description": "An Auto Scaling policy type. You can specify SimpleScaling or                                 StepScaling. By default, AWS CloudFormation specifies                                 SimpleScaling. For more information, see Scaling Policy                                    Types in the Auto Scaling User Guide.",
+        "RoleARN": {
+          "Description": "The ARN of the IAM role that allows the Auto Scaling group to publish to the                                 specified notification target. The role requires permissions to Amazon SNS and                                 Amazon SQS.",
           "Array": false,
           "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "ScalingAdjustment": {
-          "Description": "The number of instances by which to scale. The AdjustmentType property determines if AWS CloudFormation interprets this number as an absolute number (when the ExactCapacity value is specified), increase or decrease capacity by a specified number (when the ChangeInCapacity value is specified), or increase or decrease capacity as a percentage of the existing Auto Scaling group size (when the PercentChangeInCapacity value is                                 specified). A positive value adds to the current capacity and a negative value subtracts from the current capacity. For exact                                 capacity, you must specify a positive value.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "Conditional. This property is required if the policy type                                 is SimpleScaling. This property is not supported with any other                                 policy type.",
-          "UpdateRequires": "No interruption"
-        },
-        "StepAdjustments": {
-          "Description": "A set of adjustments that enable you to scale based on the size of the alarm                                 breach.",
-          "Array": true,
-          "Type": "aws-properties-autoscaling-scalingpolicy-stepadjustments",
-          "Required": "Conditional. This property is required if the policy type                                 is StepScaling. This property is not supported with any other                                 policy type.",
+          "Required": "Yes",
           "UpdateRequires": "No interruption"
         }
       }
@@ -369,63 +423,32 @@
           "UpdateRequires": "No interruption"
         }
       }
-    },
-    "LifecycleHook": {
-      "Name": "AWS::AutoScaling::LifecycleHook",
-      "Properties": {
-        "AutoScalingGroupName": {
-          "Description": "The name of the Auto Scaling group for the lifecycle hook.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "DefaultResult": {
-          "Description": "The action the Auto Scaling group takes when the lifecycle hook timeout elapses or if                                 an unexpected failure occurs.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "HeartbeatTimeout": {
-          "Description": "The amount of time that can elapse before the lifecycle hook times out. When                                 the lifecycle hook times out, Auto Scaling performs the action that you specified in the                                 DefaultResult property.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "LifecycleTransition": {
-          "Description": "The state of the Amazon EC2 instance to which you want to attach the lifecycle hook.                                 For valid values, see the LifecycleTransition content for the LifecycleHook data type in the                                 Auto Scaling API Reference.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
-        "NotificationMetadata": {
-          "Description": "Additional information that you want to include when Auto Scaling sends a message to                                 the notification target.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "NotificationTargetARN": {
-          "Description": "The Amazon resource name (ARN) of the notification target that Auto Scaling uses to                                 notify you when an instance is in the transition state for the lifecycle hook. You                                 can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes                                 the following information: lifecycle action token, user account ID, Auto Scaling group                                 name, lifecycle hook name, instance ID, lifecycle transition, and notification                                 metadata.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
-        "RoleARN": {
-          "Description": "The ARN of the IAM role that allows the Auto Scaling group to publish to the                                 specified notification target. The role requires permissions to Amazon SNS and                                 Amazon SQS.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        }
-      }
     }
   },
   "Models": {
+    "aws-properties-autoscaling-scalingpolicy-stepadjustments": {
+      "Name": "AutoScalingScalingPolicyStepAdjustments",
+      "Properties": {
+        "MetricIntervalLowerBound": {
+          "Description": "The lower bound of the breach size. The lower bound is the difference between the breach threshold and the aggregated CloudWatch                                 metric value. If the metric value is within the lower and upper bounds, Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be greater than or equal to the threshold plus the lower                                 bound to trigger this step adjustment (the metric value is inclusive). If the metric value is below the breach threshold,                                 the metric must be greater than the threshold plus the lower bound to trigger this step adjustment (the metric value is exclusive).                                 A null value indicates negative infinity.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "Conditional. You must specify at least one upper or lower bound."
+        },
+        "MetricIntervalUpperBound": {
+          "Description": "The upper bound of the breach size. The upper bound is the difference between the breach threshold and the CloudWatch metric                                 value. If the metric value is within the lower and upper bounds, Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be less than the threshold plus the upper bound to trigger                                 this step adjustment (the metric value is exclusive). If the metric value is below the breach threshold, the metric must be                                 less than or equal to the threshold plus the upper bound to trigger this step adjustment (the metric value is inclusive).                                 A null value indicates positive infinity.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "Conditional. You must specify at least one upper or lower bound."
+        },
+        "ScalingAdjustment": {
+          "Description": "The amount by which to scale. The adjustment is based on the value that you specified in the AdjustmentType property (either an absolute number or a percentage). A positive value adds to the current capacity and a negative number                                 subtracts from the current capacity.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "Yes"
+        }
+      }
+    },
     "aws-properties-as-metricscollection": {
       "Name": "AutoScalingMetricsCollection",
       "Properties": {
@@ -551,29 +574,6 @@
           "Array": false,
           "Type": "String",
           "Required": "No"
-        }
-      }
-    },
-    "aws-properties-autoscaling-scalingpolicy-stepadjustments": {
-      "Name": "AutoScalingScalingPolicyStepAdjustments",
-      "Properties": {
-        "MetricIntervalLowerBound": {
-          "Description": "The lower bound of the breach size. The lower bound is the difference between the breach threshold and the aggregated CloudWatch                                 metric value. If the metric value is within the lower and upper bounds, Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be greater than or equal to the threshold plus the lower                                 bound to trigger this step adjustment (the metric value is inclusive). If the metric value is below the breach threshold,                                 the metric must be greater than the threshold plus the lower bound to trigger this step adjustment (the metric value is exclusive).                                 A null value indicates negative infinity.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "Conditional. You must specify at least one upper or lower bound."
-        },
-        "MetricIntervalUpperBound": {
-          "Description": "The upper bound of the breach size. The upper bound is the difference between the breach threshold and the CloudWatch metric                                 value. If the metric value is within the lower and upper bounds, Auto Scaling triggers this step adjustment.If the metric value is above the breach threshold, the metric must be less than the threshold plus the upper bound to trigger                                 this step adjustment (the metric value is exclusive). If the metric value is below the breach threshold, the metric must be                                 less than or equal to the threshold plus the upper bound to trigger this step adjustment (the metric value is inclusive).                                 A null value indicates positive infinity.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "Conditional. You must specify at least one upper or lower bound."
-        },
-        "ScalingAdjustment": {
-          "Description": "The amount by which to scale. The adjustment is based on the value that you specified in the AdjustmentType property (either an absolute number or a percentage). A positive value adds to the current capacity and a negative number                                 subtracts from the current capacity.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "Yes"
         }
       }
     }

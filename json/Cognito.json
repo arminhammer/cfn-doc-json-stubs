@@ -1,75 +1,26 @@
 {
   "Resources": {
-    "IdentityPool": {
-      "Name": "AWS::Cognito::IdentityPool",
+    "IdentityPoolRoleAttachment": {
+      "Name": "AWS::Cognito::IdentityPoolRoleAttachment",
       "Properties": {
-        "IdentityPoolName": {
-          "Description": "The name of your Amazon Cognito identity pool.MinLength:                                 1MaxLength: 128",
+        "IdentityPoolId": {
+          "Description": "An identity pool ID in the format REGION:GUID.",
           "Array": false,
           "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "AllowUnauthenticatedIdentities": {
-          "Description": "Specifies whether the identity pool supports unauthenticated logins.",
-          "Array": false,
-          "Type": "Boolean",
           "Required": "Yes",
-          "UpdateRequires": "No interruption"
+          "UpdateRequires": "Replacement"
         },
-        "DeveloperProviderName": {
-          "Description": "The \"domain\" by which Amazon Cognito will refer to your users. This name acts as a                                 placeholder that allows your backend and the Amazon Cognito service to communicate about the                                 developer provider. For the DeveloperProviderName, you can use letters and                                 periods (.), underscores (_), and dashes                                 (-).MinLength:                                 1MaxLength: 100",
+        "RoleMappings": {
+          "Description": "How users for a specific identity provider are to mapped to roles. This is a string to RoleMapping object map. The string                                 identifies the identity provider, for example, \"graph.facebook.com\" or \"cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id\"",
           "Array": false,
-          "Type": "String",
+          "Type": "aws-properties-cognito-identitypoolroleattachment-rolemapping",
           "Required": "No",
           "UpdateRequires": "No interruption"
         },
-        "SupportedLoginProviders": {
-          "Description": "Key-value pairs that map provider names to provider app IDs.",
+        "Roles": {
+          "Description": "The map of roles associated with this pool. For a given role, the key will be either \"authenticated\" or \"unauthenticated\"                                 and the value will be the Role ARN.",
           "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "CognitoIdentityProviders": {
-          "Description": "An array of Amazon Cognito user pools and their client IDs.",
-          "Array": false,
-          "Type": "aws-properties-cognito-identitypool-cognitoidentityprovider",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "SamlProviderARNs": {
-          "Description": "A list of Amazon Resource Names (ARNs) of Security Assertion Markup Language (SAML)                                 providers.",
-          "Array": true,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "OpenIdConnectProviderARNs": {
-          "Description": "A list of  ARNs for the OpendID Connect provider.",
-          "Array": true,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "CognitoStreams": {
-          "Description": "Configuration options for configuring Amazon Cognito streams.",
-          "Array": false,
-          "Type": "aws-properties-cognito-identitypool-cognitostreams",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "PushSync": {
-          "Description": "Configuration options to be applied to the identity pool.",
-          "Array": false,
-          "Type": "aws-properties-cognito-identitypool-pushsync",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "CognitoEvents": {
-          "Description": "The events to configure.",
-          "Array": false,
-          "Type": "StringtoStringmap",
+          "Type": "Map",
           "Required": "No",
           "UpdateRequires": "No interruption"
         }
@@ -192,32 +143,6 @@
         }
       }
     },
-    "IdentityPoolRoleAttachment": {
-      "Name": "AWS::Cognito::IdentityPoolRoleAttachment",
-      "Properties": {
-        "IdentityPoolId": {
-          "Description": "An identity pool ID in the format REGION:GUID.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "RoleMappings": {
-          "Description": "How users for a specific identity provider are to mapped to roles. This is a string to RoleMapping object map. The string                                 identifies the identity provider, for example, \"graph.facebook.com\" or \"cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id\"",
-          "Array": false,
-          "Type": "aws-properties-cognito-identitypoolroleattachment-rolemapping",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "Roles": {
-          "Description": "The map of roles associated with this pool. For a given role, the key will be either \"authenticated\" or \"unauthenticated\"                                 and the value will be the Role ARN.",
-          "Array": false,
-          "Type": "Map",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        }
-      }
-    },
     "UserPoolClient": {
       "Name": "AWS::Cognito::UserPoolClient",
       "Properties": {
@@ -269,6 +194,107 @@
           "Type": "ArrayofStrings",
           "Required": "No",
           "UpdateRequires": "No interruption"
+        }
+      }
+    },
+    "IdentityPool": {
+      "Name": "AWS::Cognito::IdentityPool",
+      "Properties": {
+        "IdentityPoolName": {
+          "Description": "The name of your Amazon Cognito identity pool.MinLength:                                 1MaxLength: 128",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "AllowUnauthenticatedIdentities": {
+          "Description": "Specifies whether the identity pool supports unauthenticated logins.",
+          "Array": false,
+          "Type": "Boolean",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "DeveloperProviderName": {
+          "Description": "The \"domain\" by which Amazon Cognito will refer to your users. This name acts as a                                 placeholder that allows your backend and the Amazon Cognito service to communicate about the                                 developer provider. For the DeveloperProviderName, you can use letters and                                 periods (.), underscores (_), and dashes                                 (-).MinLength:                                 1MaxLength: 100",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "SupportedLoginProviders": {
+          "Description": "Key-value pairs that map provider names to provider app IDs.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "CognitoIdentityProviders": {
+          "Description": "An array of Amazon Cognito user pools and their client IDs.",
+          "Array": false,
+          "Type": "aws-properties-cognito-identitypool-cognitoidentityprovider",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "SamlProviderARNs": {
+          "Description": "A list of Amazon Resource Names (ARNs) of Security Assertion Markup Language (SAML)                                 providers.",
+          "Array": true,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "OpenIdConnectProviderARNs": {
+          "Description": "A list of  ARNs for the OpendID Connect provider.",
+          "Array": true,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "CognitoStreams": {
+          "Description": "Configuration options for configuring Amazon Cognito streams.",
+          "Array": false,
+          "Type": "aws-properties-cognito-identitypool-cognitostreams",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "PushSync": {
+          "Description": "Configuration options to be applied to the identity pool.",
+          "Array": false,
+          "Type": "aws-properties-cognito-identitypool-pushsync",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "CognitoEvents": {
+          "Description": "The events to configure.",
+          "Array": false,
+          "Type": "StringtoStringmap",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        }
+      }
+    },
+    "UserPoolUserToGroupAttachment": {
+      "Name": "AWS::Cognito::UserPoolUserToGroupAttachment",
+      "Properties": {
+        "GroupName": {
+          "Description": "The name of the group.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        },
+        "Username": {
+          "Description": "The user's user name.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        },
+        "UserPoolId": {
+          "Description": "The ID of the user pool.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
         }
       }
     },
@@ -365,95 +391,76 @@
           "UpdateRequires": "Replacement"
         }
       }
-    },
-    "UserPoolUserToGroupAttachment": {
-      "Name": "AWS::Cognito::UserPoolUserToGroupAttachment",
-      "Properties": {
-        "GroupName": {
-          "Description": "The name of the group.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "Username": {
-          "Description": "The user's user name.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "UserPoolId": {
-          "Description": "The ID of the user pool.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        }
-      }
     }
   },
   "Models": {
-    "aws-properties-cognito-identitypool-cognitoidentityprovider": {
-      "Name": "AmazonCognitoIdentityPoolCognitoIdentityProvider",
+    "aws-properties-cognito-identitypoolroleattachment-rolemapping": {
+      "Name": "AmazonCognitoIdentityPoolRoleAttachmentRoleMapping",
       "Properties": {
-        "ClientId": {
-          "Description": "The client ID for the Amazon Cognito user pool.",
+        "AmbiguousRoleResolution": {
+          "Description": "Specifies the action to be taken if either no rules match the claim value for the Rules type, or there is no cognito:preferred_role claim and there are multiple cognito:roles matches for the Token type. If you specify Token or Rules as the Type, AmbiguousRoleResolution is required.Valid values are AuthenticatedRole or Deny.",
           "Array": false,
           "Type": "String",
-          "Required": "No"
+          "Required": "No",
+          "UpdateRequires": "No interruption"
         },
-        "ProviderName": {
-          "Description": "The provider name for an Amazon Cognito user pool. For example, cognito-idp.us-east-2.amazonaws.com/us-east-2_123456789.",
+        "RulesConfiguration": {
+          "Description": "The rules to be used for mapping users to roles. If you specify Rules as the role mapping type, RulesConfiguration is required.",
+          "Array": false,
+          "Type": "aws-properties-cognito-identitypoolroleattachment-rolemapping-rulesconfiguration",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "Type": {
+          "Description": "The role mapping type. Token will use cognito:roles and cognito:preferred_role claims from the Amazon Cognito identity provider token to map groups to roles. Rules will attempt to match claims from the token to map to a role.Valid values are Token or Rules.",
           "Array": false,
           "Type": "String",
-          "Required": "No"
-        },
-        "ServerSideTokenCheck": {
-          "Description": "TRUE if server-side token validation is enabled for the identity provider’s token.Once you set ServerSideTokenCheck to TRUE for an identity pool, that identity pool will check with the integrated user pools to make sure that the user has                                 not been globally signed out or deleted before the identity pool provides an OIDC token or AWS credentials for the user.If the user is signed out or deleted, the identity pool will return a 400 Not Authorized error.",
-          "Array": false,
-          "Type": "Boolean",
-          "Required": "No"
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
         }
       }
     },
-    "aws-properties-cognito-identitypool-cognitostreams": {
-      "Name": "AmazonCognitoIdentityPoolCognitoStreams",
+    "aws-properties-cognito-identitypoolroleattachment-rolemapping-rulesconfiguration": {
+      "Name": "AmazonCognitoIdentityPoolRoleAttachmentRoleMappingRulesConfiguration",
       "Properties": {
-        "RoleArn": {
-          "Description": "The Amazon Resource Name (ARN) of the role Amazon Cognito can assume to publish to the stream. This role must grant access                                 to Amazon Cognito (cognito-sync) to invoke PutRecord on your Amazon Cognito stream.",
+        "Rules": {
+          "Description": "An array of rules. You can specify up to 25 rules per identity provider.",
           "Array": false,
-          "Type": "String",
-          "Required": "No"
-        },
-        "StreamingStatus": {
-          "Description": "Status of the Cognito streams. Valid values are: ENABLED or DISABLED.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No"
-        },
-        "StreamName": {
-          "Description": "The name of the Amazon Cognito stream to receive updates. This stream must be in the developer's account and in the same region                                 as the identity pool.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No"
+          "Type": "aws-properties-cognito-identitypoolroleattachment-mappingrule",
+          "Required": "Yes"
         }
       }
     },
-    "aws-properties-cognito-identitypool-pushsync": {
-      "Name": "AmazonCognitoIdentityPoolPushSync",
+    "aws-properties-cognito-identitypoolroleattachment-mappingrule": {
+      "Name": "AmazonCognitoIdentityPoolRoleAttachmentMappingRule",
       "Properties": {
-        "ApplicationArns": {
-          "Description": "List of Amazon SNS platform application ARNs that could be used by clients.",
-          "Array": true,
-          "Type": "String",
-          "Required": "No"
-        },
-        "RoleArn": {
-          "Description": "An IAM role configured to allow Amazon Cognito to call SNS on behalf of the developer.",
+        "Claim": {
+          "Description": "The claim name that must be present in the token, for example, \"isAdmin\" or \"paid.\"",
           "Array": false,
           "Type": "String",
-          "Required": "No"
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "MatchType": {
+          "Description": "The match condition that specifies how closely the claim value in the IdP token must match Value.Valid values are: Equals, Contains, StartsWith, and NotEqual.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "RoleARN": {
+          "Description": "The Amazon Resource Name (ARN) of the role.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "Value": {
+          "Description": "A brief string that the claim must match, for example, \"paid\" or \"yes.\"",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
         }
       }
     },
@@ -734,73 +741,66 @@
         }
       }
     },
-    "aws-properties-cognito-identitypoolroleattachment-rolemapping": {
-      "Name": "AmazonCognitoIdentityPoolRoleAttachmentRoleMapping",
+    "aws-properties-cognito-identitypool-cognitoidentityprovider": {
+      "Name": "AmazonCognitoIdentityPoolCognitoIdentityProvider",
       "Properties": {
-        "AmbiguousRoleResolution": {
-          "Description": "Specifies the action to be taken if either no rules match the claim value for the Rules type, or there is no cognito:preferred_role claim and there are multiple cognito:roles matches for the Token type. If you specify Token or Rules as the Type, AmbiguousRoleResolution is required.Valid values are AuthenticatedRole or Deny.",
+        "ClientId": {
+          "Description": "The client ID for the Amazon Cognito user pool.",
           "Array": false,
           "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
+          "Required": "No"
         },
-        "RulesConfiguration": {
-          "Description": "The rules to be used for mapping users to roles. If you specify Rules as the role mapping type, RulesConfiguration is required.",
-          "Array": false,
-          "Type": "aws-properties-cognito-identitypoolroleattachment-rolemapping-rulesconfiguration",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "Type": {
-          "Description": "The role mapping type. Token will use cognito:roles and cognito:preferred_role claims from the Amazon Cognito identity provider token to map groups to roles. Rules will attempt to match claims from the token to map to a role.Valid values are Token or Rules.",
+        "ProviderName": {
+          "Description": "The provider name for an Amazon Cognito user pool. For example, cognito-idp.us-east-2.amazonaws.com/us-east-2_123456789.",
           "Array": false,
           "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
+          "Required": "No"
+        },
+        "ServerSideTokenCheck": {
+          "Description": "TRUE if server-side token validation is enabled for the identity provider’s token.Once you set ServerSideTokenCheck to TRUE for an identity pool, that identity pool will check with the integrated user pools to make sure that the user has                                 not been globally signed out or deleted before the identity pool provides an OIDC token or AWS credentials for the user.If the user is signed out or deleted, the identity pool will return a 400 Not Authorized error.",
+          "Array": false,
+          "Type": "Boolean",
+          "Required": "No"
         }
       }
     },
-    "aws-properties-cognito-identitypoolroleattachment-rolemapping-rulesconfiguration": {
-      "Name": "AmazonCognitoIdentityPoolRoleAttachmentRoleMappingRulesConfiguration",
+    "aws-properties-cognito-identitypool-cognitostreams": {
+      "Name": "AmazonCognitoIdentityPoolCognitoStreams",
       "Properties": {
-        "Rules": {
-          "Description": "An array of rules. You can specify up to 25 rules per identity provider.",
+        "RoleArn": {
+          "Description": "The Amazon Resource Name (ARN) of the role Amazon Cognito can assume to publish to the stream. This role must grant access                                 to Amazon Cognito (cognito-sync) to invoke PutRecord on your Amazon Cognito stream.",
           "Array": false,
-          "Type": "aws-properties-cognito-identitypoolroleattachment-mappingrule",
-          "Required": "Yes"
+          "Type": "String",
+          "Required": "No"
+        },
+        "StreamingStatus": {
+          "Description": "Status of the Cognito streams. Valid values are: ENABLED or DISABLED.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No"
+        },
+        "StreamName": {
+          "Description": "The name of the Amazon Cognito stream to receive updates. This stream must be in the developer's account and in the same region                                 as the identity pool.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No"
         }
       }
     },
-    "aws-properties-cognito-identitypoolroleattachment-mappingrule": {
-      "Name": "AmazonCognitoIdentityPoolRoleAttachmentMappingRule",
+    "aws-properties-cognito-identitypool-pushsync": {
+      "Name": "AmazonCognitoIdentityPoolPushSync",
       "Properties": {
-        "Claim": {
-          "Description": "The claim name that must be present in the token, for example, \"isAdmin\" or \"paid.\"",
-          "Array": false,
+        "ApplicationArns": {
+          "Description": "List of Amazon SNS platform application ARNs that could be used by clients.",
+          "Array": true,
           "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
+          "Required": "No"
         },
-        "MatchType": {
-          "Description": "The match condition that specifies how closely the claim value in the IdP token must match Value.Valid values are: Equals, Contains, StartsWith, and NotEqual.",
+        "RoleArn": {
+          "Description": "An IAM role configured to allow Amazon Cognito to call SNS on behalf of the developer.",
           "Array": false,
           "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
-        "RoleARN": {
-          "Description": "The Amazon Resource Name (ARN) of the role.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
-        "Value": {
-          "Description": "A brief string that the claim must match, for example, \"paid\" or \"yes.\"",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
+          "Required": "No"
         }
       }
     },

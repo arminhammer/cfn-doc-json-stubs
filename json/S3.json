@@ -54,7 +54,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key-value pairs) for this S3 bucket.                                                                     Important                                    We recommend limiting the number of tags to seven. Applying more than seven tags                                       prevents the AWS CLI and the AWS CloudFormation console and API actions from listing the tags                                       for the S3 bucket.ImportantWe recommend limiting the number of tags to seven. Applying more than seven tags                                       prevents the AWS CLI and the AWS CloudFormation console and API actions from listing the tags                                       for the S3 bucket.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption"

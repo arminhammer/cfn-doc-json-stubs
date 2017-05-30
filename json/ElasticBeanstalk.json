@@ -1,5 +1,50 @@
 {
   "Resources": {
+    "ApplicationVersion": {
+      "Name": "AWS::ElasticBeanstalk::ApplicationVersion",
+      "Properties": {
+        "ApplicationName": {
+          "Description": "Name of the Elastic Beanstalk application that is associated with this application                                 version.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        },
+        "Description": {
+          "Description": "A description of this application version.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "Some interruptions"
+        },
+        "SourceBundle": {
+          "Description": "The location of the source bundle for this version.",
+          "Array": false,
+          "Type": "aws-properties-beanstalk-sourcebundle",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        }
+      }
+    },
+    "Application": {
+      "Name": "AWS::ElasticBeanstalk::Application",
+      "Properties": {
+        "ApplicationName": {
+          "Description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates                                 a unique physical ID and uses that ID for the application name. For more                                 information, see Name Type.                                                                     Important                                    If you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "Replacement"
+        },
+        "Description": {
+          "Description": "An optional description of this application.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        }
+      }
+    },
     "Environment": {
       "Name": "AWS::ElasticBeanstalk::Environment",
       "Properties": {
@@ -47,7 +92,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key–value pairs) for this environment.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "You can update tags only if you update another\n                                 property that requires that the environment be replaced, such as the\n                                 ApplicationName property."
@@ -72,51 +117,6 @@
           "Type": "String",
           "Required": "No",
           "UpdateRequires": "Some interruptions"
-        }
-      }
-    },
-    "ApplicationVersion": {
-      "Name": "AWS::ElasticBeanstalk::ApplicationVersion",
-      "Properties": {
-        "ApplicationName": {
-          "Description": "Name of the Elastic Beanstalk application that is associated with this application                                 version.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "Description": {
-          "Description": "A description of this application version.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "Some interruptions"
-        },
-        "SourceBundle": {
-          "Description": "The location of the source bundle for this version.",
-          "Array": false,
-          "Type": "aws-properties-beanstalk-sourcebundle",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        }
-      }
-    },
-    "Application": {
-      "Name": "AWS::ElasticBeanstalk::Application",
-      "Properties": {
-        "ApplicationName": {
-          "Description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates                                 a unique physical ID and uses that ID for the application name. For more                                 information, see Name Type.                                                                     Important                                    If you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "Replacement"
-        },
-        "Description": {
-          "Description": "An optional description of this application.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
         }
       }
     },
@@ -169,6 +169,23 @@
     }
   },
   "Models": {
+    "aws-properties-beanstalk-sourcebundle": {
+      "Name": "ElasticBeanstalkSourceBundlePropertyType",
+      "Properties": {
+        "S3Bucket": {
+          "Description": "The Amazon S3 bucket where the data is located.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes"
+        },
+        "S3Key": {
+          "Description": "The Amazon S3 key where the data is located.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes"
+        }
+      }
+    },
     "aws-properties-beanstalk-option-settings": {
       "Name": "ElasticBeanstalkOptionSettingsPropertyType",
       "Properties": {
@@ -232,23 +249,6 @@
           "Type": "String",
           "Required": "No",
           "UpdateRequires": "No interruption"
-        }
-      }
-    },
-    "aws-properties-beanstalk-sourcebundle": {
-      "Name": "ElasticBeanstalkSourceBundlePropertyType",
-      "Properties": {
-        "S3Bucket": {
-          "Description": "The Amazon S3 bucket where the data is located.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes"
-        },
-        "S3Key": {
-          "Description": "The Amazon S3 key where the data is located.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes"
         }
       }
     },

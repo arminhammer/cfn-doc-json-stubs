@@ -54,7 +54,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key-value pairs) for the AWS CodeBuild project.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption"

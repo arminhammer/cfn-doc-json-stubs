@@ -1,31 +1,5 @@
 {
   "Resources": {
-    "ParameterGroup": {
-      "Name": "AWS::ElastiCache::ParameterGroup",
-      "Properties": {
-        "CacheParameterGroupFamily": {
-          "Description": "The name of the cache parameter group family that the cache parameter group can be used                                 with.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Updates are not supported."
-        },
-        "Description": {
-          "Description": "The description for the Cache Parameter Group.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Updates are not supported."
-        },
-        "Properties": {
-          "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference                                    Guide.Example:",
-          "Array": false,
-          "Type": "Map",
-          "Required": "No",
-          "UpdateRequires": "Updates are not supported."
-        }
-      }
-    },
     "CacheCluster": {
       "Name": "AWS::ElastiCache::CacheCluster",
       "Properties": {
@@ -163,7 +137,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key–value pairs) for this cache                                 cluster.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption."
@@ -174,6 +148,44 @@
           "Type": "String",
           "Required": "Conditional: If your cache cluster is in a VPC, you must specify                                 this property.",
           "UpdateRequires": "No interruption"
+        }
+      }
+    },
+    "ParameterGroup": {
+      "Name": "AWS::ElastiCache::ParameterGroup",
+      "Properties": {
+        "CacheParameterGroupFamily": {
+          "Description": "The name of the cache parameter group family that the cache parameter group can be used                                 with.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Updates are not supported."
+        },
+        "Description": {
+          "Description": "The description for the Cache Parameter Group.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Updates are not supported."
+        },
+        "Properties": {
+          "Description": "A comma-delimited list of parameter name/value pairs. For more information, go to ModifyCacheParameterGroup in the Amazon ElastiCache API Reference                                    Guide.Example:",
+          "Array": false,
+          "Type": "Map",
+          "Required": "No",
+          "UpdateRequires": "Updates are not supported."
+        }
+      }
+    },
+    "SecurityGroup": {
+      "Name": "AWS::ElastiCache::SecurityGroup",
+      "Properties": {
+        "Description": {
+          "Description": "A description for the cache security group.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "Updates are not supported."
         }
       }
     },
@@ -196,18 +208,6 @@
         },
         "EC2SecurityGroupOwnerId": {
           "Description": "Specifies the AWS Account ID of the owner of the EC2 security group specified                                 in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable                                 value.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "Updates are not supported."
-        }
-      }
-    },
-    "SecurityGroup": {
-      "Name": "AWS::ElastiCache::SecurityGroup",
-      "Properties": {
-        "Description": {
-          "Description": "A description for the cache security group.",
           "Array": false,
           "Type": "String",
           "Required": "No",
@@ -421,7 +421,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key–value pairs) for this replication                                 group.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption"

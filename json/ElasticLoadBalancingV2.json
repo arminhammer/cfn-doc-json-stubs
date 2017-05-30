@@ -1,5 +1,38 @@
 {
   "Resources": {
+    "ListenerRule": {
+      "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
+      "Properties": {
+        "Actions": {
+          "Description": "The action that the listener takes when a request meets the specified condition.",
+          "Array": true,
+          "Type": "aws-properties-elasticloadbalancingv2-listenerrule-actions",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "Conditions": {
+          "Description": "The conditions under which a rule takes effect.",
+          "Array": true,
+          "Type": "aws-properties-elasticloadbalancingv2-listenerrule-conditions",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        },
+        "ListenerArn": {
+          "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes",
+          "UpdateRequires": "Replacement"
+        },
+        "Priority": {
+          "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest                                 value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA listener can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
+          "Array": false,
+          "Type": "Number",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        }
+      }
+    },
     "Listener": {
       "Name": "AWS::ElasticLoadBalancingV2::Listener",
       "Properties": {
@@ -47,39 +80,6 @@
         }
       }
     },
-    "ListenerRule": {
-      "Name": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": {
-          "Description": "The action that the listener takes when a request meets the specified condition.",
-          "Array": true,
-          "Type": "aws-properties-elasticloadbalancingv2-listenerrule-actions",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
-        "Conditions": {
-          "Description": "The conditions under which a rule takes effect.",
-          "Array": true,
-          "Type": "aws-properties-elasticloadbalancingv2-listenerrule-conditions",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        },
-        "ListenerArn": {
-          "Description": "The Amazon Resource Name (ARN) of the listener that the rule applies to.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        },
-        "Priority": {
-          "Description": "The priority for the rule. Elastic Load Balancing evaluates rules in priority order, from the lowest value to the highest                                 value. If a request satisfies a rule, Elastic Load Balancing ignores all subsequent rules.NoteA listener can have only one rule with a given priority.For valid values, see the Priority parameter for the CreateRule action in the Elastic Load Balancing API Reference version 2015-12-01.",
-          "Array": false,
-          "Type": "Number",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        }
-      }
-    },
     "LoadBalancer": {
       "Name": "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties": {
@@ -120,7 +120,7 @@
         },
         "Tags": {
           "Description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this                                 load balancer. Use tags to manage your resources.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption"
@@ -209,7 +209,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key–value pairs) for the target group. Use tags to help manage resources.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption."
@@ -246,34 +246,6 @@
     }
   },
   "Models": {
-    "aws-properties-elasticloadbalancingv2-listener-certificates": {
-      "Name": "ElasticLoadBalancingListenerCertificates",
-      "Properties": {
-        "CertificateArn": {
-          "Description": "The Amazon Resource Name (ARN) of the certificate to associate with the listener.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No"
-        }
-      }
-    },
-    "aws-properties-elasticloadbalancingv2-listener-defaultactions": {
-      "Name": "ElasticLoadBalancingListenerDefaultActions",
-      "Properties": {
-        "TargetGroupArn": {
-          "Description": "The Amazon Resource Name (ARN) of the target group to which Elastic Load Balancing routes the traffic.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes"
-        },
-        "Type": {
-          "Description": "The type of action. For valid values, see the Type contents for the                                 Action data type in the                                 Elastic Load Balancing API Reference version 2015-12-01.",
-          "Array": false,
-          "Type": "String",
-          "Required": "Yes"
-        }
-      }
-    },
     "aws-properties-elasticloadbalancingv2-listenerrule-actions": {
       "Name": "ElasticLoadBalancingListenerRuleActions",
       "Properties": {
@@ -305,6 +277,34 @@
           "Array": true,
           "Type": "String",
           "Required": "No"
+        }
+      }
+    },
+    "aws-properties-elasticloadbalancingv2-listener-certificates": {
+      "Name": "ElasticLoadBalancingListenerCertificates",
+      "Properties": {
+        "CertificateArn": {
+          "Description": "The Amazon Resource Name (ARN) of the certificate to associate with the listener.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No"
+        }
+      }
+    },
+    "aws-properties-elasticloadbalancingv2-listener-defaultactions": {
+      "Name": "ElasticLoadBalancingListenerDefaultActions",
+      "Properties": {
+        "TargetGroupArn": {
+          "Description": "The Amazon Resource Name (ARN) of the target group to which Elastic Load Balancing routes the traffic.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes"
+        },
+        "Type": {
+          "Description": "The type of action. For valid values, see the Type contents for the                                 Action data type in the                                 Elastic Load Balancing API Reference version 2015-12-01.",
+          "Array": false,
+          "Type": "String",
+          "Required": "Yes"
         }
       }
     },

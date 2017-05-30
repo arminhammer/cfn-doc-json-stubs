@@ -19,7 +19,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key–value pairs) to describe this                                 stack.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption."
@@ -39,10 +39,6 @@
           "UpdateRequires": "Updates are not supported."
         }
       }
-    },
-    "WaitConditionHandle": {
-      "Name": "AWS::CloudFormation::WaitConditionHandle",
-      "Properties": {}
     },
     "WaitCondition": {
       "Name": "AWS::CloudFormation::WaitCondition",
@@ -69,6 +65,10 @@
           "UpdateRequires": "Updates are not supported."
         }
       }
+    },
+    "WaitConditionHandle": {
+      "Name": "AWS::CloudFormation::WaitConditionHandle",
+      "Properties": {}
     },
     "Authentication": {
       "Name": "AWS::CloudFormation::Authentication",

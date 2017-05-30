@@ -1,5 +1,17 @@
 {
   "Resources": {
+    "Cluster": {
+      "Name": "AWS::ECS::Cluster",
+      "Properties": {
+        "ClusterName": {
+          "Description": "A name for the cluster. If you don't specify a name, AWS CloudFormation generates a unique physical ID for the name. For more                                 information, see Name Type.                                                                     Important                                    If you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "Replacement"
+        }
+      }
+    },
     "Service": {
       "Name": "AWS::ECS::Service",
       "Properties": {
@@ -111,18 +123,6 @@
           "Array": true,
           "Type": "aws-properties-ecs-taskdefinition-containerdefinitions",
           "Required": "Yes",
-          "UpdateRequires": "Replacement"
-        }
-      }
-    },
-    "Cluster": {
-      "Name": "AWS::ECS::Cluster",
-      "Properties": {
-        "ClusterName": {
-          "Description": "A name for the cluster. If you don't specify a name, AWS CloudFormation generates a unique physical ID for the name. For more                                 information, see Name Type.                                                                     Important                                    If you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.ImportantIf you specify a name, you cannot perform updates that require replacement of this resource.                                       You can perform updates that require no or some interruption. If you must replace the resource, specify a new name.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
           "UpdateRequires": "Replacement"
         }
       }

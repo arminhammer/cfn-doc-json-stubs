@@ -1,5 +1,52 @@
 {
   "Resources": {
+    "ConfigRule": {
+      "Name": "AWS::Config::ConfigRule",
+      "Properties": {
+        "ConfigRuleName": {
+          "Description": "A name for the AWS Config rule. If you don't specify a name, AWS CloudFormation generates a unique                                 physical ID and uses that ID for the rule name. For more information, see Name Type.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "Replacement"
+        },
+        "Description": {
+          "Description": "A description about this AWS Config rule.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "InputParameters": {
+          "Description": "Input parameter values that are passed to the AWS Config rule (Lambda function).",
+          "Array": false,
+          "Type": "Object",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "MaximumExecutionFrequency": {
+          "Description": "The maximum frequency at which the AWS Config rule runs evaluations. For valid values, see                                 the ConfigRule data type in the                                 AWS Config API Reference.If the rule runs an evaluation when AWS Config delivers a configuration snapshot, the rule                                 cannot run more frequently than the snapshot delivery frequency. Set an execution                                 frequency value that is equal to or greater than the value of the snapshot delivery                                 frequency, which is a property the AWS::Config::DeliveryChannel resource.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "Scope": {
+          "Description": "Defines which AWS resources will trigger an evaluation when their configurations                                 change. The scope can include one or more resource types, a combination of a tag key and                                 value, or a combination of one resource type and one resource ID. Specify a scope to                                 constrain the resources that are evaluated. If you don't specify a scope, the rule                                 evaluates all resources in the recording group.",
+          "Array": false,
+          "Type": "aws-properties-config-configrule-scope",
+          "Required": "No",
+          "UpdateRequires": "No interruption"
+        },
+        "Source": {
+          "Description": "Specifies the rule owner, the rule identifier, and the events that cause the                                 function to evaluate your AWS resources.",
+          "Array": false,
+          "Type": "aws-properties-config-configrule-source",
+          "Required": "Yes",
+          "UpdateRequires": "No interruption"
+        }
+      }
+    },
     "ConfigurationRecorder": {
       "Name": "AWS::Config::ConfigurationRecorder",
       "Properties": {
@@ -65,90 +112,9 @@
           "UpdateRequires": "No interruption"
         }
       }
-    },
-    "ConfigRule": {
-      "Name": "AWS::Config::ConfigRule",
-      "Properties": {
-        "ConfigRuleName": {
-          "Description": "A name for the AWS Config rule. If you don't specify a name, AWS CloudFormation generates a unique                                 physical ID and uses that ID for the rule name. For more information, see Name Type.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "Replacement"
-        },
-        "Description": {
-          "Description": "A description about this AWS Config rule.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "InputParameters": {
-          "Description": "Input parameter values that are passed to the AWS Config rule (Lambda function).",
-          "Array": false,
-          "Type": "Object",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "MaximumExecutionFrequency": {
-          "Description": "The maximum frequency at which the AWS Config rule runs evaluations. For valid values, see                                 the ConfigRule data type in the                                 AWS Config API Reference.If the rule runs an evaluation when AWS Config delivers a configuration snapshot, the rule                                 cannot run more frequently than the snapshot delivery frequency. Set an execution                                 frequency value that is equal to or greater than the value of the snapshot delivery                                 frequency, which is a property the AWS::Config::DeliveryChannel resource.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "Scope": {
-          "Description": "Defines which AWS resources will trigger an evaluation when their configurations                                 change. The scope can include one or more resource types, a combination of a tag key and                                 value, or a combination of one resource type and one resource ID. Specify a scope to                                 constrain the resources that are evaluated. If you don't specify a scope, the rule                                 evaluates all resources in the recording group.",
-          "Array": false,
-          "Type": "aws-properties-config-configrule-scope",
-          "Required": "No",
-          "UpdateRequires": "No interruption"
-        },
-        "Source": {
-          "Description": "Specifies the rule owner, the rule identifier, and the events that cause the                                 function to evaluate your AWS resources.",
-          "Array": false,
-          "Type": "aws-properties-config-configrule-source",
-          "Required": "Yes",
-          "UpdateRequires": "No interruption"
-        }
-      }
     }
   },
   "Models": {
-    "aws-properties-config-configurationrecorder-recordinggroup": {
-      "Name": "AWSConfigConfigurationRecorderRecordingGroup",
-      "Properties": {
-        "AllSupported": {
-          "Description": "Indicates whether to record all supported resource types. If you specify this                                 property, do not specify the ResourceTypes property.",
-          "Array": false,
-          "Type": "Boolean",
-          "Required": "No"
-        },
-        "IncludeGlobalResourceTypes": {
-          "Description": "Indicates whether AWS Config records all supported global resource types. When AWS Config                                 supports new global resource types, AWS Config will automatically start recording them if you                                 enable this property.NoteIf you set this property to true, you must set the                                    AllSupported property to                                    true.",
-          "Array": false,
-          "Type": "Boolean",
-          "Required": "No"
-        },
-        "ResourceTypes": {
-          "Description": "A list of valid AWS resource types to include in this recording group, such as                                 AWS::EC2::Instance or                                 AWS::CloudTrail::Trail. If you specify this property, do not                                 specify the AllSupported property. For a list of supported resource types,                                 see Supported resource types in the AWS Config Developer Guide.",
-          "Array": true,
-          "Type": "String",
-          "Required": "No"
-        }
-      }
-    },
-    "aws-properties-config-deliverychannel-configsnapshotdeliveryproperties": {
-      "Name": "AWSConfigDeliveryChannelConfigSnapshotDeliveryProperties",
-      "Properties": {
-        "DeliveryFrequency": {
-          "Description": "The frequency with which AWS Config delivers configuration snapshots. For valid                                 values, see ConfigSnapshotDeliveryProperties in the                                 AWS Config API Reference.",
-          "Array": false,
-          "Type": "String",
-          "Required": "No"
-        }
-      }
-    },
     "aws-properties-config-configrule-scope": {
       "Name": "AWSConfigConfigRuleScope",
       "Properties": {
@@ -221,6 +187,40 @@
           "Array": false,
           "Type": "String",
           "Required": "Yes"
+        }
+      }
+    },
+    "aws-properties-config-configurationrecorder-recordinggroup": {
+      "Name": "AWSConfigConfigurationRecorderRecordingGroup",
+      "Properties": {
+        "AllSupported": {
+          "Description": "Indicates whether to record all supported resource types. If you specify this                                 property, do not specify the ResourceTypes property.",
+          "Array": false,
+          "Type": "Boolean",
+          "Required": "No"
+        },
+        "IncludeGlobalResourceTypes": {
+          "Description": "Indicates whether AWS Config records all supported global resource types. When AWS Config                                 supports new global resource types, AWS Config will automatically start recording them if you                                 enable this property.NoteIf you set this property to true, you must set the                                    AllSupported property to                                    true.",
+          "Array": false,
+          "Type": "Boolean",
+          "Required": "No"
+        },
+        "ResourceTypes": {
+          "Description": "A list of valid AWS resource types to include in this recording group, such as                                 AWS::EC2::Instance or                                 AWS::CloudTrail::Trail. If you specify this property, do not                                 specify the AllSupported property. For a list of supported resource types,                                 see Supported resource types in the AWS Config Developer Guide.",
+          "Array": true,
+          "Type": "String",
+          "Required": "No"
+        }
+      }
+    },
+    "aws-properties-config-deliverychannel-configsnapshotdeliveryproperties": {
+      "Name": "AWSConfigDeliveryChannelConfigSnapshotDeliveryProperties",
+      "Properties": {
+        "DeliveryFrequency": {
+          "Description": "The frequency with which AWS Config delivers configuration snapshots. For valid                                 values, see ConfigSnapshotDeliveryProperties in the                                 AWS Config API Reference.",
+          "Array": false,
+          "Type": "String",
+          "Required": "No"
         }
       }
     }

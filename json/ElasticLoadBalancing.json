@@ -110,7 +110,7 @@
         },
         "Tags": {
           "Description": "An arbitrary set of tags (key-value pairs) for this load balancer.",
-          "Array": false,
+          "Array": true,
           "Type": "aws-properties-resource-tags",
           "Required": "No",
           "UpdateRequires": "No interruption"
