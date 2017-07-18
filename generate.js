@@ -390,7 +390,7 @@ function generateJson() {
     .then(() => {
       return fs.writeFile(
         'index.js',
-        `export const resourceList = ${JSON.stringify(resourceList)}`
+        `exports.resourceList = ${JSON.stringify(resourceList)}`
       );
     })
     .then(() => {
