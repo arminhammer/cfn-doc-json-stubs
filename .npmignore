@@ -1,1 +1,7 @@
 json/
+.vscode/
+doc.md
+README.md
+yarn.lock
+generate.js
+generateDocs.js
