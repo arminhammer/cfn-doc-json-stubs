@@ -356,6 +356,7 @@ function getPropertyTypeArray(inputObject, typeResults, depth) {
 }
 
 const resourceList = [];
+const resourceGroups = {};
 
 function generateJson() {
   return fs
@@ -381,6 +382,7 @@ function generateJson() {
       calculateModels();
       for (let group in result.Resources) {
         resourceList.push(group);
+        resourceGroups[group] = result.Resources[group];
         fs.writeJSONAsync(
           jsonResourcesDir + group + '.json',
           result.Resources[group]
@@ -388,10 +390,15 @@ function generateJson() {
       }
     })
     .then(() => {
-      return fs.writeFile(
-        'index.js',
-        `exports.resourceList = ${JSON.stringify(resourceList)}`
-      );
+      let writeString = `exports.resourceList = ${JSON.stringify(
+        resourceList
+      )}\n\n`;
+      Object.keys(resourceGroups).map(group => {
+        writeString += `exports.${group} = ${JSON.stringify(
+          resourceGroups[group]
+        )}\n\n`;
+      });
+      return fs.writeFile('index.js', writeString);
     })
     .then(() => {
       console.log('Finished.');
