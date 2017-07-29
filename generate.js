@@ -394,6 +394,10 @@ function generateJson() {
         resourceList
       )}\n\n`;
       Object.keys(resourceGroups).map(group => {
+        //let modGroup = JSON.parse(JSON.stringify(resourceGroups[group]));
+        //let modProps = modGroup.Properties;
+        removeDescription(resourceGroups[group]);
+        //delete modProps.Description;
         writeString += `exports.${group} = ${JSON.stringify(
           resourceGroups[group]
         )}\n\n`;
@@ -412,4 +416,11 @@ if (selection === 'download') {
   generateJson();
 } else {
   console.log('Invalid command.');
+}
+
+function removeDescription(obj) {
+  for (let prop in obj) {
+    if (prop === 'Description') delete obj[prop];
+    else if (typeof obj[prop] === 'object') removeDescription(obj[prop]);
+  }
 }
