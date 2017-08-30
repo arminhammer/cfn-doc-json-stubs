@@ -390,7 +390,8 @@ function generateJson() {
       }
     })
     .then(() => {
-      let writeString = `exports.resourceList = ${JSON.stringify(
+      let exportList = `   resourceList: resourceList`;
+      let writeString = `const resourceList = ${JSON.stringify(
         resourceList
       )}\n\n`;
       Object.keys(resourceGroups).map(group => {
@@ -398,10 +399,12 @@ function generateJson() {
         //let modProps = modGroup.Properties;
         removeDescription(resourceGroups[group]);
         //delete modProps.Description;
-        writeString += `exports.${group} = ${JSON.stringify(
+        writeString += `const ${group} = ${JSON.stringify(
           resourceGroups[group]
         )}\n\n`;
+        exportList += `,\n    ${group}: ${group}`;
       });
+      writeString += `module.exports = {\n  default: { \n ${exportList}\n },\n ${exportList} \n}\n`;
       return fs.writeFile('index.js', writeString);
     })
     .then(() => {
