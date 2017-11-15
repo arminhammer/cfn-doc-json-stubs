@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "8.5"
+sudo: false
+cache:
+  yarn: true
+  directories:
+    - node_modules
+install:
+  - yarn
+script:
+  - yarn download
+  - yarn generate-json
+  - yarn test
+after_success:
+  - sh .travis/push.sh
