@@ -2,5 +2,5 @@
 
 echo 'Pushing to Github!'
 git add .
-git commit -m 'Creating $DATE branch'
+git commit -m 'Running autoupdate'
 git push
