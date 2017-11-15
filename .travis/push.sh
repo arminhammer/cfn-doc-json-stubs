@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo 'Pushing!'
+echo 'Pushing to Github!'
