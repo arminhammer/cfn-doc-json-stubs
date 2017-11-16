@@ -1,18 +1,15 @@
 {
   "name": "cfn-doc-json-stubs",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "download": "node generate.js download",
     "generate-json": "node generate.js generate-json",
-    "release:major":
-      "npm version major && git push --follow-tags && npm publish",
-    "release:minor":
-      "npm version minor && git push --follow-tags && npm publish",
-    "release:patch":
-      "npm version patch && git push --follow-tags && npm publish"
+    "release:major": "npm version major && git push --follow-tags && npm publish",
+    "release:minor": "npm version minor && git push --follow-tags && npm publish",
+    "release:patch": "npm version patch && git push --follow-tags && npm publish"
   },
   "author": "",
   "license": "ISC",
@@ -29,8 +26,15 @@
   "jest": {
     "silent": false,
     "verbose": true,
-    "collectCoverageFrom": ["!**/node_modules/**"],
-    "moduleFileExtensions": ["js", "json"],
-    "testMatch": ["<rootDir>/tests/**/*.spec\\.(js)"]
+    "collectCoverageFrom": [
+      "!**/node_modules/**"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "testMatch": [
+      "<rootDir>/tests/**/*.spec\\.(js)"
+    ]
   }
 }
