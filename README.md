@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/cfn-doc-json-stubs.svg)](https://badge.fury.io/js/cfn-doc-json-stubs)
 # cfn-doc-json-stubs
 CloudFormation documentation to json scraper script
 
