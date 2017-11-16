@@ -9,8 +9,6 @@ cache:
 install:
 - yarn
 script:
-- yarn download
-- yarn generate-json
 - yarn test
 deploy:
   provider: npm
