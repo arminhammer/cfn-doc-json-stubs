@@ -1,16 +1,25 @@
 language: node_js
 node_js:
-  - "8.5"
+- '8.5'
 sudo: false
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 install:
-  - yarn
+- yarn
 script:
-  - yarn download
-  - yarn generate-json
-  - yarn test
+- yarn download
+- yarn generate-json
+- yarn test
 after_success:
-  - sh .travis/push.sh
+- ".travis/push.sh"
+deploy:
+  provider: npm
+  email: arminhammer@gmail.com
+  api_key:
+    secure: J7dSRPB5TI6a4Vidts3wyCrEHCKWdxHbLh9eAAuxq70n4M9P18c/mL929qvwgyW1eBQ6bKwE+u5Cc2TtexnguTjIkt6eVBSsQC7wIX3M8aUoS9mibNWNPvACnZlVlzdetYwVDSKJuEx4gXxKlPi5TnDgj0gLqQnO+l/ROKY9JCZoJfNe9Ig5/odfVpD7/roqRi0AJ3oQ8JHNLAx/1sOaNvsyl+Jeyb4ODKJxOpGI2Y3whH8mfECcOTjA7oOrqLqzE1byzNpaw+wOsVLdHUtk1mSOLGOJw0HhikCFBDrTQzoG1eNGuO4Hj3Y0pJ3KuyZLZKmgzVGhSWpMVGBUk3znJ3AWfhwgwcw6gDSQJzTvLiZqQ5OeuEbwSU79aPLcKTHlKSSUIeGWoX9JyIAcRgozDIXIq4vqn7i/cLMxkMoS3cPOLzvrPavfsA9+DE1efNtwXFjkwxU0roCzlpcB8RTfOnYFZxR41RnMbdp3fKovgnn9VkeVcBcrlS422KnQsm9HStojLYpeH8+gM+oMXePje5vjC4oNJGMX9X917ICh9HH+D7i/7PsovQlKsRT2wZeFgdvx4CYHQIu/7mdnlFetMYSoa0ZpHnXfn5UXYzQbkomKr/NWVh1u6RSK/GxNhvOV8mub9iOMtfvReQkENH3wfZWrK6zDe2CR70Lj5dJJRbU=
+  on:
+    tags: true
+    repo: arminhammer/cfn-doc-json-stubs
+    branch: master
