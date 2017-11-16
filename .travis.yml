@@ -13,7 +13,7 @@ script:
 - yarn generate-json
 - yarn test
 after_success:
-- .travis/push.sh
+- bash .travis/push.sh
 deploy:
   provider: npm
   email: arminhammer@gmail.com
