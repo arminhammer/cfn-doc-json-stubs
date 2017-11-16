@@ -12,7 +12,6 @@ script:
 - yarn download
 - yarn generate-json
 - yarn test
-- bash .travis/push.sh
 deploy:
   provider: npm
   email: arminhammer@gmail.com
