@@ -361,23 +361,17 @@ const resourceGroups = {};
 function generateJson() {
   return fs
     .readdirAsync(htmlPropertiesDir)
-    .map(fileName => {
-      return fs
+    .mapSeries(fileName =>
+      fs
         .readFileAsync(htmlPropertiesDir + fileName, 'utf8')
-        .then(body => {
-          return scrapeHtmlPage(body, 'Properties', fileName);
-        });
-    })
-    .then(() => {
-      return fs.readdirAsync(htmlResourcesDir);
-    })
-    .map(fileName => {
-      return fs
-        .readFileAsync(htmlResourcesDir + fileName, 'utf8')
-        .then(body => {
-          return scrapeHtmlPage(body, 'Resources', fileName);
-        });
-    })
+        .then(body => scrapeHtmlPage(body, 'Properties', fileName))
+    )
+    .then(() => fs.readdirAsync(htmlResourcesDir))
+    .mapSeries(fileName =>
+      fs.readFileAsync(htmlResourcesDir + fileName, 'utf8').then(body => {
+        return scrapeHtmlPage(body, 'Resources', fileName);
+      })
+    )
     .then(() => {
       calculateModels();
       for (let group in result.Resources) {
