@@ -9,7 +9,7 @@ From the command line, run the following:
 
 ```$ node generate.js download```
 
-This will scrape the CLoudFormation html documentation and save them to a new folder named html/.
+This will scrape the CloudFormation html documentation and save them to a new folder named html/.
 
 ### Generate the json
 
