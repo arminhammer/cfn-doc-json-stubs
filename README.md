@@ -2,6 +2,8 @@
 # cfn-doc-json-stubs
 CloudFormation documentation to json scraper script
 
+This project has been made obsolete because AWS publishes the CloudFormation spec as JSON now: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html
+
 ## Usage
 
 ### Download html
